@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Login &mdash; CodiePie</title>
+    <title>CPSU PR | Login</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('template/assets/modules/bootstrap/css/bootstrap.min.css') }}">
@@ -17,7 +17,11 @@
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('template/assets/css/style.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('template/assets/css/components.min.css"') }}>
+    <link rel="stylesheet" href="{{ asset('template/assets/css/components.min.css"') }}">
+
+    <!-- Logo  -->
+    <link rel="shortcut icon" type="" href="{{ asset('template/assets/img/cpsulogov4.png') }}">
+    
 </head>
 
 <body class="layout-4">
@@ -26,8 +30,7 @@
         <section class="section">
             <div class="container mt-5">
                 <div class="row">
-                    <div
-                        class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+                    <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
                         <div class="login-brand">
                             <img src="http://puffintheme.com/craft/codiepie/dist/assets/img/CodiePie-fill.svg"
                                 alt="logo" width="100" class="shadow-light rounded-circle">

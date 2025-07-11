@@ -20,7 +20,7 @@
 
         <li class="{{ $dashActive }}">
             <a class="nav-link" href="{{ route('dashboard') }}">
-                <i class="fa-brands fa-hashnode"></i> <span>Dashboard</span>
+                <i class="fas fa-border-all"></i> <span>Dashboard</span>
             </a>
         </li>
 

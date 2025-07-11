@@ -26,6 +26,9 @@
 <link rel="stylesheet" href="{{ asset('template/assets/css/style.min.css') }}">
 <link rel="stylesheet" href="{{ asset('template/assets/css/components.min.css') }}">
 
+<!-- Logo  -->
+<link rel="shortcut icon" type="" href="{{ asset('template/assets/img/cpsulogov4.png') }}">
+
 <style>
     body {
         overflow-x: hidden;
@@ -230,7 +233,7 @@
                             <i class="fas fa-cog"></i> Settings
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item has-icon text-danger">
+                        <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger">
                             <i class="fas fa-sign-out-alt"></i> Logout
                     </a>
                     </div>
@@ -323,6 +326,8 @@
 @if(request()->routeIs('categoryRead'))
     @include('script.manage.categorySerialize')
     @include('script.manage.unitSerialize')
+    @include('script.manage.itemSerialize')
+    @include('script.manage.officeSerialize')
 @endif
 
 </body>

@@ -16,7 +16,14 @@ class OfficeController extends Controller
         return view('manage.office', compact('office'));
     }
 
-     public function officeCreate(Request $request) {
+    public function getofficeRead() 
+    {
+        $data = Office::orderBy('office_name', 'ASC')->get();
+        return response()->json(['data' => $data]);
+    }
+
+    public function officeCreate(Request $request) 
+    {
         if ($request->isMethod('post')) {
             $request->validate([
                 'office_name' => 'required',
