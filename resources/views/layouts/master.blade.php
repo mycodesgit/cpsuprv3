@@ -53,10 +53,12 @@
         .styled-table thead tr {
             border-bottom: 2px solid #009879;
             border-top: 2px solid #009879;
+            color: #000;
         }
 
         .styled-table tbody tr {
             border-bottom: 1px solid #dddddd;
+            color: #000;
         }
 
         .styled-table tbody tr:nth-of-type(even) {

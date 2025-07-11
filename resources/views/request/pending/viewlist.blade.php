@@ -1,38 +1,40 @@
 
 
 <div class="card-body">
-    <ul class="nav nav-pills text-sm" id="myTab4" role="tablist" style="gap: 2px;">
-        <li class="nav-item">
-            <a class="nav-link active show" id="pr-tab" data-toggle="tab" href="#prtab"
-                role="tab" aria-controls="first" aria-selected="true">PR Table
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link ml-1" id="prpdf-tab" data-toggle="tab" href="#prpdftab"
-                role="tab" aria-controls="second" aria-selected="false">PR PDF
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link ml-1" id="receipt-tab" data-toggle="tab" href="#receipttab"
-                role="tab" aria-controls="third" aria-selected="false">Receipt Slip
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link ml-1" id="remarks-tab" data-toggle="tab" href="#remarkstab"
-                role="tab" aria-controls="fourth" aria-selected="false">Remarks
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link ml-1" id="pow-tab" data-toggle="tab" href="#powtab"
-                role="tab" aria-controls="fifth" aria-selected="false">POW
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link ml-1" id="ppmp-tab" data-toggle="tab" href="#ppmptab"
-                role="tab" aria-controls="sixth" aria-selected="false">PPMP
-            </a>
-        </li>
-    </ul>
+    <div style="border-top: 1px solid #009879;">
+        <ul class="nav nav-pills text-sm" id="myTab4" role="tablist" style="gap: 2px;  margin-top: 10px">
+            <li class="nav-item">
+                <a class="nav-link active show" id="pr-tab" data-toggle="tab" href="#prtab"
+                    role="tab" aria-controls="first" aria-selected="true">PR Table
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link ml-1" id="prpdf-tab" data-toggle="tab" href="#prpdftab"
+                    role="tab" aria-controls="second" aria-selected="false">PR PDF
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link ml-1" id="receipt-tab" data-toggle="tab" href="#receipttab"
+                    role="tab" aria-controls="third" aria-selected="false">Receipt Slip
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link ml-1" id="remarks-tab" data-toggle="tab" href="#remarkstab"
+                    role="tab" aria-controls="fourth" aria-selected="false">Remarks
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link ml-1" id="pow-tab" data-toggle="tab" href="#powtab"
+                    role="tab" aria-controls="fifth" aria-selected="false">POW
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link ml-1" id="ppmp-tab" data-toggle="tab" href="#ppmptab"
+                    role="tab" aria-controls="sixth" aria-selected="false">PPMP
+                </a>
+            </li>
+        </ul>
+    </div>
     <div class="tab-content" id="myTabContent2">
         <div class="tab-pane fade active show" id="prtab" role="tabpanel" aria-labelledby="pr-tab">
             <div class="table-responsive">
@@ -102,7 +104,7 @@
                 <iframe src="{{ route('PDFrbarasAllPending', encrypt($data['purpose_id'])) }}" width="100%" height="500"></iframe>
             @endif
         </div>
-        <div class="tab-pane fade" id="remarkstab" role="tabpanel" aria-labelledby="remarks-tab">
+        <div class="tab-pane fade" id="remarkstab" role="tabpanel" aria-labelledby="remarks-tab" style="border-top: 1px solid #009879; margin-top: 10px">
             @if(Auth::user()->role =='Checker')
                 <form action="{{ route('checkingPR') }}" class="form-horizontal" method="post" id="addItem">
                     @csrf
@@ -186,6 +188,82 @@
                     </div>
                 </form>
             @endif
+        </div>
+        <div class="tab-pane fade" id="powtab" role="tabpanel" aria-labelledby="pow-tab" style="border-top: 1px solid #009879; margin-top: 10px">
+            <div style="background-color: #e9e9e9; padding: 10px">
+                @if($docFile && $docFile->doc_file)
+                    @php
+                        $filePath = storage_path('app/public/' . $docFile->doc_file);
+                        $fileExists = file_exists($filePath);
+                    @endphp
+
+                    @if($fileExists)
+                        <iframe src="{{ asset('storage/' . $docFile->doc_file) }}#toolbar=0" type="application/pdf" style="width:100%; height:500px;"></iframe>
+                    @else
+                        <div>
+                            <div class="card text-center" style="width: 250px; border: 1px solid #eee;">
+                                <div class="card-body p-3">
+                                    <i class="far fa-file-pdf" style="font-size: 60pt"></i>
+                                </div>
+                                <div class="card-footer bg-white p-2" style="font-size: 15pt">
+                                    <small class="text-muted">File not found on server</small>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @else
+                    <div>
+                        <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
+                            <li class="fileattached">
+                                <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
+                                <div class="mailbox-attachment-info">
+                                    <span class="mailbox-attachment-name"><center>No PDF File uploaded</center></span>
+                                    <span class="mailbox-attachment-size clearfix mt-1">
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                @endif
+            </div>
+        </div>
+        <div class="tab-pane fade" id="ppmptab" role="tabpanel" aria-labelledby="ppmp-tab" style="border-top: 1px solid #009879; margin-top: 10px">
+            <div style="background-color: #e9e9e9; padding: 10px">
+                @if($docFile && $docFile->ppmp_file)
+                        @php
+                            $filePath = storage_path('app/public/' . $docFile->ppmp_file);
+                            $fileExists = file_exists($filePath);
+                        @endphp
+
+                        @if($fileExists)
+                            <iframe src="{{ asset('storage/' . $docFile->ppmp_file) }}#toolbar=0" type="application/pdf" style="width:100%; height:500px;"></iframe>
+                        @else
+                            <div>
+                                <div class="card text-center" style="width: 250px; border: 1px solid #eee;">
+                                    <div class="card-body p-3">
+                                        <i class="far fa-file-pdf" style="font-size: 60pt"></i>
+                                    </div>
+                                    <div class="card-footer bg-white p-2" style="font-size: 15pt">
+                                        <small class="text-muted">File not found on server</small>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @else
+                        <div>
+                            <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
+                                <li class="fileattached">
+                                    <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
+                                    <div class="mailbox-attachment-info">
+                                        <span class="mailbox-attachment-name"><center>No PDF File uploaded</center></span>
+                                        <span class="mailbox-attachment-size clearfix mt-1">
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    @endif
+            </div>
         </div>
     </div>
 </div>
