@@ -108,6 +108,32 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="tab-pane fade" id="vert-tabs-right-five" role="tabpanel" aria-labelledby="vert-tabs-right-five-tab">
+                            <div class="card">
+                                <div class="card-header">
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addYearModal">
+                                        <i class="fas fa-plus"></i> Add New
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive" style="overflow-x: hidden;">
+                                        <table id="yearTable" class="table table-hover styled-table" style="width: 100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Year</th>
+                                                    <th>Status</th>
+                                                    <th style="width: 10%">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -123,6 +149,7 @@
                                 <a class="nav-link" id="vert-tabs-right-two-tab" data-toggle="pill" href="#vert-tabs-right-two" role="tab" aria-controls="vert-tabs-right-two" aria-selected="false">Units</a>
                                 <a class="nav-link" id="vert-tabs-right-three-tab" data-toggle="pill" href="#vert-tabs-right-three" role="tab" aria-controls="vert-tabs-right-three" aria-selected="false">Items</a>
                                 <a class="nav-link" id="vert-tabs-right-four-tab" data-toggle="pill" href="#vert-tabs-right-four" role="tab" aria-controls="vert-tabs-right-four" aria-selected="false">Offices</a>
+                                <a class="nav-link" id="vert-tabs-right-five-tab" data-toggle="pill" href="#vert-tabs-right-five" role="tab" aria-controls="vert-tabs-right-five" aria-selected="false">Years</a>
                             </div>
                         </div>
                     </div>
@@ -134,6 +161,7 @@
     @include('modal.categoryAddmodal')
     @include('modal.unitAddmodal')
     @include('modal.itemAddmodal')
+    @include('modal.yearAddmodal')
 
     <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -265,6 +293,40 @@
         </div>
     </div>
 
+    <div class="modal fade" id="editYearModal" tabindex="-1" role="dialog" aria-labelledby="editYearModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editYearModalLabel">Edit Year Name</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="editYearForm">
+                    <div class="modal-body">
+                        <input type="hidden" name="id" id="editYearId">
+                        <div class="form-group">
+                            <label for="editYearName">Year Name</label>
+                            <input type="text" class="form-control" id="editYearName" name="pryear">
+                        </div>
+                        <div class="form-group">
+                            <label for="editYearStatus">Year Status</label>
+                            <select name="status" id="editYearStatus" class="form-control">
+                                <option value="1">Enabled</option>
+                                <option value="2">Disabled</option>
+                                <option value="3">Upcoming</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script>
         var categoryReadRoute = "{{ route('getcategoryRead') }}";
         var categoryCreateRoute = "{{ route('categoryCreate') }}";
@@ -286,6 +348,11 @@
         var officeUpdateRoute = "{{ route('officeUpdate', ['id' => ':id']) }}";
         var officeDeleteRoute = "{{ route('officeDelete', ['id' => ':id']) }}";
 
+        var yearReadRoute = "{{ route('getyearRead') }}";
+        var yearCreateRoute = "{{ route('yearCreate') }}";
+        var yearUpdateRoute = "{{ route('yearUpdate', ['id' => ':id']) }}";
+        var yearDeleteRoute = "{{ route('yearDelete', ['id' => ':id']) }}";
+
         var isAdmin = '{{ Auth::guard("web")->user()->role == "Administrator" ? true : false }}';
         var isProcurementOfficer = '{{ Auth::guard("web")->user()->role == "Procurement Officer" ? true : false }}';
         var isChecker = '{{ Auth::guard("web")->user()->role == "Checker" ? true : false }}';
@@ -295,5 +362,11 @@
             const formattedValue = value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             input.value = formattedValue;
         }
+
+        document.getElementById('addYearName').addEventListener('keypress', function (e) {
+            if (e.key < '0' || e.key > '9') {
+                e.preventDefault();
+            }
+        });
     </script>
 @endsection

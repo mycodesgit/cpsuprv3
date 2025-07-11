@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\OfficeController;
+use App\Http\Controllers\YearController;
 use App\Http\Controllers\PDFprController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\RequestPendingController;
@@ -75,6 +76,11 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
         Route::post('/office/list/add', [OfficeController::class, 'officeCreate'])->name('officeCreate');
         Route::post('/office/list/update', [OfficeController::class, 'officeUpdate'])->name('officeUpdate');
         Route::get('/office/list/delete{id}', [OfficeController::class, 'officeDelete'])->name('officeDelete'); 
+
+        Route::get('/year/current/view/list/ajax', [YearController::class, 'getyearRead'])->name('getyearRead');
+        Route::post('/year/current/view/list/addy', [YearController::class, 'yearCreate'])->name('yearCreate');
+        Route::post('/year/current/view/list/updatey', [YearController::class, 'yearUpdate'])->name('yearUpdate');
+        Route::post('/year/current/view/list/deletey{id}', [YearController::class, 'yearDelete'])->name('yearDelete');
     });
 
     //Request

@@ -1213,17 +1213,18 @@ table tr:hover .table-links {
     font-weight: bold;
 }
 .nav-pills .nav-item .nav-link {
-    color: #563d7c;
+    color: #000000;
     padding-left: 15px !important;
     padding-right: 15px !important;
 }
 .nav-pills .nav-item .nav-link:hover {
-    background-color: #a68fc8;
+    background-color: #3a7d5c;
+    color: #fff;
 }
 .nav-pills .nav-item .nav-link.active {
-    box-shadow: 0 2px 6px #7a58ad;
+    box-shadow: 0 2px 6px #3a7d5c;
     color: #fff;
-    background-color: #563d7c;
+    background-color: #3a7d5c;
 }
 .nav-pills .nav-item .nav-link .badge {
     padding: 5px 8px;

@@ -321,7 +321,7 @@ class RequestPendingController extends Controller
                     'office.id as oid',
                     'purpose.created_at as cpdate',
                     'funding_source.fund_cluster',
-                    'item_request.item_cost as fitem_cost' )
+                    'item_request.item_cost as fitem_cost')
             ->whereIn('item_request.status', ['2', '3', '4', '5', '6', '7', '8', '9', '99'])
             ->where('item_request.purpose_id', '=',  $enID)
             ->get();

@@ -3,6 +3,7 @@
 
     $dashActive = in_array($current_route, ['dashboard']) ? 'active' : '';   
     $manageActive = in_array($current_route, ['categoryRead']) ? 'active' : '';   
+    $pendingAllActive = in_array($current_route, ['pendingAllListRead', 'pendingAllListView']) ? 'active' : '';
 @endphp
 
 <aside id="sidebar-wrapper">
@@ -32,8 +33,8 @@
             </li>
         @endif
 
-        <li>
-            <a class="nav-link" href="#">
+        <li class="{{ $pendingAllActive }}">
+            <a class="nav-link" href="{{ route('pendingAllListRead') }}">
                 <i class="fas fa-clock"></i> <span>Pending PR</span>
             </a>
         </li>
