@@ -12,13 +12,18 @@
                     <div class="tab-content" id="vert-tabs-right-tabContent">
                         <div class="tab-pane fade show active" id="vert-tabs-right-one" role="tabpanel" aria-labelledby="vert-tabs-right-one-tab">
                             <div class="card">
+                                <div class="card-header">
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addCategoryModal">
+                                        <i class="fas fa-plus"></i> Add New
+                                    </button>
+                                </div>
                                 <div class="card-body">
                                     <div class="table-responsive" style="overflow-x: hidden;">
                                         <table id="categoryTable" class="table table-hover styled-table">
                                             <thead>
                                                 <tr>
                                                     <th>Category</th>
-                                                    <th width="10">Action</th>
+                                                    <th width="15%">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -32,13 +37,18 @@
 
                         <div class="tab-pane fade" id="vert-tabs-right-two" role="tabpanel" aria-labelledby="vert-tabs-right-two-tab">
                             <div class="card">
+                                <div class="card-header">
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addUnitModal">
+                                        <i class="fas fa-plus"></i> Add New
+                                    </button>
+                                </div>
                                 <div class="card-body">
                                     <div class="table-responsive" style="overflow-x: hidden;">
                                         <table id="unitTable" class="table table-hover styled-table"  style="width: 100%">
                                             <thead>
                                                 <tr>
                                                     <th>Unit</th>
-                                                    <th style="width: 10% !important">Action</th>
+                                                    <th width="15%">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -52,6 +62,11 @@
 
                         <div class="tab-pane fade" id="vert-tabs-right-three" role="tabpanel" aria-labelledby="vert-tabs-right-three-tab">
                             <div class="card">
+                                <div class="card-header">
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addItemModal">
+                                        <i class="fas fa-plus"></i> Add New
+                                    </button>
+                                </div>
                                 <div class="card-body">
                                     <div class="table-responsive" style="overflow-x: hidden;">
                                         <table id="itemTable" class="table table-hover styled-table"  style="width: 100%">
@@ -86,32 +101,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {{-- @php $no = 1; @endphp
-                                                @foreach($office as $data)
-                                                <tr id="tr-{{ $data->id }}" class="{{ $cr === 'officeEdit' ? $data->id == $selectedOffice->id ? 'bg-selectEdit' : '' : ''}}">
-                                                    <td>{{ $no++ }}</td>
-                                                    <td>{{ $data->office_name }}</td>
-                                                    <td>{{ $data->office_abbr }}</td>
-                                                    <td>
-                                                        <div class="btn-group">
-                                                            <div class="btn-group">
-                                                                <button type="button" class="btn btn-success dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                                </button>
-                                                                <div class="dropdown-menu">
-                                                                    <a href="{{ route('officeEdit', $data->id) }}" class="dropdown-item btn-edit" data-id="{{ $data->id }}">
-                                                                        <i class="fas fa-exclamation-circle"></i> Edit
-                                                                    </a>
-                                                                    @if(Auth::guard('web')->user()->role == 'Administrator')
-                                                                    <button value="{{ $data->id }}" class="dropdown-item office-delete">
-                                                                        <i class="fas fa-trash"></i> Delete
-                                                                    </button>
-                                                                    @endif
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                @endforeach --}}
+                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -140,31 +130,140 @@
             </div>
         </div>
     </section>
+
+    @include('modal.categoryAddmodal')
+    @include('modal.unitAddmodal')
+    @include('modal.itemAddmodal')
+
     <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editCategoryModalLabel">Edit Category Name</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form id="editCategoryForm">
-                        <div class="modal-body">
-                            <input type="hidden" name="id" id="editCategoryId">
-                            <div class="form-group">
-                                <label for="editCategoryName">Category Name</label>
-                                <input type="text" class="form-control" id="editCategoryName" name="category_name">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </form>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editCategoryModalLabel">Edit Category Name</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+                <form id="editCategoryForm">
+                    <div class="modal-body">
+                        <input type="hidden" name="id" id="editCategoryId">
+                        <div class="form-group">
+                            <label for="editCategoryName">Category Name</label>
+                            <input type="text" class="form-control" id="editCategoryName" name="category_name">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
+
+    <div class="modal fade" id="editUnitModal" tabindex="-1" role="dialog" aria-labelledby="editUnitModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editUnitModalLabel">Edit Unit Name</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="editUnitForm">
+                    <div class="modal-body">
+                        <input type="hidden" name="id" id="editUnitId">
+                        <div class="form-group">
+                            <label for="editUnitName">Unit Name</label>
+                            <input type="text" class="form-control" id="editUnitName" name="unit_name">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editItemModal" tabindex="-1" role="dialog" aria-labelledby="editItemModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editItemModalLabel">Edit Item Name</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="editItemForm">
+                    <div class="modal-body">
+                        <input type="hidden" name="id" id="editItemId">
+                        <div class="form-group">
+                            <label for="editItemCategory">Category:</label>
+                            <select id="editItemCategory" name="category_id" class="form-control select2bs4" data-placeholder="Select Category" style="width: 100%;">
+                                <option value="">-- Select --</option>
+                                @foreach ($category as $cat)
+                                    <option value="{{ $cat->id }}">{{ $cat->category_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editItemUnit">Unit Name</label>
+                            <select id="editItemUnit" name="unit_id" class="form-control select2bs4" data-placeholder="Select Unit" style="width: 100%;">
+                                <option value="">-- Select --</option>
+                                @foreach ($unit as $u)
+                                    <option value="{{ $u->id }}">{{ $u->unit_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editItemDescripName">Item Description</label>
+                            <textarea rows="4" name="item_descrip" id="editItemDescripName" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="editItemCost">Item Cost</label>
+                            <input type="text" name="item_cost" id="editItemCost" onkeyup="formatNumber(this);" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editOfficeModal" tabindex="-1" role="dialog" aria-labelledby="editOfficeModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editOfficeModalLabel">Edit Office Name</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="editOfficeForm">
+                    <div class="modal-body">
+                        <input type="hidden" name="id" id="editOfficeId">
+                        <div class="form-group">
+                            <label for="editOfficeName">Office Name</label>
+                            <input type="text" class="form-control" id="editOfficeName" name="office_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="editOfficeAbbr">Office Abbreviation</label>
+                            <input type="text" class="form-control" id="editOfficeAbbr" name="office_abbr">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script>
         var categoryReadRoute = "{{ route('getcategoryRead') }}";
@@ -183,6 +282,9 @@
         var itemDeleteRoute = "{{ route('itemDelete', ['id' => ':id']) }}";
 
         var officeReadRoute = "{{ route('getofficeRead') }}";
+        var officeCreateRoute = "{{ route('officeCreate') }}";
+        var officeUpdateRoute = "{{ route('officeUpdate', ['id' => ':id']) }}";
+        var officeDeleteRoute = "{{ route('officeDelete', ['id' => ':id']) }}";
 
         var isAdmin = '{{ Auth::guard("web")->user()->role == "Administrator" ? true : false }}';
         var isProcurementOfficer = '{{ Auth::guard("web")->user()->role == "Procurement Officer" ? true : false }}';

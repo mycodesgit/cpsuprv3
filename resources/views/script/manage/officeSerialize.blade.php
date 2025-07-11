@@ -5,19 +5,13 @@
         "positionClass": "toast-top-right"
     };
     $(document).ready(function() {
-        $('#adUnit').submit(function(event) {
+        $('#adOffice').submit(function(event) {
             event.preventDefault();
-
-            var unitName = $('input[name="unit_name"]').val();
-            if (!unitName.trim()) { 
-                toastr.error("Unit name is required");
-                return;  
-            }
             
             var formData = $(this).serialize();
 
             $.ajax({
-                url: unitCreateRoute,
+                url: officeCreateRoute,
                 type: "POST",
                 data: formData,
                 success: function(response) {
@@ -85,17 +79,20 @@
         var id = $(this).data('id');
         var offName = $(this).data('offname');
         var offAbbr = $(this).data('offabbr');
-        $('#editUnitId').val(id);
-        $('#editUnitName').val(unitName);
-        $('#editUnitModal').modal('show');
+
+        $('#editOfficeId').val(id);
+        $('#editOfficeName').val(offName);
+        $('#editOfficeAbbr').val(offAbbr);
+
+        $('#editOfficeModal').modal('show');
     });
 
-    $('#editUnitForm').submit(function(event) {
+    $('#editOfficeForm').submit(function(event) {
         event.preventDefault();
         var formData = $(this).serialize();
 
         $.ajax({
-            url: unitUpdateRoute,
+            url: officeUpdateRoute,
             type: "POST",
             data: formData,
             headers: {
@@ -104,8 +101,8 @@
             success: function(response) {
                 if(response.success) {
                     toastr.success(response.message);
-                    $('#editUnitModal').modal('hide');
-                    $(document).trigger('unitAdded');
+                    $('#editOfficeModal').modal('hide');
+                    $(document).trigger('officeAdded');
                 } else {
                     toastr.error(response.message);
                 }
@@ -117,7 +114,7 @@
         });
     });
 
-    $(document).on('click', '.unit-delete', function(e) {
+    $(document).on('click', '.office-delete', function(e) {
         var id = $(this).val();
         $.ajaxSetup({
             headers: {
@@ -136,7 +133,7 @@
             if (result.isConfirmed) {
                 $.ajax({
                     type: "POST",
-                    url: unitDeleteRoute.replace(':id', id),
+                    url: officeDeleteRoute.replace(':id', id),
                     success: function(response) {
                         $("#tr-" + id).delay(1000).fadeOut();
                         Swal.fire({

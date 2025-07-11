@@ -8,13 +8,17 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 
 use App\Models\Category;
+use App\Models\Unit;
+use App\Models\Item;
 
 class CategoryController extends Controller
 {   
     public function categoryRead() 
     {
         $category = Category::orderBy('category_name', 'ASC')->get();
-        return view('manage.category', compact('category'));
+        $unit = Unit::all();
+
+        return view('manage.category', compact('category', 'unit'));
     }
 
     public function getcategoryRead() 

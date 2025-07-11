@@ -25,6 +25,7 @@
                         toastr.success(response.message);
                         console.log(response);
                         $(document).trigger('unitAdded');
+                        $('#addUnitModal').modal('hide');
                         $('input[name="unit_name"]').val('');
                     } else {
                         toastr.error(response.message);

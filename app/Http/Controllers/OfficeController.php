@@ -34,7 +34,8 @@ class OfficeController extends Controller
             $existingOffice = Office::where('office_name', $officeName)->first();
 
             if ($existingOffice) {
-                return redirect()->route('officeRead')->with('error1', 'Office already exists!');
+                //return redirect()->route('officeRead')->with('error1', 'Office already exists!');
+                return response()->json(['error' => true, 'message' => 'Office already exists!'],  404);
             }
 
             try {
@@ -44,19 +45,13 @@ class OfficeController extends Controller
                     'remember_token' => Str::random(60),
                 ]);
 
-                return redirect()->route('officeRead')->with('success', 'Office stored successfully!');
+                //return redirect()->route('officeRead')->with('success', 'Office stored successfully!');
+                return response()->json(['success' => true, 'message' => 'Office stored successfully!'],  200);
             } catch (\Exception $e) {
-                return redirect()->route('officeRead')->with('error1', 'Failed to store Office!');
+                //return redirect()->route('officeRead')->with('error1', 'Failed to store Office!');
+                return response()->json(['error' => true, 'message' => 'Failed to add Office!'],  404);
             }
         }
-    }
-
-    public function officeEdit($id) {
-        $office = Office::all();
-
-        $selectedOffice = Office::findOrFail($id);
-
-        return view('manage.office', compact('office', 'selectedOffice'));
     }
 
     public function officeUpdate(Request $request) {
@@ -71,7 +66,7 @@ class OfficeController extends Controller
             $existingOffice = Office::where('Office_name', $officeName)->where('id', '!=', $request->input('id'))->first();
 
             if ($existingOffice) {
-                return redirect()->back()->with('error1', 'Office already exists!');
+                return response()->json(['error' => true, 'message' => 'Office already exists!'], 200);
             }
 
             $office = Office::findOrFail($request->input('id'));
@@ -80,9 +75,11 @@ class OfficeController extends Controller
                 'office_abbr' => $request->input('office_abbr')
             ]);
 
-            return redirect()->route('officeEdit', ['id' => $office->id])->with('success', 'Updated Successfully');
+            // return redirect()->route('officeEdit', ['id' => $office->id])->with('success', 'Updated Successfully');
+            return response()->json(['success' => true, 'message' => 'Updated Successfully'], 200);
         } catch (\Exception $e) {
-            return redirect()->back()->with('error1', 'Failed to update Office!');
+            // return redirect()->back()->with('error1', 'Failed to update Office!');
+            return response()->json(['error' => true, 'message' => 'Failed to update Office!'], 404);
         }
     }
 

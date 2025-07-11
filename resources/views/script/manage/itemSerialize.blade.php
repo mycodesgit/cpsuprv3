@@ -19,6 +19,7 @@
                         toastr.success(response.message);
                         console.log(response);
                         $(document).trigger('itemAdded');
+                        $('#addItemModal').modal('hide');
                         $('textarea[name="item_descrip"]').val('');
                         $('input[name="item_cost"]').val('');
                     } else {

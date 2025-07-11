@@ -73,7 +73,6 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
         Route::get('/office/list', [OfficeController::class, 'officeRead'])->name('officeRead');
         Route::get('/office/list/ajax', [OfficeController::class, 'getofficeRead'])->name('getofficeRead');
         Route::post('/office/list/add', [OfficeController::class, 'officeCreate'])->name('officeCreate');
-        Route::get('/office/list/edit/{id}', [OfficeController::class, 'officeEdit'])->name('officeEdit');
         Route::post('/office/list/update', [OfficeController::class, 'officeUpdate'])->name('officeUpdate');
         Route::get('/office/list/delete{id}', [OfficeController::class, 'officeDelete'])->name('officeDelete'); 
     });

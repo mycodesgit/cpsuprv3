@@ -18,6 +18,7 @@
                         toastr.success(response.message);
                         console.log(response);
                         $(document).trigger('categoryAdded');
+                        $('#addCategoryModal').modal('hide');
                         $('input[name="category_name"]').val('');
                     } else {
                         toastr.error(response.message);
