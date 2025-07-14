@@ -49,6 +49,12 @@
         .main-sidebar.sidebar-collapsed {
             margin-left: 5px !important;
         }
+        
+        body.sidebar-mini .main-sidebar .sidebar-menu li a,
+        body.sidebar-collapsed .main-sidebar .sidebar-menu li a {
+            margin-left: 0px !important;
+        }
+
 
         .styled-table thead tr {
             border-bottom: 2px solid #009879;
@@ -72,6 +78,20 @@
         .toast-top-right {
             margin-top: 80px;
         }
+        @media (max-width: 772px) {
+            .logout-button-container {
+                width: 50% !important;
+                left: 5%;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .logout-button-container {
+                width: 18%;
+                left: 5;
+            }
+        }
+
     </style>
 </head>
 
