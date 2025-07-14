@@ -124,7 +124,7 @@ class RequestApprovedController extends Controller
             ]);
         }
 
-        return view ("request.approved.approvedAllList", compact('data'));
+        return view ("request.approved.approvedListChecker", compact('data'));
     }
 
     public function getapprovedListRead() {

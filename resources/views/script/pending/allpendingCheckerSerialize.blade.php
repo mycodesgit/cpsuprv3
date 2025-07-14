@@ -98,7 +98,7 @@
         $('#viewPrModal').modal('show');
 
         // Optional: show loading indicator
-        $('#modalContent').html('<div class="text-center py-5">Loading...</div>');
+        $('#modalContent').html('<div class="text-center">Loading...</div>');
 
         // Use AJAX to load the table view by PR ID
         $.ajax({

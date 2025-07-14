@@ -4,6 +4,10 @@
     $dashActive = in_array($current_route, ['dashboard']) ? 'active' : '';   
     $manageActive = in_array($current_route, ['categoryRead']) ? 'active' : '';   
     $pendingAllActive = in_array($current_route, ['pendingAllListRead', 'pendingAllListView']) ? 'active' : '';
+    $approvedAllActive = in_array($current_route, ['approvedListAllRead']) ? 'active' : '';
+
+
+    $usersAllActive = in_array($current_route, ['userRead']) ? 'active' : '';
 @endphp
 
 <aside id="sidebar-wrapper">
@@ -39,8 +43,8 @@
             </a>
         </li>
 
-        <li>
-            <a class="nav-link" href="#">
+        <li class="{{ $approvedAllActive }}">
+            <a class="nav-link" href="{{ route('approvedListAllRead') }}">
                 <i class="fas fa-thumbs-up"></i> <span>Approved PR</span>
             </a>
         </li>
@@ -63,13 +67,13 @@
 
         <li class="menu-header" style="border-top: none">Users Navigation</li>
 
-        <li>
-            <a class="nav-link" href="#">
+        <li class="{{ $usersAllActive }}">
+            <a class="nav-link" href="{{ route('userRead') }}">
                 <i class="fas fa-users"></i> <span>Users</span>
             </a>
         </li>
     </ul>
     <div class="mt-4 mb-4 p-3 hide-sidebar-mini sidebar-transition" style="position: fixed; bottom: 20px; width: 13%; z-index: 999;">
-        <a href="https://getcodiepie.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split"><i class="fas fa-rocket"></i> Documentation</a>
+        <a href="{{ route('logout') }}" class="btn btn-primary btn-lg btn-block btn-icon-split"><i class="fas fa-power-off"></i> Sign out</a>
     </div>
 </aside>

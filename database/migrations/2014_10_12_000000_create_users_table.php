@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->int('campus_id');
             $table->int('office_id');
+            $table->enum('ustatus', [1, 2, 3])->default(1);
             $table->string('fname');
             $table->string('mname');
             $table->string('lname');

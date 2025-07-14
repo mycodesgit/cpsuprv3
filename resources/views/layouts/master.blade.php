@@ -91,15 +91,20 @@
                 style="background: linear-gradient(135deg, #3a7d5c 0%, #1f5036 100%); position: fixed; margin-top: 15px; border-radius: 5px; margin-right: 0; z-index: 999">
                 <form class="form-inline mr-auto">
                     <ul class="navbar-nav mr-3">
-                        <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i
-                                    class="fas fa-bars text-white"></i></a></li>
-                        <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i
-                                    class="fas fa-search"></i></a></li>
+                        <li>
+                            <a href="#" data-toggle="sidebar" class="nav-link nav-link-lg">
+                                <i class="fas fa-bars text-white"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none">
+                                <i class="fas fa-search"></i>
+                            </a>
+                        </li>
                     </ul>
                     <div class="search-element">
                         <input class="form-control" type="search" value="Balance: 2, 500, 530.00" aria-label="Search"
-                            data-width="250"
-                            style="background-color: rgb(47, 107, 77); border-radius: 5px; color: #fff">
+                            data-width="250" style="background-color: rgb(47, 107, 77); border-radius: 5px; color: #fff" readonly>
                     </div>
                 </form>
                 <ul class="navbar-nav navbar-right">
@@ -368,6 +373,14 @@
 
     @if (request()->routeIs('pendingAllListRead'))
         @include('script.pending.allpendingCheckerSerialize')
+    @endif
+
+    @if (request()->routeIs('approvedListAllRead'))
+        @include('script.approve.allapprovedSerialize')
+    @endif
+
+    @if (request()->routeIs('userRead'))
+        @include('script.user.userSerialize')
     @endif
 
 </body>

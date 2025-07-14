@@ -19,7 +19,6 @@ use App\Models\Annoucement;
 
 class UserController extends Controller
 {
-    //
     public function userRead() {
         $camp = Campus::all();
         $off = Office::all();
@@ -29,7 +28,18 @@ class UserController extends Controller
             ->select('users.id as uid', 'users.*', 'campuses.*', 'office.*')
             ->get();
 
-        return view("users.list", compact('user', 'camp', 'off'));
+        return view("users.listuser", compact('user', 'camp', 'off'));
+    }
+
+    public function getuserRead() 
+    {
+        $data = User::join('campuses', 'users.campus_id', '=', 'campuses.id')
+            ->join('office', 'users.office_id', '=', 'office.id')
+            ->where('users.ustatus', '!=', '3')
+            ->select('users.id as uid', 'users.*', 'campuses.*', 'office.*')
+            ->get();
+
+        return response()->json(['data' => $data]);
     }
 
     public function userCreate(Request $request) {
@@ -50,7 +60,7 @@ class UserController extends Controller
             $existingUser = User::where('username', $userName)->first();
 
             if ($existingUser) {
-                return redirect()->route('userRead')->with('error1', 'User already exists!');
+                return response()->json(['error' => true, 'message' => 'User already exists!']);
             }
 
             try {
@@ -73,23 +83,11 @@ class UserController extends Controller
                     'ppmp_categories' => null,
                 ]);
 
-                return redirect()->route('userRead')->with('success', 'User stored successfully!');
+                return response()->json(['success' => true, 'message' => 'User stored successfully!']);
             } catch (\Exception $e) {
-                return redirect()->route('userRead')->with('error', 'Failed to store user!');
+                return response()->json(['error' => true, 'message' => 'Failed to store User!']);
             }
         }
-    }
-
-    public function userEdit($id) {
-        $userID = decrypt($id);
-        $campus = Campus::all();
-        $office = Office::all();
-        $selectedUser = User::find($userID);
-
-        $selectedOfficeId = $selectedUser->office_id;
-        $selectedCampusId = $selectedUser->campus_id;
-
-        return view('users.edit', compact('campus', 'office', 'selectedUser', 'selectedOfficeId', 'selectedCampusId'));
     }
 
     public function userUpdate(Request $request) {
@@ -111,7 +109,7 @@ class UserController extends Controller
             $existingUser = User::where('username', $userName)->where('id', '!=', $request->input('id'))->first();
 
             if ($existingUser) {
-                return redirect()->back()->with('error', 'Username already exists for another user!');
+                return response()->json(['error' => true, 'message' => 'Username already exists!']);
             }
 
             $user = User::findOrFail($request->input('id'));
@@ -127,9 +125,10 @@ class UserController extends Controller
                 'isAllowed' => $request->input('isAllowed'),
             ]);
 
-            return redirect()->route('userEdit', ['id' => encrypt($user->id)])->with('success', 'Updated Successfully');
+            // return redirect()->route('userEdit', ['id' => encrypt($user->id)])->with('success', 'Updated Successfully');
+            return response()->json(['success' => true, 'message' => 'User updated successfully!']);
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Failed to update User!');
+            return response()->json(['error' => true, 'message' => 'Failed to update User!']);
         }
     }
 
@@ -147,10 +146,40 @@ class UserController extends Controller
                 'password' => Hash::make($request->input('password'))
             ]);
 
-            return redirect()->route('userEdit', ['id' => encrypt($user->id)])->with('success', 'Password Updated Successfully');
+            return response()->json(['success' => true, 'message' => 'User Password updated successfully!']);
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Failed to update User Password!');
+            return response()->json(['error' => true, 'message' => 'Failed to update User Password!']);
         }
+    }
+
+    public function userUpdateStatus(Request $request) {
+        $user = User::find($request->id);
+        
+        $request->validate([
+            'id' => 'required',
+            'ustatus' => 'required',
+        ]);
+
+        try {
+            $user = User::findOrFail($request->input('id'));
+            $user->update([
+                'ustatus' => $request->input('ustatus'),
+            ]);
+
+            return response()->json(['success' => true, 'message' => 'User Password updated successfully!']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => true, 'message' => 'Failed to update User Password!']);
+        }
+    }
+
+    public function userDelete($id) {
+        $usr = User::find($id);
+        if ($usr) {
+            $usr->ustatus = 3;
+            $usr->save();
+            return response()->json(['success'=> true, 'message'=>'User deleted successfully']);
+        }
+        return response()->json(['error'=> true, 'message'=>'Item not found']);
     }
 
     public function user_settings() {

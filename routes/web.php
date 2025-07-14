@@ -229,10 +229,12 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
     //Users
     Route::prefix('/users')->group(function () {
         Route::get('/list',[UserController::class,'userRead'])->name('userRead');
+        Route::get('/list/fetch/viewajax',[UserController::class,'getuserRead'])->name('getuserRead');
         Route::post('/list/add', [UserController::class, 'userCreate'])->name('userCreate');
-        Route::get('list/edit/{id}', [UserController::class, 'userEdit'])->name('userEdit');
         Route::post('list/update', [UserController::class, 'userUpdate'])->name('userUpdate');
         Route::post('list/updatePass', [UserController::class, 'userUpdatePassword'])->name('userUpdatePassword');
+        Route::post('list/updateStatusnow', [UserController::class, 'userUpdateStatus'])->name('userUpdateStatus');
+        Route::post('list/deleteusernow{id}', [UserController::class, 'userDelete'])->name('userDelete');
         Route::get('/account-settings',[UserController::class,'user_settings'])->name('user_settings');
         Route::post('/account-settings/information/update',[UserController::class,'user_settings_profile_update'])->name('user_settings_profile_update');
         Route::post('/acccount-settings/information/updatePass',[UserController::class,'profilePassUpdate'])->name('profilePassUpdate');
