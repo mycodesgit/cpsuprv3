@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('office_id');
             $table->string('purpose_id');
             $table->text('ppmp_remarks')->nullable();
-            $table->enum('prstatus', ['1','2'])->nullable();
+            $table->enum('prverifystatus', ['1','2'])->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -21,19 +21,59 @@
 <body class="layout-3">
     <div id="app">
         <div class="main-wrapper container">
-            <!-- <div style="height: 15px; background: #f4f6f9; position: fixed; top: 0; left: 0; right: 0; z-index: 998;"></div>
-        
-        <nav class="navbar navbar-expand-lg main-navbar" style="background: linear-gradient(135deg, #3a7d5c 0%, #1f5036 100%); position: fixed; margin-top: 15px; border-radius: 5px; margin-right: 10px; margin-left: 10px; z-index: 999">
-            <div class="container">
-                <a href="index-2.html" class="navbar-brand sidebar-gone-hide">CPSU PR</a>
-                <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
-            </div>
-        </nav> -->
+            <div class="navbar-bg"></div>
+
+            <!-- Start app top navbar -->
+            <nav class="navbar navbar-expand-lg main-navbar">
+                <div class="container">
+                    <a href="" class="navbar-brand sidebar-gone-hide">CPSU PR</a>
+                    <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
+                    
+                </div>
+            </nav>
 
             <!-- Start app main Content -->
-            <div class="main-content" style="margin-top: -60px;">
-                @yield('body')
+            <div class="main-content">
+                <section class="section">
+                    <div class="section-header">
+                        <h1>Top Navigation</h1>
+                        <div class="section-header-breadcrumb">
+                            <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+                            <div class="breadcrumb-item"><a href="#">Layout</a></div>
+                            <div class="breadcrumb-item">Top Navigation</div>
+                        </div>
+                    </div>
+
+                    <div class="section-body">
+                        <h2 class="section-title">This is Example Page</h2>
+                        <p class="section-lead">This page is just an example for you to create your own page.</p>
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Example Card</h4>
+                            </div>
+                            <div class="card-body">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            </div>
+                            <div class="card-footer bg-whitesmoke">This is card footer</div>
+                        </div>
+                    </div>
+                </section>
             </div>
+
+            <!-- Start app Footer part -->
+            <footer class="main-footer">
+                <div class="footer-left">
+                    <div class="bullet"></div> <a href="templateshub.net">Templates Hub</a>
+                </div>
+                <div class="footer-right">
+
+                </div>
+            </footer>
         </div>
     </div>
 

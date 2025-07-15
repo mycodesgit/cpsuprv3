@@ -66,15 +66,14 @@
                     data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
-                                buttons += '<button type="button" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-id="' + row.pid + '" data-prstatus="' + row.prstatus + '" data-trnsacno="' + row.transaction_no + '" data-userid="' + row.user_id + '" data-prno="' + row.pr_no + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-eye"></i></button>';
-                                //buttons += '<a href="' + pendingAllListViewRoute + '/' + data + '" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-toggle="tooltip" data-placement="top" title="PR Remarks."><i class="fas fa-eye"></i> </a>';
-                                
-                            return buttons;
-                        } else {
-                            return data;
+                            return `
+                                <button class="btn btn-primary btn-xs btn-view" data-id="${data}">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            `;
                         }
-                    },
+                        return data;
+                    }
                 },
             ],
             // initComplete: function(settings, json) {
@@ -87,15 +86,12 @@
             //     $(row).attr('id', 'tr-' + data.id);
             // }
         });
-        dataTable.on('draw', function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
         setInterval(function () {
             dataTable.ajax.reload(null, false);
-        }, 2000);
+        }, 5000);
     });
 
-    $(document).on('click', '.btn-prpdfchecking', function () {
+    $(document).on('click', '.btn-view', function () {
         var pid = $(this).data('id');
 
         // Show modal
@@ -117,53 +113,5 @@
         });
     });
 
-    $(document).on('click', '.btn-prremarkschecking', function() {
-        var id = $(this).data('id');
-        var prstatus = $(this).data('prstatus');
-        var ppmpremarks = $(this).data('ppmpremarks');
-        var prverifystatus = $(this).data('prverifystatus');
-
-        var trnsacno = $(this).data('trnsacno');
-        var userid = $(this).data('userid');
-        var prno = $(this).data('prno');
-
-        $('#editPRcheckingId').val(id);
-        $('#editPRstatus').val(prstatus);
-        $('#editPRremarks').val(ppmpremarks);
-        $('#prverifystatus').val(prverifystatus);
-
-        $('#editPRcheckingTrnsacno').val(trnsacno);
-        $('#editPRcheckingUserid').val(userid);
-        $('#editPRcheckingPRno').val(prno);
-
-        $('#prcheckingModal').modal('show');
-    });
-
-    $('#editprcheckingForm').submit(function(event) {
-        event.preventDefault();
-        var formData = $(this).serialize();
-
-        $.ajax({
-            url: pendingAllCheckingStatusUpdateRoute,
-            type: "POST",
-            data: formData,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            success: function(response) {
-                if(response.success) {
-                    toastr.success(response.message);
-                    $('#prcheckingModal').modal('hide');
-                    $(document).trigger('categoryAdded');
-                } else {
-                    toastr.error(response.message);
-                }
-            },
-            error: function(xhr, status, error, message) {
-                var errorMessage = xhr.responseText ? JSON.parse(xhr.responseText).message : 'An error occurred';
-                toastr.error(errorMessage);
-            }
-        });
-    });
 
 </script>

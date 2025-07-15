@@ -423,44 +423,46 @@ class RequestPendingController extends Controller
         return $pdf->stream();
     }
 
-    public function checkingPR(Request $request) {
+    public function checkingPR(Request $request) 
+    {
         // $userId = Auth::id();
         $purpose_id = decrypt($request->input('purpose_id'));
-        $status = $request->input('status');
+        $prverifystatus = $request->input('prverifystatus');
         $ppmpRemarks = $request->input('ppmp_remarks');
         $prstatus = $request->input('prstatus');
-        $officeidreturn = $request->input('officeidreturn');
+        $officeidreturn = Auth::guard('web')->user()->role;
 
         $trnsacno = $request->input('trnsacno');
         $userid = $request->input('userid');
         $userprno = $request->input('userprno');
 
         RequestItem::where('purpose_id', $purpose_id)
-            ->update(['status' => $status]);
+            ->update(['status' => $prstatus]);
 
         Purpose::where('id', $purpose_id)
             ->update([
-                'pstatus' =>  $status,
+                'pstatus' =>  $prstatus,
                 'officeidreturn' => $officeidreturn
         ]);
 
         PpmpVerify::where('purpose_id', $purpose_id)
             ->update([
                     'ppmp_remarks' => $ppmpRemarks,
-                    'prstatus' => $prstatus,
+                    'prverifystatus' => $prverifystatus,
             ]);
 
         PRnotification::create([
             'purp_id' => $purpose_id,
             'user_id' => $userid,
-            'message' => $status == 3 ? 'Your PR has been returned. </br>PR No.: <b>' . $userprno . '</b></br><span style="font-size: 8pt;">Transaction No.: ' . $trnsacno . '</span>' :
-                        ($status == 4 ? 'Your PR is now under review in the procurement office. </br><span style="font-size: 8pt;">Transaction No.: ' . $trnsacno . '</span>' :
-                        ($status == 5 ? 'Checking PPMP. </br><span style="font-size: 8pt;">Transaction No.: ' . $trnsacno . '</span>' :
-                        ($status == 6 ? 'Your PR is being endorsed to the Budget office. </br><span style="font-size: 8pt;">Transaction No.: ' . $trnsacno . '</span>' : ''))),
-            'notifstatus' => $status,
+            'message' => $prstatus == 3 ? 'Your PR has been returned. </br>PR No.: <b>' . $userprno . '</b></br><span style="font-size: 8pt;">Transaction No.: ' . $trnsacno . '</span>' :
+                        ($prstatus == 4 ? 'Your PR is now under review in the procurement office. </br><span style="font-size: 8pt;">Transaction No.: ' . $trnsacno . '</span>' :
+                        ($prstatus == 5 ? 'Checking PPMP. </br><span style="font-size: 8pt;">Transaction No.: ' . $trnsacno . '</span>' :
+                        ($prstatus == 6 ? 'Your PR is being endorsed to the Budget office. </br><span style="font-size: 8pt;">Transaction No.: ' . $trnsacno . '</span>' : ''))),
+            'notifstatus' => $prstatus,
             'is_read' => '0',
         ]);
-        return back()->with('success', 'Save Successfully');
+
+        return response()->json(['success' => true, 'message' => 'Save Successfully'], 200);
     }
 
     public function approvedPR(Request $request) 

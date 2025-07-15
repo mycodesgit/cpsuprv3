@@ -21,6 +21,8 @@ use App\Http\Controllers\PpmpController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UserController;
 
+use App\Http\Controllers\ForAllEncryptIDController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +47,7 @@ Route::group(['middleware'=>['guest']],function(){
 //Middleware
 Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
     Route::get('/dashboard',[MasterController::class,'dashboard'])->name('dashboard');
+    Route::post('/idhashcrypt',[ForAllEncryptIDController::class,'idcrypt'])->name('idcrypt');
 
     //View
     Route::prefix('/view')->group(function () {
@@ -55,14 +58,11 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
         Route::post('/category/list/update', [CategoryController::class, 'categoryUpdate'])->name('categoryUpdate');
         Route::post('/category/list/delete{id}', [CategoryController::class, 'categoryDelete'])->name('categoryDelete');
 
-
-
         Route::get('/unit/list', [UnitController::class, 'unitRead'])->name('unitRead');
         Route::get('/unit/list/ajax', [UnitController::class, 'getunitRead'])->name('getunitRead');
         Route::post('/unit/list/add', [UnitController::class, 'unitCreate'])->name('unitCreate');
         Route::post('/unit/list/update', [UnitController::class, 'unitUpdate'])->name('unitUpdate');
         Route::post('/unit/list/delete{id}', [UnitController::class, 'unitDelete'])->name('unitDelete');
-
 
         Route::get('/item/list', [ItemController::class, 'itemRead'])->name('itemRead');
         Route::get('/item/list/ajax', [ItemController::class, 'getitemRead'])->name('getitemRead');

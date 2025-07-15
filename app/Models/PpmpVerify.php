@@ -17,7 +17,7 @@ class PpmpVerify extends Model
         'office_id',
         'purpose_id',
         'ppmp_remarks',
-        'prstatus',
+        'prverifystatus',
         'remember_token',
     ];
 }
