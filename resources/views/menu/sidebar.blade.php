@@ -5,9 +5,11 @@
     $manageActive = in_array($current_route, ['categoryRead']) ? 'active' : '';   
     $pendingAllActive = in_array($current_route, ['pendingAllListRead', 'pendingAllListView']) ? 'active' : '';
     $approvedAllActive = in_array($current_route, ['approvedListAllRead']) ? 'active' : '';
-
-
     $usersAllActive = in_array($current_route, ['userRead']) ? 'active' : '';
+
+    $shopUserActive = in_array($current_route, ['shop']) ? 'active' : '';
+    $cartUserActive = in_array($current_route, ['prPurposeRequest']) ? 'active' : '';
+    $pendingUserActive = in_array($current_route, ['pendingListRead', 'pendingAllListView']) ? 'active' : '';
 @endphp
 
 <aside id="sidebar-wrapper">
@@ -29,31 +31,52 @@
             </a>
         </li>
 
-        @if(Auth::user()->role=='Administrator' || Auth::user()->role=='Procurement Officer' || Auth::user()->role=='Checker')
+        @if(Auth::user()->role == 'Administrator' || Auth::user()->role == 'Checker')
             <li class="{{ $manageActive }}">
                 <a class="nav-link" href="{{ route('categoryRead') }}">
                     <i class="fas fa-bars-progress"></i> <span>Manage</span>
                 </a>
             </li>
+        
+
+            <li class="{{ $pendingAllActive }}">
+                <a class="nav-link" href="{{ route('pendingAllListRead') }}">
+                    <i class="fas fa-clock"></i> <span>Pending PR</span>
+                </a>
+            </li>
+
+            <li class="{{ $approvedAllActive }}">
+                <a class="nav-link" href="{{ route('approvedListAllRead') }}">
+                    <i class="fas fa-thumbs-up"></i> <span>Approved PR</span>
+                </a>
+            </li>
+
+            <li>
+                <a class="nav-link" href="#">
+                    <i class="fas fa-book"></i> <span>PPMP</span>
+                </a>
+            </li>
         @endif
 
-        <li class="{{ $pendingAllActive }}">
-            <a class="nav-link" href="{{ route('pendingAllListRead') }}">
-                <i class="fas fa-clock"></i> <span>Pending PR</span>
-            </a>
-        </li>
+        @if(Auth::user()->role !='Administrator' || Auth::user()->role !='Procurement Officer' || Auth::user()->role !='Checker')
+            <li class="{{ $shopUserActive }}">
+                <a class="nav-link" href="{{ route('shop') }}">
+                    <i class="fas fa-cart-plus"></i> <span>Shop Item</span>
+                </a>
+            </li>
 
-        <li class="{{ $approvedAllActive }}">
-            <a class="nav-link" href="{{ route('approvedListAllRead') }}">
-                <i class="fas fa-thumbs-up"></i> <span>Approved PR</span>
-            </a>
-        </li>
+            <li class="{{ $cartUserActive }}">
+                <a class="nav-link" href="{{ route('prPurposeRequest') }}">
+                    <i class="fas fa-cart-shopping"></i> <span>My Cart</span>
+                </a>
+            </li>
 
-        <li>
-            <a class="nav-link" href="#">
-                <i class="fas fa-book"></i> <span>PPMP</span>
-            </a>
-        </li>
+            <li class="{{ $pendingUserActive }}">
+                <a class="nav-link" href="{{ route('pendingListRead') }}">
+                    <i class="fas fa-clock"></i> <span>Pending PR</span>
+                </a>
+            </li>
+        @endif
 
         <li class="menu-header" style="border-top: none">Reports Navigation</li>
 
@@ -65,13 +88,15 @@
             </ul>
         </li>
 
-        <li class="menu-header" style="border-top: none">Users Navigation</li>
+        @if(Auth::user()->role == 'Administrator' || Auth::user()->role == 'Checker')
+            <li class="menu-header" style="border-top: none">Users Navigation</li>
 
-        <li class="{{ $usersAllActive }}">
-            <a class="nav-link" href="{{ route('userRead') }}">
-                <i class="fas fa-users"></i> <span>Users</span>
-            </a>
-        </li>
+            <li class="{{ $usersAllActive }}">
+                <a class="nav-link" href="{{ route('userRead') }}">
+                    <i class="fas fa-users"></i> <span>Users</span>
+                </a>
+            </li>
+        @endif
     </ul>
     <div class="mt-4 mb-4 p-3 hide-sidebar-mini sidebar-transition logout-button-container" style="position: absolute; bottom: 20px; width: 100%; z-index: 999;">
         <a href="{{ route('logout') }}" class="btn btn-primary btn-lg btn-block btn-icon-split text-left">

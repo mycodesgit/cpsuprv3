@@ -58,7 +58,7 @@ class RequestController extends Controller
                     'returnedCount' => $returnedCount,
                 ];
         
-        return view ("request.add.shop", compact('data', 'category', 'annoucement'));
+        return view("request.add.shop", compact('data', 'category', 'annoucement'));
     }
 
     public function getCategories()
@@ -92,7 +92,7 @@ class RequestController extends Controller
                     'returnedCount' => $returnedCount,
                 ];
 
-        return view ("request.add.purpose", compact('repurpose', 'data', 'category'));
+        return view("request.add.mycartlist", compact('repurpose', 'data', 'category'));
     }
 
     public function prPurposeRequestCreate(Request $request) 

@@ -130,7 +130,7 @@
                 <ul class="navbar-nav navbar-right">
                     <li class="dropdown dropdown-list-toggle">
                         <a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep">
-                            <i class="far fa-envelope text-white"></i>
+                            <i class="fas fa-cart-plus text-white"></i>
                         </a>
                         <div class="dropdown-menu dropdown-list dropdown-menu-right">
                             <div class="dropdown-header">Messages
@@ -390,9 +390,16 @@
         @include('script.manage.officeSerialize')
         @include('script.manage.yearSerialize')
     @endif
-
+    
     @if (request()->routeIs('pendingAllListRead'))
         @include('script.pending.allpendingCheckerSerialize')
+    @endif
+
+    @if (request()->routeIs('shop'))
+        @include('script.add.shopScript')
+    @endif
+    @if (request()->routeIs('pendingListRead'))
+        @include('script.pending.allpendingUserSerialize')
     @endif
 
     @if (request()->routeIs('approvedListAllRead'))

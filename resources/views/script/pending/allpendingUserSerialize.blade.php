@@ -1,8 +1,8 @@
 <script>
     $(document).ready(function() {
-        var dataTable = $('#pendingCheckerTable').DataTable({
+        var dataTable = $('#pendingUserTable').DataTable({
             "ajax": {
-                "url": allPendingRoute,
+                "url": userPendingRoute,
                 "type": "GET",
             },
             responsive: true,
@@ -67,9 +67,10 @@
                     render: function(data, type, row) {
                         if (type === 'display') {
                             var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
-                                buttons += '<button type="button" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-id="' + row.pid + '" data-prstatus="' + row.prstatus + '" data-trnsacno="' + row.transaction_no + '" data-userid="' + row.user_id + '" data-prno="' + row.pr_no + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-eye"></i></button>';
+                                if (isChecker) {
+                                    buttons += '<button type="button" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-id="' + row.pid + '" data-prstatus="' + row.prstatus + '" data-trnsacno="' + row.transaction_no + '" data-userid="' + row.user_id + '" data-prno="' + row.pr_no + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-eye"></i></button>';
                                 //buttons += '<a href="' + pendingAllListViewRoute + '/' + data + '" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-toggle="tooltip" data-placement="top" title="PR Remarks."><i class="fas fa-eye"></i> </a>';
-                                
+                                }
                             return buttons;
                         } else {
                             return data;

@@ -10,6 +10,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
+                        <div class="card-header">
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-user">
+                                <i class="fas fa-user-plus"></i> Add New
+                            </button>
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive" style="overflow-x: hidden;">
                                 <table id="userviewTable" class="table table-hover styled-table">
@@ -190,6 +195,8 @@
             </div>
         </div>
     </div>
+
+    @include('modal.userAddmodal')
 
     @if(request()->routeIs(['userRead']))
         <script>

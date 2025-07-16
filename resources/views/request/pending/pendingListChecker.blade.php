@@ -49,7 +49,7 @@
                 </div>
                 <form id="editprcheckingForm">
                     <div class="modal-body">
-                        <input type="text" name="purpose_id" id="editPRcheckingId">
+                        <input type="hidden" name="purpose_id" id="editPRcheckingId">
                         <input type="hidden" name="trnsacno" id="editPRcheckingTrnsacno" placeholder="Transaction No." required>
                         <input type="hidden" name="userid" id="editPRcheckingUserid" placeholder="User ID." required>
                         <input type="hidden" name="userprno" id="editPRcheckingPRno" placeholder="PRno." required>
