@@ -241,7 +241,7 @@ class RequestPendingController extends Controller
                     'unit.unit_name', 'item.*', 
                     'item_request.id as iid',
                     'item_request.item_cost as fitem_cost' )
-            ->whereIn('item_request.status', ['2', '3', '4', '5', '6', '7', '8', '9'])
+            ->whereIn('item_request.status', ['2', '3', '4', '5', '6', '7', '8', '9', '99'])
             ->where('item_request.purpose_id', '=',  $enID)
             ->get();
 
@@ -458,6 +458,46 @@ class RequestPendingController extends Controller
                         ($prstatus == 4 ? 'Your PR is now under review in the procurement office. </br><span style="font-size: 8pt;">Transaction No.: ' . $trnsacno . '</span>' :
                         ($prstatus == 5 ? 'Checking PPMP. </br><span style="font-size: 8pt;">Transaction No.: ' . $trnsacno . '</span>' :
                         ($prstatus == 6 ? 'Your PR is being endorsed to the Budget office. </br><span style="font-size: 8pt;">Transaction No.: ' . $trnsacno . '</span>' : ''))),
+            'notifstatus' => $prstatus,
+            'is_read' => '0',
+        ]);
+
+        return response()->json(['success' => true, 'message' => 'Save Successfully'], 200);
+    }
+
+    public function checkingTechPR(Request $request) 
+    {
+        // $userId = Auth::id();
+        $purpose_id = decrypt($request->input('purpose_id'));
+        $prverifystatus = $request->input('prverifystatus');
+        $ppmpRemarks = $request->input('ppmp_remarks');
+        $prstatus = $request->input('prstatus');
+        $officeidreturn = Auth::guard('web')->user()->role;
+
+        $trnsacno = $request->input('trnsacno');
+        $userid = $request->input('userid');
+        $userprno = $request->input('userprno');
+
+        RequestItem::where('purpose_id', $purpose_id)
+            ->update(['status' => $prstatus]);
+
+        Purpose::where('id', $purpose_id)
+            ->update([
+                'pstatus' =>  $prstatus,
+                'officeidreturn' => $officeidreturn
+        ]);
+
+        PpmpVerify::where('purpose_id', $purpose_id)
+            ->update([
+                    'ppmp_remarks' => $ppmpRemarks,
+                    'prverifystatus' => $prverifystatus,
+            ]);
+
+        PRnotification::create([
+            'purp_id' => $purpose_id,
+            'user_id' => $userid,
+            'message' => $prstatus == 3 ? 'Your PR has been returned. </br>PR No.: <b>' . $userprno . '</b></br><span style="font-size: 8pt;">Transaction No.: ' . $trnsacno . '</span>' :
+                        ($prstatus == 2 ? 'Your PR is being endorsed to the Procurement office. </br><span style="font-size: 8pt;">Transaction No.: ' . $trnsacno . '</span>' : ''),
             'notifstatus' => $prstatus,
             'is_read' => '0',
         ]);

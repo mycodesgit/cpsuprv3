@@ -119,6 +119,7 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
         Route::get('/pendingPR/list/pdf/{pid}', [RequestPendingController::class, 'PDFprAllPending'])->name('PDFprAllPending');
         Route::get('/pendingPR/list/rbaras/{pid}', [RequestPendingController::class, 'PDFrbarasAllPending'])->name('PDFrbarasAllPending');
         Route::post('/pendingPR/list/checking', [RequestPendingController::class, 'checkingPR'])->name('checkingPR');
+        Route::post('/pendingPR/list/checking/tech', [RequestPendingController::class, 'checkingTechPR'])->name('checkingTechPR');
         Route::post('/pendingPR/list/approved', [RequestPendingController::class, 'approvedPR'])->name('approvedPR');
 
         Route::get('/notifications/fetch', [RequestPendingController::class, 'fetchNotifications'])->name('notifications.fetch');

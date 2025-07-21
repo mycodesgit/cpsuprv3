@@ -1,8 +1,8 @@
 <script>
     $(document).ready(function() {
-        var dataTable = $('#pendingUserTable').DataTable({
+        var dataTable = $('#exampleTech').DataTable({
             "ajax": {
-                "url": userPendingRoute,
+                "url": allPendingTechRoute,
                 "type": "GET",
             },
             responsive: true,
@@ -56,7 +56,7 @@
                             case 5:
                                 return '<span class="badge badge-secondary" style="font-size: 12px">Verifying PR in PPMP</span>';
                             case 6:
-                                return '<span class="badge badge-warning">Pending in Budget Office</span>';
+                                return '<span class="badge badge-warning">Pending in Budget Office</span>';    
                             case 99:
                                 return '<span class="badge badge-warning">Pending in MIS - Specification Review</span>';
                             default:
@@ -69,10 +69,9 @@
                     render: function(data, type, row) {
                         if (type === 'display') {
                             var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
-                                if (isChecker) {
-                                    buttons += '<button type="button" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-id="' + row.pid + '" data-prstatus="' + row.prstatus + '" data-trnsacno="' + row.transaction_no + '" data-userid="' + row.user_id + '" data-prno="' + row.pr_no + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-eye"></i></button>';
+                                buttons += '<button type="button" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-id="' + row.pid + '" data-prstatus="' + row.prstatus + '" data-trnsacno="' + row.transaction_no + '" data-userid="' + row.user_id + '" data-prno="' + row.pr_no + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-eye"></i></button>';
                                 //buttons += '<a href="' + pendingAllListViewRoute + '/' + data + '" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-toggle="tooltip" data-placement="top" title="PR Remarks."><i class="fas fa-eye"></i> </a>';
-                                }
+                                
                             return buttons;
                         } else {
                             return data;
@@ -171,5 +170,4 @@
             }
         });
     });
-
 </script>
