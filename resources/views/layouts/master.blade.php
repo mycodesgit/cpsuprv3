@@ -526,7 +526,7 @@
                                 let notifItem = `<a href="#" class="dropdown-item dropdown-item notification-item read" 
                                     data-id="${notif.id}">
                                     <i class="fas fa-check-circle icon text-success"></i>
-                                    <div>
+                                    <div class="dropdown-item-desc">
                                         ${notif.message}
                                         <div class="notification-time">${notif.time_ago}</div>
                                     </div>
