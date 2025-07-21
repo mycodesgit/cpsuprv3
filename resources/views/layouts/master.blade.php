@@ -91,7 +91,32 @@
                 left: 5;
             }
         }
+        .notification-toggle {
+            position: relative;
+        }
 
+        #notifCount {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            transform: translate(10%, -30%);
+            font-size: 10px;
+            font-weight: bold;
+            padding: 2px 5px;
+            border-radius: 20%;
+            min-width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .blink {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 50%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
     </style>
 </head>
 
@@ -209,64 +234,22 @@
                     </li>
                     <li class="dropdown dropdown-list-toggle">
                         <a href="#" data-toggle="dropdown"
-                            class="nav-link notification-toggle nav-link-lg beep">
+                            class="nav-link notification-toggle nav-link-lg">
                             <i class="far fa-bell text-white"></i>
+                            <span class="badge badge-warning navbar-badge" id="notifCount">0</span>
                         </a>
                         <div class="dropdown-menu dropdown-list dropdown-menu-right">
                             <div class="dropdown-header">Notifications
-                                <div class="float-right">
-                                    <a href="#">Mark All As Read</a>
-                                </div>
                             </div>
                             <div class="dropdown-list-content dropdown-list-icons">
-                                <a href="#" class="dropdown-item dropdown-item-unread">
-                                    <div class="dropdown-item-icon bg-primary text-white">
-                                        <i class="fas fa-code"></i>
-                                    </div>
-                                    <div class="dropdown-item-desc">
-                                        Template update is available now!
-                                        <div class="time text-primary">2 Min Ago</div>
-                                    </div>
-                                </a>
-                                <a href="#" class="dropdown-item">
-                                    <div class="dropdown-item-icon bg-info text-white">
-                                        <i class="far fa-user"></i>
-                                    </div>
-                                    <div class="dropdown-item-desc">
-                                        <b>You</b> and <b>Dedik Sugiharto</b> are now friends
-                                        <div class="time">10 Hours Ago</div>
-                                    </div>
-                                </a>
-                                <a href="#" class="dropdown-item">
-                                    <div class="dropdown-item-icon bg-success text-white">
-                                        <i class="fas fa-check"></i>
-                                    </div>
-                                    <div class="dropdown-item-desc">
-                                        <b>Kusnaedi</b> has moved task <b>Fix bug header</b> to <b>Done</b>
-                                        <div class="time">12 Hours Ago</div>
-                                    </div>
-                                </a>
-                                <a href="#" class="dropdown-item">
-                                    <div class="dropdown-item-icon bg-danger text-white">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                    </div>
-                                    <div class="dropdown-item-desc">
-                                        Low disk space. Let's clean it!
-                                        <div class="time">17 Hours Ago</div>
-                                    </div>
-                                </a>
-                                <a href="#" class="dropdown-item">
-                                    <div class="dropdown-item-icon bg-info text-white">
-                                        <i class="fas fa-bell"></i>
-                                    </div>
-                                    <div class="dropdown-item-desc">
-                                        Welcome to CodiePie template!
-                                        <div class="time">Yesterday</div>
-                                    </div>
-                                </a>
+                                <strong class="pl-3 text-muted"><i class="fas fa-exclamation-circle"></i> Unread</strong>
+                                <div id="unreadNotifItems" class="notif-container"></div>
+                                <br>
+                                <strong class="pl-3 text-muted"><i class="fas fa-exclamation-circle"></i> Read</strong>
+                                <div id="readNotifItems" class="notif-container"></div>
                             </div>
                             <div class="dropdown-footer text-center">
-                                <a href="#">View All <i class="fas fa-chevron-right"></i></a>
+                                {{-- <a href="#">View All <i class="fas fa-chevron-right"></i></a> --}}
                             </div>
                         </div>
                     </li>
@@ -381,6 +364,25 @@
             }).buttons().container().appendTo('#example4_wrapper .col-md-6:eq(0)');
         });
     </script>
+    <script>
+        function updateNotificationBlink() {
+            const notifCount = document.getElementById('notifCount');
+            const count = parseInt(notifCount.innerText);
+
+            if (count > 0) {
+                notifCount.classList.add('blink');
+            } else {
+                notifCount.classList.remove('blink');
+            }
+        }
+
+        // Run it on page load
+        document.addEventListener('DOMContentLoaded', updateNotificationBlink);
+
+        // Optional: Call this again after AJAX updates
+        // Example: updateNotificationBlink(); after count update
+    </script>
+
 
     <!-- Page Specific JS File -->
     @if (request()->routeIs('categoryRead'))
@@ -473,6 +475,7 @@
         });
     </script>
     @endif
+
     @if (request()->routeIs('pendingListRead'))
         @include('script.pending.allpendingUserSerialize')
     @endif
@@ -485,6 +488,83 @@
         @include('script.user.userSerialize')
     @endif
 
+
+    <script>
+        $(document).ready(function() {
+            function fetchNotifications() {
+                $.ajax({
+                    url: "{{ route('notifications.fetch') }}", 
+                    method: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $('#notifCount').text(data.unread_count > 0 ? data.unread_count : '');
+    
+                        let unreadNotifItems = $('#unreadNotifItems');
+                        let readNotifItems = $('#readNotifItems');
+                    
+                        unreadNotifItems.empty();
+                        readNotifItems.empty();
+                        // Add Unread Notifications
+                        if (data.unread.length > 0) {
+                            data.unread.forEach(function(notif) {
+                                let notifItem = `<a href="#" class="dropdown-item dropdown-item-unread notification-item unread" 
+                                    data-id="${notif.id}">
+                                    <i class="fas fa-bell icon text-success"></i>
+                                    <div class="dropdown-item-desc">
+                                        <strong>${notif.message}</strong>
+                                        <div class="notification-time">${notif.time_ago}</div>
+                                    </div>
+                                </a>`;
+                                unreadNotifItems.append(notifItem);
+                            });
+                        } else {
+                            unreadNotifItems.append('<a href="#" class="dropdown-item text-center text-muted">No new notifications</a>');
+                        }
+                        // Add Read Notifications
+                        if (data.read.length > 0) {
+                            data.read.forEach(function(notif) {
+                                let notifItem = `<a href="#" class="dropdown-item dropdown-item notification-item read" 
+                                    data-id="${notif.id}">
+                                    <i class="fas fa-check-circle icon text-success"></i>
+                                    <div>
+                                        ${notif.message}
+                                        <div class="notification-time">${notif.time_ago}</div>
+                                    </div>
+                                </a>`;
+                                readNotifItems.append(notifItem);
+                            });
+                        }
+                        // Hide sections if empty
+                        $('#unreadNotifSection').toggle(unreadNotifItems.children().length > 0);
+                        $('#readNotifSection').toggle(readNotifItems.children().length > 0);
+                    }
+                });
+            }
+    
+            // Mark notification as read when clicked
+            $(document).on('click', '.notification-item.unread', function() {
+                let notifId = $(this).data('id');
+                let clickedItem = $(this);
+    
+                $.ajax({
+                    url: "{{ route('notifications.markAsRead') }}",
+                    method: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        id: notifId
+                    },
+                    success: function() {
+                        clickedItem.removeClass('unread').addClass('read');
+                        fetchNotifications(); // Refresh UI
+                    }
+                });
+            });
+    
+            // Fetch notifications every 5 seconds
+            setInterval(fetchNotifications, 5000);
+            fetchNotifications();
+        });
+    </script>
 </body>
 
 <!-- blank.html  Tue, 07 Jan 2020 03:35:42 GMT -->
