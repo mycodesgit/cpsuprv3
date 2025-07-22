@@ -17,7 +17,7 @@
             </div>
             
             <div class="modal-body">
-                <form action="{{ route('prPurposeRequestCreate') }}" class="form-horizontal" method="post" id="purposepr">
+                <form action="{{ route('prPurposeRequestCreate') }}" class="form-horizontal needs-validation" method="post" id="purposepr" novalidate="">
                     @csrf
                     
                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
@@ -29,9 +29,10 @@
                         <div class="form-row">
                             <div class="col-md-12">
                                 <label>Select Category</label><br>
-                                <select class="form-control" name="cat_id" id="categorySelect" style="pointer-events: none;">
+                                <select class="form-control" name="cat_id" id="categorySelect" style="pointer-events: none;" required>
                                     <option disabled selected>Select</option>
                                 </select>
+                                <div class="valid-feedback">Good job!</div>
                             </div>
                         </div>
                     </div>
@@ -40,7 +41,8 @@
                         <div class="form-row">
                             <div class="col-md-12">
                                 <label>Purpose:</label>
-                                <input type="text" name="purpose_name" class="form-control" placeholder="Enter Purpose here">
+                                <input type="text" name="purpose_name" class="form-control" placeholder="Enter Purpose here" required>
+                                <div class="invalid-feedback">What's your purpose?</div>
                             </div>
                         </div>
                     </div>  

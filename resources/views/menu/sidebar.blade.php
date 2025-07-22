@@ -12,6 +12,7 @@
     $pendingUserActive = in_array($current_route, ['pendingListRead', 'pendingAllListView']) ? 'active' : '';
 
     $pendingBudAllActive = in_array($current_route, ['pendingAllBudgetListRead', 'pendingAllListView']) ? 'active' : '';
+    $pendingBudCancelAllActive = in_array($current_route, ['pendingAllListView']) ? 'active' : '';
 @endphp
 
 <aside id="sidebar-wrapper">
@@ -90,10 +91,21 @@
 
         @if(Auth::user()->role == 'Administrator' || Auth::user()->role == 'Budget Officer')
             <li class="menu-header" style="border-top: none">Approval Navigation</li>
-
             <li class="{{ $pendingBudAllActive }}">
                 <a class="nav-link" href="{{ route('pendingAllBudgetListRead') }}">
                     <i class="fas fa-check"></i> <span>Pending Approval</span>
+                </a>
+            </li>
+
+            <li class="menu-header" style="border-top: none">Cancellation Navigation</li>
+            <li class="{{ $pendingBudCancelAllActive }}">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-times"></i> <span>Pending Cancellation</span>
+                </a>
+            </li>
+            <li class="{{ $pendingBudCancelAllActive }}">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-times"></i> <span>Manual Cancellation</span>
                 </a>
             </li>
         @endif

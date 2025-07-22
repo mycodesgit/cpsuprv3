@@ -12,7 +12,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive" style="overflow-x: hidden;">
-                                <table id="prbakal" class="table table-hover styled-table">
+                                <table id="prapproved" class="table table-hover styled-table">
                                     <thead>
                                         <tr>
                                             <th>Date</th>

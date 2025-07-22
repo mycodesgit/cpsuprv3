@@ -229,7 +229,7 @@
         });
         setInterval(function () {
             dataTable.ajax.reload(null, false);
-        }, 5000);
+        }, 10000);
     });
 
     $(document).ready(function() {
