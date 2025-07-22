@@ -10,6 +10,8 @@
     $shopUserActive = in_array($current_route, ['shop']) ? 'active' : '';
     $cartUserActive = in_array($current_route, ['prPurposeRequest', 'selectItems']) ? 'active' : '';
     $pendingUserActive = in_array($current_route, ['pendingListRead', 'pendingAllListView']) ? 'active' : '';
+
+    $pendingBudAllActive = in_array($current_route, ['pendingAllBudgetListRead', 'pendingAllListView']) ? 'active' : '';
 @endphp
 
 <aside id="sidebar-wrapper">
@@ -66,7 +68,7 @@
             </li>
         @endif
 
-        @if(Auth::user()->role !='Administrator' && Auth::user()->role !='Procurement Officer' && Auth::user()->role !='Checker' && Auth::user()->role !='MIS Checker')
+        @if(Auth::user()->role !='Administrator' && Auth::user()->role !='Procurement Officer' && Auth::user()->role !='Checker' && Auth::user()->role !='Budget Officer' && Auth::user()->role !='MIS Checker')
             <li class="{{ $shopUserActive }}">
                 <a class="nav-link" href="{{ route('shop') }}">
                     <i class="fas fa-cart-plus"></i> <span>Shop Item</span>
@@ -82,6 +84,16 @@
             <li class="{{ $pendingUserActive }}">
                 <a class="nav-link" href="{{ route('pendingListRead') }}">
                     <i class="fas fa-clock"></i> <span>Pending PR</span>
+                </a>
+            </li>
+        @endif
+
+        @if(Auth::user()->role == 'Administrator' || Auth::user()->role == 'Budget Officer')
+            <li class="menu-header" style="border-top: none">Approval Navigation</li>
+
+            <li class="{{ $pendingBudAllActive }}">
+                <a class="nav-link" href="{{ route('pendingAllBudgetListRead') }}">
+                    <i class="fas fa-check"></i> <span>Pending Approval</span>
                 </a>
             </li>
         @endif

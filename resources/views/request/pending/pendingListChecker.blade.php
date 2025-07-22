@@ -54,7 +54,7 @@
                         <input type="hidden" name="userid" id="editPRcheckingUserid" placeholder="User ID." required>
                         <input type="hidden" name="userprno" id="editPRcheckingPRno" placeholder="PRno." required>
                         <div class="form-group">
-                            <label for="editPRstatus">PR Status</label>
+                            <label for="editPRstatus"><span class="badge badge-secondary">PR Status</span></label>
                             <select class="form-control" name="prstatus" id="editPRstatus">
                                 <option disabled selected>Select</option>
                                 <option value="3">Return to Client</option>
@@ -64,11 +64,11 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="editPRremarks">PPMP Remarks Verification:</label>
+                            <label for="editPRremarks"><span class="badge badge-secondary">PPMP Remarks Verification:</span></label>
                             <input type="text" name="ppmp_remarks" class="form-control" id="editPRremarks">
                         </div>
                         <div class="form-group">
-                            <label for="editPRverifystatus">PR Status</label>
+                            <label for="editPRverifystatus"><span class="badge badge-secondary">PR Status</span></label>
                             <select class="form-control" name="prverifystatus" id="editPRverifystatus">
                                 <option disabled selected>Select</option>
                                 <option value="1">With PPMP</option>
@@ -88,14 +88,14 @@
     <div class="modal fade" id="viewPrModal" tabindex="-1" role="dialog" aria-labelledby="viewPrModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document" style="max-width: 80vw;">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header p-3" style="background-color: #f6f6f6; color: #000;">
                     <h5 class="modal-title" id="viewPrModalLabel">Purchase Request Details</h5>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">
-                        <i class="fas fa-times"></i> Close
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">
+                        <i class="fas fa-times"></i>
                     </button>
                 </div>
                 <form id="editCategoryForm">
-                    <div class="modal-body" id="modalContent">
+                    <div class="modal-body p-0" id="modalContent">
                         <div class="text-center">Loading...</div>
                     </div>
                 </form>

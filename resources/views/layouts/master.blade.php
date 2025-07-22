@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ asset('template/assets/js/toastr/toastr.min.css') }}">
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="{{ asset('template/assets/js/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
-
+    
     <!-- dataTables Libraries -->
     <link rel="stylesheet"
         href="{{ asset('template/assets/js/tables/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -116,6 +116,13 @@
         @keyframes blink {
             0%, 50%, 100% { opacity: 1; }
             50% { opacity: 0; }
+        }
+        select.form-control-sm {
+            height: calc(1.8125rem + 2px) !important;
+            padding: .25rem .5rem !important;
+            font-size: .875rem !important;
+            line-height: 1.5 !important;
+            border-radius: .2rem !important;
         }
     </style>
 </head>
@@ -398,6 +405,9 @@
     @endif
     @if (request()->routeIs('pendingTechCheckListRead'))
         @include('script.pending.allpendingTechCheckerSerialize')
+    @endif
+    @if (request()->routeIs('pendingAllBudgetListRead'))
+        @include('script.pending.allpendingBudgetSerialize')
     @endif
 
     @if (request()->routeIs('shop'))

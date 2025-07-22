@@ -78,14 +78,14 @@
     <div class="modal fade" id="viewPrModal" tabindex="-1" role="dialog" aria-labelledby="viewPrModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document" style="max-width: 80vw;">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header p-3" style="background-color: #f6f6f6; color: #000;">
                     <h5 class="modal-title" id="viewPrModalLabel">Purchase Request Details</h5>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">
-                        <i class="fas fa-times"></i> Close
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">
+                        <i class="fas fa-times"></i>
                     </button>
                 </div>
                 <form id="editCategoryForm">
-                    <div class="modal-body" id="modalContent">
+                    <div class="modal-body p-0" id="modalContent">
                         <div class="text-center">Loading...</div>
                     </div>
                 </form>

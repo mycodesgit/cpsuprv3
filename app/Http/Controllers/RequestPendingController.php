@@ -593,7 +593,7 @@ class RequestPendingController extends Controller
             'is_read' => '0',
         ]);
 
-        return back()->with('success', 'Save Successfully');
+        return response()->json(['success' => true, 'message' => 'PR Approved Successfully'], 200);
     }
 
     public function fetchNotifications()

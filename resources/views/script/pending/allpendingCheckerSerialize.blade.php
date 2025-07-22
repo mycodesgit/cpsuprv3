@@ -101,15 +101,11 @@
     $(document).on('click', '.btn-prpdfchecking', function () {
         var pid = $(this).data('id');
 
-        // Show modal
         $('#viewPrModal').modal('show');
-
-        // Optional: show loading indicator
         $('#modalContent').html('<div class="text-center">Loading...</div>');
 
-        // Use AJAX to load the table view by PR ID
         $.ajax({
-            url: pendingAllListViewRoute + '/' +pid, // Replace with your real route
+            url: pendingAllListViewRoute + '/' +pid,
             type: 'GET',
             success: function (response) {
                 $('#modalContent').html(response);
