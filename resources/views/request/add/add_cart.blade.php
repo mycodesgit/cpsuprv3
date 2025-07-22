@@ -167,7 +167,7 @@
         </div>
     </section>
 
-    <div class="modal fade" id="itemModal" role="dialog" aria-labelledby="itemModalLabel" aria-hidden="true">
+    <div class="modal fade" id="itemModal" role="dialog" aria-labelledby="itemModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

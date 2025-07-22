@@ -497,7 +497,7 @@
                     method: "GET",
                     dataType: "json",
                     success: function(data) {
-                        $('#notifCount').text(data.unread_count > 0 ? data.unread_count : '');
+                        $('#notifCount').text(data.unread_count > 0 ? data.unread_count : '0');
     
                         let unreadNotifItems = $('#unreadNotifItems');
                         let readNotifItems = $('#readNotifItems');
