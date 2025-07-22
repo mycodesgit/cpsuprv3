@@ -476,6 +476,10 @@
     </script>
     @endif
 
+    @if (request()->routeIs('prPurposeRequest'))
+        @include('script.cartongoing.mycart')
+    @endif
+
     @if (request()->routeIs('pendingListRead'))
         @include('script.pending.allpendingUserSerialize')
     @endif

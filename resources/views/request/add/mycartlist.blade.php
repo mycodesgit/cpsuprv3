@@ -21,7 +21,7 @@
                                             <th>Purpose</th>
                                             <th>Date</th>
                                             <th>Status</th>
-                                            <th width="10%">Action</th>
+                                            <th width="15%">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tbody">
@@ -80,7 +80,7 @@
                                                     <i class="fas fa-trash"></i>
                                                 </button> --}}
 
-                                                <div class="btn-group">
+                                                {{-- <div class="btn-group">
                                                     <button type="button" class="btn btn-success btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="true">
                                                     <span class="sr-only">Toggle Dropdown</span>
                                                     </button>
@@ -98,6 +98,20 @@
                                                             <i class="fas fa-trash"></i> Delete
                                                         </button>
                                                     </div>
+                                                </div> --}}
+                                                <div class="">
+                                                    <a href="{{ route('selectItems', encrypt($data->purpose_Id)) }}" class="btn btn-icon btn-primary">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <button type="button" class="btn btn-icon btn-info" data-toggle="modal" data-target="#modal-editpurpose-{{ $data->purpose_Id }}" data-purpose="{{ $data->purpose_name }}">
+                                                        <i class="fas fa-pen"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#modal-trackpurpose-{{ $data->purpose_Id }}" data-purpose="{{ $data->ppmp_remarks }}">
+                                                        <i class="fas fa-bars-progress"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-icon btn-danger cart-delete" value="{{ $data->purpose_Id }}">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -185,4 +199,8 @@
             </div>
         </div>
     </section>
+
+    <script>
+        var mycartDeleteRoute = "{{ route('mycartDelete', ':id') }}";
+    </script>
 @endsection
