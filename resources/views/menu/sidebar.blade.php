@@ -11,6 +11,8 @@
     $cartUserActive = in_array($current_route, ['prPurposeRequest', 'selectItems']) ? 'active' : '';
     $pendingUserActive = in_array($current_route, ['pendingListRead', 'pendingAllListView']) ? 'active' : '';
     $approvedUserActive = in_array($current_route, ['approvedListRead']) ? 'active' : '';
+    $returnUserActive = in_array($current_route, ['returnedUserListRead']) ? 'active' : '';
+    $canceledUserActive = in_array($current_route, ['cancelUserListRead']) ? 'active' : '';
 
     $pendingBudAllActive = in_array($current_route, ['pendingAllBudgetListRead', 'pendingAllListView']) ? 'active' : '';
     $pendingBudCancelAllActive = in_array($current_route, ['pendingAllListView']) ? 'active' : '';
@@ -92,6 +94,18 @@
             <li class="{{ $approvedUserActive }}">
                 <a class="nav-link" href="{{ route('approvedListRead') }}">
                     <i class="fas fa-thumbs-up"></i> <span>Approved PR</span>
+                </a>
+            </li>
+
+            <li class="{{ $returnUserActive }}">
+                <a class="nav-link" href="{{ route('returnedUserListRead') }}">
+                    <i class="fas fa-right-left"></i> <span>Returned PR</span>
+                </a>
+            </li>
+
+            <li class="{{ $canceledUserActive }}">
+                <a class="nav-link" href="{{ route('cancelUserListRead') }}">
+                    <i class="fas fa-ban"></i> <span>Cancelled PR</span>
                 </a>
             </li>
         @endif
