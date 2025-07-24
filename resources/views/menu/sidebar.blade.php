@@ -10,6 +10,7 @@
     $shopUserActive = in_array($current_route, ['shop']) ? 'active' : '';
     $cartUserActive = in_array($current_route, ['prPurposeRequest', 'selectItems']) ? 'active' : '';
     $pendingUserActive = in_array($current_route, ['pendingListRead', 'pendingAllListView']) ? 'active' : '';
+    $approvedUserActive = in_array($current_route, ['approvedListRead']) ? 'active' : '';
 
     $pendingBudAllActive = in_array($current_route, ['pendingAllBudgetListRead', 'pendingAllListView']) ? 'active' : '';
     $pendingBudCancelAllActive = in_array($current_route, ['pendingAllListView']) ? 'active' : '';
@@ -85,6 +86,12 @@
             <li class="{{ $pendingUserActive }}">
                 <a class="nav-link" href="{{ route('pendingListRead') }}">
                     <i class="fas fa-clock"></i> <span>Pending PR</span>
+                </a>
+            </li>
+
+            <li class="{{ $approvedUserActive }}">
+                <a class="nav-link" href="{{ route('approvedListRead') }}">
+                    <i class="fas fa-thumbs-up"></i> <span>Approved PR</span>
                 </a>
             </li>
         @endif

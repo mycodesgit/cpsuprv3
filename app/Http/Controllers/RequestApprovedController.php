@@ -30,7 +30,8 @@ class RequestApprovedController extends Controller
 {
     use ApprovedCountTrait;
     
-    public function approvedListRead() {
+    public function approvedListRead() 
+    {
         $userId = Auth::id();
         
 
@@ -75,10 +76,11 @@ class RequestApprovedController extends Controller
             ]);
         }
 
-        return view ("request.approved.approvedUserList", compact('data'));
+        return view("request.approved.approvedListUser", compact('data'));
     }
 
-    public function approvedListAllRead() {
+    public function approvedListAllRead() 
+    {
         $userId = Auth::id();
         // $reqitempurpose = Purpose::join('office', 'purpose.office_id', '=', 'office.id')
         //     ->select('purpose.*', 'purpose.id as pid', 'office.*', 'office.id as oid')
@@ -127,7 +129,8 @@ class RequestApprovedController extends Controller
         return view ("request.approved.approvedListChecker", compact('data'));
     }
 
-    public function getapprovedListRead() {
+    public function getapprovedListRead() 
+    {
         $userId = Auth::id();
         $data = Purpose::join('office', 'purpose.office_id', '=', 'office.id')
             ->join('campuses', 'purpose.camp_id', '=', 'campuses.id')

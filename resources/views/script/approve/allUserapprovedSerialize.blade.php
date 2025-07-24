@@ -1,0 +1,951 @@
+<script>
+    $(document).ready(function() {
+        var dataTable = $('#pruserapproved').DataTable({
+            "ajax": {
+                "url": userApprovedRoute,
+                "type": "GET",
+            },
+            responsive: true,
+            lengthChange: true,
+            searching: true,
+            paging: true,
+            "columns": [
+                // {data: 'id', name: 'id', orderable: false, searchable: false},
+                // {data: 'receipt_control'},
+                {data: 'campus_abbr'},
+                {data: 'pr_no'},
+                {data: 'type_request',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 1:
+                                return 'Purchase Request';
+                            case 2:
+                                return 'POW';
+                            case 3:
+                                return 'Letter Request';
+                            case 4:
+                                return 'Others';
+                            default:
+                                return 'Unknown Status';
+                        }
+                    },
+                },
+                {data: 'office_abbr'},
+                {data: 'purpose_name'},
+                {data: 'category_name'},
+                {data: 'cpdate',
+                    render: function (data, type, row) {
+                        if (type === 'display') {
+                            return moment(data).format('MMMM D, YYYY');
+                        } else {
+                            return data;
+                        }
+                    }
+                },
+                {data: 'pstatus',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 7:
+                                return '<span class="badge badge-success">PR has been Approved</span>';
+                            case 8:
+                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                            case 9:
+                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                            case 10:
+                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                            case 11:
+                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                            case 12:
+                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                            case 13:
+                                return '<span class="badge badge-default bg-gray-dark">Bidding</span>';
+                            case 14:
+                                return '<span class="badge badge-default bg-purple">For Consolidation</span>';
+                            case 15:
+                                return '<span class="badge badge-default bg-pink">Awarded</span>';
+                            case 16:
+                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                            case 17:
+                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                            case 18:
+                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                            default:
+                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                
+                        }
+                    },
+                },
+                {data: 'pid',
+                    render: function(data, type, row) {
+                        if (type === 'display') {
+                            var link = '<a href="' + approvedListViewRoute + '/' + data + '" class="btn btn-success btn-xs btn-edit" title="View PR">' +
+                                '<i class="fas fa-eye"></i>' +
+                                '</a>';
+                            return link;
+                        } else {
+                            return data;
+                        }
+                    },
+                },
+            ],
+        });
+        setInterval(function () {
+            dataTable.ajax.reload(null, false);
+        }, 5000);
+    });
+
+    $(document).ready(function() {
+        var dataTable = $('#pruserreceived').DataTable({
+            "ajax": {
+                "url": userReceivedRoute,
+                "type": "GET",
+            },
+            responsive: true,
+            lengthChange: true,
+            searching: true,
+            paging: true,
+            "columns": [
+                // {data: 'id', name: 'id', orderable: false, searchable: false},
+                // {data: 'receipt_control'},
+                {data: 'campus_abbr'},
+                {data: 'pr_no'},
+                {data: 'type_request',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 1:
+                                return 'Purchase Request';
+                            case 2:
+                                return 'POW';
+                            case 3:
+                                return 'Letter Request';
+                            case 4:
+                                return 'Others';
+                            default:
+                                return 'Unknown Status';
+                        }
+                    },
+                },
+                {data: 'office_abbr'},
+                {data: 'purpose_name'},
+                {data: 'category_name'},
+                {data: 'cpdate',
+                    render: function (data, type, row) {
+                        if (type === 'display') {
+                            return moment(data).format('MMMM D, YYYY');
+                        } else {
+                            return data;
+                        }
+                    }
+                },
+                {data: 'pstatus',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 7:
+                                return '<span class="badge badge-success">PR has been Approved</span>';
+                            case 8:
+                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                            case 9:
+                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                            case 10:
+                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                            case 11:
+                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                            case 12:
+                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                            case 13:
+                                return '<span class="badge badge-default bg-gray-dark">Bidding</span>';
+                            case 14:
+                                return '<span class="badge badge-default bg-purple">For Consolidation</span>';
+                            case 15:
+                                return '<span class="badge badge-default bg-pink">Awarded</span>';
+                            case 16:
+                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                            case 17:
+                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                            case 18:
+                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                            default:
+                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                
+                        }
+                    },
+                },
+                {data: 'pid',
+                    render: function(data, type, row) {
+                        if (type === 'display') {
+                            var link = '<a href="' + approvedListViewRoute + '/' + data + '" class="btn btn-success btn-xs btn-edit" title="View PR">' +
+                                '<i class="fas fa-eye"></i>' +
+                                '</a>';
+                            return link;
+                        } else {
+                            return data;
+                        }
+                    },
+                },
+            ],
+        });
+        setInterval(function () {
+            dataTable.ajax.reload(null, false);
+        }, 5000);
+    });
+
+    $(document).ready(function() {
+        var dataTable = $('#prusercanvassing').DataTable({
+            "ajax": {
+                "url": userCanvassingRoute,
+                "type": "GET",
+            },
+            responsive: true,
+            lengthChange: true,
+            searching: true,
+            paging: true,
+            "columns": [
+                // {data: 'id', name: 'id', orderable: false, searchable: false},
+                // {data: 'receipt_control'},
+                {data: 'campus_abbr'},
+                {data: 'pr_no'},
+                {data: 'type_request',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 1:
+                                return 'Purchase Request';
+                            case 2:
+                                return 'POW';
+                            case 3:
+                                return 'Letter Request';
+                            case 4:
+                                return 'Others';
+                            default:
+                                return 'Unknown Status';
+                        }
+                    },
+                },
+                {data: 'office_abbr'},
+                {data: 'purpose_name'},
+                {data: 'category_name'},
+                {data: 'cpdate',
+                    render: function (data, type, row) {
+                        if (type === 'display') {
+                            return moment(data).format('MMMM D, YYYY');
+                        } else {
+                            return data;
+                        }
+                    }
+                },
+                {data: 'pstatus',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 7:
+                                return '<span class="badge badge-success">PR has been Approved</span>';
+                            case 8:
+                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                            case 9:
+                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                            case 10:
+                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                            case 11:
+                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                            case 12:
+                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                            case 13:
+                                return '<span class="badge badge-default bg-gray-dark">Bidding</span>';
+                            case 14:
+                                return '<span class="badge badge-default bg-purple">For Consolidation</span>';
+                            case 15:
+                                return '<span class="badge badge-default bg-pink">Awarded</span>';
+                            case 16:
+                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                            case 17:
+                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                            case 18:
+                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                            default:
+                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                
+                        }
+                    },
+                },
+                {data: 'pid',
+                    render: function(data, type, row) {
+                        if (type === 'display') {
+                            var link = '<a href="' + approvedListViewRoute + '/' + data + '" class="btn btn-success btn-xs btn-edit" title="View PR">' +
+                                '<i class="fas fa-eye"></i>' +
+                                '</a>';
+                            return link;
+                        } else {
+                            return data;
+                        }
+                    },
+                },
+            ],
+        });
+        setInterval(function () {
+            dataTable.ajax.reload(null, false);
+        }, 5000);
+    });
+
+    $(document).ready(function() {
+        var dataTable = $('#prusercanvassed').DataTable({
+            "ajax": {
+                "url": userCanvassedRoute,
+                "type": "GET",
+            },
+            responsive: true,
+            lengthChange: true,
+            searching: true,
+            paging: true,
+            "columns": [
+                // {data: 'id', name: 'id', orderable: false, searchable: false},
+                // {data: 'receipt_control'},
+                {data: 'campus_abbr'},
+                {data: 'pr_no'},
+                {data: 'type_request',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 1:
+                                return 'Purchase Request';
+                            case 2:
+                                return 'POW';
+                            case 3:
+                                return 'Letter Request';
+                            case 4:
+                                return 'Others';
+                            default:
+                                return 'Unknown Status';
+                        }
+                    },
+                },
+                {data: 'office_abbr'},
+                {data: 'purpose_name'},
+                {data: 'category_name'},
+                {data: 'cpdate',
+                    render: function (data, type, row) {
+                        if (type === 'display') {
+                            return moment(data).format('MMMM D, YYYY');
+                        } else {
+                            return data;
+                        }
+                    }
+                },
+                {data: 'pstatus',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 7:
+                                return '<span class="badge badge-success">PR has been Approved</span>';
+                            case 8:
+                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                            case 9:
+                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                            case 10:
+                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                            case 11:
+                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                            case 12:
+                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                            case 13:
+                                return '<span class="badge badge-default bg-gray-dark">Bidding</span>';
+                            case 14:
+                                return '<span class="badge badge-default bg-purple">For Consolidation</span>';
+                            case 15:
+                                return '<span class="badge badge-default bg-pink">Awarded</span>';
+                            case 16:
+                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                            case 17:
+                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                            case 18:
+                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                            default:
+                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                
+                        }
+                    },
+                },
+                {data: 'pid',
+                    render: function(data, type, row) {
+                        if (type === 'display') {
+                            var link = '<a href="' + approvedListViewRoute + '/' + data + '" class="btn btn-success btn-xs btn-edit" title="View PR">' +
+                                '<i class="fas fa-eye"></i>' +
+                                '</a>';
+                            return link;
+                        } else {
+                            return data;
+                        }
+                    },
+                },
+            ],
+        });
+        setInterval(function () {
+            dataTable.ajax.reload(null, false);
+        }, 5000);
+    });
+
+    $(document).ready(function() {
+        var dataTable = $('#pruserphilgep').DataTable({
+            "ajax": {
+                "url": userPhilGepRoute,
+                "type": "GET",
+            },
+            responsive: true,
+            lengthChange: true,
+            searching: true,
+            paging: true,
+            "columns": [
+                // {data: 'id', name: 'id', orderable: false, searchable: false},
+                // {data: 'receipt_control'},
+                {data: 'campus_abbr'},
+                {data: 'pr_no'},
+                {data: 'type_request',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 1:
+                                return 'Purchase Request';
+                            case 2:
+                                return 'POW';
+                            case 3:
+                                return 'Letter Request';
+                            case 4:
+                                return 'Others';
+                            default:
+                                return 'Unknown Status';
+                        }
+                    },
+                },
+                {data: 'office_abbr'},
+                {data: 'purpose_name'},
+                {data: 'category_name'},
+                {data: 'cpdate',
+                    render: function (data, type, row) {
+                        if (type === 'display') {
+                            return moment(data).format('MMMM D, YYYY');
+                        } else {
+                            return data;
+                        }
+                    }
+                },
+                {data: 'pstatus',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 7:
+                                return '<span class="badge badge-success">PR has been Approved</span>';
+                            case 8:
+                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                            case 9:
+                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                            case 10:
+                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                            case 11:
+                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                            case 12:
+                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                            case 13:
+                                return '<span class="badge badge-default bg-gray-dark">Bidding</span>';
+                            case 14:
+                                return '<span class="badge badge-default bg-purple">For Consolidation</span>';
+                            case 15:
+                                return '<span class="badge badge-default bg-pink">Awarded</span>';
+                            case 16:
+                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                            case 17:
+                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                            case 18:
+                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                            default:
+                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                
+                        }
+                    },
+                },
+                {data: 'pid',
+                    render: function(data, type, row) {
+                        if (type === 'display') {
+                            var link = '<a href="' + approvedListViewRoute + '/' + data + '" class="btn btn-success btn-xs btn-edit" title="View PR">' +
+                                '<i class="fas fa-eye"></i>' +
+                                '</a>';
+                            return link;
+                        } else {
+                            return data;
+                        }
+                    },
+                },
+            ],
+        });
+        setInterval(function () {
+            dataTable.ajax.reload(null, false);
+        }, 5000);
+    });
+
+    $(document).ready(function() {
+        var dataTable = $('#pruserpposted').DataTable({
+            "ajax": {
+                "url": userPostedRoute,
+                "type": "GET",
+            },
+            responsive: true,
+            lengthChange: true,
+            searching: true,
+            paging: true,
+            "columns": [
+                // {data: 'id', name: 'id', orderable: false, searchable: false},
+                // {data: 'receipt_control'},
+                {data: 'campus_abbr'},
+                {data: 'pr_no'},
+                {data: 'type_request',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 1:
+                                return 'Purchase Request';
+                            case 2:
+                                return 'POW';
+                            case 3:
+                                return 'Letter Request';
+                            case 4:
+                                return 'Others';
+                            default:
+                                return 'Unknown Status';
+                        }
+                    },
+                },
+                {data: 'office_abbr'},
+                {data: 'purpose_name'},
+                {data: 'category_name'},
+                {data: 'cpdate',
+                    render: function (data, type, row) {
+                        if (type === 'display') {
+                            return moment(data).format('MMMM D, YYYY');
+                        } else {
+                            return data;
+                        }
+                    }
+                },
+                {data: 'pstatus',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 7:
+                                return '<span class="badge badge-success">PR has been Approved</span>';
+                            case 8:
+                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                            case 9:
+                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                            case 10:
+                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                            case 11:
+                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                            case 12:
+                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                            case 13:
+                                return '<span class="badge badge-default bg-gray-dark">Bidding</span>';
+                            case 14:
+                                return '<span class="badge badge-default bg-purple">For Consolidation</span>';
+                            case 15:
+                                return '<span class="badge badge-default bg-pink">Awarded</span>';
+                            case 16:
+                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                            case 17:
+                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                            case 18:
+                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                            default:
+                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                
+                        }
+                    },
+                },
+                {data: 'pid',
+                    render: function(data, type, row) {
+                        if (type === 'display') {
+                            var link = '<a href="' + approvedListViewRoute + '/' + data + '" class="btn btn-success btn-xs btn-edit" title="View PR">' +
+                                '<i class="fas fa-eye"></i>' +
+                                '</a>';
+                            return link;
+                        } else {
+                            return data;
+                        }
+                    },
+                },
+            ],
+        });
+        setInterval(function () {
+            dataTable.ajax.reload(null, false);
+        }, 5000);
+    });
+
+    $(document).ready(function() {
+        var dataTable = $('#pruserbidding').DataTable({
+            "ajax": {
+                "url": userBiddingRoute,
+                "type": "GET",
+            },
+            responsive: true,
+            lengthChange: true,
+            searching: true,
+            paging: true,
+            "columns": [
+                // {data: 'id', name: 'id', orderable: false, searchable: false},
+                // {data: 'receipt_control'},
+                {data: 'campus_abbr'},
+                {data: 'pr_no'},
+                {data: 'type_request',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 1:
+                                return 'Purchase Request';
+                            case 2:
+                                return 'POW';
+                            case 3:
+                                return 'Letter Request';
+                            case 4:
+                                return 'Others';
+                            default:
+                                return 'Unknown Status';
+                        }
+                    },
+                },
+                {data: 'office_abbr'},
+                {data: 'purpose_name'},
+                {data: 'category_name'},
+                {data: 'cpdate',
+                    render: function (data, type, row) {
+                        if (type === 'display') {
+                            return moment(data).format('MMMM D, YYYY');
+                        } else {
+                            return data;
+                        }
+                    }
+                },
+                {data: 'pstatus',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 7:
+                                return '<span class="badge badge-success">PR has been Approved</span>';
+                            case 8:
+                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                            case 9:
+                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                            case 10:
+                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                            case 11:
+                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                            case 12:
+                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                            case 13:
+                                return '<span class="badge badge-default bg-gray-dark">Bidding</span>';
+                            case 14:
+                                return '<span class="badge badge-default bg-purple">For Consolidation</span>';
+                            case 15:
+                                return '<span class="badge badge-default bg-pink">Awarded</span>';
+                            case 16:
+                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                            case 17:
+                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                            case 18:
+                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                            default:
+                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                
+                        }
+                    },
+                },
+                {data: 'pid',
+                    render: function(data, type, row) {
+                        if (type === 'display') {
+                            var link = '<a href="' + approvedListViewRoute + '/' + data + '" class="btn btn-success btn-xs btn-edit" title="View PR">' +
+                                '<i class="fas fa-eye"></i>' +
+                                '</a>';
+                            return link;
+                        } else {
+                            return data;
+                        }
+                    },
+                },
+            ],
+        });
+        setInterval(function () {
+            dataTable.ajax.reload(null, false);
+        }, 5000);
+    });
+
+    $(document).ready(function() {
+        var dataTable = $('#pruserconsolidate').DataTable({
+            "ajax": {
+                "url": userConsolidateRoute,
+                "type": "GET",
+            },
+            responsive: true,
+            lengthChange: true,
+            searching: true,
+            paging: true,
+            "columns": [
+                // {data: 'id', name: 'id', orderable: false, searchable: false},
+                // {data: 'receipt_control'},
+                {data: 'campus_abbr'},
+                {data: 'pr_no'},
+                {data: 'type_request',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 1:
+                                return 'Purchase Request';
+                            case 2:
+                                return 'POW';
+                            case 3:
+                                return 'Letter Request';
+                            case 4:
+                                return 'Others';
+                            default:
+                                return 'Unknown Status';
+                        }
+                    },
+                },
+                {data: 'office_abbr'},
+                {data: 'purpose_name'},
+                {data: 'category_name'},
+                {data: 'cpdate',
+                    render: function (data, type, row) {
+                        if (type === 'display') {
+                            return moment(data).format('MMMM D, YYYY');
+                        } else {
+                            return data;
+                        }
+                    }
+                },
+                {data: 'pstatus',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 7:
+                                return '<span class="badge badge-success">PR has been Approved</span>';
+                            case 8:
+                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                            case 9:
+                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                            case 10:
+                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                            case 11:
+                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                            case 12:
+                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                            case 13:
+                                return '<span class="badge badge-default bg-gray-dark">Bidding</span>';
+                            case 14:
+                                return '<span class="badge badge-default bg-purple">For Consolidation</span>';
+                            case 15:
+                                return '<span class="badge badge-default bg-pink">Awarded</span>';
+                            case 16:
+                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                            case 17:
+                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                            case 18:
+                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                            default:
+                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                
+                        }
+                    },
+                },
+                {data: 'pid',
+                    render: function(data, type, row) {
+                        if (type === 'display') {
+                            var link = '<a href="' + approvedListViewRoute + '/' + data + '" class="btn btn-success btn-xs btn-edit" title="View PR">' +
+                                '<i class="fas fa-eye"></i>' +
+                                '</a>';
+                            return link;
+                        } else {
+                            return data;
+                        }
+                    },
+                },
+            ],
+        });
+        setInterval(function () {
+            dataTable.ajax.reload(null, false);
+        }, 5000);
+    });
+
+    $(document).ready(function() {
+        var dataTable = $('#pruserawarded').DataTable({
+            "ajax": {
+                "url": userAwardedRoute,
+                "type": "GET",
+            },
+            responsive: true,
+            lengthChange: true,
+            searching: true,
+            paging: true,
+            "columns": [
+                // {data: 'id', name: 'id', orderable: false, searchable: false},
+                // {data: 'receipt_control'},
+                {data: 'campus_abbr'},
+                {data: 'pr_no'},
+                {data: 'type_request',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 1:
+                                return 'Purchase Request';
+                            case 2:
+                                return 'POW';
+                            case 3:
+                                return 'Letter Request';
+                            case 4:
+                                return 'Others';
+                            default:
+                                return 'Unknown Status';
+                        }
+                    },
+                },
+                {data: 'office_abbr'},
+                {data: 'purpose_name'},
+                {data: 'category_name'},
+                {data: 'cpdate',
+                    render: function (data, type, row) {
+                        if (type === 'display') {
+                            return moment(data).format('MMMM D, YYYY');
+                        } else {
+                            return data;
+                        }
+                    }
+                },
+                {data: 'pstatus',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 7:
+                                return '<span class="badge badge-success">PR has been Approved</span>';
+                            case 8:
+                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                            case 9:
+                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                            case 10:
+                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                            case 11:
+                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                            case 12:
+                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                            case 13:
+                                return '<span class="badge badge-default bg-gray-dark">Bidding</span>';
+                            case 14:
+                                return '<span class="badge badge-default bg-purple">For Consolidation</span>';
+                            case 15:
+                                return '<span class="badge badge-default bg-pink">Awarded</span>';
+                            case 16:
+                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                            case 17:
+                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                            case 18:
+                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                            default:
+                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                
+                        }
+                    },
+                },
+                {data: 'pid',
+                    render: function(data, type, row) {
+                        if (type === 'display') {
+                            var link = '<a href="' + approvedListViewRoute + '/' + data + '" class="btn btn-success btn-xs btn-edit" title="View PR">' +
+                                '<i class="fas fa-eye"></i>' +
+                                '</a>';
+                            return link;
+                        } else {
+                            return data;
+                        }
+                    },
+                },
+            ],
+        });
+        setInterval(function () {
+            dataTable.ajax.reload(null, false);
+        }, 5000);
+    });
+
+    $(document).ready(function() {
+        var dataTable = $('#pruserpurchase').DataTable({
+            "ajax": {
+                "url": userPurchaseRoute,
+                "type": "GET",
+            },
+            responsive: true,
+            lengthChange: true,
+            searching: true,
+            paging: true,
+            "columns": [
+                // {data: 'id', name: 'id', orderable: false, searchable: false},
+                // {data: 'receipt_control'},
+                {data: 'campus_abbr'},
+                {data: 'pr_no'},
+                {data: 'type_request',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 1:
+                                return 'Purchase Request';
+                            case 2:
+                                return 'POW';
+                            case 3:
+                                return 'Letter Request';
+                            case 4:
+                                return 'Others';
+                            default:
+                                return 'Unknown Status';
+                        }
+                    },
+                },
+                {data: 'office_abbr'},
+                {data: 'purpose_name'},
+                {data: 'category_name'},
+                {data: 'cpdate',
+                    render: function (data, type, row) {
+                        if (type === 'display') {
+                            return moment(data).format('MMMM D, YYYY');
+                        } else {
+                            return data;
+                        }
+                    }
+                },
+                {data: 'pstatus',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 7:
+                                return '<span class="badge badge-success">PR has been Approved</span>';
+                            case 8:
+                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                            case 9:
+                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                            case 10:
+                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                            case 11:
+                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                            case 12:
+                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                            case 13:
+                                return '<span class="badge badge-default bg-gray-dark">Bidding</span>';
+                            case 14:
+                                return '<span class="badge badge-default bg-purple">For Consolidation</span>';
+                            case 15:
+                                return '<span class="badge badge-default bg-pink">Awarded</span>';
+                            case 16:
+                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                            case 17:
+                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                            case 18:
+                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                            default:
+                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                
+                        }
+                    },
+                },
+                {data: 'pid',
+                    render: function(data, type, row) {
+                        if (type === 'display') {
+                            var link = '<a href="' + approvedListViewRoute + '/' + data + '" class="btn btn-success btn-xs btn-edit" title="View PR">' +
+                                '<i class="fas fa-eye"></i>' +
+                                '</a>';
+                            return link;
+                        } else {
+                            return data;
+                        }
+                    },
+                },
+            ],
+        });
+        setInterval(function () {
+            dataTable.ajax.reload(null, false);
+        }, 5000);
+    });
+</script>

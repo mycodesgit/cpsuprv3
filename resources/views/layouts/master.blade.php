@@ -497,6 +497,9 @@
     @if (request()->routeIs('approvedListAllRead'))
         @include('script.approve.allapprovedSerialize')
     @endif
+    @if (request()->routeIs('approvedListRead'))
+        @include('script.approve.allUserapprovedSerialize')
+    @endif
 
     @if (request()->routeIs('userRead'))
         @include('script.user.userSerialize')
