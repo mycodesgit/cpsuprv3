@@ -465,7 +465,7 @@ class RequestApprovedController extends Controller
                     'approvedUserCount' => $approvedUserCount,
                 ];
 
-        return view ("request.approved.viewlist", compact('category', 'unit', 'item', 'appItem', 'purpose', 'data', 'docFile'));
+        return view("request.approved.viewlist", compact('category', 'unit', 'item', 'appItem', 'purpose', 'data', 'docFile'));
     }
 
     public function approvedAllListView($pid) {
