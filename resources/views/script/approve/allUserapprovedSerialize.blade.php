@@ -93,9 +93,6 @@
         dataTable.on('draw', function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
-        $(document).on('pendingAllChanges', function() {
-            dataTable.ajax.reload();
-        });
         setInterval(function () {
             dataTable.ajax.reload(null, false);
         }, 10000);

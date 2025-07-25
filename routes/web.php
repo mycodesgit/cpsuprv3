@@ -199,7 +199,7 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
         Route::get('/view/listreturnedPR/list/user', [RequestReturnController::class, 'returnedUserListRead'])->name('returnedUserListRead');
         Route::get('/view/listreturnedPR/list/ajaxuser', [RequestReturnController::class, 'getreturnedUserListRead'])->name('getreturnedUserListRead');
         Route::get('/view/listreturnedPR/view/{pid}', [RequestReturnController::class, 'returnedpendingListView'])->name('returnedpendingListView');
-        Route::get('/view/listreturnedPR/editpr/{pid}', [RequestReturnController::class, 'editreturnselectItems'])->name('editreturnselectItems');
+        Route::get('/view/listreturnedPR/editpr/{purpose_Id}', [RequestReturnController::class, 'editreturnselectItems'])->name('editreturnselectItems');
 
         Route::get('/view/listcanceledPR/list/user', [RequestReturnController::class, 'cancelUserListRead'])->name('cancelUserListRead');
         Route::get('/view/listcanceledPR/list/user/ajax', [RequestReturnController::class, 'getcanceledUserListRead'])->name('getcanceledUserListRead');

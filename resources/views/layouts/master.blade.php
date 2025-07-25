@@ -413,7 +413,7 @@
     @if (request()->routeIs('shop'))
         @include('script.add.shopScript')
     @endif
-    @if(request()->routeIs('selectItems'))
+    @if(request()->routeIs('selectItems', 'editreturnselectItems'))
         @include('script.add.addItem')
         @include('script.add.cartTable')
 
@@ -499,6 +499,9 @@
     @endif
     @if (request()->routeIs('approvedListRead'))
         @include('script.approve.allUserapprovedSerialize')
+    @endif
+    @if (request()->routeIs('returnedUserListRead'))
+        @include('script.return.returnprUserSerialize')
     @endif
 
     @if (request()->routeIs('userRead'))

@@ -291,7 +291,7 @@
         }
     </script>
 
-    @if(request()->routeIs(['selectItems']))
+    @if(request()->routeIs(['selectItems', 'editreturnselectItems']))
         <script>
             var purposeId = "{{ request('purpose_Id') }}"; // Retrieving purpose_Id from the request
             var allCartRoute = "{{ route('getcartitemListRead', ['purpose_Id' => ':purpose_Id']) }}"

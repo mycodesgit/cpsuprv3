@@ -11,7 +11,7 @@
     $cartUserActive = in_array($current_route, ['prPurposeRequest', 'selectItems']) ? 'active' : '';
     $pendingUserActive = in_array($current_route, ['pendingListRead', 'pendingAllListView']) ? 'active' : '';
     $approvedUserActive = in_array($current_route, ['approvedListRead']) ? 'active' : '';
-    $returnUserActive = in_array($current_route, ['returnedUserListRead']) ? 'active' : '';
+    $returnUserActive = in_array($current_route, ['returnedUserListRead', 'editreturnselectItems']) ? 'active' : '';
     $canceledUserActive = in_array($current_route, ['cancelUserListRead']) ? 'active' : '';
 
     $pendingBudAllActive = in_array($current_route, ['pendingAllBudgetListRead', 'pendingAllListView']) ? 'active' : '';
