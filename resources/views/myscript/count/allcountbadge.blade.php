@@ -188,4 +188,39 @@
 
         setInterval(updateCounts, 5000);
     });
+
+
+    $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        function getReturnedAllCount() {
+            $.get(allApprovedCountRoute, function (data) {
+                $('#returnAllCount').text(data.returnAllCount);
+            });
+        }
+
+        function getReturnedBudgetCount() {
+            $.get(allApprovedCountRoute, function (data) {
+                $('#receivedCount').text(data.receivedCount);
+            });
+        }
+
+        function getReturnedUserCount() {
+            $.get(userReturnCountRoute, function (data) {
+                $('#returnedUserCount').text(data.returnedUserCount);
+            });
+        }
+
+        function updateCounts() {
+            getReturnedAllCount();
+            getReturnedBudgetCount();
+            getReturnedUserCount();
+        }
+
+        setInterval(updateCounts, 5000);
+    });
 </script>

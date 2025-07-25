@@ -55,6 +55,10 @@ class MasterController extends Controller
         $consolidateUserCount = $this->getConsolidateUserCount();
         $awardedUserCount = $this->getAwardedUserCount();
         $purchaseUserCount = $this->getPurchaseUserCount();
+
+        $returnedAllCount = $this->getReturnedAllCount();
+        $returnedUserCount = $this->getReturnedUserCount();
+
         $data = [   'pendCount' => $pendCount, 
                     'pendBudCount' => $pendBudCount,
                     'pendUserCount' => $pendUserCount,
@@ -69,6 +73,9 @@ class MasterController extends Controller
                     'consolidateUserCount' => $consolidateUserCount,
                     'awardedUserCount' => $awardedUserCount,
                     'purchaseUserCount' => $purchaseUserCount,
+
+                    'returnedAllCount' => $returnedAllCount,
+                    'returnedUserCount' => $returnedUserCount,
                 ];
 
         if (request()->ajax()) {
@@ -87,6 +94,9 @@ class MasterController extends Controller
                 'consolidateUserCount' => $consolidateUserCount,
                 'awardedUserCount' => $awardedUserCount,
                 'purchaseUserCount' => $purchaseUserCount,
+
+                'returnedAllCount' => $returnedAllCount,
+                'returnedUserCount' => $returnedUserCount,
             ]);
         }
                   

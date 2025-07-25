@@ -56,6 +56,10 @@ class RequestPendingController extends Controller
         $consolidateUserCount = $this->getConsolidateUserCount();
         $awardedUserCount = $this->getAwardedUserCount();
         $purchaseUserCount = $this->getPurchaseUserCount();
+
+        $returnedAllCount = $this->getReturnedAllCount();
+        $returnedUserCount = $this->getReturnedUserCount();
+
         $data = [   'pendCount' => $pendCount, 
                     'pendBudCount' => $pendBudCount,
                     'pendUserCount' => $pendUserCount,
@@ -70,6 +74,9 @@ class RequestPendingController extends Controller
                     'consolidateUserCount' => $consolidateUserCount,
                     'awardedUserCount' => $awardedUserCount,
                     'purchaseUserCount' => $purchaseUserCount,
+
+                    'returnedAllCount' => $returnedAllCount,
+                    'returnedUserCount' => $returnedUserCount,
                 ];
 
         if (request()->ajax()) {
@@ -88,6 +95,9 @@ class RequestPendingController extends Controller
                 'consolidateUserCount' => $consolidateUserCount,
                 'awardedUserCount' => $awardedUserCount,
                 'purchaseUserCount' => $purchaseUserCount,
+
+                'returnedAllCount' => $returnedAllCount,
+                'returnedUserCount' => $returnedUserCount,
             ]);
         }
 

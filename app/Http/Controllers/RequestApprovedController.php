@@ -39,7 +39,7 @@ class RequestApprovedController extends Controller
         $pendCount = $this->getPendingAllCount();
         $pendBudCount = $this->getPendingBudgetCount();
         $pendUserCount = $this->getPendingUserCount();
-        
+
         $approvedUserCount = $this->getApprovedUserCount();
         $receivedUserCount = $this->getReceivedUserCount();
         $canvassingUserCount = $this->getCanvassingUserCount();
@@ -50,9 +50,11 @@ class RequestApprovedController extends Controller
         $consolidateUserCount = $this->getConsolidateUserCount();
         $awardedUserCount = $this->getAwardedUserCount();
         $purchaseUserCount = $this->getPurchaseUserCount();
-        // $returnedCount = $this->getReturnedUserCount();
-        $data = [   
-                    'pendCount' => $pendCount, 
+
+        $returnedAllCount = $this->getReturnedAllCount();
+        $returnedUserCount = $this->getReturnedUserCount();
+
+        $data = [   'pendCount' => $pendCount, 
                     'pendBudCount' => $pendBudCount,
                     'pendUserCount' => $pendUserCount,
 
@@ -66,7 +68,9 @@ class RequestApprovedController extends Controller
                     'consolidateUserCount' => $consolidateUserCount,
                     'awardedUserCount' => $awardedUserCount,
                     'purchaseUserCount' => $purchaseUserCount,
-                    // 'returnedCount' => $returnedCount,
+
+                    'returnedAllCount' => $returnedAllCount,
+                    'returnedUserCount' => $returnedUserCount,
                 ];
 
         if (request()->ajax()) {
@@ -85,7 +89,9 @@ class RequestApprovedController extends Controller
                 'consolidateUserCount' => $consolidateUserCount,
                 'awardedUserCount' => $awardedUserCount,
                 'purchaseUserCount' => $purchaseUserCount,
-                // 'returnedCount' => $returnedCount,
+
+                'returnedAllCount' => $returnedAllCount,
+                'returnedUserCount' => $returnedUserCount,
             ]);
         }
 
@@ -101,41 +107,62 @@ class RequestApprovedController extends Controller
         //     ->orderBy('purpose.created_at', 'DESC')
         //     ->get();
 
-        $approvedCount = $this->getApprovedAllCount();
-        $receivedCount = $this->getReceivedAllCount();
-        $canvassingCount = $this->getCanvassingAllCount();
-        $canvassedCount = $this->getCanvassedAllCount();
-        $philgepCount = $this->getPhilGepAllCount();
-        $postedCount = $this->getPostedAllCount();
-        $biddingCount = $this->getBiddingAllCount();
-        $consolidateCount = $this->getConsolidateAllCount();
-        $awardedCount = $this->getAwardedAllCount();
-        $purchaseCount = $this->getPurchaseAllCount();
-        $data = [   
-                    'approvedCount' => $approvedCount,
-                    'receivedCount' => $receivedCount, 
-                    'canvassingCount' => $canvassingCount,
-                    'canvassedCount' => $canvassedCount,
-                    'philgepCount' => $philgepCount,
-                    'postedCount' => $postedCount,
-                    'biddingCount' => $biddingCount,
-                    'consolidateCount' => $consolidateCount,
-                    'awardedCount' => $awardedCount,
-                    'purchaseCount' => $purchaseCount,
+        $pendCount = $this->getPendingAllCount();
+        $pendBudCount = $this->getPendingBudgetCount();
+        $pendUserCount = $this->getPendingUserCount();
+
+        $approvedUserCount = $this->getApprovedUserCount();
+        $receivedUserCount = $this->getReceivedUserCount();
+        $canvassingUserCount = $this->getCanvassingUserCount();
+        $canvassedUserCount = $this->getCanvassedUserCount();
+        $philgepUserCount = $this->getPhilGepUserCount();
+        $postedUserCount = $this->getPostedUserCount();
+        $biddingUserCount = $this->getBiddingUserCount();
+        $consolidateUserCount = $this->getConsolidateUserCount();
+        $awardedUserCount = $this->getAwardedUserCount();
+        $purchaseUserCount = $this->getPurchaseUserCount();
+
+        $returnedAllCount = $this->getReturnedAllCount();
+        $returnedUserCount = $this->getReturnedUserCount();
+
+        $data = [   'pendCount' => $pendCount, 
+                    'pendBudCount' => $pendBudCount,
+                    'pendUserCount' => $pendUserCount,
+
+                    'approvedUserCount' => $approvedUserCount,
+                    'receivedUserCount' => $receivedUserCount,
+                    'canvassingUserCount' => $canvassingUserCount,
+                    'canvassedUserCount' => $canvassedUserCount,
+                    'philgepUserCount' => $philgepUserCount,
+                    'postedUserCount' => $postedUserCount,
+                    'biddingUserCount' => $biddingUserCount,
+                    'consolidateUserCount' => $consolidateUserCount,
+                    'awardedUserCount' => $awardedUserCount,
+                    'purchaseUserCount' => $purchaseUserCount,
+
+                    'returnedAllCount' => $returnedAllCount,
+                    'returnedUserCount' => $returnedUserCount,
                 ];
 
         if (request()->ajax()) {
             return response()->json([
-                'approvedCount' => $approvedCount, 
-                'receivedCount' => $receivedCount,
-                'canvassingCount' => $canvassingCount,
-                'canvassedCount' => $canvassedCount,
-                'philgepCount' => $philgepCount,
-                'postedCount' => $postedCount,
-                'biddingCount' => $biddingCount,
-                'consolidateCount' => $consolidateCount,
-                'awardedCount' => $awardedCount,
-                'purchaseCount' => $purchaseCount,
+                'pendCount' => $pendCount, 
+                'pendBudCount' => $pendBudCount,
+                'pendUserCount' => $pendUserCount,
+
+                'approvedUserCount' => $approvedUserCount,
+                'receivedUserCount' => $receivedUserCount,
+                'canvassingUserCount' => $canvassingUserCount,
+                'canvassedUserCount' => $canvassedUserCount,
+                'philgepUserCount' => $philgepUserCount,
+                'postedUserCount' => $postedUserCount,
+                'biddingUserCount' => $biddingUserCount,
+                'consolidateUserCount' => $consolidateUserCount,
+                'awardedUserCount' => $awardedUserCount,
+                'purchaseUserCount' => $purchaseUserCount,
+
+                'returnedAllCount' => $returnedAllCount,
+                'returnedUserCount' => $returnedUserCount,
             ]);
         }
 

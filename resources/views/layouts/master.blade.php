@@ -347,6 +347,7 @@
     <script>
         var userPendingCountRoute = "{{ route('pendingListRead') }}";
         var userApprovedCountRoute = "{{ route('approvedListRead') }}";
+        var userReturnCountRoute = "{{ route('returnedUserListRead') }}";
     </script>
     
     @include('myscript.table.dataTable')
