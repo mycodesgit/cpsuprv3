@@ -3552,7 +3552,7 @@ body.dark-mode.layout-4 .main-sidebar .sidebar-menu li.menu-header {
 }
 .main-sidebar .sidebar-menu li a span {
     margin-top: 0px;
-    width: 100%;
+    width: 60%;
 }
 .main-sidebar .sidebar-menu li a:hover {
     /* background-color: #f2f4f6; */

@@ -28,13 +28,18 @@ use App\Models\PRnotification;
 
 class RequestApprovedController extends Controller
 {
+    use PendingCountTrait;
     use ApprovedCountTrait;
+    use ReturnedCountTrait;
     
     public function approvedListRead() 
     {
         $userId = Auth::id();
         
-
+        $pendCount = $this->getPendingAllCount();
+        $pendBudCount = $this->getPendingBudgetCount();
+        $pendUserCount = $this->getPendingUserCount();
+        
         $approvedUserCount = $this->getApprovedUserCount();
         $receivedUserCount = $this->getReceivedUserCount();
         $canvassingUserCount = $this->getCanvassingUserCount();
@@ -47,6 +52,10 @@ class RequestApprovedController extends Controller
         $purchaseUserCount = $this->getPurchaseUserCount();
         // $returnedCount = $this->getReturnedUserCount();
         $data = [   
+                    'pendCount' => $pendCount, 
+                    'pendBudCount' => $pendBudCount,
+                    'pendUserCount' => $pendUserCount,
+
                     'approvedUserCount' => $approvedUserCount,
                     'receivedUserCount' => $receivedUserCount,
                     'canvassingUserCount' => $canvassingUserCount,
@@ -62,6 +71,10 @@ class RequestApprovedController extends Controller
 
         if (request()->ajax()) {
             return response()->json([
+                'pendCount' => $pendCount, 
+                'pendBudCount' => $pendBudCount,
+                'pendUserCount' => $pendUserCount,
+
                 'approvedUserCount' => $approvedUserCount,
                 'receivedUserCount' => $receivedUserCount,
                 'canvassingUserCount' => $canvassingUserCount,

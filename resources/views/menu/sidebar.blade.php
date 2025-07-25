@@ -48,6 +48,9 @@
             <li class="{{ $pendingAllActive }}">
                 <a class="nav-link" href="{{ route('pendingAllListRead') }}">
                     <i class="fas fa-clock"></i> <span>Pending PR</span>
+                    <span id="pendingCount" class="badge badge-warning" style="font-size: 10pt; width: 30px; height: 20px; line-height: 10px; text-align: left !important;">
+                        {{ $data['pendCount'] }}
+                    </span>
                 </a>
             </li>
 
@@ -88,12 +91,18 @@
             <li class="{{ $pendingUserActive }}">
                 <a class="nav-link" href="{{ route('pendingListRead') }}">
                     <i class="fas fa-clock"></i> <span>Pending PR</span>
+                    <span id="pendingUserCount" class="badge badge-warning" style="font-size: 10pt; width: 30px; height: 20px; line-height: 10px; text-align: left !important;">
+                        {{ $data['pendUserCount'] }}
+                    </span>
                 </a>
             </li>
 
             <li class="{{ $approvedUserActive }}">
                 <a class="nav-link" href="{{ route('approvedListRead') }}">
                     <i class="fas fa-thumbs-up"></i> <span>Approved PR</span>
+                    <span id="approvedUserCount" class="badge badge-warning" style="font-size: 10pt; width: 30px; height: 20px; line-height: 10px; text-align: left !important;">
+                        {{ $data['approvedUserCount'] }}
+                    </span>
                 </a>
             </li>
 
@@ -114,19 +123,17 @@
             <li class="menu-header" style="border-top: none">Approval Navigation</li>
             <li class="{{ $pendingBudAllActive }}">
                 <a class="nav-link" href="{{ route('pendingAllBudgetListRead') }}">
-                    <i class="fas fa-check"></i> <span>Pending Approval</span>
+                    <i class="fas fa-check"></i> <span>Waiting PR</span>
+                    <span id="pendingBudCount" class="badge badge-warning" style="font-size: 10pt; width: 30px; height: 20px; line-height: 10px;">
+                        {{ $data['pendBudCount'] }}
+                    </span>
                 </a>
             </li>
 
             <li class="menu-header" style="border-top: none">Cancellation Navigation</li>
             <li class="{{ $pendingBudCancelAllActive }}">
                 <a class="nav-link" href="#">
-                    <i class="fas fa-times"></i> <span>Pending Cancellation</span>
-                </a>
-            </li>
-            <li class="{{ $pendingBudCancelAllActive }}">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-times"></i> <span>Manual Cancellation</span>
+                    <i class="fas fa-times"></i> <span>Cancel PR</span>
                 </a>
             </li>
         @endif
@@ -159,3 +166,14 @@
         </a>
     </div>
 </aside>
+
+<script>
+    var allPendingCountRoute = "{{ route('pendingAllListRead') }}";
+    var allPendingBudgetCountRoute = "{{ route('pendingAllBudgetListRead') }}";
+    var userPendingCountRoute = "{{ route('pendingListRead') }}";
+    var allApprovedCountRoute = "{{ route('approvedListAllRead') }}";
+    var userApprovedCountRoute = "{{ route('approvedListRead') }}";
+    var allReturnedCountRoute = "{{ route('returnedAllListRead') }}";
+    var userReturnedCountRoute = "{{ route('returnedUserListRead') }}";
+</script>
+

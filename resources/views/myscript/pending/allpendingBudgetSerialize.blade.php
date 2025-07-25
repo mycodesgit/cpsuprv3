@@ -6,7 +6,7 @@
                 "type": "GET",
             },
             responsive: true,
-            lengthChange: true,
+            lengthChange: false,
             searching: true,
             paging: true,
             "order": [[0, "desc"]], // Order by the first column (cpdate) in descending order

@@ -342,251 +342,67 @@
     <script src="{{ asset('template/assets/js/tables/datatables-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('template/assets/js/tables/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('template/assets/js/tables/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-    <script>
-        $(function() {
-            $("#example1").DataTable({
-                "responsive": false,
-                "lengthChange": true,
-                "autoWidth": true,
-                //"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
-
-            $("#example3").DataTable({
-                "responsive": true,
-                "lengthChange": true,
-                "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-
-            }).buttons().container().appendTo('#example3_wrapper .col-md-6:eq(0)');
-
-            $("#example4").DataTable({
-                "responsive": true,
-                "lengthChange": true,
-                "autoWidth": true,
-                "searching": true,
-                "buttons": ["excel"]
-
-            }).buttons().container().appendTo('#example4_wrapper .col-md-6:eq(0)');
-        });
-    </script>
-    <script>
-        function updateNotificationBlink() {
-            const notifCount = document.getElementById('notifCount');
-            const count = parseInt(notifCount.innerText);
-
-            if (count > 0) {
-                notifCount.classList.add('blink');
-            } else {
-                notifCount.classList.remove('blink');
-            }
-        }
-
-        // Run it on page load
-        document.addEventListener('DOMContentLoaded', updateNotificationBlink);
-
-        // Optional: Call this again after AJAX updates
-        // Example: updateNotificationBlink(); after count update
-    </script>
-
-
+    
     <!-- Page Specific JS File -->
+    <script>
+        var userPendingCountRoute = "{{ route('pendingListRead') }}";
+        var userApprovedCountRoute = "{{ route('approvedListRead') }}";
+    </script>
+    
+    @include('myscript.table.dataTable')
+    @include('myscript.count.allcountbadge')
+    @include('myscript.notif.allnotifbadge')
+
     @if (request()->routeIs('categoryRead'))
-        @include('script.manage.categorySerialize')
-        @include('script.manage.unitSerialize')
-        @include('script.manage.itemSerialize')
-        @include('script.manage.officeSerialize')
-        @include('script.manage.yearSerialize')
+        @include('myscript.manage.categorySerialize')
+        @include('myscript.manage.unitSerialize')
+        @include('myscript.manage.itemSerialize')
+        @include('myscript.manage.officeSerialize')
+        @include('myscript.manage.yearSerialize')
     @endif
     
     @if (request()->routeIs('pendingAllListRead'))
-        @include('script.pending.allpendingCheckerSerialize')
+        @include('myscript.pending.allpendingCheckerSerialize')
     @endif
     @if (request()->routeIs('pendingTechCheckListRead'))
-        @include('script.pending.allpendingTechCheckerSerialize')
+        @include('myscript.pending.allpendingTechCheckerSerialize')
     @endif
     @if (request()->routeIs('pendingAllBudgetListRead'))
-        @include('script.pending.allpendingBudgetSerialize')
+        @include('myscript.pending.allpendingBudgetSerialize')
     @endif
 
     @if (request()->routeIs('shop'))
-        @include('script.add.shopScript')
+        @include('myscript.add.shopScript')
     @endif
     @if(request()->routeIs('selectItems', 'editreturnselectItems'))
-        @include('script.add.addItem')
-        @include('script.add.cartTable')
-
-        <script>
-        function resetFormFields() {
-            $('input[name="qty"]').val('');
-            $('input[name="total_cost"]').val('');
-        }
-        $(document).ready(function() {
-            $(document).on('click', '.btn-selectitem', function(e) {
-                e.preventDefault();
-
-                var itemId = $(this).data('id');
-                var itemName = $(this).closest('tr').find('td:eq(1)').text();
-                var unitId = $(this).closest('tr').find('td:eq(0)').text();
-                var unitName = $(this).closest('tr').find('td:eq(2)').text();
-                var itemCost = $(this).closest('tr').find('td:eq(3)').text();
-
-                $('input[name="item_id"]').val(itemId);
-                $('input[name="item_name"]').val(itemName);
-                $('input[name="unit_id"]').val(unitId);
-                $('input[name="unit_name"]').val(unitName);
-                $('input[name="item_cost"]').val(itemCost);
-
-                resetFormFields();
-            });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                type: 'GET',
-                url: '{{ route('getCategories') }}',
-                dataType: 'json',
-                success: function(response) {
-                    var select = $('#categorySelect');
-                    select.empty();
-                    select.append('<option disabled selected>Select</option>');
-                    $.each(response.categories, function(index, category) {
-                        select.append('<option value="' + category.id + '">' + category
-                            .category_name + '</option>');
-                    });
-                },
-                error: function(error) {
-                    console.error('Error fetching categories:', error);
-                }
-            });
-
-            $('.shop-btn').on('click', function() {
-                var categoryId = $(this).data('category-id');
-                var categoryName = $(this).closest('.rounded').find('h3').text();
-                var selectedCategoryDropdown = $('#categorySelect');
-
-                selectedCategoryDropdown.find('option[value="selectedCategory"]').remove();
-
-                if (categoryId) {
-                    selectedCategoryDropdown.append('<option value="' + categoryId + '" selected>' +
-                        categoryName + '</option>');
-                } else {
-                    selectedCategoryDropdown.append('<option disabled selected>Select</option>');
-                }
-            });
-        });
-    </script>
+        @include('myscript.add.addItem')
+        @include('myscript.add.cartTable')
     @endif
 
     @if (request()->routeIs('prPurposeRequest'))
-        @include('script.cartongoing.mycart')
+        @include('myscript.cartongoing.mycart')
     @endif
 
     @if (request()->routeIs('pendingListRead'))
-        @include('script.pending.allpendingUserSerialize')
+        @include('myscript.pending.allpendingUserSerialize')
     @endif
 
     @if (request()->routeIs('approvedListAllRead'))
-        @include('script.approve.allapprovedSerialize')
+        @include('myscript.approve.allapprovedSerialize')
     @endif
     @if (request()->routeIs('approvedListRead'))
-        @include('script.approve.allUserapprovedSerialize')
+        @include('myscript.approve.allUserapprovedSerialize')
     @endif
     @if (request()->routeIs('returnedUserListRead'))
-        @include('script.return.returnprUserSerialize')
+        @include('myscript.return.returnprUserSerialize')
+    @endif
+    @if (request()->routeIs('cancelUserListRead'))
+        @include('myscript.return.canceledprUserSerialize')
     @endif
 
     @if (request()->routeIs('userRead'))
-        @include('script.user.userSerialize')
+        @include('myscript.user.userSerialize')
     @endif
 
-
-    <script>
-        $(document).ready(function() {
-            function fetchNotifications() {
-                $.ajax({
-                    url: "{{ route('notifications.fetch') }}", 
-                    method: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        $('#notifCount').text(data.unread_count > 0 ? data.unread_count : '0');
-    
-                        let unreadNotifItems = $('#unreadNotifItems');
-                        let readNotifItems = $('#readNotifItems');
-                    
-                        unreadNotifItems.empty();
-                        readNotifItems.empty();
-                        // Add Unread Notifications
-                        if (data.unread.length > 0) {
-                            data.unread.forEach(function(notif) {
-                                let notifItem = `<a href="#" class="dropdown-item dropdown-item-unread notification-item unread" 
-                                    data-id="${notif.id}">
-                                    <i class="fas fa-bell icon text-success"></i>
-                                    <div class="dropdown-item-desc">
-                                        <strong>${notif.message}</strong>
-                                        <div class="notification-time">${notif.time_ago}</div>
-                                    </div>
-                                </a>`;
-                                unreadNotifItems.append(notifItem);
-                            });
-                        } else {
-                            unreadNotifItems.append('<a href="#" class="dropdown-item text-center text-muted">No new notifications</a>');
-                        }
-                        // Add Read Notifications
-                        if (data.read.length > 0) {
-                            data.read.forEach(function(notif) {
-                                let notifItem = `<a href="#" class="dropdown-item dropdown-item notification-item read" 
-                                    data-id="${notif.id}">
-                                    <i class="fas fa-check-circle icon text-success"></i>
-                                    <div class="dropdown-item-desc">
-                                        ${notif.message}
-                                        <div class="notification-time">${notif.time_ago}</div>
-                                    </div>
-                                </a>`;
-                                readNotifItems.append(notifItem);
-                            });
-                        }
-                        // Hide sections if empty
-                        $('#unreadNotifSection').toggle(unreadNotifItems.children().length > 0);
-                        $('#readNotifSection').toggle(readNotifItems.children().length > 0);
-                    }
-                });
-            }
-    
-            // Mark notification as read when clicked
-            $(document).on('click', '.notification-item.unread', function() {
-                let notifId = $(this).data('id');
-                let clickedItem = $(this);
-    
-                $.ajax({
-                    url: "{{ route('notifications.markAsRead') }}",
-                    method: "POST",
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        id: notifId
-                    },
-                    success: function() {
-                        clickedItem.removeClass('unread').addClass('read');
-                        fetchNotifications(); // Refresh UI
-                    }
-                });
-            });
-    
-            // Fetch notifications every 5 seconds
-            setInterval(fetchNotifications, 5000);
-            fetchNotifications();
-        });
-    </script>
 </body>
-
-<!-- blank.html  Tue, 07 Jan 2020 03:35:42 GMT -->
-
 </html>

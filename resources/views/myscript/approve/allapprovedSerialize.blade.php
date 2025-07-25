@@ -6,7 +6,7 @@
                 "type": "GET",
             },
             responsive: true,
-            lengthChange: true,
+            lengthChange: false,
             searching: true,
             paging: true,
             order: [[1, 'desc']],
@@ -229,7 +229,7 @@
         });
         setInterval(function () {
             dataTable.ajax.reload(null, false);
-        }, 10000);
+        }, 15000);
     });
 
     $(document).ready(function() {

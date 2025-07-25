@@ -3,7 +3,7 @@
 @section('body')
     <section class="section">
         <div class="" style="margin-left: -20px; margin-right: -20px; border-radius: 5px; margin-top: 20px; padding: 3px;">
-            <h5>List of Pending PR</h5>
+            <h5>List of Canceled Purchase Request</h5>
         </div>
 
         <div class="section-body" style="margin-left: -20px; margin-right: -20px; border-radius: 5px;">
@@ -12,18 +12,18 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive" style="overflow-x: hidden;">
-                                <table id="pendingUserTable" class="table table-hover styled-table">
+                                <table id="canceltable" class="table table-hover styled-table">
                                     <thead>
                                         <tr>
-                                            <th>Date</th>
                                             <th>Campus</th>
                                             <th>Transaction No.</th>
+                                            <th>PR No.</th>
                                             <th>Type</th>
                                             <th>Office</th>
                                             <th>Purpose</th>
                                             <th>Category</th>
                                             <th>Status</th>
-                                            <th width="10%">Action</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -56,14 +56,10 @@
         </div>
     </div>
 
-    @if(request()->routeIs(['pendingListRead']))
+    @if(request()->routeIs(['cancelUserListRead']))
         <script>
-            var userPendingRoute = "{{ route('getpendingListRead') }}";
-            var pendingAllListViewRoute = "{{ route('pendingAllListView', '') }}";
-            var pendingAllCheckingStatusUpdateRoute = "{{ route('checkingPR', ['id' => ':id']) }}";
-            var appidEncryptRoute = "{{ route('idcrypt') }}";
-
-            var isChecker = '{{ Auth::guard("web")->user()->role == "Checker" ? true : false }}';
+            var allCancelRoute = "{{ route('getcanceledUserListRead') }}";
+            var returnedListViewRoute = "{{ route('returnedpendingListView', '') }}";
         </script>
     @endif
 @endsection

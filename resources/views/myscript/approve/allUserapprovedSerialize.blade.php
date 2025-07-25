@@ -6,12 +6,21 @@
                 "type": "GET",
             },
             responsive: true,
-            lengthChange: true,
+            lengthChange: false,
             searching: true,
             paging: true,
             "columns": [
                 // {data: 'id', name: 'id', orderable: false, searchable: false},
                 // {data: 'receipt_control'},
+                {data: 'cpdate',
+                    render: function (data, type, row) {
+                        if (type === 'display') {
+                            return moment(data).format('MMMM D, YYYY');
+                        } else {
+                            return data;
+                        }
+                    }
+                },
                 {data: 'campus_abbr'},
                 {data: 'pr_no'},
                 {data: 'type_request',
@@ -33,15 +42,6 @@
                 {data: 'office_abbr'},
                 {data: 'purpose_name'},
                 {data: 'category_name'},
-                {data: 'cpdate',
-                    render: function (data, type, row) {
-                        if (type === 'display') {
-                            return moment(data).format('MMMM D, YYYY');
-                        } else {
-                            return data;
-                        }
-                    }
-                },
                 {data: 'pstatus',
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
@@ -71,7 +71,6 @@
                                 return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
                             default:
                                 return '<span class="badge badge-secondary">Unknown Status</span>';
-                                
                         }
                     },
                 },

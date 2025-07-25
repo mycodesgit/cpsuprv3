@@ -6,7 +6,7 @@
                 "type": "GET",
             },
             responsive: true,
-            lengthChange: true,
+            lengthChange: false,
             searching: true,
             paging: true,
             "columns": [
