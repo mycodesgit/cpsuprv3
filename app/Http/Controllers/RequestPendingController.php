@@ -35,7 +35,7 @@ class RequestPendingController extends Controller
 
     public function pendingListRead() 
     {
-        $userId = Auth::id();
+        $userId = Auth::guard('web')->user()->id;
         $reqitempurpose = Purpose::join('office', 'purpose.office_id', '=', 'office.id')
             ->select('purpose.*', 'purpose.id as pid', 'office.*', 'office.id as oid')
             ->whereIn('purpose.pstatus', ['2', '3', '4', '5', '6'])
@@ -106,7 +106,7 @@ class RequestPendingController extends Controller
 
     public function pendingAllListRead() 
     {
-        $userId = Auth::id();
+        $userId = Auth::guard('web')->user()->id;
         $reqitempurpose = Purpose::join('office', 'purpose.office_id', '=', 'office.id')
             ->select('purpose.*', 'purpose.id as pid', 'office.*', 'office.id as oid')
             ->whereIn('purpose.pstatus', ['2', '4', '5'])
@@ -115,9 +115,38 @@ class RequestPendingController extends Controller
         $pendCount = $this->getPendingAllCount();
         $pendBudCount = $this->getPendingBudgetCount();
         $pendUserCount = $this->getPendingUserCount();
+
+        $approvedUserCount = $this->getApprovedUserCount();
+        $receivedUserCount = $this->getReceivedUserCount();
+        $canvassingUserCount = $this->getCanvassingUserCount();
+        $canvassedUserCount = $this->getCanvassedUserCount();
+        $philgepUserCount = $this->getPhilGepUserCount();
+        $postedUserCount = $this->getPostedUserCount();
+        $biddingUserCount = $this->getBiddingUserCount();
+        $consolidateUserCount = $this->getConsolidateUserCount();
+        $awardedUserCount = $this->getAwardedUserCount();
+        $purchaseUserCount = $this->getPurchaseUserCount();
+
+        $returnedAllCount = $this->getReturnedAllCount();
+        $returnedUserCount = $this->getReturnedUserCount();
+
         $data = [   'pendCount' => $pendCount, 
                     'pendBudCount' => $pendBudCount,
                     'pendUserCount' => $pendUserCount,
+
+                    'approvedUserCount' => $approvedUserCount,
+                    'receivedUserCount' => $receivedUserCount,
+                    'canvassingUserCount' => $canvassingUserCount,
+                    'canvassedUserCount' => $canvassedUserCount,
+                    'philgepUserCount' => $philgepUserCount,
+                    'postedUserCount' => $postedUserCount,
+                    'biddingUserCount' => $biddingUserCount,
+                    'consolidateUserCount' => $consolidateUserCount,
+                    'awardedUserCount' => $awardedUserCount,
+                    'purchaseUserCount' => $purchaseUserCount,
+
+                    'returnedAllCount' => $returnedAllCount,
+                    'returnedUserCount' => $returnedUserCount,
                 ];
 
         if (request()->ajax()) {
@@ -125,6 +154,20 @@ class RequestPendingController extends Controller
                 'pendCount' => $pendCount, 
                 'pendBudCount' => $pendBudCount,
                 'pendUserCount' => $pendUserCount,
+
+                'approvedUserCount' => $approvedUserCount,
+                'receivedUserCount' => $receivedUserCount,
+                'canvassingUserCount' => $canvassingUserCount,
+                'canvassedUserCount' => $canvassedUserCount,
+                'philgepUserCount' => $philgepUserCount,
+                'postedUserCount' => $postedUserCount,
+                'biddingUserCount' => $biddingUserCount,
+                'consolidateUserCount' => $consolidateUserCount,
+                'awardedUserCount' => $awardedUserCount,
+                'purchaseUserCount' => $purchaseUserCount,
+
+                'returnedAllCount' => $returnedAllCount,
+                'returnedUserCount' => $returnedUserCount,
             ]);
         }
 
@@ -140,9 +183,38 @@ class RequestPendingController extends Controller
         $pendCount = $this->getPendingAllCount();
         $pendBudCount = $this->getPendingBudgetCount();
         $pendUserCount = $this->getPendingUserCount();
+
+        $approvedUserCount = $this->getApprovedUserCount();
+        $receivedUserCount = $this->getReceivedUserCount();
+        $canvassingUserCount = $this->getCanvassingUserCount();
+        $canvassedUserCount = $this->getCanvassedUserCount();
+        $philgepUserCount = $this->getPhilGepUserCount();
+        $postedUserCount = $this->getPostedUserCount();
+        $biddingUserCount = $this->getBiddingUserCount();
+        $consolidateUserCount = $this->getConsolidateUserCount();
+        $awardedUserCount = $this->getAwardedUserCount();
+        $purchaseUserCount = $this->getPurchaseUserCount();
+
+        $returnedAllCount = $this->getReturnedAllCount();
+        $returnedUserCount = $this->getReturnedUserCount();
+
         $data = [   'pendCount' => $pendCount, 
                     'pendBudCount' => $pendBudCount,
                     'pendUserCount' => $pendUserCount,
+
+                    'approvedUserCount' => $approvedUserCount,
+                    'receivedUserCount' => $receivedUserCount,
+                    'canvassingUserCount' => $canvassingUserCount,
+                    'canvassedUserCount' => $canvassedUserCount,
+                    'philgepUserCount' => $philgepUserCount,
+                    'postedUserCount' => $postedUserCount,
+                    'biddingUserCount' => $biddingUserCount,
+                    'consolidateUserCount' => $consolidateUserCount,
+                    'awardedUserCount' => $awardedUserCount,
+                    'purchaseUserCount' => $purchaseUserCount,
+
+                    'returnedAllCount' => $returnedAllCount,
+                    'returnedUserCount' => $returnedUserCount,
                 ];
 
         if (request()->ajax()) {
@@ -150,14 +222,29 @@ class RequestPendingController extends Controller
                 'pendCount' => $pendCount, 
                 'pendBudCount' => $pendBudCount,
                 'pendUserCount' => $pendUserCount,
+
+                'approvedUserCount' => $approvedUserCount,
+                'receivedUserCount' => $receivedUserCount,
+                'canvassingUserCount' => $canvassingUserCount,
+                'canvassedUserCount' => $canvassedUserCount,
+                'philgepUserCount' => $philgepUserCount,
+                'postedUserCount' => $postedUserCount,
+                'biddingUserCount' => $biddingUserCount,
+                'consolidateUserCount' => $consolidateUserCount,
+                'awardedUserCount' => $awardedUserCount,
+                'purchaseUserCount' => $purchaseUserCount,
+
+                'returnedAllCount' => $returnedAllCount,
+                'returnedUserCount' => $returnedUserCount,
             ]);
         }
 
         return view("request.pending.pendingListBud", compact('reqitempurpose', 'data'));
     }
 
-    public function getpendingListRead() {
-        $userId = Auth::id();
+    public function getpendingListRead() 
+    {
+        $userId = Auth::guard('web')->user()->id;
         $data = Purpose::join('office', 'purpose.office_id', '=', 'office.id')
             ->join('campuses', 'purpose.camp_id', '=', 'campuses.id')
             ->join('category', 'purpose.cat_id', '=', 'category.id')
@@ -172,7 +259,8 @@ class RequestPendingController extends Controller
     }
 
     //Jan 8 2024 changed from purpose.created_at to purpose.updated_at
-    public function getpendingAllListRead() {
+    public function getpendingAllListRead() 
+    {
         $data = Purpose::join('office', 'purpose.office_id', '=', 'office.id')
             ->join('campuses', 'purpose.camp_id', '=', 'campuses.id')
             ->join('category', 'purpose.cat_id', '=', 'category.id')
@@ -187,7 +275,8 @@ class RequestPendingController extends Controller
     }
 
     //Jan 8 2024 changed from purpose.created_at to purpose.updated_at
-    public function getpendingBudgetAllListRead() {
+    public function getpendingBudgetAllListRead() 
+    {
         $data = Purpose::join('office', 'purpose.office_id', '=', 'office.id')
             ->join('campuses', 'purpose.camp_id', '=', 'campuses.id')
             ->join('category', 'purpose.cat_id', '=', 'category.id')
@@ -201,7 +290,8 @@ class RequestPendingController extends Controller
         return response()->json(['data' => $data]);
     }
 
-    public function getreqcancelprBudgetAllListRead() {
+    public function getreqcancelprBudgetAllListRead() 
+    {
         $data = Purpose::join('office', 'purpose.office_id', '=', 'office.id')
             ->join('campuses', 'purpose.camp_id', '=', 'campuses.id')
             ->join('category', 'purpose.cat_id', '=', 'category.id')
@@ -217,7 +307,8 @@ class RequestPendingController extends Controller
     }
 
 
-    public function pendingListView($pid) {
+    public function pendingListView($pid) 
+    {
         $userId = Auth::id();
         $category = Category::all();
         $unit = Unit::all();
@@ -250,10 +341,61 @@ class RequestPendingController extends Controller
         $pendCount = $this->getPendingAllCount();
         $pendBudCount = $this->getPendingBudgetCount();
         $pendUserCount = $this->getPendingUserCount();
+
+        $approvedUserCount = $this->getApprovedUserCount();
+        $receivedUserCount = $this->getReceivedUserCount();
+        $canvassingUserCount = $this->getCanvassingUserCount();
+        $canvassedUserCount = $this->getCanvassedUserCount();
+        $philgepUserCount = $this->getPhilGepUserCount();
+        $postedUserCount = $this->getPostedUserCount();
+        $biddingUserCount = $this->getBiddingUserCount();
+        $consolidateUserCount = $this->getConsolidateUserCount();
+        $awardedUserCount = $this->getAwardedUserCount();
+        $purchaseUserCount = $this->getPurchaseUserCount();
+
+        $returnedAllCount = $this->getReturnedAllCount();
+        $returnedUserCount = $this->getReturnedUserCount();
+
         $data = [   'pendCount' => $pendCount, 
                     'pendBudCount' => $pendBudCount,
                     'pendUserCount' => $pendUserCount,
+
+                    'approvedUserCount' => $approvedUserCount,
+                    'receivedUserCount' => $receivedUserCount,
+                    'canvassingUserCount' => $canvassingUserCount,
+                    'canvassedUserCount' => $canvassedUserCount,
+                    'philgepUserCount' => $philgepUserCount,
+                    'postedUserCount' => $postedUserCount,
+                    'biddingUserCount' => $biddingUserCount,
+                    'consolidateUserCount' => $consolidateUserCount,
+                    'awardedUserCount' => $awardedUserCount,
+                    'purchaseUserCount' => $purchaseUserCount,
+
+                    'returnedAllCount' => $returnedAllCount,
+                    'returnedUserCount' => $returnedUserCount,
                 ];
+
+        if (request()->ajax()) {
+            return response()->json([
+                'pendCount' => $pendCount, 
+                'pendBudCount' => $pendBudCount,
+                'pendUserCount' => $pendUserCount,
+
+                'approvedUserCount' => $approvedUserCount,
+                'receivedUserCount' => $receivedUserCount,
+                'canvassingUserCount' => $canvassingUserCount,
+                'canvassedUserCount' => $canvassedUserCount,
+                'philgepUserCount' => $philgepUserCount,
+                'postedUserCount' => $postedUserCount,
+                'biddingUserCount' => $biddingUserCount,
+                'consolidateUserCount' => $consolidateUserCount,
+                'awardedUserCount' => $awardedUserCount,
+                'purchaseUserCount' => $purchaseUserCount,
+
+                'returnedAllCount' => $returnedAllCount,
+                'returnedUserCount' => $returnedUserCount,
+            ]);
+        }
 
         return view ("request.pending.viewlist", compact('category', 'unit', 'item', 'pendItem', 'purpose', 'data', 'docFile'));
     }
@@ -291,15 +433,67 @@ class RequestPendingController extends Controller
         $pendCount = $this->getPendingAllCount();
         $pendBudCount = $this->getPendingBudgetCount();
         $pendUserCount = $this->getPendingUserCount();
+
+        $approvedUserCount = $this->getApprovedUserCount();
+        $receivedUserCount = $this->getReceivedUserCount();
+        $canvassingUserCount = $this->getCanvassingUserCount();
+        $canvassedUserCount = $this->getCanvassedUserCount();
+        $philgepUserCount = $this->getPhilGepUserCount();
+        $postedUserCount = $this->getPostedUserCount();
+        $biddingUserCount = $this->getBiddingUserCount();
+        $consolidateUserCount = $this->getConsolidateUserCount();
+        $awardedUserCount = $this->getAwardedUserCount();
+        $purchaseUserCount = $this->getPurchaseUserCount();
+
+        $returnedAllCount = $this->getReturnedAllCount();
+        $returnedUserCount = $this->getReturnedUserCount();
+
         $data = [   'pendCount' => $pendCount, 
                     'pendBudCount' => $pendBudCount,
                     'pendUserCount' => $pendUserCount,
+
+                    'approvedUserCount' => $approvedUserCount,
+                    'receivedUserCount' => $receivedUserCount,
+                    'canvassingUserCount' => $canvassingUserCount,
+                    'canvassedUserCount' => $canvassedUserCount,
+                    'philgepUserCount' => $philgepUserCount,
+                    'postedUserCount' => $postedUserCount,
+                    'biddingUserCount' => $biddingUserCount,
+                    'consolidateUserCount' => $consolidateUserCount,
+                    'awardedUserCount' => $awardedUserCount,
+                    'purchaseUserCount' => $purchaseUserCount,
+
+                    'returnedAllCount' => $returnedAllCount,
+                    'returnedUserCount' => $returnedUserCount,
                 ];
+
+        if (request()->ajax()) {
+            return response()->json([
+                'pendCount' => $pendCount, 
+                'pendBudCount' => $pendBudCount,
+                'pendUserCount' => $pendUserCount,
+
+                'approvedUserCount' => $approvedUserCount,
+                'receivedUserCount' => $receivedUserCount,
+                'canvassingUserCount' => $canvassingUserCount,
+                'canvassedUserCount' => $canvassedUserCount,
+                'philgepUserCount' => $philgepUserCount,
+                'postedUserCount' => $postedUserCount,
+                'biddingUserCount' => $biddingUserCount,
+                'consolidateUserCount' => $consolidateUserCount,
+                'awardedUserCount' => $awardedUserCount,
+                'purchaseUserCount' => $purchaseUserCount,
+
+                'returnedAllCount' => $returnedAllCount,
+                'returnedUserCount' => $returnedUserCount,
+            ]);
+        }
 
         return view("request.pending.viewlist", compact('category', 'unit', 'item', 'pendItem', 'purpose', 'data', 'docFile'));
     }
 
-    public function PDFprPending($pid) {
+    public function PDFprPending($pid) 
+    {
         $userId = Auth::id();
         $category = Category::all();
         $unit = Unit::all();
@@ -338,7 +532,8 @@ class RequestPendingController extends Controller
         return $pdf->stream();
     }
 
-    public function PDFprAllPending($pid) {
+    public function PDFprAllPending($pid) 
+    {
         $userId = Auth::id();
         $category = Category::all();
         $unit = Unit::all();
@@ -378,7 +573,8 @@ class RequestPendingController extends Controller
         return $pdf->stream();
     }
 
-    public function PDFrbarasPending($pid) {
+    public function PDFrbarasPending($pid) 
+    {
         $userId = Auth::id();
         $category = Category::all();
         $unit = Unit::all();
@@ -423,7 +619,8 @@ class RequestPendingController extends Controller
         return $pdf->stream();
     }
 
-    public function PDFrbarasAllPending($pid) {
+    public function PDFrbarasAllPending($pid) 
+    {
         $userId = Auth::id();
         $category = Category::all();
         $unit = Unit::all();

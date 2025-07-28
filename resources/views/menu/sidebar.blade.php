@@ -92,7 +92,7 @@
                 <a class="nav-link" href="{{ route('pendingListRead') }}">
                     <i class="fas fa-clock"></i> <span>Pending PR</span>
                     <span id="pendingUserCount" class="badge badge-warning" style="font-size: 10pt; width: 30px; height: 20px; line-height: 10px; text-align: left !important;">
-                        {{-- {{ $data['pendUserCount'] }} --}}
+                        {{ $data['pendUserCount'] }}
                     </span>
                 </a>
             </li>
@@ -101,7 +101,7 @@
                 <a class="nav-link" href="{{ route('approvedListRead') }}">
                     <i class="fas fa-thumbs-up"></i> <span>Approved PR</span>
                     <span id="approvedUserCount" class="badge badge-warning" style="font-size: 10pt; width: 30px; height: 20px; line-height: 10px; text-align: left !important;">
-                        {{-- {{ $data['approvedUserCount'] }} --}}
+                        {{ $data['approvedUserCount'] }}
                     </span>
                 </a>
             </li>

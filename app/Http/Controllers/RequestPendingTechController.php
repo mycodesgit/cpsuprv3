@@ -44,11 +44,38 @@ class RequestPendingTechController extends Controller
         $pendCount = $this->getPendingAllCount();
         $pendBudCount = $this->getPendingBudgetCount();
         $pendUserCount = $this->getPendingUserCount();
-        $pendTechCount = $this->getPendingTechAllCount();
+
+        $approvedUserCount = $this->getApprovedUserCount();
+        $receivedUserCount = $this->getReceivedUserCount();
+        $canvassingUserCount = $this->getCanvassingUserCount();
+        $canvassedUserCount = $this->getCanvassedUserCount();
+        $philgepUserCount = $this->getPhilGepUserCount();
+        $postedUserCount = $this->getPostedUserCount();
+        $biddingUserCount = $this->getBiddingUserCount();
+        $consolidateUserCount = $this->getConsolidateUserCount();
+        $awardedUserCount = $this->getAwardedUserCount();
+        $purchaseUserCount = $this->getPurchaseUserCount();
+
+        $returnedAllCount = $this->getReturnedAllCount();
+        $returnedUserCount = $this->getReturnedUserCount();
+
         $data = [   'pendCount' => $pendCount, 
                     'pendBudCount' => $pendBudCount,
                     'pendUserCount' => $pendUserCount,
-                    'pendTechCount' => $pendTechCount,
+
+                    'approvedUserCount' => $approvedUserCount,
+                    'receivedUserCount' => $receivedUserCount,
+                    'canvassingUserCount' => $canvassingUserCount,
+                    'canvassedUserCount' => $canvassedUserCount,
+                    'philgepUserCount' => $philgepUserCount,
+                    'postedUserCount' => $postedUserCount,
+                    'biddingUserCount' => $biddingUserCount,
+                    'consolidateUserCount' => $consolidateUserCount,
+                    'awardedUserCount' => $awardedUserCount,
+                    'purchaseUserCount' => $purchaseUserCount,
+
+                    'returnedAllCount' => $returnedAllCount,
+                    'returnedUserCount' => $returnedUserCount,
                 ];
 
         if (request()->ajax()) {
@@ -56,7 +83,20 @@ class RequestPendingTechController extends Controller
                 'pendCount' => $pendCount, 
                 'pendBudCount' => $pendBudCount,
                 'pendUserCount' => $pendUserCount,
-                'pendTechCount' => $pendTechCount,
+
+                'approvedUserCount' => $approvedUserCount,
+                'receivedUserCount' => $receivedUserCount,
+                'canvassingUserCount' => $canvassingUserCount,
+                'canvassedUserCount' => $canvassedUserCount,
+                'philgepUserCount' => $philgepUserCount,
+                'postedUserCount' => $postedUserCount,
+                'biddingUserCount' => $biddingUserCount,
+                'consolidateUserCount' => $consolidateUserCount,
+                'awardedUserCount' => $awardedUserCount,
+                'purchaseUserCount' => $purchaseUserCount,
+
+                'returnedAllCount' => $returnedAllCount,
+                'returnedUserCount' => $returnedUserCount,
             ]);
         }
 
@@ -110,10 +150,61 @@ class RequestPendingTechController extends Controller
         $pendCount = $this->getPendingAllCount();
         $pendBudCount = $this->getPendingBudgetCount();
         $pendUserCount = $this->getPendingUserCount();
+
+        $approvedUserCount = $this->getApprovedUserCount();
+        $receivedUserCount = $this->getReceivedUserCount();
+        $canvassingUserCount = $this->getCanvassingUserCount();
+        $canvassedUserCount = $this->getCanvassedUserCount();
+        $philgepUserCount = $this->getPhilGepUserCount();
+        $postedUserCount = $this->getPostedUserCount();
+        $biddingUserCount = $this->getBiddingUserCount();
+        $consolidateUserCount = $this->getConsolidateUserCount();
+        $awardedUserCount = $this->getAwardedUserCount();
+        $purchaseUserCount = $this->getPurchaseUserCount();
+
+        $returnedAllCount = $this->getReturnedAllCount();
+        $returnedUserCount = $this->getReturnedUserCount();
+
         $data = [   'pendCount' => $pendCount, 
                     'pendBudCount' => $pendBudCount,
                     'pendUserCount' => $pendUserCount,
+
+                    'approvedUserCount' => $approvedUserCount,
+                    'receivedUserCount' => $receivedUserCount,
+                    'canvassingUserCount' => $canvassingUserCount,
+                    'canvassedUserCount' => $canvassedUserCount,
+                    'philgepUserCount' => $philgepUserCount,
+                    'postedUserCount' => $postedUserCount,
+                    'biddingUserCount' => $biddingUserCount,
+                    'consolidateUserCount' => $consolidateUserCount,
+                    'awardedUserCount' => $awardedUserCount,
+                    'purchaseUserCount' => $purchaseUserCount,
+
+                    'returnedAllCount' => $returnedAllCount,
+                    'returnedUserCount' => $returnedUserCount,
                 ];
+
+        if (request()->ajax()) {
+            return response()->json([
+                'pendCount' => $pendCount, 
+                'pendBudCount' => $pendBudCount,
+                'pendUserCount' => $pendUserCount,
+
+                'approvedUserCount' => $approvedUserCount,
+                'receivedUserCount' => $receivedUserCount,
+                'canvassingUserCount' => $canvassingUserCount,
+                'canvassedUserCount' => $canvassedUserCount,
+                'philgepUserCount' => $philgepUserCount,
+                'postedUserCount' => $postedUserCount,
+                'biddingUserCount' => $biddingUserCount,
+                'consolidateUserCount' => $consolidateUserCount,
+                'awardedUserCount' => $awardedUserCount,
+                'purchaseUserCount' => $purchaseUserCount,
+
+                'returnedAllCount' => $returnedAllCount,
+                'returnedUserCount' => $returnedUserCount,
+            ]);
+        }
 
         return view("request.pending.viewlist", compact('category', 'unit', 'item', 'pendItem', 'purpose', 'data', 'docFile'));
     }

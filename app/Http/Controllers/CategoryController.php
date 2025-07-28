@@ -7,18 +7,85 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 
+use App\Traits\PendingCountTrait;
+use App\Traits\ApprovedCountTrait;
+use App\Traits\ReturnedCountTrait;
+
 use App\Models\Category;
 use App\Models\Unit;
 use App\Models\Item;
 
 class CategoryController extends Controller
 {   
+    use PendingCountTrait;
+    use ApprovedCountTrait;
+    use ReturnedCountTrait;
+
     public function categoryRead() 
     {
         $category = Category::orderBy('category_name', 'ASC')->get();
         $unit = Unit::all();
 
-        return view('manage.category', compact('category', 'unit'));
+        $pendCount = $this->getPendingAllCount();
+        $pendBudCount = $this->getPendingBudgetCount();
+        $pendUserCount = $this->getPendingUserCount();
+
+        $approvedUserCount = $this->getApprovedUserCount();
+        $receivedUserCount = $this->getReceivedUserCount();
+        $canvassingUserCount = $this->getCanvassingUserCount();
+        $canvassedUserCount = $this->getCanvassedUserCount();
+        $philgepUserCount = $this->getPhilGepUserCount();
+        $postedUserCount = $this->getPostedUserCount();
+        $biddingUserCount = $this->getBiddingUserCount();
+        $consolidateUserCount = $this->getConsolidateUserCount();
+        $awardedUserCount = $this->getAwardedUserCount();
+        $purchaseUserCount = $this->getPurchaseUserCount();
+
+        $returnedAllCount = $this->getReturnedAllCount();
+        $returnedUserCount = $this->getReturnedUserCount();
+
+        $data = [   'pendCount' => $pendCount, 
+                    'pendBudCount' => $pendBudCount,
+                    'pendUserCount' => $pendUserCount,
+
+                    'approvedUserCount' => $approvedUserCount,
+                    'receivedUserCount' => $receivedUserCount,
+                    'canvassingUserCount' => $canvassingUserCount,
+                    'canvassedUserCount' => $canvassedUserCount,
+                    'philgepUserCount' => $philgepUserCount,
+                    'postedUserCount' => $postedUserCount,
+                    'biddingUserCount' => $biddingUserCount,
+                    'consolidateUserCount' => $consolidateUserCount,
+                    'awardedUserCount' => $awardedUserCount,
+                    'purchaseUserCount' => $purchaseUserCount,
+
+                    'returnedAllCount' => $returnedAllCount,
+                    'returnedUserCount' => $returnedUserCount,
+                ];
+
+        if (request()->ajax()) {
+            return response()->json([
+                'pendCount' => $pendCount, 
+                'pendBudCount' => $pendBudCount,
+                'pendUserCount' => $pendUserCount,
+
+                'approvedUserCount' => $approvedUserCount,
+                'receivedUserCount' => $receivedUserCount,
+                'canvassingUserCount' => $canvassingUserCount,
+                'canvassedUserCount' => $canvassedUserCount,
+                'philgepUserCount' => $philgepUserCount,
+                'postedUserCount' => $postedUserCount,
+                'biddingUserCount' => $biddingUserCount,
+                'consolidateUserCount' => $consolidateUserCount,
+                'awardedUserCount' => $awardedUserCount,
+                'purchaseUserCount' => $purchaseUserCount,
+
+                'returnedAllCount' => $returnedAllCount,
+                'returnedUserCount' => $returnedUserCount,
+            ]);
+        }
+
+        return view('manage.category', compact('data', 'category', 'unit'));
     }
 
     public function getcategoryRead() 
