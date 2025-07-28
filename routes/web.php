@@ -7,6 +7,7 @@ use App\Http\Controllers\MasterController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UnitController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\YearController;
@@ -86,6 +87,9 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
     //Request
     Route::prefix('/request')->group(function () {
         Route::get('/purchaseRequest/shop', [RequestController::class, 'shop'])->name('shop');
+        Route::get('/purchaseRequest/shoplist', [ShopController::class, 'shoplistRead'])->name('shoplistRead');
+        Route::get('/purchaseRequest/shoplist/ajax', [ShopController::class, 'getshoplistSerialize'])->name('getshoplistSerialize');
+        Route::post('/purchaseRequest/shoplist/addcart', [ShopController::class, 'addToCartItemShop'])->name('addToCartItemShop');
         Route::get('/purchaseRequest/cat', [RequestController::class, 'getCategories'])->name('getCategories');
 
         Route::get('/purchaseRequest/cart', [RequestController::class, 'prPurposeRequest'])->name('prPurposeRequest');

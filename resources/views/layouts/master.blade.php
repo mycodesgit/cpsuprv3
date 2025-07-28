@@ -124,6 +124,11 @@
             line-height: 1.5 !important;
             border-radius: .2rem !important;
         }
+        #clearSearch {
+            border: none;
+            background: #a5a5a5;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -360,6 +365,10 @@
         @include('myscript.manage.itemSerialize')
         @include('myscript.manage.officeSerialize')
         @include('myscript.manage.yearSerialize')
+    @endif
+    @if (request()->routeIs('shoplistRead'))
+        @include('myscript.cartongoing.shoplistSerialize')
+        @include('myscript.add.addItem')
     @endif
     
     @if (request()->routeIs('pendingAllListRead'))

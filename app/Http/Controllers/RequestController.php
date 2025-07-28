@@ -118,7 +118,7 @@ class RequestController extends Controller
 
     public function prPurposeRequest() 
     {
-        $userId = Auth::id();
+        $userId = Auth::guard('web')->user()->id;
         $category = Category::all();
         $repurpose = Purpose::join('category', 'purpose.cat_id',  'category.id')
             ->join('ppmpverify', 'purpose.id',  'ppmpverify.purpose_id')
@@ -353,7 +353,7 @@ class RequestController extends Controller
             ]);
         }
 
-        return view ("request.add.add_cart", compact('items', 'userId', 'data', 'purpose', 'selecteditem'));
+        return view("request.add.add_cart", compact('items', 'userId', 'data', 'purpose', 'selecteditem'));
     }
 
     public function getcartitemListRead($purpose_Id) 

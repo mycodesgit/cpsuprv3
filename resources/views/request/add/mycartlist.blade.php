@@ -202,7 +202,5 @@
 
     <script>
         var mycartDeleteRoute = "{{ route('mycartDelete', ':id') }}";
-        
-        var userPendingCountRoute = "{{ route('pendingListRead') }}";
     </script>
 @endsection
