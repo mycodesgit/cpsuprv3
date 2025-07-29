@@ -59,7 +59,7 @@
     @if(request()->routeIs(['pendingListRead']))
         <script>
             var userPendingRoute = "{{ route('getpendingListRead') }}";
-            var pendingAllListViewRoute = "{{ route('pendingAllListView', '') }}";
+            var pendingUserListViewRoute = "{{ route('pendingListView', '') }}";
             var pendingAllCheckingStatusUpdateRoute = "{{ route('checkingPR', ['id' => ':id']) }}";
             var appidEncryptRoute = "{{ route('idcrypt') }}";
 

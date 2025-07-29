@@ -29,8 +29,8 @@ class RequestItem extends Model
         'remember_token',
     ];
 
-    public function item()
-    {
-        return $this->belongsTo(Item::class, 'item_id', 'id');
-    }
+    // public function item()
+    // {
+    //     return $this->belongsTo(Item::class, 'item_id', 'id');
+    // }
 }

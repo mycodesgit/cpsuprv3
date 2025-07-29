@@ -3,7 +3,7 @@
         <div class="alert alert-light mb-0">
             <div class="form-group mb-0 d-flex align-items-center">
                 <label class="mb-0 me-2 mt-0 text-bold" style="white-space: nowrap;">Edit Purpose:</label>
-                <input type="text" class="form-control editable-purpose-name border-0" value="{{ $purpose->purpose_name }}" data-id="{{ $purpose->id }}" style="">
+                <input type="text" class="form-control editable-purpose-name border-0" value="{{ $purpose[0]->purpose_name }}" data-id="{{ $purpose[0]->purpose_id  }}" style="">
             </div>
         </div>
         <div class="card">
@@ -20,9 +20,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($purpose->items as $item)
+                            @php $total_cost = 0; @endphp
+                            @foreach ($purpose as $item)
+                                @php $total_cost += $item->total_cost; @endphp
                                 <tr>
-                                    <td>{{ $item->item->item_descrip ?? 'N/A' }}</td>
+                                    <td>{{ $item->item_descrip }}</td>
                                     <td>{{ $item->qty }}</td>
                                     <td>₱{{ number_format($item->item_cost, 2) }}</td>
                                     <td>₱{{ number_format($item->total_cost, 2) }}</td>
@@ -30,15 +32,13 @@
                             @endforeach
                             <tr class="fw-bold">
                                 <td colspan="3" class="text-end">Total:</td>
-                                <td>
-                                    ₱{{ number_format($purpose->items->sum('total_cost'), 2) }}
-                                </td>
+                                <td>₱{{ number_format($total_cost, 2) }}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <a href="{{ route('selectItems', encrypt($purpose->id)) }}" class="btn btn-success">Proceed for Submission</a>
+            <a href="{{ route('selectItems', encrypt($purpose[0]->purpose_id)) }}" class="btn btn-success">Proceed for Submission</a>
             <hr>
         </div>
     @endforeach

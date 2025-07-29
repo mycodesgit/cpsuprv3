@@ -26,10 +26,10 @@ class Purpose extends Model
         'remember_token',
     ];
 
-    public function items()
-    {
-        return $this->hasMany(RequestItem::class, 'purpose_id', 'id')
-        ->where('status', 1);
-    }
+    // public function items()
+    // {
+    //     return $this->hasMany(RequestItem::class, 'purpose_id', 'id')
+    //     ->where('status', 1);
+    // }
 
 }

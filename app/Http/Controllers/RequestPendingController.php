@@ -253,7 +253,7 @@ class RequestPendingController extends Controller
             ->where('purpose.user_id', '=',  $userId)
             ->get();
         foreach ($data as $record) {
-            $record->pid = encrypt($record->pid);
+            $record->pid = $record->pid;
         }
         return response()->json(['data' => $data]);
     }
@@ -314,7 +314,7 @@ class RequestPendingController extends Controller
         $unit = Unit::all();
         $item = Item::all();
 
-        $enID = decrypt($pid);
+        $enID = $pid;
         $purpose = Purpose::find($pid);
 
         $docFile = DocFile::where('purpose_id', $enID)->first();

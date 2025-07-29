@@ -102,11 +102,25 @@ class ShopController extends Controller
                         ->select('item.id', 'item.item_descrip', 'item.category_id', 'unit.unit_name', 'unit.id as unit_id_alias', 'item.item_cost', 'category.category_name')
                         ->get();
 
-        $purposes = Purpose::with(['items'])
-            ->where('user_id', auth()->id())
-            ->where('type_request', 1)
-            ->whereHas('items')
-            ->get();
+        $userId = auth()->id();
+
+        $purposes = Purpose::join('item_request', 'purpose.id', '=', 'item_request.purpose_id')
+            ->join('item', 'item_request.item_id', '=', 'item.id')
+            ->where('purpose.user_id', $userId)
+            ->where('purpose.type_request', 1)
+            ->where('item_request.status', 1)
+            ->select(
+                'purpose.id as purpose_id',
+                'purpose.purpose_name',
+                'item_request.qty',
+                'item_request.item_cost',
+                'item_request.total_cost',
+                'item.item_descrip'
+            )
+            ->orderBy('purpose.id')
+            ->get()
+            ->groupBy('purpose_id');
+
 
         
         return view("request.add.shopnew", compact('data', 'items', 'purposes'));
