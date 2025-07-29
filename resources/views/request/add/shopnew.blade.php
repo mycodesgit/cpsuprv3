@@ -60,11 +60,12 @@
                             <table id="shoplist" class="table table-hover">
                                 <thead class="bg-light">
                                     <tr>
-                                        <th width="5%">#</th>
-                                        <th>Description</th>
+                                        <th></th>
+                                        <th width="40%">Description</th>
                                         <th>Unit</th>
                                         <th>Cost</th>
                                         <th>Category</th>
+                                        <th></th>
                                         <th></th>
                                         <th width="10%">#</th>
                                     </tr>
@@ -165,13 +166,6 @@
                 <div class="modal-body">
                     <form method="post" action="{{ route('addToCartItemShop') }}" id="requestpr">
                         @csrf
-
-                        {{-- <input type="text" name="category_id" value="{{ $purpose->cat_id }}">
-                        <input type="text" name="user_id" value="{{ $purpose->user_id }}">
-                        <input type="text" name="campid" value="{{ $purpose->camp_id }}">
-                        <input type="text" name="off_id" value="{{ $purpose->office_id }}">
-                        <input type="text" name="transaction_no" value="{{ $purpose->id }}">
-                        <input type="text" name="purpose_id" value="{{ $purpose->id }}"> --}}
                         <input type="hidden" name="item_id">
                         <input type="hidden" name="unit_id">
                         <input type="hidden" name="category_id">

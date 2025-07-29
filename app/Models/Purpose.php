@@ -28,7 +28,8 @@ class Purpose extends Model
 
     public function items()
     {
-        return $this->hasMany(RequestItem::class, 'purpose_id', 'id');
+        return $this->hasMany(RequestItem::class, 'purpose_id', 'id')
+        ->where('status', 1);
     }
 
 }

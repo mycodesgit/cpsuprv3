@@ -358,7 +358,7 @@ class RequestController extends Controller
 
     public function getcartitemListRead($purpose_Id) 
     {
-        $userId = Auth::id();
+        $userId = Auth::guard('web')->user()->id;
         $purpose_id = decrypt($purpose_Id);
         $purpose = Purpose::find($purpose_id);
         $data = RequestItem::leftJoin('category', 'item_request.category_id', '=', 'category.id')

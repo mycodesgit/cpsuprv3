@@ -57,18 +57,18 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12" id="table-cart">
-                                    <table id="cart" class="table table-hover table-striped">
-                                        <thead style="font-size: 8pt">
+                                    <table id="cart" class="table table-hover styled-table">
+                                        <thead style="font-size: 10pt; color: #000 !important;">
                                             <tr>
                                                 <th>Description</th>
                                                 <th>Unit</th>
                                                 <th>Qty</th>
                                                 <th>Cost</th>
-                                                <th>Total Cost</th>
+                                                <th>Total</th>
                                                 <th>#</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="tbodycart">
+                                        <tbody id="">
 
                                         </tbody>
                                     </table>
@@ -139,22 +139,16 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <div class="col-md-12">
+                                                    <label for="editprpname" class="font-weight-bold">Purpose:</label>
+                                                    <input type="text" name="purpose_name" id="editprpname" value="{{ $purpose->purpose_name }}" class="form-control"required> 
+                                                </div>
+                                                <span class="text-danger text-xs">Note: Please Check or rename your purpose for this purchase request</span>
                                             </div>
                                         </div>
 
-
-                                        {{-- additional attachment --}}
-
-                                        {{-- <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="file" name="ppmp_file" class="form-control form-control-sm" id="fileInput" accept=".pdf" onchange="handleFileUpload()" required>
-                                                
-                                            </div>
-                                        </div>
-                                        <span class="text-danger text-xs">Upload a PPMP file for attachement</span> --}}
-
-
-                                        <button id="submitPRButton" class="btn btn-success float-right">
+                                        <button id="submitPRButton" class="btn btn-success float-right" disabled>
                                             <i class="fas fa-save"></i> Submit PR
                                         </button>
                                     </form>

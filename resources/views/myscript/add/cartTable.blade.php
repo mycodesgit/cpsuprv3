@@ -147,3 +147,21 @@
         });
     });
 </script>
+
+<script>
+    $(document).ready(function () {
+        function checkPurpose() {
+            const val = $('#editprpname').val().trim();
+            const isDefault = val.startsWith("PR Cart");
+
+            $('#submitPRButton').prop('disabled', isDefault);
+        }
+
+        // Check on load and whenever the input changes
+        checkPurpose();
+
+        $('#editprpname').on('input', function () {
+            checkPurpose();
+        });
+    });
+</script>

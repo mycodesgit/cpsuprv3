@@ -10,7 +10,12 @@
             lengthChange: false,
             searching: true, // hide default search
             columns: [
-                { data: 'itid' },
+                { 
+                    data: 'itid',
+                    render: function(data, type, row) {
+                        return `<span style="color: transparent;">${data}</span>`;
+                    }
+                },
                 {
                     data: 'item_descrip',
                     render: function (data, type, row) {
@@ -21,10 +26,15 @@
                         return `<span data-toggle="tooltip" title="${fullText.replace(/"/g, '&quot;')}">${shortText}</span>`;
                     }
                 },
-
                 { data: 'unit_name' },
                 { data: 'item_cost' },
                 { data: 'category_name' },
+                { 
+                    data: 'unit_id_alias',
+                    render: function(data, type, row) {
+                        return `<span style="color: transparent;">${data}</span>`;
+                    }
+                },
                 { 
                     data: 'category_id',
                     render: function(data, type, row) {
@@ -76,10 +86,10 @@
 
             var itemId = $(this).data('id');
             var itemName = $(this).closest('tr').find('td:eq(1)').text();
-            var unitId = $(this).closest('tr').find('td:eq(0)').text();
+            var unitId = $(this).closest('tr').find('td:eq(5)').text();
             var unitName = $(this).closest('tr').find('td:eq(2)').text();
             var itemCost = $(this).closest('tr').find('td:eq(3)').text();
-            var catID = $(this).closest('tr').find('td:eq(5)').text();
+            var catID = $(this).closest('tr').find('td:eq(6)').text();
 
             $('input[name="item_id"]').val(itemId);
             $('input[name="item_name"]').val(itemName);

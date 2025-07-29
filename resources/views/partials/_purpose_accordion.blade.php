@@ -38,7 +38,7 @@
                     </table>
                 </div>
             </div>
-            <a href="" class="btn btn-success">Proceed for Submission</a>
+            <a href="{{ route('selectItems', encrypt($purpose->id)) }}" class="btn btn-success">Proceed for Submission</a>
             <hr>
         </div>
     @endforeach

@@ -102,10 +102,12 @@ class ShopController extends Controller
                         ->select('item.id', 'item.item_descrip', 'item.category_id', 'unit.unit_name', 'unit.id as unit_id_alias', 'item.item_cost', 'category.category_name')
                         ->get();
 
-        $purposes = Purpose::with(['items.item']) // 'items' is relation to RequestItem, 'item' is relation to Item model
-            ->where('user_id', Auth::id())
+        $purposes = Purpose::with(['items'])
+            ->where('user_id', auth()->id())
             ->where('type_request', 1)
+            ->whereHas('items')
             ->get();
+
         
         return view("request.add.shopnew", compact('data', 'items', 'purposes'));
     }
@@ -114,7 +116,7 @@ class ShopController extends Controller
     {
         $data = Item::join('unit', 'item.unit_id', '=', 'unit.id')
                 ->join('category', 'item.category_id', '=', 'category.id')
-                ->select('item.*', 'category.category_name', 'unit.*', 'item.id as itid')
+                ->select('item.*', 'category.category_name', 'unit.*', 'item.id as itid', 'unit.id as unit_id_alias')
                 ->where('item.status', '=', 1)
                 ->get();
 
@@ -235,9 +237,10 @@ class ShopController extends Controller
 
     public function getAccordion()
     {
-        $purposes = Purpose::with(['items.item'])
+        $purposes = Purpose::with(['items'])
             ->where('user_id', auth()->id())
             ->where('type_request', 1)
+            ->whereHas('items')
             ->get();
 
         return view('partials._purpose_accordion', compact('purposes'));
