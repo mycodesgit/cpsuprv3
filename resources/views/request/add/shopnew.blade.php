@@ -1,6 +1,42 @@
 @extends('layouts.master')
 
 @section('body')
+    <style>
+        /* Sidebar style */
+        #cartSidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 0;
+            background-color: white;
+            overflow-x: hidden;
+            transition: width 0.3s ease;
+            z-index: 1050;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #cartSidebar.open {
+            width: 50%;
+        }
+
+        @media (max-width: 768px) {
+            #cartSidebar.open {
+                width: 100%;
+            }
+        }
+
+        /* Floating cart button */
+        #cartToggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1100;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+    </style>
 
     <section class="section">
         <div class="" style="margin-left: -20px; margin-right: -20px; border-radius: 5px; margin-top: 20px; padding: 3px;">
@@ -49,8 +85,160 @@
                             <h5>Item Cart Summary</h5>
                         </div>
                         <div class="card-body">
+                            <div class="accordion" id="purposeAccordion">
+                                <!-- Example Purpose -->
+                                <div class="card mb-2">
+                                    <div class="card-header d-flex justify-content-between align-items-center" id="heading1">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-success text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                                PR Cart 1
+                                            </button>
+                                        </h5>
+                                        <span class="badge bg-warning">3 items</span>
+                                    </div>
+
+                                    <div id="collapse1" class="collapse show" aria-labelledby="heading1" data-bs-parent="#purposeAccordion">
+                                        <div class="card-body p-0">
+                                            <table class="table table-sm table-striped m-0">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>Item</th>
+                                                        <th>Qty</th>
+                                                        <th>Cost</th>
+                                                        <th>Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Item A Description</td>
+                                                        <td>5</td>
+                                                        <td>₱100.00</td>
+                                                        <td>₱500.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Item B Description</td>
+                                                        <td>2</td>
+                                                        <td>₱200.00</td>
+                                                        <td>₱400.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Item C Description</td>
+                                                        <td>1</td>
+                                                        <td>₱300.00</td>
+                                                        <td>₱300.00</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Repeat for other purposes -->
+                                <!-- PR Cart 2 -->
+                                <div class="card mb-2">
+                                    <div class="card-header d-flex justify-content-between align-items-center" id="heading2">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link text-decoration-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                                PR Cart 2
+                                            </button>
+                                        </h5>
+                                        <span class="badge bg-primary">2 items</span>
+                                    </div>
+                                    <div id="collapse2" class="collapse" aria-labelledby="heading2" data-bs-parent="#purposeAccordion">
+                                        <div class="card-body p-0">
+                                            <table class="table table-sm table-striped m-0">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>Item</th>
+                                                        <th>Qty</th>
+                                                        <th>Cost</th>
+                                                        <th>Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Item D Description</td>
+                                                        <td>4</td>
+                                                        <td>₱150.00</td>
+                                                        <td>₱600.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Item E Description</td>
+                                                        <td>3</td>
+                                                        <td>₱100.00</td>
+                                                        <td>₱300.00</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- 🔘 Floating Cart Button -->
+            <button id="cartToggle" class="btn btn-primary shadow d-flex align-items-center justify-content-center">
+                <i class="fas fa-shopping-cart fs-4"></i>
+            </button>
+
+            <!-- 📦 Sidebar Cart Panel -->
+            <div id="cartSidebar">
+                <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
+                    <h5 class="mb-0">🛒 My Cart</h5>
+                    <button class="btn btn-sm btn-danger" id="closeCart">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <!-- 📋 Accordion -->
+                <div class="accordion mt-3" id="purposeAccordion" style="padding: 0 15px;">
+                    <!-- Example group -->
+                    <div class="accordion-item mb-2">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                PR Cart 1
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#purposeAccordion">
+                            <div class="accordion-body p-0">
+                                <table class="table table-sm table-striped m-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Item</th>
+                                            <th>Qty</th>
+                                            <th>Cost</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Item A Description</td>
+                                            <td>5</td>
+                                            <td>₱100.00</td>
+                                            <td>₱500.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Item B Description</td>
+                                            <td>2</td>
+                                            <td>₱200.00</td>
+                                            <td>₱400.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Item C Description</td>
+                                            <td>1</td>
+                                            <td>₱300.00</td>
+                                            <td>₱300.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add more PR Cart accordions here -->
                 </div>
             </div>
         </div>
@@ -138,6 +326,19 @@
         </div>
     </div>
 
+    <script>
+  const cartToggle = document.getElementById('cartToggle');
+  const cartSidebar = document.getElementById('cartSidebar');
+  const closeCart = document.getElementById('closeCart');
+
+  cartToggle.addEventListener('click', () => {
+    cartSidebar.classList.add('open');
+  });
+
+  closeCart.addEventListener('click', () => {
+    cartSidebar.classList.remove('open');
+  });
+</script>
     <script>
         var shopListRoute = "{{ route('getshoplistSerialize') }}";
         
