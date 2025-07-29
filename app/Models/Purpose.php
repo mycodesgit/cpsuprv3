@@ -25,4 +25,10 @@ class Purpose extends Model
         'officeidreturn',
         'remember_token',
     ];
+
+    public function items()
+    {
+        return $this->hasMany(RequestItem::class, 'purpose_id', 'id');
+    }
+
 }

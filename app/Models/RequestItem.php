@@ -28,4 +28,9 @@ class RequestItem extends Model
         'date_approve_pending',
         'remember_token',
     ];
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class, 'item_id', 'id');
+    }
 }

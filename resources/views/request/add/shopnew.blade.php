@@ -50,13 +50,8 @@
                         <div class="card-body">
                             <div class="mb-3">
                                 <div class="position-relative mb-3" style="width: 100%;">
-                                    <!-- Search icon on the left -->
                                     <i class="fas fa-search position-absolute text-success" style="top: 50%; left: 15px; transform: translateY(-50%); pointer-events: none;"></i>
-
-                                    <!-- Input field with left and right padding -->
                                     <input type="text" id="customSearch" class="form-control form-control-lg" placeholder="Search Item..." style="padding-left: 2.5rem; padding-right: 2.5rem;">
-
-                                    <!-- Clear button (×) on the right -->
                                     <button type="button" id="clearSearch" class="btn btn-sm btn-light text-danger position-absolute" style="top: 48%; right: 10px; transform: translateY(-50%); display: none;">
                                         <i class="fas fa-times"></i>
                                     </button>
@@ -85,94 +80,8 @@
                             <h5>Item Cart Summary</h5>
                         </div>
                         <div class="card-body">
-                            <div class="accordion" id="purposeAccordion">
-                                <!-- Example Purpose -->
-                                <div class="card mb-2">
-                                    <div class="card-header d-flex justify-content-between align-items-center" id="heading1">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-success text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                                                PR Cart 1
-                                            </button>
-                                        </h5>
-                                        <span class="badge bg-warning">3 items</span>
-                                    </div>
-
-                                    <div id="collapse1" class="collapse show" aria-labelledby="heading1" data-bs-parent="#purposeAccordion">
-                                        <div class="card-body p-0">
-                                            <table class="table table-sm table-striped m-0">
-                                                <thead class="table-light">
-                                                    <tr>
-                                                        <th>Item</th>
-                                                        <th>Qty</th>
-                                                        <th>Cost</th>
-                                                        <th>Total</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Item A Description</td>
-                                                        <td>5</td>
-                                                        <td>₱100.00</td>
-                                                        <td>₱500.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Item B Description</td>
-                                                        <td>2</td>
-                                                        <td>₱200.00</td>
-                                                        <td>₱400.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Item C Description</td>
-                                                        <td>1</td>
-                                                        <td>₱300.00</td>
-                                                        <td>₱300.00</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Repeat for other purposes -->
-                                <!-- PR Cart 2 -->
-                                <div class="card mb-2">
-                                    <div class="card-header d-flex justify-content-between align-items-center" id="heading2">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link text-decoration-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                                                PR Cart 2
-                                            </button>
-                                        </h5>
-                                        <span class="badge bg-primary">2 items</span>
-                                    </div>
-                                    <div id="collapse2" class="collapse" aria-labelledby="heading2" data-bs-parent="#purposeAccordion">
-                                        <div class="card-body p-0">
-                                            <table class="table table-sm table-striped m-0">
-                                                <thead class="table-light">
-                                                    <tr>
-                                                        <th>Item</th>
-                                                        <th>Qty</th>
-                                                        <th>Cost</th>
-                                                        <th>Total</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Item D Description</td>
-                                                        <td>4</td>
-                                                        <td>₱150.00</td>
-                                                        <td>₱600.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Item E Description</td>
-                                                        <td>3</td>
-                                                        <td>₱100.00</td>
-                                                        <td>₱300.00</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div id="purposeAccordionWrapper">
+                                @include('partials._purpose_accordion')
                             </div>
                         </div>
                     </div>

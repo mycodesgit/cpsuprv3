@@ -25,7 +25,12 @@
                 { data: 'unit_name' },
                 { data: 'item_cost' },
                 { data: 'category_name' },
-                { data: 'category_id' },
+                { 
+                    data: 'category_id',
+                    render: function(data, type, row) {
+                        return `<span style="color: transparent;">${data}</span>`;
+                    }
+                },
                 {
                     data: 'itid',
                     render: function (data, type, row) {
@@ -87,3 +92,35 @@
         });
     });
 </script>
+
+<script>
+    $(document).ready(function() {
+        $('.editable-purpose-name').on('blur', function () {
+            let $this = $(this);
+            let newName = $this.val().trim(); // use val() instead of text()
+            let purposeId = $this.data('id');
+
+            $this.css('opacity', '0.6');
+
+            $.ajax({
+                url: "{{ route('updatePurposeName', ':id') }}".replace(':id', purposeId),
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    purpose_name: newName
+                },
+                success: function(response) {
+                    toastr.success('Purpose name updated!');
+                    $this.css('opacity', '1');
+                },
+                error: function() {
+                    toastr.error('Failed to update purpose name.');
+                    $this.css('opacity', '1');
+                }
+            });
+        });
+    });
+</script>
+
+
+

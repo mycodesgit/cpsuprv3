@@ -101,8 +101,13 @@ class ShopController extends Controller
                         ->groupBy('item.id', 'item.item_descrip', 'item.category_id', 'unit.unit_name', 'unit.id', 'item.item_cost', 'category.category_name')
                         ->select('item.id', 'item.item_descrip', 'item.category_id', 'unit.unit_name', 'unit.id as unit_id_alias', 'item.item_cost', 'category.category_name')
                         ->get();
+
+        $purposes = Purpose::with(['items.item']) // 'items' is relation to RequestItem, 'item' is relation to Item model
+            ->where('user_id', Auth::id())
+            ->where('type_request', 1)
+            ->get();
         
-        return view("request.add.shopnew", compact('data', 'items'));
+        return view("request.add.shopnew", compact('data', 'items', 'purposes'));
     }
 
     public function getshoplistSerialize()
@@ -226,5 +231,28 @@ class ShopController extends Controller
                 return response()->json(['error' => $e->getMessage()], 500);
             }
         }
+    }
+
+    public function getAccordion()
+    {
+        $purposes = Purpose::with(['items.item'])
+            ->where('user_id', auth()->id())
+            ->where('type_request', 1)
+            ->get();
+
+        return view('partials._purpose_accordion', compact('purposes'));
+    }
+
+    public function updatePurposeName(Request $request, $id)
+    {
+        $request->validate([
+            'purpose_name' => 'required',
+        ]);
+
+        $purpose = Purpose::findOrFail($id);
+        $purpose->purpose_name = $request->input('purpose_name');
+        $purpose->save();
+
+        return response()->json(['success' => true]);
     }
 }

@@ -30,11 +30,15 @@
                 },
                 {data: 'unit_name'},
                 {data: 'qty'},
-                {data: 'fitem_cost'},
+                {data: 'fitem_cost',
+                    render: function (data, type, row) {
+                        return '₱ ' + parseFloat(data).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    }
+                },
                 { 
                     data: 'total_cost',
                     render: function (data, type, row) {
-                        return parseFloat(data).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        return '₱ ' + parseFloat(data).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     }
                 },
                 {data: 'iid',
@@ -56,7 +60,7 @@
                     return parseFloat(a) + parseFloat(b);
                 }, 0);
                 $(api.column(4).footer()).html(parseFloat(grandTotal).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-                $('#grandTotal').text(parseFloat(grandTotal).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                $('#grandTotal').text('₱ ' + parseFloat(grandTotal).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
                 function toggleSubmitButton() {
                     if (grandTotal > 0) {
                         $('#submitPRButton').prop('disabled', false);

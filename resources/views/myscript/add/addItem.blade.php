@@ -20,7 +20,8 @@
                         $('#tbodycart').prepend(response.message.newrow);
                         $('#granTotal').html(response.message.totalcost);
 
-                        $(document).trigger('itemAdded');
+                        // $(document).trigger('itemAdded');
+                        $("#purposeAccordionWrapper").load("{{ route('getAccordion') }}");
                     } else {
                         toastr.error(response.message);
                     }

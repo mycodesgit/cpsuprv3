@@ -90,6 +90,9 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
         Route::get('/purchaseRequest/shoplist', [ShopController::class, 'shoplistRead'])->name('shoplistRead');
         Route::get('/purchaseRequest/shoplist/ajax', [ShopController::class, 'getshoplistSerialize'])->name('getshoplistSerialize');
         Route::post('/purchaseRequest/shoplist/addcart', [ShopController::class, 'addToCartItemShop'])->name('addToCartItemShop');
+        Route::get('/purchaseRequest/shoplist/purpose-accordion', [ShopController::class, 'getAccordion'])->name('getAccordion');
+        Route::post('/update-purpose-name/{id}', [ShopController::class, 'updatePurposeName'])->name('updatePurposeName');
+
         Route::get('/purchaseRequest/cat', [RequestController::class, 'getCategories'])->name('getCategories');
 
         Route::get('/purchaseRequest/cart', [RequestController::class, 'prPurposeRequest'])->name('prPurposeRequest');
