@@ -122,14 +122,15 @@ class ShopController extends Controller
             ->get()
             ->groupBy('purpose_id');
 
-        // Add a flag to each purpose if created_at is within 1 hour
+        // Add a flag to each purpose if created_at is within 1 hour (compared to current date and time)
+        $now = now();
         foreach ($purposes as $purposeId => $purposeGroup) {
             foreach ($purposeGroup as $purpose) {
             $createdAt = \Carbon\Carbon::parse($purpose->created_at);
-            $purpose->show_created_at = $createdAt->diffInMinutes(now()) < 60;
+            $purpose->show_created_at = $createdAt->diffInMinutes($now) < 60;
             }
         }
-               
+
         return view("request.add.shopnew", compact('data', 'items', 'purposes'));
     }
 
