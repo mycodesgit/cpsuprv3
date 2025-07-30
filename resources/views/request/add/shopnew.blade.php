@@ -90,9 +90,9 @@
             </div>
 
             <!-- 🔘 Floating Cart Button -->
-            <button id="cartToggle" class="btn btn-primary shadow d-flex align-items-center justify-content-center">
+            {{-- <button id="cartToggle" class="btn btn-primary shadow d-flex align-items-center justify-content-center">
                 <i class="fas fa-shopping-cart fs-4"></i>
-            </button>
+            </button> --}}
 
             <!-- 📦 Sidebar Cart Panel -->
             <div id="cartSidebar">
@@ -229,19 +229,19 @@
         </div>
     </div>
 
-    <script>
-  const cartToggle = document.getElementById('cartToggle');
-  const cartSidebar = document.getElementById('cartSidebar');
-  const closeCart = document.getElementById('closeCart');
+    {{-- <script>
+        const cartToggle = document.getElementById('cartToggle');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const closeCart = document.getElementById('closeCart');
 
-  cartToggle.addEventListener('click', () => {
-    cartSidebar.classList.add('open');
-  });
+        cartToggle.addEventListener('click', () => {
+            cartSidebar.classList.add('open');
+        });
 
-  closeCart.addEventListener('click', () => {
-    cartSidebar.classList.remove('open');
-  });
-</script>
+        closeCart.addEventListener('click', () => {
+            cartSidebar.classList.remove('open');
+        });
+    </script> --}}
     <script>
         var shopListRoute = "{{ route('getshoplistSerialize') }}";
         
