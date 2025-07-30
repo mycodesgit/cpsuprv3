@@ -15,7 +15,7 @@
     $canceledUserActive = in_array($current_route, ['cancelUserListRead']) ? 'active' : '';
 
     $pendingBudAllActive = in_array($current_route, ['pendingAllBudgetListRead', 'pendingAllListView']) ? 'active' : '';
-    $pendingBudCancelAllActive = in_array($current_route, ['pendingAllListView']) ? 'active' : '';
+    $pendingBudCancelAllActive = in_array($current_route, ['requestPRcancelBudgetListRead', 'pendingAllListView']) ? 'active' : '';
 @endphp
 
 <style>
@@ -141,7 +141,7 @@
 
             <li class="menu-header" style="border-top: none">Cancellation Navigation</li>
             <li class="{{ $pendingBudCancelAllActive }}">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('requestPRcancelBudgetListRead') }}">
                     <i class="fas fa-times"></i> <span>Cancel PR</span>
                 </a>
             </li>
@@ -185,11 +185,11 @@
     var allReturnedCountRoute = "{{ route('returnedAllListRead') }}";
     var userReturnedCountRoute = "{{ route('returnedUserListRead') }}";
 </script>
-<script>
+{{-- <script>
     $(function () {
         $('[data-toggle="tooltip"]').tooltip({
             container: 'body',
             placement: 'right'
         });
     });
-</script>
+</script> --}}

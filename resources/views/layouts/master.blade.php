@@ -409,6 +409,9 @@
     @if (request()->routeIs('cancelUserListRead'))
         @include('myscript.return.canceledprUserSerialize')
     @endif
+    @if (request()->routeIs('requestPRcancelBudgetListRead'))
+        @include('myscript.return.canceledprReqbyUserSerialize')
+    @endif
 
     @if (request()->routeIs('userRead'))
         @include('myscript.user.userSerialize')

@@ -405,4 +405,88 @@ class RequestReturnController extends Controller
         }
         return response()->json(['data' => $data]);
     }
+
+    public function requestPRcancelBudgetListRead() 
+    {
+        $reqitempurpose = Purpose::join('office', 'purpose.office_id', '=', 'office.id')
+            ->select('purpose.*', 'purpose.id as pid', 'office.*', 'office.id as oid')
+            ->whereIn('purpose.pstatus', ['6'])
+            ->get();
+
+        $pendCount = $this->getPendingAllCount();
+        $pendBudCount = $this->getPendingBudgetCount();
+        $pendUserCount = $this->getPendingUserCount();
+
+        $approvedUserCount = $this->getApprovedUserCount();
+        $receivedUserCount = $this->getReceivedUserCount();
+        $canvassingUserCount = $this->getCanvassingUserCount();
+        $canvassedUserCount = $this->getCanvassedUserCount();
+        $philgepUserCount = $this->getPhilGepUserCount();
+        $postedUserCount = $this->getPostedUserCount();
+        $biddingUserCount = $this->getBiddingUserCount();
+        $consolidateUserCount = $this->getConsolidateUserCount();
+        $awardedUserCount = $this->getAwardedUserCount();
+        $purchaseUserCount = $this->getPurchaseUserCount();
+
+        $returnedAllCount = $this->getReturnedAllCount();
+        $returnedUserCount = $this->getReturnedUserCount();
+
+        $data = [   'pendCount' => $pendCount, 
+                    'pendBudCount' => $pendBudCount,
+                    'pendUserCount' => $pendUserCount,
+
+                    'approvedUserCount' => $approvedUserCount,
+                    'receivedUserCount' => $receivedUserCount,
+                    'canvassingUserCount' => $canvassingUserCount,
+                    'canvassedUserCount' => $canvassedUserCount,
+                    'philgepUserCount' => $philgepUserCount,
+                    'postedUserCount' => $postedUserCount,
+                    'biddingUserCount' => $biddingUserCount,
+                    'consolidateUserCount' => $consolidateUserCount,
+                    'awardedUserCount' => $awardedUserCount,
+                    'purchaseUserCount' => $purchaseUserCount,
+
+                    'returnedAllCount' => $returnedAllCount,
+                    'returnedUserCount' => $returnedUserCount,
+                ];
+
+        if (request()->ajax()) {
+            return response()->json([
+                'pendCount' => $pendCount, 
+                'pendBudCount' => $pendBudCount,
+                'pendUserCount' => $pendUserCount,
+
+                'approvedUserCount' => $approvedUserCount,
+                'receivedUserCount' => $receivedUserCount,
+                'canvassingUserCount' => $canvassingUserCount,
+                'canvassedUserCount' => $canvassedUserCount,
+                'philgepUserCount' => $philgepUserCount,
+                'postedUserCount' => $postedUserCount,
+                'biddingUserCount' => $biddingUserCount,
+                'consolidateUserCount' => $consolidateUserCount,
+                'awardedUserCount' => $awardedUserCount,
+                'purchaseUserCount' => $purchaseUserCount,
+
+                'returnedAllCount' => $returnedAllCount,
+                'returnedUserCount' => $returnedUserCount,
+            ]);
+        }
+
+        return view("request.returned.canceled_listbud", compact('reqitempurpose', 'data'));
+    }
+
+    public function getcanceledreqPRListRead() 
+    {
+        $data = Purpose::join('office', 'purpose.office_id', '=', 'office.id')
+            ->join('campuses', 'purpose.camp_id', '=', 'campuses.id')
+            ->join('category', 'purpose.cat_id', '=', 'category.id')
+            ->select('purpose.*', 'purpose.id as pid', 'campuses.*', 'campuses.id as campid', 'category.*', 'office.*', 'office.id as oid', 'purpose.created_at as cpdate')
+            ->whereIn('purpose.pstatus', ['19'])
+            ->orderBy('purpose.created_at', 'DESC')
+            ->get();
+        foreach ($data as $record) {
+            $record->pid = encrypt($record->pid);
+        }
+        return response()->json(['data' => $data]);
+    }
 }

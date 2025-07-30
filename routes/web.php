@@ -210,6 +210,9 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
 
         Route::get('/view/listcanceledPR/list/user', [RequestReturnController::class, 'cancelUserListRead'])->name('cancelUserListRead');
         Route::get('/view/listcanceledPR/list/user/ajax', [RequestReturnController::class, 'getcanceledUserListRead'])->name('getcanceledUserListRead');
+
+        Route::get('/view/listcanceledPR/requestcancel', [RequestReturnController::class, 'requestPRcancelBudgetListRead'])->name('requestPRcancelBudgetListRead');
+        Route::get('/view/listcanceledPR/request/tocancel/user/ajax', [RequestReturnController::class, 'getcanceledreqPRListRead'])->name('getcanceledreqPRListRead');
     });
 
     //View
