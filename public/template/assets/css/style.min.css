@@ -3822,17 +3822,7 @@ body:not(.sidebar-mini) .sidebar-style-3 .sidebar-menu li.active ul.dropdown-men
         opacity: 0;
     }
 }
-@font-face {
-    font-family: "simple-Line-Icons";
-    src: url("http://puffintheme.com/craft/codiepie/fonts/simple-Line-Icons.eot");
-    src:
-        url("http://puffintheme.com/craft/codiepie/fonts/simple-Line-Icons.eot") format("embedded-opentype"),
-        url("http://puffintheme.com/craft/codiepie/fonts/simple-Line-Icons.woff") format("woff"),
-        url("http://puffintheme.com/craft/codiepie/fonts/simple-Line-Icons.ttf") format("truetype"),
-        url("http://puffintheme.com/craft/codiepie/fonts/simple-Line-Icons.svg#Simple-Line-Icons") format("svg");
-    font-weight: normal;
-    font-style: normal;
-}
+
 [data-icon]:before {
     font-family: "simple-Line-Icons";
     content: attr(data-icon);
