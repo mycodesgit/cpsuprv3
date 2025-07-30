@@ -109,10 +109,10 @@ class ShopController extends Controller
             ->where('purpose.user_id', $userId)
             ->where('purpose.type_request', 1)
             ->where('item_request.status', 1)
+            ->whereDate('purpose.created_at', Carbon::now('Asia/Manila')->toDateString())
             ->select(
             'purpose.id as purpose_id',
             'purpose.purpose_name',
-            'purpose.created_at',
             'item_request.qty',
             'item_request.item_cost',
             'item_request.total_cost',
@@ -121,16 +121,7 @@ class ShopController extends Controller
             ->orderBy('purpose.id')
             ->get()
             ->groupBy('purpose_id');
-
-        // Add a flag to each purpose if created_at is within 1 hour (compared to current date and time)
-        $now = now();
-        foreach ($purposes as $purposeId => $purposeGroup) {
-            foreach ($purposeGroup as $purpose) {
-            $createdAt = \Carbon\Carbon::parse($purpose->created_at);
-            $purpose->show_created_at = $createdAt->diffInMinutes($now) < 60;
-            }
-        }
-
+       
         return view("request.add.shopnew", compact('data', 'items', 'purposes'));
     }
 
