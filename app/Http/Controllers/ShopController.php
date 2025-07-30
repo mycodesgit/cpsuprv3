@@ -111,12 +111,12 @@ class ShopController extends Controller
             ->where('item_request.status', 1)
             ->whereDate('purpose.created_at', Carbon::now('Asia/Manila')->toDateString())
             ->select(
-            'purpose.id as purpose_id',
-            'purpose.purpose_name',
-            'item_request.qty',
-            'item_request.item_cost',
-            'item_request.total_cost',
-            'item.item_descrip'
+                'purpose.id as purpose_id',
+                'purpose.purpose_name',
+                'item_request.qty',
+                'item_request.item_cost',
+                'item_request.total_cost',
+                'item.item_descrip'
             )
             ->orderBy('purpose.id')
             ->get()

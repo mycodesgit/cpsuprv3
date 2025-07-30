@@ -163,11 +163,11 @@
             </li>
         @endif
     </ul>
-    <div class="mt-4 mb-4 p-3 hide-sidebar-mini sidebar-transition logout-button-container" style="position: absolute; bottom: 20px; width: 100%; z-index: 999;">
+    {{-- <div class="mt-4 mb-4 p-3 hide-sidebar-mini sidebar-transition logout-button-container" style="position: absolute; bottom: 20px; width: 100%; z-index: 999;">
         <a href="{{ route('logout') }}" class="btn btn-primary btn-lg btn-block btn-icon-split text-left">
             <i class="fas fa-power-off"></i> <span style="padding-left: 15px">Sign Out</span>
         </a>
-    </div>
+    </div> --}}
 </aside>
 
 <script>
