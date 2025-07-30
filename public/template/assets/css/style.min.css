@@ -884,7 +884,7 @@ select.form-control:not([size]):not([multiple]) {
     transform: translate(-50%, -50%);
 }
 .card.card-progress:not(.remove-spinner):after {
-    background-image: url("http://puffintheme.com/craft/codiepie/dist/assets/img/spinner.svg");
+    /* background-image: url("http://puffintheme.com/craft/codiepie/dist/assets/img/spinner.svg"); */
     background-size: 80px;
     background-repeat: no-repeat;
     background-position: center;
@@ -1273,7 +1273,7 @@ table tr:hover .table-links {
     height: 100%;
     background-color: rgba(255, 255, 255, 0.5);
     z-index: 999;
-    background-image: url("http://puffintheme.com/craft/codiepie/dist/assets/img/spinner.svg");
+    /* background-image: url("http://puffintheme.com/craft/codiepie/dist/assets/img/spinner.svg"); */
     background-size: 80px;
     background-repeat: no-repeat;
     background-position: center;
@@ -1810,7 +1810,7 @@ h6 .badge {
 }
 .btn-progress {
     position: relative;
-    background-image: url("http://puffintheme.com/craft/codiepie/dist/assets/img/spinner-white.svg");
+    /* background-image: url("http://puffintheme.com/craft/codiepie/dist/assets/img/spinner-white.svg"); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: 30px;
@@ -4492,16 +4492,7 @@ body:not(.sidebar-mini) .sidebar-style-3 .sidebar-menu li.active ul.dropdown-men
 .icon-users:before {
     content: "\e001";
 }
-@font-face {
-    font-family: "feather";
-    src: url("http://puffintheme.com/craft/codiepie/fonts/feather-webfont.eot?t=1501841394106");
-    src:
-        url("http://puffintheme.com/craft/codiepie/fonts/feather-webfont.eot?t=1501841394106#iefix")
-            format("embedded-opentype"),
-        url("http://puffintheme.com/craft/codiepie/fonts/feather-webfont.woff?t=1501841394106") format("woff"),
-        url("http://puffintheme.com/craft/codiepie/fonts/feather-webfont.ttf?t=1501841394106") format("truetype"),
-        url("http://puffintheme.com/craft/codiepie/fonts/feather-webfont.svg?t=1501841394106#feather") format("svg");
-}
+
 .fe {
     font-family: "feather" !important;
     speak: none;
