@@ -230,7 +230,7 @@ class RequestReturnController extends Controller
             ->where('item_request.user_id', '=',  $userId)
             ->get();
 
-        return view ("request.pending.viewlist", compact('category', 'unit', 'item', 'pendItem', 'purpose', 'docFile'));
+        return view("request.pending.viewlist", compact('category', 'unit', 'item', 'pendItem', 'purpose', 'docFile'));
     }
 
     public function editreturnselectItems($purpose_Id) 
