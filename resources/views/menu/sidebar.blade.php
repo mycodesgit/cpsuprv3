@@ -18,6 +18,20 @@
     $pendingBudCancelAllActive = in_array($current_route, ['pendingAllListView']) ? 'active' : '';
 @endphp
 
+<style>
+    #sidebar-wrapper:hover {
+        overflow: visible !important;
+    }
+</style>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip({
+            container: 'body',
+            placement: 'right'
+        });
+    });
+</script>
+
 <aside id="sidebar-wrapper" style="overflow-x: hidden;">
     <div class="sidebar-brand">
         <a href="index-2.html" class="text-white">
