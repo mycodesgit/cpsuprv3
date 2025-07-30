@@ -4,7 +4,7 @@
             "responsive": false,
             "lengthChange": true,
             "autoWidth": true,
-            "info": false,
+            "info": true,
             "lengthChange": false,
             //"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
 
