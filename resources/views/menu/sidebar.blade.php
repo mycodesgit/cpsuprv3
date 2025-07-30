@@ -23,14 +23,6 @@
         overflow: visible !important;
     }
 </style>
-<script>
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip({
-            container: 'body',
-            placement: 'right'
-        });
-    });
-</script>
 
 <aside id="sidebar-wrapper" style="overflow-x: hidden;">
     <div class="sidebar-brand">
@@ -193,4 +185,11 @@
     var allReturnedCountRoute = "{{ route('returnedAllListRead') }}";
     var userReturnedCountRoute = "{{ route('returnedUserListRead') }}";
 </script>
-
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip({
+            container: 'body',
+            placement: 'right'
+        });
+    });
+</script>
