@@ -21,7 +21,7 @@
 
 <style>
     #sidebar-wrapper:hover {
-        overflow: visible !important;
+        overflow: hidden !important;
     }
 </style>
 
@@ -149,10 +149,16 @@
                 </a>
             </li>
 
-            <li class="menu-header" style="border-top: none">Cancellation Navigation</li>
             <li class="{{ $pendingBudCancelAllActive }}">
                 <a class="nav-link" href="{{ route('requestPRcancelBudgetListRead') }}">
                     <i class="fas fa-times"></i> <span>Cancel PR</span>
+                </a>
+            </li>
+
+            <li class="menu-header" style="border-top: none">Reports Navigation</li>
+            <li class="">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-times"></i> <span>Canceled PR</span>
                 </a>
             </li>
         @endif

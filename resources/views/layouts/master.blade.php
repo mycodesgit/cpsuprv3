@@ -274,12 +274,16 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             @if(session('login_time'))
-                                <div id="login-status" class="dropdown-title"></div>
+                                <div id="login-status" class="dropdown-title" style="font-family: Arial; font-size: 12pt">
+                                    <i class="fas fa-clock" style="font-size: 12pt"></i> <span id="login-timer">00:00:00</span>
+                                </div>
 
                                 <script>
                                     const loginTime = new Date("{{ \Carbon\Carbon::parse(session('login_time'))->toIso8601String() }}");
 
-                                    let timer = null;
+                                    function pad(num) {
+                                        return String(num).padStart(2, '0');
+                                    }
 
                                     function updateLoginStatus() {
                                         const now = new Date();
@@ -289,22 +293,20 @@
                                         const minutes = Math.floor((diff % 3600) / 60);
                                         const seconds = diff % 60;
 
-                                        let timeStr = "Logged in ";
-                                        if (hours > 0) timeStr += `${hours} ${hours !== 1 ? ':' : ''} `;
-                                        if (minutes > 0) timeStr += `${minutes} ${minutes !== 1 ? ':' : ''} `;
-                                        timeStr += `${seconds} ${seconds !== 1 ? ':' : ''} ago`;
-
-                                        document.getElementById("login-status").innerText = timeStr;
+                                        const timeStr = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+                                        document.getElementById("login-timer").innerText = timeStr;
                                     }
 
                                     updateLoginStatus();
-                                    timer = setInterval(updateLoginStatus, 1000);
+                                    const timer = setInterval(updateLoginStatus, 1000);
 
+                                    // Stop timer on logout
                                     document.querySelector('a.dropdown-item.text-danger')?.addEventListener('click', function () {
                                         clearInterval(timer);
                                     });
                                 </script>
                             @endif
+
 
                             <a href="features-profile.html" class="dropdown-item has-icon">
                                 <i class="far fa-user"></i> Profile
@@ -316,9 +318,6 @@
                                 <i class="fas fa-cog"></i> Settings
                             </a>
                             <div class="dropdown-divider"></div>
-                            {{-- <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger">
-                                <i class="fas fa-sign-out-alt"></i> Logout
-                            </a> --}}
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>

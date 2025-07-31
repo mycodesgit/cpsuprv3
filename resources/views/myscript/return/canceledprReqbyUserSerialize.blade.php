@@ -77,8 +77,8 @@
                     data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var link = '<a href="' + cancelreqprRoute + '/' + data + '" class="btn btn-outline-danger btn-sm canceled-pr" data-id="' + data + '">' +
-                                '<i class="fas fa-times"></i> Cancel PR' +
+                            var link = '<a href="' + cancelreqprRoute + '/' + data + '" class="btn btn-outline-danger btn-sm canceled-pr" data-id="' + data + '" data-toggle="tooltip" data-placement="top" title="Cancel this PR.">' +
+                                '<i class="fas fa-ban"></i>' +
                                 '</a>';
                             return link;
                         } else {

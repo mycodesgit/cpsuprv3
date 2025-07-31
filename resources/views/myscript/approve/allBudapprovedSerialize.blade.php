@@ -9,7 +9,7 @@
             lengthChange: false,
             searching: true,
             paging: true,
-            order: [[1, 'desc']],
+            order: [[0, 'asc']],
             "columns": [
                 // {data: 'id', name: 'id', orderable: false, searchable: false},
                 // {data: 'receipt_control'},
@@ -47,7 +47,7 @@
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
                             case 7:
-                                return '<span class="badge badge-success">PR has been Approved</span>';
+                                return '<span class="badge badge-success">PR has been Approved by the Budget Office</span>';
                             case 8:
                                 return '<span class="badge badge-default bg-teal">PR has been Received</span>';
                             case 9:

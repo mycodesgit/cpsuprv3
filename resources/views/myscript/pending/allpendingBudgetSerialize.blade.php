@@ -9,7 +9,7 @@
             lengthChange: false,
             searching: true,
             paging: true,
-            "order": [[0, "desc"]], // Order by the first column (cpdate) in descending order
+            "order": [[0, "asc"]], // Order by the first column (cpdate) in descending order
             "columns": [
                 {data: 'cpdate',
                     render: function (data, type, row) {
