@@ -75,161 +75,46 @@
                         }
                     },
                 },
-                {data: 'pid',
+                {
+                    data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var dropdown = '<div class="d-inline-block">' +
-                                '<a class="btn btn-success btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown"></a>' +
-                                '<div class="dropdown-menu">' +
-                                    '<a href="' + approvedAllListViewRoute + '/' + data + '" class="dropdown-item btn-edit">' +
-                                        '<i class="fas fa-eye"></i> View PR' +
-                                    '</a>';
-
-                                    if (userRole === 'Checker') {
-                                        dropdown += '<a href="' + approvedReceivedViewRoute + '/' + data + '" class="dropdown-item received-pr" data-id="' + data + '">' +
-                                                        '<i class="fas fa-check"></i> Received PR ' +
-                                                    '</a>';
-                                    }
-                                    if (userRole === 'Checker') {
-                                        dropdown += '<a href="' + approvedCanvassingViewRoute + '/' + data + '" class="dropdown-item canvassing-pr" data-id="' + data + '">' +
-                                                        '<i class="fa-regular fa-file-lines"></i> For Canvassing ' +
-                                                    '</a>';
-                                    }
-
-                                    if (userRole === 'Checker') {
-                                        dropdown += '<a href="' + approvedCanvassedViewRoute + '/' + data + '" class="dropdown-item canvassed-pr" data-id="' + data + '">' +
-                                                        '<i class="fa-solid fa-cart-flatbed-suitcase"></i> Canvassed ' +
-                                                    '</a>';
-                                    }
-
-                                    if (userRole === 'Checker') {
-                                        dropdown += '<a href="' + approvedPostingViewRoute + '/' + data + '" class="dropdown-item posting-pr" data-id="' + data + '">' +
-                                                        '<i class="fa-solid fa-envelopes-bulk"></i> For Posting ' +
-                                                    '</a>';
-                                    }
-
-                                    if (userRole === 'Checker') {
-                                        dropdown += '<a href="' + approvedPostedViewRoute + '/' + data + '" class="dropdown-item posted-pr" data-id="' + data + '">' +
-                                                        '<i class="fa-solid fa-address-book"></i> Posted ' +
-                                                    '</a>';
-                                    }
-
-                                    if (userRole === 'Checker') {
-                                        dropdown += '<a href="' + approvedBiddingViewRoute + '/' + data + '" class="dropdown-item bidding-pr" data-id="' + data + '">' +
-                                                        '<i class="fa-solid fa-person-chalkboard"></i> Bidding ' +
-                                                    '</a>';
-                                    }
-
-                                    if (userRole === 'Checker') {
-                                        dropdown += '<a href="' + approvedConsolidationViewRoute + '/' + data + '" class="dropdown-item consolidation-pr" data-id="' + data + '">' +
-                                                        '<i class="fa-brands fa-get-pocket"></i> For Consolidation ' +
-                                                    '</a>';
-                                    }
-
-                                    if (userRole === 'Checker') {
-                                        dropdown += '<a href="' + approvedAwardViewRoute + '/' + data + '" class="dropdown-item awarded-pr" data-id="' + data + '">' +
-                                                        '<i class="fa-solid fa-award"></i> Awarded ' +
-                                                    '</a>';
-                                    }
-
-                                    if (userRole === 'Checker') {
-                                        dropdown += '<a href="' + approvedPurchasedViewRoute + '/' + data + '" class="dropdown-item purchased-pr" data-id="' + data + '">' +
-                                                        '<i class="fas fa-dolly"></i> Purchased ' +
-                                                    '</a>';
-                                    }
-
-                                    if (userRole === 'Checker') {
-                                        dropdown += '<a href="' + approvedReturnedViewRoute + '/' + data + '" class="dropdown-item returned-pr" data-id="' + data + '">' +
-                                                        '<i class="fas fa-person-walking-arrow-loop-left"></i> Returned ' +
-                                                    '</a>';
-                                    }
-
-                                    if (userRole === 'Checker') {
-                                        dropdown += '<a href="' + forwardedPedoViewRoute + '/' + data + '" class="dropdown-item forwarded-pr" data-id="' + data + '">' +
-                                                        '<i class="fas fa-forward"></i> Forwarded to PEDO ' +
-                                                    '</a>';
-                                    }
-
-                                    
-                                    dropdown += '</div>' +
-                                '</div>';
-                            return dropdown;
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
+                                //buttons += '<a href="' + pendingAllListViewRoute + '/' + data + '" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-toggle="tooltip" data-placement="top" title="PR Remarks."><i class="fas fa-eye"></i> </a>';
+                                
+                            return buttons;
                         } else {
                             return data;
                         }
                     },
                 },
-                // {
-                //     data: 'pid',
-                //     render: function(data, type, row) {
-                //         if (type === 'display') {
-                //             var viewLink = '<a href="' + approvedAllListViewRoute + '/' + data + '" class="btn btn-success btn-sm" title="View PR">' +
-                //                                '<i class="fas fa-eye"></i>' +
-                //                            '</a> ';
-                
-                //             if (userRole === 'Checker') {
-                //                 var dropdown = '<div class="d-inline-block">' +
-                //                     '<a class="btn btn-success btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown"></a>' +
-                //                     '<div class="dropdown-menu">' +
-                //                         '<a href="' + approvedReceivedViewRoute + '/' + data + '" class="dropdown-item received-pr" data-id="' + data + '">' +
-                //                             '<i class="fas fa-check"></i> Received PR' +
-                //                         '</a>' +
-                //                         '<a href="' + approvedCanvassingViewRoute + '/' + data + '" class="dropdown-item canvassing-pr" data-id="' + data + '">' +
-                //                             '<i class="fa-regular fa-file-lines"></i> For Canvassing' +
-                //                         '</a>' +
-                //                         '<a href="' + approvedCanvassedViewRoute + '/' + data + '" class="dropdown-item canvassed-pr" data-id="' + data + '">' +
-                //                             '<i class="fa-solid fa-cart-flatbed-suitcase"></i> Canvassed' +
-                //                         '</a>' +
-                //                         '<a href="' + approvedPostingViewRoute + '/' + data + '" class="dropdown-item posting-pr" data-id="' + data + '">' +
-                //                             '<i class="fa-solid fa-envelopes-bulk"></i> For Posting' +
-                //                         '</a>' +
-                //                         '<a href="' + approvedPostedViewRoute + '/' + data + '" class="dropdown-item posted-pr" data-id="' + data + '">' +
-                //                             '<i class="fa-solid fa-address-book"></i> Posted' +
-                //                         '</a>' +
-                //                         '<a href="' + approvedBiddingViewRoute + '/' + data + '" class="dropdown-item bidding-pr" data-id="' + data + '">' +
-                //                             '<i class="fa-solid fa-person-chalkboard"></i> Bidding' +
-                //                         '</a>' +
-                //                         '<a href="' + approvedConsolidationViewRoute + '/' + data + '" class="dropdown-item consolidation-pr" data-id="' + data + '">' +
-                //                             '<i class="fa-brands fa-get-pocket"></i> For Consolidation' +
-                //                         '</a>' +
-                //                         '<a href="' + approvedAwardViewRoute + '/' + data + '" class="dropdown-item awarded-pr" data-id="' + data + '">' +
-                //                             '<i class="fa-solid fa-award"></i> Awarded' +
-                //                         '</a>' +
-                //                         '<a href="' + approvedPurchasedViewRoute + '/' + data + '" class="dropdown-item purchased-pr" data-id="' + data + '">' +
-                //                             '<i class="fas fa-dolly"></i> Purchased' +
-                //                         '</a>' +
-                //                         '<a href="' + approvedReturnedViewRoute + '/' + data + '" class="dropdown-item returned-pr" data-id="' + data + '">' +
-                //                             '<i class="fas fa-person-walking-arrow-loop-left"></i> Returned' +
-                //                         '</a>' +
-                //                         '<a href="' + forwardedPedoViewRoute + '/' + data + '" class="dropdown-item forwarded-pr" data-id="' + data + '">' +
-                //                             '<i class="fas fa-forward"></i> Forwarded to PEDO' +
-                //                         '</a>' +
-                //                     '</div>' +
-                //                 '</div>';
-                
-                //                 return viewLink + dropdown; // Show both View PR and dropdown for Checker
-                //             }
-                
-                //             return viewLink; // Only show View PR for non-Checker roles
-                //         } else {
-                //             return data;
-                //         }
-                //     },
-                // },                
+                        
             ],
-            // initComplete: function(settings, json) {
-            //     var api = this.api();
-            //     api.column(0, {search: 'applied', order: 'applied'}).nodes().each(function(cell, i) {
-            //         cell.innerHTML = i + 1;
-            //     });
-            // },
-            // "createdRow": function (row, data, dataIndex) {
-            //     $(row).attr('id', 'tr-' + data.id);
-            // }
+        });
+        dataTable.on('draw', function () {
+            $('[data-toggle="tooltip"]').tooltip();
         });
         setInterval(function () {
             dataTable.ajax.reload(null, false);
         }, 15000);
+    });
+
+    $(document).on('click', '.btn-prpdfchecking', function () {
+        var pid = $(this).data('id');
+
+        $('#viewPrModal').modal('show');
+        $('#modalContent').html('<div class="text-center">Loading...</div>');
+
+        $.ajax({
+            url: approvedAllListViewRoute + '/' +pid,
+            type: 'GET',
+            success: function (response) {
+                $('#modalContent').html(response);
+            },
+            error: function () {
+                $('#modalContent').html('<div class="alert alert-danger">Failed to load data.</div>');
+            }
+        });
     });
 
     $(document).ready(function() {
