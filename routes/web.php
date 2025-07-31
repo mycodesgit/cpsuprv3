@@ -168,6 +168,7 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
         Route::get('/view/pendingPR/list/cancelreqpr', [RequestPendingController::class, 'getreqcancelprBudgetAllListRead'])->name('getreqcancelprBudgetAllListRead');
 
         Route::get('/approvedPR/list', [RequestApprovedController::class, 'approvedListAllRead'])->name('approvedListAllRead');
+        Route::get('/approvedPR/list/bud', [RequestApprovedController::class, 'approvedListBudAllRead'])->name('approvedListBudAllRead');
         Route::get('/approvedPR/list/ajaxapp', [RequestApprovedController::class, 'getAllapprovedListRead'])->name('getAllapprovedListRead');
         Route::get('/approvedPR/list/received/ajaxapp', [RequestApprovedController::class, 'getAllreceivedListRead'])->name('getAllreceivedListRead');
         Route::get('/approvedPR/list/canvassing/ajaxapp', [RequestApprovedController::class, 'getAllcanvassingListRead'])->name('getAllcanvassingListRead');
