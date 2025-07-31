@@ -21,13 +21,13 @@ class LoginAuth
             if(!Auth::user()->role){
                 return redirect()->route('getLogin')->with('error','You have to be admin user to access this page');
             }
-            if(Auth::user()->hasRole('Payroll Administrator')){
+            if(Auth::user()->hasRole('Budget Officer')){
                 if ($request->is('users') || $request->is('users/*')) {
                     return redirect()->route('dashboard')->with('error1', 'You do not have permission to access this page');
                 }
             }
-            if(Auth::user()->hasRole('Payroll Extension')) {
-                if ($request->is('users', 'office') || $request->is('users/*', 'office/*')) {
+            if(Auth::user()->hasRole('Office Head', 'Campus Admin', 'Dean', 'MIS Checker')){
+                if ($request->is('users') || $request->is('users/*')) {
                     return redirect()->route('dashboard')->with('error1', 'You do not have permission to access this page');
                 }
             }

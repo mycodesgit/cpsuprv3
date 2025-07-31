@@ -10,6 +10,15 @@
             searching: true,
             paging: true,
             "columns": [
+                {data: 'cpdate',
+                    render: function (data, type, row) {
+                        if (type === 'display') {
+                            return moment(data).format('MMMM D, YYYY');
+                        } else {
+                            return data;
+                        }
+                    }
+                },
                 {data: 'campus_abbr'},
                 {data: 'transaction_no'},
                 {data: 'pr_no'},
@@ -35,20 +44,30 @@
                 {data: 'pstatus',
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
-                            case 1:
-                                return '<span class="badge badge-info">Ongoing</span>';
-                            case 2:
-                                return '<span class="badge badge-warning">Pending</span>';
-                            case 3:
-                                return '<span class="badge badge-danger">Returned to Client</span>';
-                            case 4:
-                                return '<span class="badge badge-success" style="font-size: 12px">Checking PR in Procurement</span>';
-                            case 5:
-                                return '<span class="badge badge-secondary" style="font-size: 12px">Verifying PR in PPMP</span>';
-                            case 6:
-                                return '<span class="badge badge-warning">Pending/Waiting for checking</span>';
-                            case 19:
-                                return '<span class="badge badge-danger">Canceled PR</span>';
+                            case 7:
+                                return '<span class="badge badge-success">PR has been Approved</span>';
+                            case 8:
+                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                            case 9:
+                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                            case 10:
+                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                            case 11:
+                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                            case 12:
+                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                            case 13:
+                                return '<span class="badge badge-default bg-gray-dark">Bidding</span>';
+                            case 14:
+                                return '<span class="badge badge-default bg-purple">For Consolidation</span>';
+                            case 15:
+                                return '<span class="badge badge-default bg-pink">Awarded</span>';
+                            case 16:
+                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                            case 17:
+                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                            case 18:
+                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
                             default:
                                 return '<span class="badge badge-secondary">Unknown Status</span>';
                         }
@@ -58,9 +77,10 @@
                     data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
-                                
-                            return buttons;
+                            var link = '<a href="' + cancelreqprRoute + '/' + data + '" class="btn btn-outline-danger btn-sm canceled-pr" data-id="' + data + '">' +
+                                '<i class="fas fa-times"></i> Cancel PR' +
+                                '</a>';
+                            return link;
                         } else {
                             return data;
                         }
@@ -74,5 +94,49 @@
         setInterval(function () {
             dataTable.ajax.reload(null, false);
         }, 5000);
+    });
+</script>
+
+<script>
+    $(document).on('click', '.canceled-pr', function(e) {
+        e.preventDefault();
+        var cancelreqprRoute = '{{ route('cancelreqheadPR') }}';
+        var prId = $(this).data('id');
+
+        Swal.fire({
+        title: 'Are you sure you want to cancel this PR?',
+        text: "You won't be able to recover this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, cancel it!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+            url: cancelreqprRoute,
+            method: 'POST',
+            data: {
+                id: prId
+            },
+            success: function(response) {
+                Swal.fire(
+                'Canceled!',
+                'The purchase request has been canceled.',
+                'success'
+                );
+                console.log(response);
+            },
+            error: function(xhr, status, error) {
+                Swal.fire(
+                'Error!',
+                'An error occurred while canceling the purchase request.',
+                'error'
+                );
+                console.error(error);
+            }
+            });
+        }
+        });
     });
 </script>

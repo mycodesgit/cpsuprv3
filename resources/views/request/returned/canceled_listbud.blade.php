@@ -18,6 +18,7 @@
                                             <th>Date</th>
                                             <th>Campus</th>
                                             <th>Transaction No.</th>
+                                            <th>PR No.</th>
                                             <th>Type</th>
                                             <th>Office</th>
                                             <th>Purpose</th>
@@ -60,6 +61,7 @@
         <script>
             var allreqCancelRoute = "{{ route('getcanceledreqPRListRead') }}";
             var returnedListViewRoute = "{{ route('returnedpendingListView', '') }}";
+            var cancelreqprRoute = "{{ route('cancelreqheadPR') }}";
         </script>
     @endif
 @endsection

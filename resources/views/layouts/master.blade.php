@@ -273,7 +273,39 @@
                             <div class="d-sm-none d-lg-inline-block text-white">Hi, {{ Auth::user()->fname }} {{ Auth::user()->lname }}</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <div class="dropdown-title">Logged in 5 min ago</div>
+                            @if(session('login_time'))
+                                <div id="login-status" class="dropdown-title"></div>
+
+                                <script>
+                                    const loginTime = new Date("{{ \Carbon\Carbon::parse(session('login_time'))->toIso8601String() }}");
+
+                                    let timer = null;
+
+                                    function updateLoginStatus() {
+                                        const now = new Date();
+                                        const diff = Math.floor((now - loginTime) / 1000);
+
+                                        const hours = Math.floor(diff / 3600);
+                                        const minutes = Math.floor((diff % 3600) / 60);
+                                        const seconds = diff % 60;
+
+                                        let timeStr = "Logged in ";
+                                        if (hours > 0) timeStr += `${hours} ${hours !== 1 ? ':' : ''} `;
+                                        if (minutes > 0) timeStr += `${minutes} ${minutes !== 1 ? ':' : ''} `;
+                                        timeStr += `${seconds} ${seconds !== 1 ? ':' : ''} ago`;
+
+                                        document.getElementById("login-status").innerText = timeStr;
+                                    }
+
+                                    updateLoginStatus();
+                                    timer = setInterval(updateLoginStatus, 1000);
+
+                                    document.querySelector('a.dropdown-item.text-danger')?.addEventListener('click', function () {
+                                        clearInterval(timer);
+                                    });
+                                </script>
+                            @endif
+
                             <a href="features-profile.html" class="dropdown-item has-icon">
                                 <i class="far fa-user"></i> Profile
                             </a>
@@ -284,9 +316,17 @@
                                 <i class="fas fa-cog"></i> Settings
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger">
+                            {{-- <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a> --}}
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+
+                            <a href="#" class="dropdown-item has-icon text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="fas fa-sign-out-alt"></i> Logout
                             </a>
+
                         </div>
                     </li>
                 </ul>

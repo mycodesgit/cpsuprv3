@@ -104,9 +104,18 @@ class MasterController extends Controller
         return view("home.dashboard", compact('data', 'camp', 'userCount', 'campusCount', 'offCount', 'category', 'annoucement'));
     }
 
-    public function logout()
+    // public function logout()
+    // {
+    //     Auth::logout();
+    //     return redirect()->route('getLogin')->with('success','You have been Successfully Logged Out');
+    // }
+
+    public function logout(Request $request)
     {
         Auth::logout();
-        return redirect()->route('getLogin')->with('success','You have been Successfully Logged Out');
+        $request->session()->invalidate(); 
+        $request->session()->regenerateToken();
+
+        return redirect()->route('getLogin')->with('success', 'You have been Successfully Logged Out');
     }
 }

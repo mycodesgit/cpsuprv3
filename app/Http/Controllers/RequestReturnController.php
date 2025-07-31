@@ -410,7 +410,7 @@ class RequestReturnController extends Controller
     {
         $reqitempurpose = Purpose::join('office', 'purpose.office_id', '=', 'office.id')
             ->select('purpose.*', 'purpose.id as pid', 'office.*', 'office.id as oid')
-            ->whereIn('purpose.pstatus', ['6'])
+            ->whereIn('purpose.pstatus', ['7', '8'])
             ->get();
 
         $pendCount = $this->getPendingAllCount();
@@ -481,7 +481,7 @@ class RequestReturnController extends Controller
             ->join('campuses', 'purpose.camp_id', '=', 'campuses.id')
             ->join('category', 'purpose.cat_id', '=', 'category.id')
             ->select('purpose.*', 'purpose.id as pid', 'campuses.*', 'campuses.id as campid', 'category.*', 'office.*', 'office.id as oid', 'purpose.created_at as cpdate')
-            ->whereIn('purpose.pstatus', ['19'])
+            ->whereIn('purpose.pstatus', ['7', '8'])
             ->orderBy('purpose.created_at', 'DESC')
             ->get();
         foreach ($data as $record) {

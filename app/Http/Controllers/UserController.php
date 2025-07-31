@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 
+use App\Traits\PendingCountTrait;
+use App\Traits\ApprovedCountTrait;
+use App\Traits\ReturnedCountTrait;
+
 use App\Models\User;
 use App\Models\Office;
 use App\Models\Campus;
@@ -19,6 +23,10 @@ use App\Models\Annoucement;
 
 class UserController extends Controller
 {
+    use PendingCountTrait;
+    use ApprovedCountTrait;
+    use ReturnedCountTrait;
+    
     public function userRead() {
         $camp = Campus::all();
         $off = Office::all();
@@ -28,7 +36,66 @@ class UserController extends Controller
             ->select('users.id as uid', 'users.*', 'campuses.*', 'office.*')
             ->get();
 
-        return view("users.listuser", compact('user', 'camp', 'off'));
+        $pendCount = $this->getPendingAllCount();
+        $pendBudCount = $this->getPendingBudgetCount();
+        $pendUserCount = $this->getPendingUserCount();
+
+        $approvedUserCount = $this->getApprovedUserCount();
+        $receivedUserCount = $this->getReceivedUserCount();
+        $canvassingUserCount = $this->getCanvassingUserCount();
+        $canvassedUserCount = $this->getCanvassedUserCount();
+        $philgepUserCount = $this->getPhilGepUserCount();
+        $postedUserCount = $this->getPostedUserCount();
+        $biddingUserCount = $this->getBiddingUserCount();
+        $consolidateUserCount = $this->getConsolidateUserCount();
+        $awardedUserCount = $this->getAwardedUserCount();
+        $purchaseUserCount = $this->getPurchaseUserCount();
+
+        $returnedAllCount = $this->getReturnedAllCount();
+        $returnedUserCount = $this->getReturnedUserCount();
+
+        $data = [   'pendCount' => $pendCount, 
+                    'pendBudCount' => $pendBudCount,
+                    'pendUserCount' => $pendUserCount,
+
+                    'approvedUserCount' => $approvedUserCount,
+                    'receivedUserCount' => $receivedUserCount,
+                    'canvassingUserCount' => $canvassingUserCount,
+                    'canvassedUserCount' => $canvassedUserCount,
+                    'philgepUserCount' => $philgepUserCount,
+                    'postedUserCount' => $postedUserCount,
+                    'biddingUserCount' => $biddingUserCount,
+                    'consolidateUserCount' => $consolidateUserCount,
+                    'awardedUserCount' => $awardedUserCount,
+                    'purchaseUserCount' => $purchaseUserCount,
+
+                    'returnedAllCount' => $returnedAllCount,
+                    'returnedUserCount' => $returnedUserCount,
+                ];
+
+        if (request()->ajax()) {
+            return response()->json([
+                'pendCount' => $pendCount, 
+                'pendBudCount' => $pendBudCount,
+                'pendUserCount' => $pendUserCount,
+
+                'approvedUserCount' => $approvedUserCount,
+                'receivedUserCount' => $receivedUserCount,
+                'canvassingUserCount' => $canvassingUserCount,
+                'canvassedUserCount' => $canvassedUserCount,
+                'philgepUserCount' => $philgepUserCount,
+                'postedUserCount' => $postedUserCount,
+                'biddingUserCount' => $biddingUserCount,
+                'consolidateUserCount' => $consolidateUserCount,
+                'awardedUserCount' => $awardedUserCount,
+                'purchaseUserCount' => $purchaseUserCount,
+
+                'returnedAllCount' => $returnedAllCount,
+                'returnedUserCount' => $returnedUserCount,
+            ]);
+        }
+
+        return view("users.listuser", compact('user', 'camp', 'off', 'data'));
     }
 
     public function getuserRead() 

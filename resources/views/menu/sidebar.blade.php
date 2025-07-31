@@ -16,6 +16,7 @@
 
     $pendingBudAllActive = in_array($current_route, ['pendingAllBudgetListRead', 'pendingAllListView']) ? 'active' : '';
     $pendingBudCancelAllActive = in_array($current_route, ['requestPRcancelBudgetListRead', 'pendingAllListView']) ? 'active' : '';
+    $approvedBudAllActive = in_array($current_route, ['approvedListAllRead']) ? 'active' : '';
 @endphp
 
 <style>
@@ -133,6 +134,15 @@
             <li class="{{ $pendingBudAllActive }}">
                 <a class="nav-link" href="{{ route('pendingAllBudgetListRead') }}">
                     <i class="fas fa-check"></i> <span>Waiting PR</span>
+                    <span id="pendingBudCount" class="badge badge-warning" style="font-size: 10pt; width: 30px; height: 20px; line-height: 10px;">
+                        {{ $data['pendBudCount'] }}
+                    </span>
+                </a>
+            </li>
+
+            <li class="{{ $approvedBudAllActive }}">
+                <a class="nav-link" href="{{ route('approvedListAllRead') }}">
+                    <i class="fas fa-check"></i> <span>Approved PR</span>
                     <span id="pendingBudCount" class="badge badge-warning" style="font-size: 10pt; width: 30px; height: 20px; line-height: 10px;">
                         {{ $data['pendBudCount'] }}
                     </span>

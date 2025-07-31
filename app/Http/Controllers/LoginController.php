@@ -25,6 +25,7 @@ class LoginController extends Controller
         ],$request->password);
 
         if($validated){
+            session(['login_time' => now()]);
             return redirect()->route('dashboard')->with('success','Login Successfully');
         }else{
             return redirect()->back()->with('error','Invalid Credentials');
