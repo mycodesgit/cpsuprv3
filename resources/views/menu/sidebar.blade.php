@@ -35,6 +35,17 @@
     <div class="sidebar-brand sidebar-brand-sm">
         <a href="index-2.html" class="text-white">PR</a>
     </div>
+    <hr>
+    <div class="form-inline" style="padding-left: 20px !important; padding-right: 20px !important">
+        <div class="input-group" data-widget="sidebar-search">
+            <div class="input-group-append">
+                <span class="input-group-text" style="background-color: #3a7d5c; border-color: #3a7d5c; color: white;">
+                    <i class="fas fa-peso-sign"></i>
+                </span>
+            </div>
+            <input class="form-control form-control-sidebar" type="text" placeholder="Balance" value="2, 500, 530.00" aria-label="Search" style="background-color: #3a7d5c; border-color: #3a7d5c; color: white;">
+        </div>
+    </div>
     <ul class="sidebar-menu mt-4">
         <li class="menu-header" style="border-color: #3a7d5c">Main Navigation</li>
 
@@ -133,17 +144,8 @@
             <li class="menu-header" style="border-top: none">Approval Navigation</li>
             <li class="{{ $pendingBudAllActive }}">
                 <a class="nav-link" href="{{ route('pendingAllBudgetListRead') }}">
-                    <i class="fas fa-check"></i> <span>Waiting PR</span>
+                    <i class="fas fa-clock"></i> <span>Waiting PR</span>
                     <span id="pendingBudCount" class="badge badge-warning" style="font-size: 10pt; width: 43px; height: 20px; line-height: 10px;">
-                        {{ $data['pendBudCount'] }}
-                    </span>
-                </a>
-            </li>
-
-            <li class="{{ $approvedBudAllActive }}">
-                <a class="nav-link" href="{{ route('approvedListBudAllRead') }}">
-                    <i class="fas fa-check"></i> <span>Approved PR</span>
-                    <span id="pendingBudCount" class="badge badge-warning" style="font-size: 10pt; width: 43px; height: 20px; line-height: 10px; z-index: 999 !important;">
                         {{ $data['pendBudCount'] }}
                     </span>
                 </a>
@@ -151,11 +153,19 @@
 
             <li class="{{ $pendingBudCancelAllActive }}">
                 <a class="nav-link" href="{{ route('requestPRcancelBudgetListRead') }}">
-                    <i class="fas fa-times"></i> <span>Cancel PR</span>
+                    <i class="fas fa-ban"></i> <span>Cancel PR</span>
                 </a>
             </li>
 
             <li class="menu-header" style="border-top: none">Reports Navigation</li>
+            <li class="{{ $approvedBudAllActive }}">
+                <a class="nav-link" href="{{ route('approvedListBudAllRead') }}">
+                    <i class="fas fa-check"></i> <span>Approved PR</span>
+                    {{-- <span id="pendingBudCount" class="badge badge-warning" style="font-size: 10pt; width: 43px; height: 20px; line-height: 10px; z-index: 999 !important;">
+                        {{ $data['pendBudCount'] }}
+                    </span> --}}
+                </a>
+            </li>
             <li class="">
                 <a class="nav-link" href="#">
                     <i class="fas fa-times"></i> <span>Canceled PR</span>
