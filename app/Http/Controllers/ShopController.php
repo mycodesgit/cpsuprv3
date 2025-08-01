@@ -94,10 +94,21 @@ class ShopController extends Controller
             ]);
         }
 
-        $items = Item::join('purpose', 'item.category_id', '=', 'purpose.cat_id')
-                        ->join('category', 'item.category_id', '=', 'category.id')
+        $userCategoryIds = PpmpUser::where('user_id', Auth::user()->id)
+                             ->pluck('ppmp_categories')
+                             ->flatMap(function ($item) {
+                                 return json_decode($item);
+                             })
+                             ->unique()
+                             ->values()
+                             ->all();
+                             
+        // dd(count($userCategoryIds));
+
+        $items = Item::join('category', 'item.category_id', '=', 'category.id')
                         ->join('unit', 'item.unit_id', '=', 'unit.id')
                         ->where('item.status', '=', 1)
+                        ->whereIn('item.category_id', $userCategoryIds)
                         ->groupBy('item.id', 'item.item_descrip', 'item.category_id', 'unit.unit_name', 'unit.id', 'item.item_cost', 'category.category_name')
                         ->select('item.id', 'item.item_descrip', 'item.category_id', 'unit.unit_name', 'unit.id as unit_id_alias', 'item.item_cost', 'category.category_name')
                         ->get();
@@ -109,7 +120,7 @@ class ShopController extends Controller
             ->where('purpose.user_id', $userId)
             ->where('purpose.type_request', 1)
             ->where('item_request.status', 1)
-            ->whereDate('purpose.created_at', Carbon::now('Asia/Manila')->toDateString())
+            ->whereDate('item_request.created_at', Carbon::today()) // <-- Adjust this based on your real column
             ->select(
                 'purpose.id as purpose_id',
                 'purpose.purpose_name',
@@ -251,11 +262,6 @@ class ShopController extends Controller
 
     public function getAccordion()
     {
-        // $purposes = Purpose::with(['items'])
-        //     ->where('user_id', auth()->id())
-        //     ->where('type_request', 1)
-        //     ->whereHas('items')
-        //     ->get();
         $userId = auth()->id();
 
         $purposes = Purpose::join('item_request', 'purpose.id', '=', 'item_request.purpose_id')
@@ -263,6 +269,7 @@ class ShopController extends Controller
             ->where('purpose.user_id', $userId)
             ->where('purpose.type_request', 1)
             ->where('item_request.status', 1)
+            ->whereDate('item_request.created_at', Carbon::today()) // <-- Adjust this based on your real column
             ->select(
                 'purpose.id as purpose_id',
                 'purpose.purpose_name',

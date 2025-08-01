@@ -44,7 +44,7 @@
     </section>
 
     <div class="modal fade" id="editInfoModal" tabindex="-1" role="dialog" aria-labelledby="editInfoModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document" style="max-width: 60vw;">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 60vw;">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editInfoModalLabel">Edit User Info</h5>
@@ -141,7 +141,7 @@
     </div>
 
     <div class="modal fade" id="editPasswordModal" tabindex="-1" role="dialog" aria-labelledby="editPasswordModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editPasswordModalLabel">Edit Password</h5>
@@ -167,7 +167,7 @@
     </div>
 
     <div class="modal fade" id="editUstatusModal" tabindex="-1" role="dialog" aria-labelledby="editUstatusModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editUstatusModalLabel">Edit User Status</h5>

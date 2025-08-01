@@ -129,6 +129,17 @@
             background: #a5a5a5;
             cursor: pointer;
         }
+        /* Blurred background when modal is shown */
+        body.modal-open::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(5px);
+            z-index: 1040; /* Just below the modal backdrop */
+        }
     </style>
 </head>
 
