@@ -147,12 +147,12 @@
 <body>
 
 	<div align="center" style="margin-top: -10px">
-		<img src="{{ public_path('template/assets/img/routeslip.png') }}">
+		<img src="{{ public_path('template/assets/img/rfbafrHeader.jpg') }}" width="95%" height="auto" alt="RFBAC Header">
 	</div>
 	<br>
 	<div></div>
-	<div class="title-form">Request for Budget Allocation For Purchase Request</div>
-	<div class="attach-label text-muted"><b>(Attachment to PR)</b></div>
+	{{-- <div class="title-form">Request for Budget Allocation For Purchase Request</div>
+	<div class="attach-label text-muted"><b>(Attachment to PR)</b></div> --}}
 
 	<p style="margin-top:-13px"></p>
 	

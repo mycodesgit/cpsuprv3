@@ -5,12 +5,12 @@
         "positionClass": "toast-top-right"
     };
     $(document).ready(function() {
-        $('#adCategory').submit(function(event) {
+        $('#addUser').submit(function(event) {
             event.preventDefault();
             var formData = $(this).serialize();
 
             $.ajax({
-                url: categoryCreateRoute,
+                url: userCreateRoute,
                 type: "POST",
                 data: formData,
                 success: function(response) {
@@ -18,8 +18,8 @@
                         toastr.success(response.message);
                         console.log(response);
                         $(document).trigger('userAdded');
-                        $('#addCategoryModal').modal('hide');
-                        $('input[name="category_name"]').val('');
+                        $('#modal-user').modal('hide');
+                        $('input[name="username"]').val('');
                     } else {
                         toastr.error(response.message);
                         console.log(response);

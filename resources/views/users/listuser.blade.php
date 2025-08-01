@@ -201,6 +201,7 @@
     @if(request()->routeIs(['userRead']))
         <script>
             var allUsersRoute = "{{ route('getuserRead') }}";
+            var userCreateRoute = "{{ route('userCreate') }}";
             var userUpdateRoute = "{{ route('userUpdate', ['id' => ':id']) }}";
             var userPassUpdateRoute = "{{ route('userUpdatePassword', ['id' => ':id']) }}";
             var userStatusUpdateRoute = "{{ route('userUpdateStatus', ['id' => ':id']) }}";
