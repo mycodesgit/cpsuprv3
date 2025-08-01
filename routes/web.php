@@ -240,7 +240,7 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
 
     //Users
     Route::prefix('/users')->group(function () {
-        Route::get('/list',[UserController::class,'userRead'])->name('userRead');
+        Route::get('/list/view/all',[UserController::class,'userRead'])->name('userRead');
         Route::get('/list/fetch/viewajax',[UserController::class,'getuserRead'])->name('getuserRead');
         Route::post('/list/add', [UserController::class, 'userCreate'])->name('userCreate');
         Route::post('list/update', [UserController::class, 'userUpdate'])->name('userUpdate');
