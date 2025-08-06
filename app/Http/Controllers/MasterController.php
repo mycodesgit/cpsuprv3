@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 use App\Traits\PendingCountTrait;
 use App\Traits\ApprovedCountTrait;
 use App\Traits\ReturnedCountTrait;
 
+use App\Models\Purpose;
 use App\Models\Category;
 use App\Models\Office;
 use App\Models\Campus;
@@ -26,11 +28,43 @@ class MasterController extends Controller
 
     public function dashboard()
     {
+        $now = Carbon::now();
+        $userId = Auth::guard('web')->user()->id;
+
         $camp = Campus::all();
         $userCount = User::count();
         $campusCount = Campus::count();
         $offCount = Office::count();
         $annoucement = Annoucement::first();
+
+        $ppending = Purpose::whereIn('pstatus', ['2', '4', '5', '6', '99'])->where('purpose.user_id', '=',  $userId)->get();
+        $papproved = Purpose::whereIn('pstatus', ['7', '8'])->where('purpose.user_id', '=',  $userId)->get();
+        $pcancel = Purpose::where('pstatus', '=', '19')->where('purpose.user_id', '=',  $userId)->get();
+
+        $pcheckerpending = Purpose::whereIn('pstatus', ['2'])->get();
+        $piconcheckerpending = Purpose::whereIn('pstatus', ['2'])->count();
+        $pcheckerapproved = Purpose::whereIn('pstatus', ['7', '8'])->get();
+        $pcheckercancel = Purpose::where('pstatus', '=', '19')->get();
+        $piconcheckercancel = Purpose::where('pstatus', '=', '19')->whereMonth('created_at', $now->month)->whereYear('created_at', $now->year)->count();
+
+        $countppending = Purpose::whereBetween('pstatus', [4, 16])
+            ->where('purpose.user_id', $userId)
+            ->whereMonth('created_at', $now->month)
+            ->whereYear('created_at', $now->year)
+            ->count();
+
+        $countpapproved = Purpose::whereIn('pstatus', ['7', '8'])
+            ->where('purpose.user_id', $userId)
+            ->whereMonth('created_at', $now->month)
+            ->whereYear('created_at', $now->year)
+            ->count();
+
+        $countpreturned = Purpose::where('pstatus', '3')
+            ->where('purpose.user_id', $userId)
+            ->whereMonth('created_at', $now->month)
+            ->whereYear('created_at', $now->year)
+            ->count();
+
         $userCategoryIds = PpmpUser::where('user_id', Auth::user()->id)
                              ->pluck('ppmp_categories')
                              ->flatMap(function ($item) {
@@ -101,7 +135,7 @@ class MasterController extends Controller
         }
                   
         
-        return view("home.dashboard", compact('data', 'camp', 'userCount', 'campusCount', 'offCount', 'category', 'annoucement'));
+        return view("home.dashboard", compact('data', 'camp', 'userCount', 'campusCount', 'offCount', 'category', 'annoucement', 'ppending', 'papproved', 'pcancel', 'pcheckerpending', 'piconcheckerpending', 'pcheckerapproved', 'pcheckercancel', 'piconcheckercancel', 'countppending', 'countpapproved', 'countpreturned'));
     }
 
     // public function logout()

@@ -23,6 +23,10 @@
     #sidebar-wrapper:hover {
         overflow: hidden !important;
     }
+    /* Hide balance when sidebar is collapsed */
+    .sidebar-collapse .balance-box {
+        display: none !important;
+    }
 </style>
 
 <aside id="sidebar-wrapper" style="overflow-x: hidden;">
@@ -36,14 +40,14 @@
         <a href="index-2.html" class="text-white">PR</a>
     </div>
     <hr>
-    <div class="form-inline" style="padding-left: 20px !important; padding-right: 20px !important">
+    <div class="form-inline balance-box" style="padding-left: 20px !important; padding-right: 20px !important">
         <div class="input-group" data-widget="sidebar-search">
             <div class="input-group-append">
                 <span class="input-group-text" style="background-color: #3a7d5c; border-color: #3a7d5c; color: white;">
                     <i class="fas fa-peso-sign"></i>
                 </span>
             </div>
-            <input class="form-control form-control-sidebar" type="text" placeholder="Balance" value="2, 500, 530.00" aria-label="Search" style="background-color: #3a7d5c; border-color: #3a7d5c; color: white;">
+            <input class="form-control form-control-sidebar" type="text" placeholder="Balance" value="0.00" aria-label="Search" style="background-color: #3a7d5c; border-color: #3a7d5c; color: white;" readonly>
         </div>
     </div>
     <ul class="sidebar-menu mt-4">
