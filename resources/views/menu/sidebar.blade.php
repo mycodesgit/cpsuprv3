@@ -5,6 +5,7 @@
     $manageActive = in_array($current_route, ['categoryRead']) ? 'active' : '';   
     $pendingAllActive = in_array($current_route, ['pendingAllListRead', 'pendingTechCheckListRead', 'pendingAllListView']) ? 'active' : '';
     $approvedAllActive = in_array($current_route, ['approvedListAllRead']) ? 'active' : '';
+    $ppmpsActive = in_array($current_route, ['ppmpRead']) ? 'active' : '';
     $usersAllActive = in_array($current_route, ['userRead']) ? 'active' : '';
 
     $shopUserActive = in_array($current_route, ['shoplistRead']) ? 'active' : '';
@@ -82,8 +83,8 @@
                 </a>
             </li>
 
-            <li>
-                <a class="nav-link" href="#">
+            <li class="{{ $ppmpsActive }}">
+                <a class="nav-link" href="{{ route('ppmpRead') }}">
                     <i class="fas fa-book"></i> <span>PPMP</span>
                 </a>
             </li>

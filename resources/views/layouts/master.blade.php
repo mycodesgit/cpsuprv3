@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="{{ asset('template/assets/js/toastr/toastr.min.css') }}">
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="{{ asset('template/assets/js/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('template/assets/js/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/assets/js/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
     
     <!-- dataTables Libraries -->
     <link rel="stylesheet"
@@ -139,6 +142,9 @@
             height: 100%;
             backdrop-filter: blur(5px);
             z-index: 1040; /* Just below the modal backdrop */
+        }
+        .main-sidebar .main-sidebar li a:hover {
+            
         }
     </style>
 </head>
@@ -397,8 +403,10 @@
     <script src="{{ asset('template/assets/js/tables/datatables-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('template/assets/js/tables/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('template/assets/js/tables/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-
-    <script src="{{ asset('template/js/chart.js/Chart.min.js') }}"></script>
+    <!-- Chartjs -->
+    <script src="{{ asset('template/assets/js/chart.js/Chart.min.js') }}"></script>
+    <!-- Select2 -->
+    <script src="{{ asset('template/assets/js/select2/js/select2.full.min.js') }}"></script>
     
     <!-- Page Specific JS File -->
     <script>
