@@ -88,6 +88,12 @@
                     <i class="fas fa-book"></i> <span>PPMP</span>
                 </a>
             </li>
+
+            <li class="">
+                <a class="nav-link" href="">
+                    <i class="fas fa-search"></i> <span>Search</span>
+                </a>
+            </li>
         @endif
 
         @if(Auth::user()->role == 'MIS Checker')
@@ -181,11 +187,11 @@
         @if(Auth::user()->role == 'Administrator' || Auth::user()->role == 'Procurement Officer' || Auth::user()->role =='Checker')
             <li class="menu-header" style="border-top: none">Reports Navigation</li>
 
-            <li class="dropdown">
+            <li class="dropdown active">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-file"></i> <span>Reports</span></a>
-                <ul class="dropdown-menu" style="display: none;">
-                    <li><a href="">Consolidation 1</a></li> 
-                    <li><a href="">Consolidation 2</a></li> 
+                <ul class="dropdown-menu" style="display: none; background-color: none !important">
+                    <li><a href="" style="background-color: transparent">Consolidation 1</a></li> 
+                    <li><a href="" style="background-color: transparent">Consolidation 2</a></li> 
                 </ul>
             </li>
         @endif

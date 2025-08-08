@@ -90,7 +90,8 @@ class CategoryController extends Controller
 
     public function getcategoryRead() 
     {
-        $data = Category::orderBy('category_name', 'ASC')->get();
+        $data = Category::where('cstatus', '=', 1)->orderBy('category_name', 'ASC')->get();
+
         return response()->json(['data' => $data]);
     }
 
@@ -146,11 +147,13 @@ class CategoryController extends Controller
         }
     }
 
-    public function categoryDelete($id)
-    {
+    public function categoryDelete($id) {
         $category = Category::find($id);
-        $category->delete();
-
-        return response()->json(['success'=> true, 'message'=>'Deleted Successfully',]);
+        if ($category) {
+            $category->cstatus = 2;
+            $category->save();
+            return response()->json(['success'=> true, 'message'=>'Status updated to deleted successfully']);
+        }
+        return response()->json(['error'=> true, 'message'=>'Category not found']);
     }
 }

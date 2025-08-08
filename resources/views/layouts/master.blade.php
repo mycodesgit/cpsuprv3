@@ -143,9 +143,6 @@
             backdrop-filter: blur(5px);
             z-index: 1040; /* Just below the modal backdrop */
         }
-        .main-sidebar .main-sidebar li a:hover {
-            
-        }
     </style>
 </head>
 

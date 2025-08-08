@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('category', function (Blueprint $table) {
             $table->id();
+            $table->enum('cstatus', [1, 2])->default(1);
             $table->string('category_name');
             $table->rememberToken();
             $table->timestamps();

@@ -143,10 +143,10 @@
                                     </div>
                                     <div class="card-wrap">
                                         <div class="card-header">
-                                            <h4>User's</h4>
+                                            <h4>Active User's</h4>
                                         </div>
                                         <div class="card-body">
-                                            {{ $userCount }} <span style="font-size: 9pt"></span>
+                                            {{ $userActiveCount }} <span style="font-size: 9pt"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -177,6 +177,51 @@
                                         </div>
                                         <div class="card-body">
                                             {{ $piconcheckercancel }} <span style="font-size: 9pt">this month</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                <div class="card card-statistic-1">
+                                    <div class="card-icon bg-danger">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div class="card-wrap">
+                                        <div class="card-header">
+                                            <h4>Deactivated User's</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            {{ $userDeactCount }} <span style="font-size: 9pt"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                <div class="card card-statistic-1">
+                                    <div class="card-icon bg-success">
+                                        <i class="fas fa-bars-progress"></i>
+                                    </div>
+                                    <div class="card-wrap">
+                                        <div class="card-header">
+                                            <h4>Categories</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            {{ $categoryCount }} <span style="font-size: 9pt"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                <div class="card card-statistic-1">
+                                    <div class="card-icon bg-warning">
+                                        <i class="fas fa-cubes-stacked"></i>
+                                    </div>
+                                    <div class="card-wrap">
+                                        <div class="card-header">
+                                            <h4>Items</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            {{ $itemsCount }} <span style="font-size: 9pt"></span>
                                         </div>
                                     </div>
                                 </div>

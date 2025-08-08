@@ -110,7 +110,8 @@ class ItemController extends Controller
         return response()->json(['error'=> true, 'message'=>'Item not found']);
     }
 
-    public function itemAllDelete() {
+    public function itemAllDelete() 
+    {
         $updated = Item::where('status', '!=', 2)->update(['status' => 2]);
         if ($updated) {
             return response()->json(['success' => true, 'message' => 'All items status updated to deleted successfully']);

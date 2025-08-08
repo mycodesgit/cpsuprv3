@@ -14,6 +14,7 @@ use App\Traits\ReturnedCountTrait;
 use App\Models\Purpose;
 use App\Models\Category;
 use App\Models\Office;
+use App\Models\Item;
 use App\Models\Campus;
 use App\Models\User;
 use App\Models\PpmpUser;
@@ -32,7 +33,10 @@ class MasterController extends Controller
         $userId = Auth::guard('web')->user()->id;
 
         $camp = Campus::all();
-        $userCount = User::count();
+        $userActiveCount = User::where('ustatus', '=', '1')->count();
+        $userDeactCount = User::where('ustatus', '=', '2')->count();
+        $itemsCount = Item::where('item.status', '=', 1)->count();
+        $categoryCount = Category::where('cstatus', '=', 1)->count();
         $campusCount = Campus::count();
         $offCount = Office::count();
         $annoucement = Annoucement::first();
@@ -135,7 +139,7 @@ class MasterController extends Controller
         }
                   
         
-        return view("home.dashboard", compact('data', 'camp', 'userCount', 'campusCount', 'offCount', 'category', 'annoucement', 'ppending', 'papproved', 'pcancel', 'pcheckerpending', 'piconcheckerpending', 'pcheckerapproved', 'pcheckercancel', 'piconcheckercancel', 'countppending', 'countpapproved', 'countpreturned'));
+        return view("home.dashboard", compact('data', 'camp', 'userActiveCount', 'userDeactCount', 'categoryCount', 'itemsCount', 'campusCount', 'offCount', 'category', 'annoucement', 'ppending', 'papproved', 'pcancel', 'pcheckerpending', 'piconcheckerpending', 'pcheckerapproved', 'pcheckercancel', 'piconcheckercancel', 'countppending', 'countpapproved', 'countpreturned'));
     }
 
     // public function logout()

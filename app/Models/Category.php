@@ -13,6 +13,7 @@ class Category extends Model
     protected $table = 'category';
 
     protected $fillable = [
+        'cstatus',
         'category_name',
         'remember_token',
     ];

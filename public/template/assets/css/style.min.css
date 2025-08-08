@@ -3335,7 +3335,8 @@ body.layout-4 .main-sidebar .sidebar-menu li ul.dropdown-menu li a {
     color: #ffffff;
 }
 body.layout-4 .main-sidebar .sidebar-menu li.dropdown.active > a {
-    color: #3b3d55 !important;
+    color: #ffffff !important;
+    background-color: #2a794f;
 }
 body.layout-4 .main-content,
 body.layout-4 .main-footer {
