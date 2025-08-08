@@ -19,6 +19,7 @@ use App\Http\Controllers\RequestApprovedController;
 use App\Http\Controllers\RequestReturnController;
 use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\PpmpController;
+use App\Http\Controllers\GeneralSearchController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UserController;
 
@@ -169,6 +170,7 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
 
         Route::get('/approvedPR/list', [RequestApprovedController::class, 'approvedListAllRead'])->name('approvedListAllRead');
         Route::get('/approvedPR/list/bud', [RequestApprovedController::class, 'approvedListBudAllRead'])->name('approvedListBudAllRead');
+        Route::get('/approvedPR/list/allprajaxapp', [RequestApprovedController::class, 'getAllprappListRead'])->name('getAllprappListRead');
         Route::get('/approvedPR/list/ajaxapp', [RequestApprovedController::class, 'getAllapprovedListRead'])->name('getAllapprovedListRead');
         Route::get('/approvedPR/list/received/ajaxapp', [RequestApprovedController::class, 'getAllreceivedListRead'])->name('getAllreceivedListRead');
         Route::get('/approvedPR/list/canvassing/ajaxapp', [RequestApprovedController::class, 'getAllcanvassingListRead'])->name('getAllcanvassingListRead');
@@ -221,6 +223,10 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
         Route::get('/per/year', [PpmpController::class, 'ppmpRead'])->name('ppmpRead');
         Route::get('/per/year/{puid}', [PpmpController::class,'ppmpEdit'])->name('ppmpEdit');
         Route::post('/per/year/update', [PpmpController::class, 'userppmpUpdate'])->name('userppmpUpdate');
+    });
+
+    Route::prefix('/search')->group(function () {
+        Route::get('/general/purpose', [GeneralSearchController::class, 'genSearch'])->name('genSearch');
     });
 
     Route::prefix('/archive')->group(function () {

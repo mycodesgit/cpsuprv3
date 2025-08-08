@@ -13,7 +13,12 @@
                         <div class="card-body">
                             <ul class="nav nav-tabs" id="myTab2" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active show" id="apprved-tab1" data-toggle="tab" href="#apprved" role="tab" aria-controls="apprved" aria-selected="true" style="font-weight: bold; color: #000;">
+                                    <a class="nav-link active show" id="allpr-tab1" data-toggle="tab" href="#allpr" role="tab" aria-controls="allpr" aria-selected="true" style="font-weight: bold; color: #000;">
+                                        All PR
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="apprved-tab1" data-toggle="tab" href="#apprved" role="tab" aria-controls="apprved" aria-selected="true" style="font-weight: bold; color: #000;">
                                         Approved
                                     </a>
                                 </li>
@@ -64,9 +69,31 @@
                                 </li>
                             </ul>
                             <div class="tab-content" id="myTab3Content">
-                                <div class="tab-pane fade active show" id="apprved" role="tabpanel" aria-labelledby="apprved-tab1">
+                                <div class="tab-pane fade active show" id="allpr" role="tabpanel" aria-labelledby="allpr-tab1">
                                     <div class="table-responsive" style="overflow-x: hidden;">
-                                        <table id="prapproved" class="table table-hover styled-table">
+                                        <table id="prall" class="table table-hover styled-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Campus</th>
+                                                    <th width="8%">PR No.</th>
+                                                    <th>Type</th>
+                                                    <th>Office</th>
+                                                    <th>Purpose</th>
+                                                    <th>Category</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="apprved" role="tabpanel" aria-labelledby="apprved-tab1">
+                                    <div class="table-responsive" style="overflow-x: hidden;">
+                                        <table id="prapproved" class="table table-hover styled-table" style="width: 100%">
                                             <thead>
                                                 <tr>
                                                     <th>Date</th>
@@ -302,6 +329,7 @@
 
     @if(request()->routeIs(['approvedListAllRead']))
         <script>
+            var allPrRoute = "{{ route('getAllprappListRead') }}";
             var allApprovedRoute = "{{ route('getAllapprovedListRead') }}";
             var allReceivedRoute = "{{ route('getAllreceivedListRead') }}";
             var allCanvassingRoute = "{{ route('getAllcanvassingListRead') }}";

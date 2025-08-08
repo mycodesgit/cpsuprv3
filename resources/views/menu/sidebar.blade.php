@@ -6,6 +6,7 @@
     $pendingAllActive = in_array($current_route, ['pendingAllListRead', 'pendingTechCheckListRead', 'pendingAllListView']) ? 'active' : '';
     $approvedAllActive = in_array($current_route, ['approvedListAllRead']) ? 'active' : '';
     $ppmpsActive = in_array($current_route, ['ppmpRead']) ? 'active' : '';
+    $gensActive = in_array($current_route, ['genSearch']) ? 'active' : '';
     $usersAllActive = in_array($current_route, ['userRead']) ? 'active' : '';
 
     $shopUserActive = in_array($current_route, ['shoplistRead']) ? 'active' : '';
@@ -89,8 +90,8 @@
                 </a>
             </li>
 
-            <li class="">
-                <a class="nav-link" href="">
+            <li class="{{ $gensActive }}">
+                <a class="nav-link" href="{{ route('genSearch') }}">
                     <i class="fas fa-search"></i> <span>Search</span>
                 </a>
             </li>
