@@ -7,6 +7,7 @@
     $approvedAllActive = in_array($current_route, ['approvedListAllRead']) ? 'active' : '';
     $ppmpsActive = in_array($current_route, ['ppmpRead']) ? 'active' : '';
     $gensActive = in_array($current_route, ['genSearch']) ? 'active' : '';
+    $reportsActive = in_array($current_route, ['consolidateRead', 'consolidateForm2Read']) ? 'active' : '';
     $usersAllActive = in_array($current_route, ['userRead']) ? 'active' : '';
 
     $shopUserActive = in_array($current_route, ['shoplistRead']) ? 'active' : '';
@@ -188,11 +189,11 @@
         @if(Auth::user()->role == 'Administrator' || Auth::user()->role == 'Procurement Officer' || Auth::user()->role =='Checker')
             <li class="menu-header" style="border-top: none">Reports Navigation</li>
 
-            <li class="dropdown active">
+            <li class="dropdown active {{ $reportsActive ? 'active menu-open' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-file"></i> <span>Reports</span></a>
                 <ul class="dropdown-menu" style="display: none; background-color: none !important">
-                    <li><a href="" style="background-color: transparent">Consolidation 1</a></li> 
-                    <li><a href="" style="background-color: transparent">Consolidation 2</a></li> 
+                    <li class="{{ $reportsActive }}"><a href="{{ route('consolidateRead') }}" style="background-color: transparent">Consolidation 1</a></li> 
+                    <li><a href="{{ route('consolidateForm2Read') }}" style="background-color: transparent">Consolidation 2</a></li> 
                 </ul>
             </li>
         @endif
