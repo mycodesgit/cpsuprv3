@@ -1021,11 +1021,25 @@ class RequestApprovedController extends Controller
 
     public function rerturnedPR(Request $request) {
         $id = decrypt($request->id);
+
+        $purpose = Purpose::find($id);
+
+        $user_id = $purpose->user_id;
+        $prnumber = $purpose->pr_no;
+
         RequestItem::where('purpose_id', $id)
             ->update(['status' => 17]);
 
         Purpose::where('id', $id)
             ->update(['pstatus' =>  17]);
+        
+         PRnotification::create([
+            'purp_id' => $id,
+            'user_id' => $user_id,
+            'message' => 'Your PR has been returned. </br>PR No.: <b>' . $prnumber . '</b>',
+            'notifstatus' => 17,
+            'is_read' => '0',
+        ]);
 
         return response()->json(['success' => true]);
     }

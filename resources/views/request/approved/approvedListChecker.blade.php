@@ -54,7 +54,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="consoltation-tab1" data-toggle="tab" href="#consoltation" role="tab" aria-controls="consoltation" aria-selected="false" style="font-weight: bold; color: #000;">
-                                        Consoltation
+                                        Consolidation
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -65,6 +65,16 @@
                                 <li class="nav-item">
                                     <a class="nav-link" id="purchased-tab1" data-toggle="tab" href="#purchased" role="tab" aria-controls="purchased" aria-selected="false" style="font-weight: bold; color: #000;">
                                         Purchased
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="returned-tab1" data-toggle="tab" href="#returned" role="tab" aria-controls="returned" aria-selected="false" style="font-weight: bold; color: #000;">
+                                        Returned
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pedo-tab1" data-toggle="tab" href="#pedo" role="tab" aria-controls="pedo" aria-selected="false" style="font-weight: bold; color: #000;">
+                                        Forwarded to PEDO
                                     </a>
                                 </li>
                             </ul>
@@ -91,6 +101,7 @@
                                         </table>
                                     </div>
                                 </div>
+
                                 <div class="tab-pane fade" id="apprved" role="tabpanel" aria-labelledby="apprved-tab1">
                                     <div class="table-responsive" style="overflow-x: hidden;">
                                         <table id="prapproved" class="table table-hover styled-table" style="width: 100%">
@@ -113,6 +124,7 @@
                                         </table>
                                     </div>
                                 </div>
+
                                 <div class="tab-pane fade" id="received" role="tabpanel" aria-labelledby="received-tab1">
                                     <table id="prreceived" class="table table-hover styled-table" style="width: 100%">
                                         <thead>
@@ -283,6 +295,48 @@
 
                                 <div class="tab-pane fade" id="purchased" role="tabpanel" aria-labelledby="purchased-tab1">
                                     <table id="prbakal" class="table table-hover styled-table" style="width: 100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Campus</th>
+                                                <th>PR No.</th>
+                                                <th>Type</th>
+                                                <th>Office</th>
+                                                <th>Purpose</th>
+                                                <th>Category</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane fade" id="returned" role="tabpanel" aria-labelledby="returned-tab1">
+                                    <table id="return" class="table table-hover styled-table" style="width: 100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Campus</th>
+                                                <th>PR No.</th>
+                                                <th>Type</th>
+                                                <th>Office</th>
+                                                <th>Purpose</th>
+                                                <th>Category</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane fade" id="pedo" role="tabpanel" aria-labelledby="pedo-tab1">
+                                    <table id="pedo" class="table table-hover styled-table" style="width: 100%">
                                         <thead>
                                             <tr>
                                                 <th>Campus</th>

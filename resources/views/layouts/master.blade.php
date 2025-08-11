@@ -460,6 +460,7 @@
 
     @if (request()->routeIs('approvedListAllRead'))
         @include('myscript.approve.allapprovedSerialize')
+        @include('myscript.approve.acceptanceSerialize')
     @endif
     @if (request()->routeIs('approvedListBudAllRead'))
         @include('myscript.approve.allBudapprovedSerialize')
