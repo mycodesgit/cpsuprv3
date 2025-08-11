@@ -10,6 +10,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
+                        <div class="card-header">
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addYearPPMPModal">
+                                <i class="fas fa-plus"></i> Create New
+                            </button>
+                        </div>
                         <div class="card-body">
                             
                         </div>
@@ -18,4 +23,5 @@
             </div>
         </div>
     </section>
+    @include('modal.ppmpAddmodal')
 @endsection

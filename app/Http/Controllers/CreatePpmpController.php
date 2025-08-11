@@ -23,6 +23,7 @@ use App\Models\RequestItem;
 use App\Models\FundingSource;
 use App\Models\User;
 use App\Models\PpmpUser;
+use App\Models\YearPR;
 
 class CreatePpmpController extends Controller
 {
@@ -91,6 +92,8 @@ class CreatePpmpController extends Controller
             ]);
         }
 
-        return view('createppmp.ppmp', compact('data'));
+        $prppmpyear = YearPR::all();
+
+        return view('createppmp.ppmp', compact('data', 'prppmpyear'));
     }
 }
