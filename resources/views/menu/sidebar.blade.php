@@ -16,6 +16,7 @@
     $approvedUserActive = in_array($current_route, ['approvedListRead']) ? 'active' : '';
     $returnUserActive = in_array($current_route, ['returnedUserListRead', 'editreturnselectItems']) ? 'active' : '';
     $canceledUserActive = in_array($current_route, ['cancelUserListRead']) ? 'active' : '';
+    $crteppmpUserActive = in_array($current_route, ['ppmpYearRead']) ? 'active' : '';
 
     $pendingBudAllActive = in_array($current_route, ['pendingAllBudgetListRead', 'pendingAllListView']) ? 'active' : '';
     $pendingBudCancelAllActive = in_array($current_route, ['requestPRcancelBudgetListRead', 'pendingAllListView']) ? 'active' : '';
@@ -151,6 +152,13 @@
                     <i class="fas fa-ban"></i> <span>Cancelled PR</span>
                 </a>
             </li>
+
+            <li class="menu-header" style="border-top: none">PPMP Creation</li>
+            <li class="{{ $crteppmpUserActive }}">
+                <a class="nav-link" href="{{ route('ppmpYearRead') }}">
+                    <i class="far fa-file-excel"></i> <span>Create PPMP</span>
+                </a>
+            </li>
         @endif
 
         @if(Auth::user()->role == 'Administrator' || Auth::user()->role == 'Budget Officer')
@@ -208,9 +216,10 @@
             </li>
         @endif
     </ul>
+
     {{-- <div class="mt-4 mb-4 p-3 hide-sidebar-mini sidebar-transition logout-button-container" style="position: absolute; bottom: 20px; width: 100%; z-index: 999;">
         <a href="{{ route('logout') }}" class="btn btn-primary btn-lg btn-block btn-icon-split text-left">
-            <i class="fas fa-power-off"></i> <span style="padding-left: 15px">Sign Out</span>
+            <i class="far fa-file-excel"></i> <span style="padding-left: 15px">CREATE PPMP</span>
         </a>
     </div> --}}
 </aside>

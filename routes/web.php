@@ -23,6 +23,8 @@ use App\Http\Controllers\GeneralSearchController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UserController;
 
+use App\Http\Controllers\CreatePpmpController;
+
 use App\Http\Controllers\ForAllEncryptIDController;
 
 
@@ -218,6 +220,10 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
 
         Route::get('/view/listcanceledPR/requestcancel', [RequestReturnController::class, 'requestPRcancelBudgetListRead'])->name('requestPRcancelBudgetListRead');
         Route::get('/view/listcanceledPR/request/tocancel/user/ajax', [RequestReturnController::class, 'getcanceledreqPRListRead'])->name('getcanceledreqPRListRead');
+    });
+
+    Route::prefix('/create')->group(function () {
+        Route::get('/ppmp/per/year', [CreatePpmpController::class, 'ppmpYearRead'])->name('ppmpYearRead');
     });
 
     //View
