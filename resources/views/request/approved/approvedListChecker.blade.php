@@ -315,7 +315,7 @@
                                 </div>
 
                                 <div class="tab-pane fade" id="returned" role="tabpanel" aria-labelledby="returned-tab1">
-                                    <table id="return" class="table table-hover styled-table" style="width: 100%">
+                                    <table id="prreturntoidontknow" class="table table-hover styled-table" style="width: 100%">
                                         <thead>
                                             <tr>
                                                 <th>Campus</th>
@@ -336,7 +336,7 @@
                                 </div>
 
                                 <div class="tab-pane fade" id="pedo" role="tabpanel" aria-labelledby="pedo-tab1">
-                                    <table id="pedo" class="table table-hover styled-table" style="width: 100%">
+                                    <table id="prpedo" class="table table-hover styled-table" style="width: 100%">
                                         <thead>
                                             <tr>
                                                 <th>Campus</th>
@@ -394,6 +394,8 @@
             var allConsolidatdprRoute = "{{ route('getAllmadapakconsolListRead') }}";
             var allPAwardRoute = "{{ route('getAllawardListRead') }}";
             var allpurchaseRoute = "{{ route('getAllpurchaseListRead') }}";
+            var allreturnedRoute = "{{ route('getAllreturnedListRead') }}";
+            var allpedoRoute = "{{ route('getAllpedoListRead') }}";
 
             var allApprovedCountRoute = "{{ route('approvedListAllRead') }}";
 

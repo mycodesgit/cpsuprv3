@@ -181,6 +181,8 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
         Route::get('/approvedPR/list/madakpakconsol/ajaxapp', [RequestApprovedController::class, 'getAllmadapakconsolListRead'])->name('getAllmadapakconsolListRead');
         Route::get('/approvedPR/list/award/ajaxapp', [RequestApprovedController::class, 'getAllawardListRead'])->name('getAllawardListRead');
         Route::get('/approvedPR/list/bakal/ajaxapp', [RequestApprovedController::class, 'getAllpurchaseListRead'])->name('getAllpurchaseListRead');
+        Route::get('/approvedPR/list/balik/ajaxapp', [RequestApprovedController::class, 'getAllreturnedListRead'])->name('getAllreturnedListRead');
+        Route::get('/approvedPR/list/forward/ajaxapp', [RequestApprovedController::class, 'getAllpedoListRead'])->name('getAllpedoListRead');
 
         Route::get('/approvedPR/list/view/{pid}', [RequestApprovedController::class, 'approvedAllListView'])->name('approvedAllListView');
         Route::get('/approvedPR/list/pdf/{pid}', [RequestApprovedController::class, 'PDFprAllApproved'])->name('PDFprAllApproved');

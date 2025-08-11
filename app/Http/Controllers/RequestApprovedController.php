@@ -551,6 +551,36 @@ class RequestApprovedController extends Controller
         return response()->json(['data' => $data]);
     }
 
+    public function getAllreturnedListRead() {
+        $data = Purpose::join('office', 'purpose.office_id', '=', 'office.id')
+            ->join('campuses', 'purpose.camp_id', '=', 'campuses.id')
+            ->join('category', 'purpose.cat_id', '=', 'category.id')
+            ->select('purpose.*', 'purpose.id as pid', 'campuses.*', 'campuses.id as campid', 'category.*', 'office.*', 'office.id as oid', 'purpose.created_at as cpdate')
+            ->where('purpose.pstatus', 17)
+            ->whereYear('purpose.updated_at', '=', now()->year)
+            ->orderBy('purpose.created_at', 'DESC')
+            ->get();
+        foreach ($data as $record) {
+            $record->pid = encrypt($record->pid);
+        }
+        return response()->json(['data' => $data]);
+    }
+
+    public function getAllpedoListRead() {
+        $data = Purpose::join('office', 'purpose.office_id', '=', 'office.id')
+            ->join('campuses', 'purpose.camp_id', '=', 'campuses.id')
+            ->join('category', 'purpose.cat_id', '=', 'category.id')
+            ->select('purpose.*', 'purpose.id as pid', 'campuses.*', 'campuses.id as campid', 'category.*', 'office.*', 'office.id as oid', 'purpose.created_at as cpdate')
+            ->where('purpose.pstatus', 18)
+            ->whereYear('purpose.updated_at', '=', now()->year)
+            ->orderBy('purpose.created_at', 'DESC')
+            ->get();
+        foreach ($data as $record) {
+            $record->pid = encrypt($record->pid);
+        }
+        return response()->json(['data' => $data]);
+    }
+
     public function approvedListView($pid) {
         $userId = Auth::id();
         $category = Category::all();

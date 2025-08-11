@@ -112,23 +112,23 @@ trait ApprovedCountTrait
             ->count();
     }
 
-    public function getReturnedAllCount()
-    {
-        $userId = Auth::id();
-        return Purpose::join('office', 'purpose.office_id', '=', 'office.id')
-            ->join('users', 'purpose.user_id', '=', 'users.id')
-            ->where('purpose.pstatus', 17)
-            ->count();
-    }
+    // public function getReturnedAllCount()
+    // {
+    //     $userId = Auth::id();
+    //     return Purpose::join('office', 'purpose.office_id', '=', 'office.id')
+    //         ->join('users', 'purpose.user_id', '=', 'users.id')
+    //         ->where('purpose.pstatus', 17)
+    //         ->count();
+    // }
 
-    public function getPedoAllCount()
-    {
-        $userId = Auth::id();
-        return Purpose::join('office', 'purpose.office_id', '=', 'office.id')
-            ->join('users', 'purpose.user_id', '=', 'users.id')
-            ->where('purpose.pstatus', 18)
-            ->count();
-    }
+    // public function getPedoAllCount()
+    // {
+    //     $userId = Auth::id();
+    //     return Purpose::join('office', 'purpose.office_id', '=', 'office.id')
+    //         ->join('users', 'purpose.user_id', '=', 'users.id')
+    //         ->where('purpose.pstatus', 18)
+    //         ->count();
+    // }
 
 
 
