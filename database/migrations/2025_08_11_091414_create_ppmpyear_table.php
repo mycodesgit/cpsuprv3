@@ -17,7 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('pryearid');
             $table->integer('pruserid');
-            $table->integer('pruserid');
+            $table->text('prusercode')->nullable();
+            $table->text('prusercatdescrip')->nullable();
+            $table->text('prusercodecatqty')->nullable();
+            $table->string('pruserbudest')->nullable();
+            $table->text('pruserprocmode')->nullable();
             $table->timestamps();
         });
     }

@@ -474,6 +474,12 @@
     @if (request()->routeIs('cancelUserListRead'))
         @include('myscript.return.canceledprUserSerialize')
     @endif
+    @if (request()->routeIs('ppmpYearRead'))
+        @include('myscript.ppmpplan.procplanSerialize')
+    @endif
+    @if (request()->routeIs('viewlistppmp'))
+        @include('myscript.ppmpplan.procplandetailSerialize')
+    @endif
     @if (request()->routeIs('requestPRcancelBudgetListRead'))
         @include('myscript.return.canceledprReqbyUserSerialize')
     @endif
@@ -539,6 +545,7 @@
         </script>
     @endif
 @endif
+
 
 </body>
 </html>

@@ -224,6 +224,11 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
 
     Route::prefix('/create')->group(function () {
         Route::get('/ppmp/per/year', [CreatePpmpController::class, 'ppmpYearRead'])->name('ppmpYearRead');
+        Route::post('/ppmp/per/year/add/plan', [CreatePpmpController::class, 'ppmpstore'])->name('ppmpstore');
+        Route::get('/ppmp/per/year/add/plan/ajaxplan', [CreatePpmpController::class, 'getppmpYearRead'])->name('getppmpYearRead');
+        Route::get('/ppmp/per/year/add/plan/viewlist/{ppid}', [CreatePpmpController::class, 'viewlistppmp'])->name('viewlistppmp');
+        Route::post('/ppmp/save-all', [CreatePpmpController::class, 'saveAll'])->name('ppmp.saveAll');
+        Route::get('/ppmp/pdf/{ppid}', [CreatePpmpController::class, 'ppmpfrompdfTemplate'])->name('ppmpfrompdfTemplate');
     });
 
     //View

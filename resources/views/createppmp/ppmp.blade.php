@@ -16,7 +16,18 @@
                             </button>
                         </div>
                         <div class="card-body">
-                            
+                            <table id="ppmpplanTable" class="table table-hover styled-table">
+                                <thead>
+                                    <tr>
+                                        <th>PPMP</th>
+                                        <th>Year</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -24,4 +35,10 @@
         </div>
     </section>
     @include('modal.ppmpAddmodal')
+
+    <script>
+        var ppmpplanCreateRoute = "{{ route('ppmpstore') }}";
+        var ppmpplanReadRoute = "{{ route('getppmpYearRead') }}";
+        var ppmpplanListViewRoute = "{{ route('viewlistppmp', '') }}";
+    </script>
 @endsection

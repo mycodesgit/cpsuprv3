@@ -7,17 +7,18 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="adYear" method="POST">
+            <form id="adYearPPMP" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="addYearPPMPName">Year</label>
-                        <select name="" id="" class="form-control">
+                        <select name="pryearid" id="pryearid" class="form-control" onchange="updatePrYearName()">
                             <option disabled selected> --Select Year-- </option>
                             @foreach ($prppmpyear as $datapryear)
-                                <option value="{{ $datapryear->id }}">{{ $datapryear->pryear }}</option>
+                                <option value="{{ $datapryear->id }}" data-year="{{ $datapryear->pryear }}">{{ $datapryear->pryear }}</option>
                             @endforeach
                         </select>
+                        <input type="hidden" name="pryearname" id="pryearname">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -28,3 +29,11 @@
         </div>
     </div>
 </div>
+
+<script>
+    function updatePrYearName() {
+        let select = document.getElementById('pryearid');
+        let selectedOption = select.options[select.selectedIndex];
+        document.getElementById('pryearname').value = selectedOption.getAttribute('data-year');
+    }
+</script>
