@@ -48,7 +48,7 @@
 </head>
 <body>
     <div style="text-align: center; font-family:Arial, Helvetica, sans-serif; font-size:12pt">
-        <h4 style="font-style:italic; margin-top: -10px">
+        <h5 style="font-style:italic; margin-top: -10px">
             CENTRAL PHILIPPINES STATE UNIVERSITY 
              - (@if (Auth::guard('web')->user()->campus_id == '1') Main Campus
                 @elseif(Auth::guard('web')->user()->campus_id == '9') Victorias Campus
@@ -62,11 +62,11 @@
                 @elseif(Auth::guard('web')->user()->campus_id == '5') Hinobaan Campus
                 @elseif(Auth::guard('web')->user()->campus_id == '11') Valladolid Campus
             @endif)
-        </h4>
-        <h5 style="margin-top: -20px">Kabankalan City, Negros Occidental</h5>
-        <h4>
+        </h5>
+        <h6 style="margin-top: -20px">Kabankalan City, Negros Occidental</h6>
+        <h5>
             PROJECT PROCUREMENT MANAGEMENT PLAN (PPMP)
-        </h4>
+        </h5>
     </div>
 
     <div style="font-family:Arial, Helvetica, sans-serif; font-size:11pt; font-style:italic">

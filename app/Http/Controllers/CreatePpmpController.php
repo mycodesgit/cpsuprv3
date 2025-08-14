@@ -317,7 +317,6 @@ class CreatePpmpController extends Controller
             'oct' => 'nullable|array','nov' => 'nullable|array','dec' => 'nullable|array',
         ]);
 
-        // Determine how many rows were submitted (use the longest array to be safe)
         $rowCount = max(
             count($request->input('code', [])),
             count($request->input('item_id', [])),
@@ -326,9 +325,8 @@ class CreatePpmpController extends Controller
 
         DB::transaction(function () use ($request, $rowCount) {
             for ($i = 0; $i < $rowCount; $i++) {
-                $id   = $request->input("item_id.$i"); // existing row id (if any)
+                $id   = $request->input("item_id.$i"); 
 
-                // Build one row's data
                 $data = [
                     'plan_id'            => $request->plan_id,
                     'planyearname'       => $request->planyearname,
@@ -367,18 +365,25 @@ class CreatePpmpController extends Controller
                     $item = ProcurementPlanItem::find($id);
                     if ($item) {
                         $item->update($data);
-                    } else {
-                        // if id not found (e.g., deleted meanwhile), fallback to CREATE
-                        ProcurementPlanItem::create($data);
-                    }
+                    } 
+                    // else {
+                    //     // if id not found (e.g., deleted meanwhile), fallback to CREATE
+                    //     ProcurementPlanItem::create($data);
+                    // }
                 } else {
                     // INSERT new
-                    ProcurementPlanItem::create($data);
+                     $exists = ProcurementPlanItem::where('plan_id', $request->plan_id)
+                                ->where('code', $data['code'])
+                                ->where('general_description', $data['general_description'])
+                                ->exists();
+
+                    if (!$exists) {
+                        ProcurementPlanItem::create($data);
+                    }
                 }
             }
         });
 
-        //return back()->with('success', 'Items saved successfully.');
         return response()->json(['success' => true, 'message' => 'Save Successfully!'],  200);
     }
 

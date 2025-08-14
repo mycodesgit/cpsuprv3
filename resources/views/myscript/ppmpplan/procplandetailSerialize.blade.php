@@ -22,9 +22,10 @@
                     if (response.success) {
                         toastr.success(response.message);
 
-                        // Reload only the rows
-                        //$('#ppmpRows').load(ppmpRowsPartialRoute);
-
+                        let pdfBtn = $('.btn.btn-outline-danger');
+                            pdfBtn.removeClass('disabled')
+                                .attr('href', routeToPPMP) 
+                                .attr('target', '_blank');
                     } else {
                         toastr.error(response.message || 'Something went wrong.');
                     }
@@ -41,7 +42,7 @@
                     toastr.error(errorMessage);
                 },
                 complete: function () {
-                    submitBtn.prop('disabled', false).text('Save All');
+                    submitBtn.prop('disabled', false).text('Save');
                 }
             });
         });

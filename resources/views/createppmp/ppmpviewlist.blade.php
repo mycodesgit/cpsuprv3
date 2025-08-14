@@ -10,10 +10,19 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header d-flex justify-content-end">
-                            {{-- <button type="button" id="addRow" class="btn btn-success btn-sm">
-                                <i class="fas fa-plus"></i> Add New Row
-                            </button> --}}
+                        <div class="card-header d-flex justify-content-start">
+                            PROJECT PROCUREMENT MANAGEMENT PLAN &nbsp;<span style="font-weight: bold">{{ $plan->pryearname ?? '' }}</span>
+                            <div class=" d-flex justify-content-start" style="margin-left: auto;">
+                                @php
+                                    $planItemExists = \App\Models\ProcurementPlanItem::where('plan_id', $plan->id)->exists();
+                                @endphp
+                                <a href="{{ $planItemExists ? route('ppmpfrompdfTemplate', encrypt($plan->id)) : '#' }}" class="btn btn-outline-danger btn-sm {{ !$planItemExists ? 'disabled' : '' }}" target="_blank">
+                                    <i class="fas fa-file-pdf"></i> View PPMP PDF
+                                </a>
+                                {{-- <a href="" class="btn btn-outline-success btn-sm ml-2" target="_blank">
+                                    <i class="fas fa-file-excel"></i> View PPMP Excel
+                                </a> --}}
+                            </div>
                         </div>
                         <div class="card-body">
                             <form id="ppmpForm" action="{{ route('ppmp.saveAll') }}" method="POST">
@@ -162,5 +171,6 @@
     <script>
         var ppmpdetailCreateRoute = "{{ route('ppmp.saveAll') }}";
         var ppmpRowsPartialRoute = "{{ route('viewlistppmp', '') }}"; 
+        var routeToPPMP = "{{ route('ppmpfrompdfTemplate', encrypt($plan->id)) }}";
     </script>
 @endsection
