@@ -21,6 +21,12 @@
                 success: function (response) {
                     if (response.success) {
                         toastr.success(response.message);
+                        let url = ppmpRowsGetPartialRoute.replace(':ppid', currentPlanId);
+
+                        $(".load").load(url, function() {
+                            initPPMPFormScripts();
+                        });
+
 
                         let pdfBtn = $('.btn.btn-outline-danger');
                             pdfBtn.removeClass('disabled')

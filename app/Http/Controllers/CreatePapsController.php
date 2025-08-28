@@ -25,16 +25,18 @@ use App\Models\FundingSource;
 use App\Models\User;
 use App\Models\PpmpUser;
 use App\Models\YearPR;
+use App\Models\PapsPrePlan;
+use App\Models\PapsPrePlanItem;
 use App\Models\ProcurementPlan;
 use App\Models\ProcurementPlanItem;
 
-class CreatePpmpController extends Controller
+class CreatePapsController extends Controller
 {
     use PendingCountTrait;
     use ApprovedCountTrait;
     use ReturnedCountTrait;
-
-    public function ppmpYearRead()
+    
+    public function papsYearRead()
     {
         $pendCount = $this->getPendingAllCount();
         $pendBudCount = $this->getPendingBudgetCount();
@@ -98,67 +100,65 @@ class CreatePpmpController extends Controller
         $prppmpyear = YearPR::all();
         
 
-        return view('createppmp.ppmp', compact('data', 'prppmpyear'));
+        return view('createpaps.papspre', compact('data', 'prppmpyear'));
     }
 
-    public function ppmpstore(Request $request) 
+    public function papsstore(Request $request) 
     {
         if ($request->isMethod('post')) {
             $request->validate([
-                'pryearid' => 'required',
-                'pryearname' => 'required',
+                'papsyearid' => 'required',
+                'papsyearname' => 'required',
             ]);
 
             $userID = Auth::guard('web')->user()->id;
-            $planYearID = $request->input('pryearid'); 
-            $planYearName = $request->input('pryearname'); 
+            $planYearID = $request->input('papsyearid'); 
+            $planYearName = $request->input('papsyearname'); 
             $planYearCamp = Auth::guard('web')->user()->campus_id; 
+            $planFundSource = $request->input('papsuserfundsource'); 
 
-            $existingPlan = ProcurementPlan::where('pryearid', $planYearID)
-                ->where('pryearname', $planYearName)
-                ->where('pruserid', $userID)
-                ->where('prusercampus', $planYearCamp)
+            $existingPlan = PapsPrePlan::where('papsyearid', $planYearID)
+                ->where('papsyearname', $planYearName)
+                ->where('papsuserid', $userID)
+                ->where('papsusercampus', $planYearCamp)
+                ->where('papsuserfundsource', $planFundSource)
                 ->first();
 
             if ($existingPlan) {
                 return response()->json([
                     'error' => true,
-                    'message' => 'PPMP ' . $planYearName .' already exists'
+                    'message' => 'PAPs PRE ' . $planYearName .' already exists'
                 ], 409);
             }
 
             try {
-                $plan = ProcurementPlan::create([
-                    'pryearid' => $planYearID,
-                    'pryearname' => $planYearName,
-                    'pruserid' => $userID,
-                    'prusercampus' => $planYearCamp,
+                $plan = PapsPrePlan::create([
+                    'papsyearid' => $planYearID,
+                    'papsyearname' => $planYearName,
+                    'papsuserid' => $userID,
+                    'papsusercampus' => $planYearCamp,
+                    'papsuserfundsource' => $planFundSource,
                 ]);
-
-                // ProcurementPlanItem::create([
-                //     'plan_id' => $plan->id,
-                //     'planyearname' => $planYearName,
-                // ]);
 
                 return response()->json([
                     'success' => true,
-                    'message' => 'PPMP ' . $planYearName . ' created successfully'
+                    'message' => 'PAPs PRE ' . $planYearName . ' created successfully'
                 ], 200);
 
             } catch (\Exception $e) {
                 return response()->json([
                     'error' => true,
-                    'message' => 'Failed to create PPMP',
+                    'message' => 'Failed to create PAPs PRE',
                     'debug' => $e->getMessage() // optional for debugging
                 ], 500);
             }
         }
     }
 
-    public function getppmpYearRead() 
+    public function getpapsYearRead() 
     {
-        $data = ProcurementPlan::where('pruserid', Auth::guard('web')->user()->id)
-                ->select('procurement_plan.*', 'procurement_plan.id as ppid')
+        $data = PapsPrePlan::where('papsuserid', Auth::guard('web')->user()->id)
+                ->select('papspre_plan.*', 'papspre_plan.id as ppid')
                 ->get();
         foreach ($data as $record) {
             $record->ppid = encrypt($record->ppid);
@@ -167,12 +167,12 @@ class CreatePpmpController extends Controller
         return response()->json(['data' => $data]);
     }
 
-    public function viewlistppmp($ppid) 
+    public function viewlistpapspre($ppid) 
     {
         $decryptedId = decrypt($ppid);
 
-        $plan = ProcurementPlan::find($decryptedId);
-        $planitem = ProcurementPlanItem::where('plan_id', $decryptedId)->get();
+        $plan = PapsPrePlan::find($decryptedId);
+        $planitem = PapsPrePlanItem::where('papspreplan_id', $decryptedId)->get();
 
         $pendCount = $this->getPendingAllCount();
         $pendBudCount = $this->getPendingBudgetCount();
@@ -233,79 +233,8 @@ class CreatePpmpController extends Controller
             ]);
         }
 
-        return view('createppmp.ppmpviewlist', compact('plan', 'planitem', 'data'));
+        return view('createpaps.papspreviewlist', compact('plan', 'planitem', 'data'));
     }
-
-    public function getviewlistppmp($ppid) 
-    {
-        $decryptedId = decrypt($ppid);
-
-        $plan = ProcurementPlan::find($decryptedId);
-        $planitem = ProcurementPlanItem::where('plan_id', $decryptedId)->get();
-
-        return view('createppmp.ppmpviewlistcard', compact('plan', 'planitem'));
-    }
-
-    
-
-// public function saveAll(Request $request)
-//     {
-//         $request->validate([
-//             'plan_id' => 'required|exists:procurement_plans,id',
-//             'code' => 'required|array',
-//             'general_description' => 'nullable|array',
-//             'quantity_size' => 'nullable|array',
-//             'estimated_budget' => 'nullable|array',
-//             'mode_of_procurement' => 'nullable|array',
-//             'jan' => 'nullable|array',
-//             'feb' => 'nullable|array',
-//             'mar' => 'nullable|array',
-//             'apr' => 'nullable|array',
-//             'may' => 'nullable|array',
-//             'jun' => 'nullable|array',
-//             'jul' => 'nullable|array',
-//             'aug' => 'nullable|array',
-//             'sep' => 'nullable|array',
-//             'oct' => 'nullable|array',
-//             'nov' => 'nullable|array',
-//             'dec' => 'nullable|array',
-//             'item_id' => 'nullable|array', // hidden field for existing rows
-//         ]);
-
-//         $rowCount = count($request->code);
-
-//         for ($i = 0; $i < $rowCount; $i++) {
-//             $data = [
-//                 'plan_id' => $request->plan_id,
-//                 'code' => $request->code[$i] ?? null,
-//                 'general_description' => $request->general_description[$i] ?? null,
-//                 'quantity_size' => $request->quantity_size[$i] ?? null,
-//                 'estimated_budget' => $request->estimated_budget[$i] ?? null,
-//                 'mode_of_procurement' => $request->mode_of_procurement[$i] ?? null,
-//                 'jan' => $request->jan[$i] ?? null,
-//                 'feb' => $request->feb[$i] ?? null,
-//                 'mar' => $request->mar[$i] ?? null,
-//                 'apr' => $request->apr[$i] ?? null,
-//                 'may' => $request->may[$i] ?? null,
-//                 'jun' => $request->jun[$i] ?? null,
-//                 'jul' => $request->jul[$i] ?? null,
-//                 'aug' => $request->aug[$i] ?? null,
-//                 'sep' => $request->sep[$i] ?? null,
-//                 'oct' => $request->oct[$i] ?? null,
-//                 'nov' => $request->nov[$i] ?? null,
-//                 'dec' => $request->dec[$i] ?? null,
-//             ];
-
-//             // If item_id exists → update, else create new
-//             if (!empty($request->item_id[$i])) {
-//                 ProcurementPlanItem::where('id', $request->item_id[$i])->update($data);
-//             } else {
-//                 ProcurementPlanItem::create($data);
-//             }
-//         }
-
-//         return redirect()->back()->with('success', 'Procurement plan items saved successfully.');
-//     }
 
     public function saveAll(Request $request)
     {
@@ -338,14 +267,16 @@ class CreatePpmpController extends Controller
                 $id   = $request->input("item_id.$i"); 
 
                 $data = [
-                    'plan_id'            => $request->plan_id,
-                    'planyearname'       => $request->planyearname,
-                    'code'               => $request->input("code.$i"),
-                    'pap'                => $request->input("pap.$i"),
-                    'general_description'=> $request->input("general_description.$i"),
-                    'quantity_size'      => $request->input("quantity_size.$i"),
-                    'estimated_budget'   => $request->input("estimated_budget.$i"),
-                    'mode_of_procurement'=> $request->input("mode_of_procurement.$i"),
+                    'papspreplan_id'        => $request->papspreplan_id,
+                    'papspreplanyearname'   => $request->papspreplanyearname,
+                    'ppa_cat'               => $request->input("ppa_cat.$i"),
+                    'ppa'                   => $request->input("ppa.$i"),
+                    'papsprecode'           => $request->input("papsprecode.$i"),
+                    'papstitle'             => $request->input("papstitle.$i"),
+                    'papsamount'            => $request->input("papsamount.$i"),
+                    'papsprocyn'            => $request->input("papsprocyn.$i"),
+                    'papsresperson'         => $request->input("papsresperson.$i"),
+                    'papsevidences'         => $request->input("papsevidences.$i"),
                     'jan' => $request->input("jan.$i"),
                     'feb' => $request->input("feb.$i"),
                     'mar' => $request->input("mar.$i"),
@@ -372,44 +303,28 @@ class CreatePpmpController extends Controller
 
                 if ($id) {
                     // UPDATE existing
-                    $item = ProcurementPlanItem::find($id);
+                    $item = PapsPrePlanItem::find($id);
                     if ($item) {
                         $item->update($data);
                     } 
                     // else {
                     //     // if id not found (e.g., deleted meanwhile), fallback to CREATE
-                    //     ProcurementPlanItem::create($data);
+                    //     PapsPrePlanItem::create($data);
                     // }
                 } else {
                     // INSERT new
-                     $exists = ProcurementPlanItem::where('plan_id', $request->plan_id)
+                     $exists = PapsPrePlanItem::where('plan_id', $request->plan_id)
                                 ->where('code', $data['code'])
                                 ->where('general_description', $data['general_description'])
                                 ->exists();
 
                     if (!$exists) {
-                        ProcurementPlanItem::create($data);
+                        PapsPrePlanItem::create($data);
                     }
                 }
             }
         });
 
         return response()->json(['success' => true, 'message' => 'Save Successfully!'],  200);
-    }
-
-    public function ppmpfrompdfTemplate($ppid) 
-    {
-        $decryptedId = decrypt($ppid);
-
-        $plan = ProcurementPlan::find($decryptedId);
-        $planitem = ProcurementPlanItem::where('plan_id', $decryptedId)->get();
-
-        $data = [
-            'plan_id' => $ppid,
-            'planitem' => $planitem,
-        ];
-
-        $pdf = PDF::loadView('createppmp.ppmppdf', $data)->setPaper('A4', 'landscape');
-        return $pdf->stream();
     }
 }

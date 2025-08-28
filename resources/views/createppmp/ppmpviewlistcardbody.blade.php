@@ -1,31 +1,4 @@
-@extends('layouts.master')
-
-@section('body')
-    <section class="section">
-        <div class="" style="margin-left: -20px; margin-right: -20px; border-radius: 5px; margin-top: 20px; padding: 3px;">
-            <h5>Create PPMP</h5>
-        </div>
-
-        <div class="section-body" style="margin-left: -20px; margin-right: -20px; border-radius: 5px;">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header d-flex justify-content-start">
-                            PROJECT PROCUREMENT MANAGEMENT PLAN &nbsp;<span style="font-weight: bold">{{ $plan->pryearname ?? '' }}</span>
-                            <div class=" d-flex justify-content-start" style="margin-left: auto;">
-                                @php
-                                    $planItemExists = \App\Models\ProcurementPlanItem::where('plan_id', $plan->id)->exists();
-                                @endphp
-                                <a href="{{ $planItemExists ? route('ppmpfrompdfTemplate', encrypt($plan->id)) : '#' }}" class="btn btn-outline-danger btn-sm {{ !$planItemExists ? 'disabled' : '' }}" target="_blank">
-                                    <i class="fas fa-file-pdf"></i> View PPMP PDF
-                                </a>
-                                {{-- <a href="" class="btn btn-outline-success btn-sm ml-2" target="_blank">
-                                    <i class="fas fa-file-excel"></i> View PPMP Excel
-                                </a> --}}
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="load">
+<div class="load">
     <form id="ppmpForm" action="{{ route('ppmp.saveAll') }}" method="POST">
         @csrf
         <input type="hidden" value="{{ $plan->id ?? '' }}" name="plan_id">
@@ -142,50 +115,3 @@
 
     
 </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        var ppmpdetailCreateRoute = "{{ route('ppmp.saveAll') }}";
-        var ppmpRowsPartialRoute = "{{ route('viewlistppmp', '') }}"; 
-        var currentPlanId = "{{ encrypt($plan->id) }}"; 
-        var ppmpRowsGetPartialRoute = "{{ route('getviewlistppmp', ['ppid' => ':ppid']) }}";
-        var routeToPPMP = "{{ route('ppmpfrompdfTemplate', encrypt($plan->id)) }}";
-    </script>
-    <script>
-        function initPPMPFormScripts() {
-            document.getElementById('addRow').addEventListener('click', function() {
-                let template = document.getElementById('blankRowTemplate');
-                let clone = template.content.cloneNode(true);
-                document.getElementById('ppmpRows').appendChild(clone);
-            });
-
-            document.addEventListener('click', function(e) {
-                if (e.target.closest('.removeRow')) {
-                    if (document.querySelectorAll('.ppmp-row').length > 1) {
-                        e.target.closest('.ppmp-row').remove();
-                    }
-                }
-            });
-        }
-        document.addEventListener("DOMContentLoaded", function() {
-            initPPMPFormScripts();
-        });
-    </script>
-    <script>
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('month-cell')) {
-                if (e.target.value === 'x') {
-                    e.target.value = '';
-                } else {
-                    e.target.value = 'x';
-                }
-            }
-        });
-    </script>
-@endsection

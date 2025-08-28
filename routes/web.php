@@ -23,6 +23,7 @@ use App\Http\Controllers\GeneralSearchController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UserController;
 
+use App\Http\Controllers\CreatePapsController;
 use App\Http\Controllers\CreatePpmpController;
 
 use App\Http\Controllers\ForAllEncryptIDController;
@@ -223,10 +224,17 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
     });
 
     Route::prefix('/create')->group(function () {
+        Route::get('/paps/per/year', [CreatePapsController::class, 'papsYearRead'])->name('papsYearRead');
+        Route::post('/paps/per/year/add/plan', [CreatePapsController::class, 'papsstore'])->name('papsstore');
+        Route::get('/papspre/per/year/add/plan/ajaxplan', [CreatePapsController::class, 'getpapsYearRead'])->name('getpapsYearRead');
+        Route::get('/papspre/per/year/add/plan/viewlist/{ppid}', [CreatePapsController::class, 'viewlistpapspre'])->name('viewlistpapspre');
+
+
         Route::get('/ppmp/per/year', [CreatePpmpController::class, 'ppmpYearRead'])->name('ppmpYearRead');
         Route::post('/ppmp/per/year/add/plan', [CreatePpmpController::class, 'ppmpstore'])->name('ppmpstore');
         Route::get('/ppmp/per/year/add/plan/ajaxplan', [CreatePpmpController::class, 'getppmpYearRead'])->name('getppmpYearRead');
         Route::get('/ppmp/per/year/add/plan/viewlist/{ppid}', [CreatePpmpController::class, 'viewlistppmp'])->name('viewlistppmp');
+        Route::get('/ppmp/per/year/add/plan/viewlist/ajax/{ppid}', [CreatePpmpController::class, 'getviewlistppmp'])->name('getviewlistppmp');
         Route::post('/ppmp/save-all', [CreatePpmpController::class, 'saveAll'])->name('ppmp.saveAll');
         Route::get('/ppmp/pdf/{ppid}', [CreatePpmpController::class, 'ppmpfrompdfTemplate'])->name('ppmpfrompdfTemplate');
     });

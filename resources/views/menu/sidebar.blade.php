@@ -16,6 +16,7 @@
     $approvedUserActive = in_array($current_route, ['approvedListRead']) ? 'active' : '';
     $returnUserActive = in_array($current_route, ['returnedUserListRead', 'editreturnselectItems']) ? 'active' : '';
     $canceledUserActive = in_array($current_route, ['cancelUserListRead']) ? 'active' : '';
+    $crtepapspreUserActive = in_array($current_route, ['papsYearRead', 'viewlistpapspre']) ? 'active' : '';
     $crteppmpUserActive = in_array($current_route, ['ppmpYearRead', 'viewlistppmp']) ? 'active' : '';
 
     $pendingBudAllActive = in_array($current_route, ['pendingAllBudgetListRead', 'pendingAllListView']) ? 'active' : '';
@@ -153,10 +154,10 @@
                 </a>
             </li>
 
-            <li class="menu-header" style="border-top: none">PPMP Creation</li>
-            <li class="{{ $crteppmpUserActive }}">
-                <a class="nav-link" href="{{ route('ppmpYearRead') }}">
-                    <i class="far fa-file-excel"></i> <span>Create PPMP</span>
+            <li class="menu-header" style="border-top: none">PAP's PRE Creation</li>
+            <li class="{{ $crtepapspreUserActive }}">
+                <a class="nav-link" href="{{ route('papsYearRead') }}">
+                    <i class="far fa-file-excel"></i> <span>Create PAP's</span>
                 </a>
             </li>
         @endif

@@ -474,6 +474,9 @@
     @if (request()->routeIs('cancelUserListRead'))
         @include('myscript.return.canceledprUserSerialize')
     @endif
+    @if (request()->routeIs('papsYearRead'))
+        @include('myscript.ppmpplan.papsplanSerialize')
+    @endif
     @if (request()->routeIs('ppmpYearRead'))
         @include('myscript.ppmpplan.procplanSerialize')
     @endif
