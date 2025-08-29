@@ -25,6 +25,7 @@ use App\Models\FundingSource;
 use App\Models\User;
 use App\Models\PpmpUser;
 use App\Models\YearPR;
+use App\Models\Uacs;
 use App\Models\PapsPrePlan;
 use App\Models\PapsPrePlanItem;
 use App\Models\ProcurementPlan;
@@ -173,6 +174,7 @@ class CreatePapsController extends Controller
 
         $plan = PapsPrePlan::find($decryptedId);
         $planitem = PapsPrePlanItem::where('papspreplan_id', $decryptedId)->get();
+        $uacscode = Uacs::all();
 
         $pendCount = $this->getPendingAllCount();
         $pendBudCount = $this->getPendingBudgetCount();
@@ -233,23 +235,37 @@ class CreatePapsController extends Controller
             ]);
         }
 
-        return view('createpaps.papspreviewlist', compact('plan', 'planitem', 'data'));
+        return view('createpaps.papspreviewlist', compact('plan', 'planitem', 'uacscode', 'data'));
     }
 
-    public function saveAll(Request $request)
+    public function getviewlistpaps($ppid) 
+    {
+        $decryptedId = decrypt($ppid);
+
+        $plan = PapsPrePlan::find($decryptedId);
+        $planitem = PapsPrePlanItem::where('papspreplan_id', $decryptedId)->get();
+        $uacscode = Uacs::all();
+
+        return view('createpaps.papspreviewlistcardbody', compact('plan', 'planitem', 'uacscode'));
+    }
+
+    public function saveAllpaps(Request $request)
     {
         $request->validate([
-            'plan_id' => 'required',
+            'papspreplan_id' => 'required',
+            'papspreplanyearname' => 'required',
 
             // arrays per column
-            'item_id'             => 'nullable|array',
-            'code'                => 'nullable|array',
-            'general_description' => 'nullable|array',
-            'quantity_size'       => 'nullable|array',
-            'estimated_budget'    => 'nullable|array',
-            'mode_of_procurement' => 'nullable|array',
-            'planyearname'        => 'required',
-            'pap'                 => 'nullable|array',
+            'item_id'       => 'nullable|array',
+            'ppa'           => 'nullable|array',
+            'papsprecode'   => 'nullable|array',
+            'papstitle'     => 'nullable|array',
+            'papsamount'    => 'nullable|array',
+            'papsprocyn'    => 'nullable|array',
+            'papsresperson' => 'nullable|array',
+            'papsevidences' => 'nullable|array',
+            'ppa_cat'       => 'nullable|array',
+
             'jan' => 'nullable|array','feb' => 'nullable|array','mar' => 'nullable|array',
             'apr' => 'nullable|array','may' => 'nullable|array','jun' => 'nullable|array',
             'jul' => 'nullable|array','aug' => 'nullable|array','sep' => 'nullable|array',
@@ -257,9 +273,9 @@ class CreatePapsController extends Controller
         ]);
 
         $rowCount = max(
-            count($request->input('code', [])),
+            count($request->input('ppa', [])),
             count($request->input('item_id', [])),
-            count($request->input('general_description', []))
+            count($request->input('papsevidences', []))
         );
 
         DB::transaction(function () use ($request, $rowCount) {
@@ -291,10 +307,15 @@ class CreatePapsController extends Controller
                     'dec' => $request->input("dec.$i"),
                 ];
 
-                // Skip totally blank rows (avoid inserting empty records)
+                // ✅ Skip if no category assigned
+                if (empty($data['ppa_cat'])) {
+                    continue;
+                }
+
+                // ✅ Skip totally blank rows (no actual content)
                 $isBlank = collect($data)
-                    ->except(['plan_id']) // plan_id is always present
-                    ->filter(function ($v) { return $v !== null && $v !== ''; })
+                    ->except(['papspreplan_id','papspreplanyearname','ppa_cat']) // exclude fixed fields
+                    ->filter(fn($v) => $v !== null && $v !== '')
                     ->isEmpty();
 
                 if ($isBlank) {
@@ -306,16 +327,13 @@ class CreatePapsController extends Controller
                     $item = PapsPrePlanItem::find($id);
                     if ($item) {
                         $item->update($data);
-                    } 
-                    // else {
-                    //     // if id not found (e.g., deleted meanwhile), fallback to CREATE
-                    //     PapsPrePlanItem::create($data);
-                    // }
+                    }
                 } else {
-                    // INSERT new
-                     $exists = PapsPrePlanItem::where('plan_id', $request->plan_id)
-                                ->where('code', $data['code'])
-                                ->where('general_description', $data['general_description'])
+                    // INSERT new only if not duplicate
+                    $exists = PapsPrePlanItem::where('papspreplan_id', $request->papspreplan_id)
+                                ->where('ppa_cat', $data['ppa_cat'])
+                                ->where('ppa', $data['ppa'])
+                                ->where('papstitle', $data['papstitle'])
                                 ->exists();
 
                     if (!$exists) {
@@ -325,6 +343,25 @@ class CreatePapsController extends Controller
             }
         });
 
-        return response()->json(['success' => true, 'message' => 'Save Successfully!'],  200);
+        return response()->json(['success' => true, 'message' => 'Save Successfully!'], 200);
+    }
+
+    public function papsprefrompdfTemplate($ppid) 
+    {
+        $decryptedId = decrypt($ppid);
+
+        $plan = PapsPrePlan::find($decryptedId);
+        $planitem = PapsPrePlanItem::join('uacs', 'uacs.id', '=', 'paspre_plan_items.papstitle')
+                ->select('paspre_plan_items.*', 'uacs.uacs_code', 'uacs.uacs_title')
+                ->where('papspreplan_id', $decryptedId)->get();
+
+        $data = [
+            'plan_id' => $ppid,
+            'planitem' => $planitem,
+            'plan' => $plan,
+        ];
+
+        $pdf = PDF::loadView('createpaps.papsprepdf', $data)->setPaper([0, 0, 612, 936], 'landscape');
+        return $pdf->stream();
     }
 }

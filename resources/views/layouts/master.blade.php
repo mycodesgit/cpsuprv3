@@ -120,13 +120,32 @@
             0%, 50%, 100% { opacity: 1; }
             50% { opacity: 0; }
         }
-        select.form-control-sm {
-            height: calc(1.8125rem + 2px) !important;
-            padding: .25rem .5rem !important;
-            font-size: .875rem !important;
-            line-height: 1.5 !important;
+        /* Force Select2 to match Bootstrap .form-control-sm */
+        .select2-container--default .select2-selection--single {
+            height: calc(1.8125rem + 2px) !important; /* ~31px (same as .form-control-sm) */
+            min-height: calc(1.8125rem + 2px) !important;
+            /* border: 1px solid #ced4da !important; */
             border-radius: .2rem !important;
+            font-size: 0.875rem !important;
+            padding: 0.25rem 0.5rem !important;
+            display: flex !important;
+            align-items: center !important; /* vertical align */
         }
+
+        /* Adjust text inside */
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            padding-left: 0 !important;
+            line-height: 3 !important;
+            font-size: 0.875rem !important;
+        }
+
+        /* Adjust arrow size + position */
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 100% !important;
+            top: 50% !important;
+            transform: translateY(-50%); /* center vertically */
+        }
+
         #clearSearch {
             border: none;
             background: #a5a5a5;
@@ -476,6 +495,17 @@
     @endif
     @if (request()->routeIs('papsYearRead'))
         @include('myscript.ppmpplan.papsplanSerialize')
+    @endif
+    @if (request()->routeIs('viewlistpapspre'))
+        @include('myscript.ppmpplan.papsplandetailSerialize')
+        @include('myscript.ppmpplan.papsplandetailScript')
+        <script>
+            $(document).on("change", ".papstitle-select", function () {
+                let code = $(this).find(":selected").data("code");
+                let row = $(this).closest(".ppmp-row");
+                row.find(".papscode-input").val(code);
+            });
+        </script>
     @endif
     @if (request()->routeIs('ppmpYearRead'))
         @include('myscript.ppmpplan.procplanSerialize')
