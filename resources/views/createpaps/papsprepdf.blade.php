@@ -15,8 +15,8 @@
 
 		#papspdftemplate td {
 			border: 1px solid #000;
-		  	padding: 2px;
             font-size: 6pt;
+		  	padding-left: 2px;
 		} 
 		#papspdftemplate th {
 		  	border: 1px solid #000;
@@ -24,7 +24,7 @@
 		  	font-size: 8pt;
 		}
 
-        #papspdftemplatetotal {
+        /* #papspdftemplatetotal {
 		  	font-family: Arial, sans-serif;
 		  	border-collapse: collapse;
 		  	width: 100%;
@@ -39,7 +39,7 @@
 		  	border: none;
 		  	font-weight: normal;
 		  	/*padding: 8px;*/
-		}
+		} */
         .prepared-block {
             font-family: Arial, sans-serif;
 			font-size: 10px;
@@ -188,18 +188,18 @@
                     </td>
                     <td colspan="2"></td>
                     <td style="font-weight:bold; text-align:right;"></td>
-                    <td>{{ $monthTotals['jan'] ? number_format($monthTotals['jan'], 2) : '' }}</td>
-                    <td>{{ $monthTotals['feb'] ? number_format($monthTotals['feb'], 2) : '' }}</td>
-                    <td>{{ $monthTotals['mar'] ? number_format($monthTotals['mar'], 2) : '' }}</td>
-                    <td>{{ $monthTotals['apr'] ? number_format($monthTotals['apr'], 2) : '' }}</td>
-                    <td>{{ $monthTotals['may'] ? number_format($monthTotals['may'], 2) : '' }}</td>
-                    <td>{{ $monthTotals['jun'] ? number_format($monthTotals['jun'], 2) : '' }}</td>
-                    <td>{{ $monthTotals['jul'] ? number_format($monthTotals['jul'], 2) : '' }}</td>
-                    <td>{{ $monthTotals['aug'] ? number_format($monthTotals['aug'], 2) : '' }}</td>
-                    <td>{{ $monthTotals['sep'] ? number_format($monthTotals['sep'], 2) : '' }}</td>
-                    <td>{{ $monthTotals['oct'] ? number_format($monthTotals['oct'], 2) : '' }}</td>
-                    <td>{{ $monthTotals['nov'] ? number_format($monthTotals['nov'], 2) : '' }}</td>
-                    <td>{{ $monthTotals['dec'] ? number_format($monthTotals['dec'], 2) : '' }}</td>
+                    <td style="font-weight:bold;">{{ $monthTotals['jan'] ? number_format($monthTotals['jan'], 2) : '' }}</td>
+                    <td style="font-weight:bold;">{{ $monthTotals['feb'] ? number_format($monthTotals['feb'], 2) : '' }}</td>
+                    <td style="font-weight:bold;">{{ $monthTotals['mar'] ? number_format($monthTotals['mar'], 2) : '' }}</td>
+                    <td style="font-weight:bold;">{{ $monthTotals['apr'] ? number_format($monthTotals['apr'], 2) : '' }}</td>
+                    <td style="font-weight:bold;">{{ $monthTotals['may'] ? number_format($monthTotals['may'], 2) : '' }}</td>
+                    <td style="font-weight:bold;">{{ $monthTotals['jun'] ? number_format($monthTotals['jun'], 2) : '' }}</td>
+                    <td style="font-weight:bold;">{{ $monthTotals['jul'] ? number_format($monthTotals['jul'], 2) : '' }}</td>
+                    <td style="font-weight:bold;">{{ $monthTotals['aug'] ? number_format($monthTotals['aug'], 2) : '' }}</td>
+                    <td style="font-weight:bold;">{{ $monthTotals['sep'] ? number_format($monthTotals['sep'], 2) : '' }}</td>
+                    <td style="font-weight:bold;">{{ $monthTotals['oct'] ? number_format($monthTotals['oct'], 2) : '' }}</td>
+                    <td style="font-weight:bold;">{{ $monthTotals['nov'] ? number_format($monthTotals['nov'], 2) : '' }}</td>
+                    <td style="font-weight:bold;">{{ $monthTotals['dec'] ? number_format($monthTotals['dec'], 2) : '' }}</td>
                 </tr>
             </tfoot>
         </table>

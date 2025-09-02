@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header d-flex justify-content-start">
+                        <div class="card-header d-flex justify-content-start" style="font-weight: bold; color: #000">
                             PROPOSED BUDGET / PROGRAM OF RECEIPTS AND EXPENDITURES (PRE) &nbsp;<span style="font-weight: bold">{{ $plan->pryearname ?? '' }}</span>
                             <div class=" d-flex justify-content-start" style="margin-left: auto;">
                                 @php
@@ -50,13 +50,13 @@
 
                                     {{-- LOOP CATEGORIES --}}
                                     @foreach($categories as $catKey => $catName)
-                                        <h4 class="mt-4">{{ $catKey }}. {{ $catName }}</h4>
+                                        <h4 class="mt-4" style="color: #000">{{ $catKey }}. {{ $catName }}</h4>
 
                                         <div id="category{{ $catKey }}">
                                             {{-- Existing subcategories from DB --}}
                                             @foreach($planitem->where('ppa_cat',$catKey)->groupBy('ppa_catsub') as $subKey => $subItems)
                                                 <div class="subcategory-block mb-3" id="subcategory-{{ $catKey }}-{{ Str::slug($subKey,'_') }}">
-                                                    <h5 class="mt-3">{{ $subKey }}</h5>
+                                                    <h5 class="mt-3" style="color: #000">{{ $subKey }}</h5>
 
                                                     <div class="subcat-rows" id="rows-{{ $catKey }}-{{ Str::slug($subKey,'_') }}">
                                                         @foreach($subItems as $item)
@@ -67,9 +67,15 @@
                                                                     <input type="hidden" name="item_id[]" value="{{ $item->id }}">
 
                                                                     <div class="pr-3" style="min-width:280px;">
-                                                                        <input type="text" name="ppa[]" value="{{ $item->ppa }}" class="form-control form-control-sm">
+                                                                        @if($loop->first)
+                                                                            <label style="font-weight: bold; color: #000">Programs Projects and Activities :</label> 
+                                                                        @endif
+                                                                        <input type="text" name="ppa[]" value="{{ $item->ppa }}" class="form-control form-control-sm tinput">
                                                                     </div>
                                                                     <div class="pr-3" style="min-width:350px;">
+                                                                        @if($loop->first)
+                                                                            <labe style="font-weight: bold; color: #000"l>Title:</labe>
+                                                                        @endif
                                                                         <select name="papstitle[]" class="form-control form-control-sm select2 papstitle-select">
                                                                             <option disabled selected> --Select-- </option>
                                                                             @foreach ($uacscode as $itemuacscode)
@@ -82,26 +88,44 @@
                                                                         </select>
                                                                     </div>
                                                                     <div class="pr-3" style="min-width:120px;">
-                                                                        <input type="text" name="papsprecode[]" value="{{ $item->papsprecode }}" class="form-control form-control-sm papscode-input">
+                                                                        @if($loop->first)
+                                                                            <label style="font-weight: bold; color: #000">Code:</label>
+                                                                        @endif
+                                                                        <input type="text" name="papsprecode[]" value="{{ $item->papsprecode }}" class="form-control form-control-sm papscode-input tinput">
                                                                     </div>
                                                                     <div class="pr-3" style="min-width:150px;">
-                                                                        <input type="text" name="papsamount[]" value="{{ $item->papsamount }}" class="form-control form-control-sm total-amount" readonly>
+                                                                        @if($loop->first)
+                                                                            <label style="font-weight: bold; color: #000">Total Amount:</label>
+                                                                        @endif
+                                                                        <input type="text" name="papsamount[]" value="{{ $item->papsamount }}" class="form-control form-control-sm total-amount tinput" readonly>
                                                                     </div>
                                                                     <div class="pr-3" style="min-width:180px;">
-                                                                        <select name="papsprocyn[]" class="form-control form-control-sm select2 papsprocyn-select">
+                                                                        @if($loop->first)
+                                                                            <label style="font-weight: bold; color: #000">Procurable? (Y/N):</label>
+                                                                        @endif
+                                                                        <select name="papsprocyn[]" class="form-control form-control-sm select2 papsprocyn-select tinput">
                                                                             <option disabled selected>-- Select --</option>
                                                                             <option value="Yes" {{ $item->papsprocyn == 'Yes' ? 'selected' : '' }}>Yes</option>
                                                                             <option value="No" {{ $item->papsprocyn == 'No' ? 'selected' : '' }}>No</option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="pr-3" style="min-width:200px;">
-                                                                        <input type="text" name="papsresperson[]" value="{{ $item->papsresperson }}" class="form-control form-control-sm">
+                                                                        @if($loop->first)
+                                                                            <label style="font-weight: bold; color: #000">Responsible Person:</label>
+                                                                        @endif
+                                                                        <input type="text" name="papsresperson[]" value="{{ $item->papsresperson }}" class="form-control form-control-sm tinput">
                                                                     </div>
                                                                     <div class="pr-3" style="min-width:350px;">
-                                                                        <input type="text" name="papsevidences[]" value="{{ $item->papsevidences }}" class="form-control form-control-sm">
+                                                                        @if($loop->first)
+                                                                            <label style="font-weight: bold; color: #000">Verifiable Evidences (of procurement):</label>
+                                                                        @endif
+                                                                        <input type="text" name="papsevidences[]" value="{{ $item->papsevidences }}" class="form-control form-control-sm tinput">
                                                                     </div>
                                                                     @foreach($months as $m)
                                                                         <div class="pr-3" style="min-width:115px;">
+                                                                            @if($loop->parent->first)
+                                                                                <label style="font-weight: bold; color: #000; font-size:11px;">{{ strtoupper($m) }}</label>
+                                                                            @endif
                                                                             <input type="text" name="{{ $m }}[]" value="{{ $item->$m }}" class="form-control form-control-sm month-input" inputmode="decimal">
                                                                         </div>
                                                                     @endforeach
@@ -111,7 +135,7 @@
                                                     </div>
 
                                                     {{-- Add Row under subcategory --}}
-                                                    <button type="button" class="btn btn-outline-info btn-sm addRow" data-cat="{{ $catKey }}" data-sub="{{ $subKey }}">
+                                                    <button type="button" class="btn btn-success btn-sm addRow" data-cat="{{ $catKey }}" data-sub="{{ $subKey }}">
                                                         <i class="fas fa-plus"></i> Add Row ({{ $subKey }})
                                                     </button>
                                                 </div>
@@ -119,9 +143,13 @@
                                         </div>
 
                                         {{-- Add Subcategory under Category --}}
-                                        <div class="form-inline my-2">
-                                            <input type="text" id="newSub{{ $catKey }}" class="form-control form-control-sm mr-2 ppa_catsub-input" placeholder="Enter Subcategory">
-                                            <button type="button" class="btn btn-outline-primary btn-sm addSubcategory" data-cat="{{ $catKey }}">+ Add Subcategory</button>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="text" id="newSub{{ $catKey }}" class="form-control form-control-sm ppa_catsub-input" placeholder="Enter Subcategory">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <button type="button" class="btn btn-primary btn-sm addSubcategory" data-cat="{{ $catKey }}">+ Add Subcategory</button>
+                                            </div>
                                         </div>
                                     @endforeach
 
@@ -140,11 +168,11 @@
                                         <input type="hidden" name="ppa_catsub[]" value="__SUB__">
                                         <input type="hidden" name="item_id[]" value="">
                                         <div class="pr-3" style="min-width:280px;">
-                                            <label>Programs Projects and Activities :</label>
-                                            <input type="text" name="ppa[]" class="form-control form-control-sm">
+                                            <label style="color: #000">Programs Projects and Activities :</label>
+                                            <input type="text" name="ppa[]" class="form-control form-control-sm tinput">
                                         </div>
                                         <div class="pr-3" style="min-width:350px;">
-                                            <label>Title:</label>
+                                            <label style="color: #000">Title:</label>
                                             <select name="papstitle[]" class="form-control form-control-sm select2 papstitle-select">
                                                 <option disabled selected> --Select-- </option>
                                                 @foreach ($uacscode as $itemuacscode)
@@ -155,15 +183,15 @@
                                             </select>
                                         </div>
                                         <div class="pr-3" style="min-width:120px;">
-                                            <label>Code:</label>
-                                            <input type="text" name="papsprecode[]" class="form-control form-control-sm papscode-input">
+                                            <label style="color: #000">Code:</label>
+                                            <input type="text" name="papsprecode[]" class="form-control form-control-sm papscode-input tinput">
                                         </div>
                                         <div class="pr-3" style="min-width:150px;">
-                                            <label>Total Amount:</label>
-                                            <input type="text" name="papsamount[]" class="form-control form-control-sm total-amount" readonly>
+                                            <label style="color: #000">Total Amount:</label>
+                                            <input type="text" name="papsamount[]" class="form-control form-control-sm total-amount tinput" readonly>
                                         </div>
                                         <div class="pr-3" style="min-width:180px;">
-                                            <label>Procurable? (Y/N):</label>
+                                            <label style="color: #000">Procurable? (Y/N):</label>
                                             <select name="papsprocyn[]" class="form-control form-control-sm select2 papsprocyn-select">
                                                 <option disabled selected>-- Select --</option>
                                                 <option value="Yes">Yes</option>
@@ -171,21 +199,21 @@
                                             </select>
                                         </div>
                                         <div class="pr-3" style="min-width:200px;">
-                                            <label>Responsible Person:</label>
-                                            <input type="text" name="papsresperson[]" class="form-control form-control-sm" oninput="var words = this.value.split(' '); for(var i = 0; i < words.length; i++){ words[i] = words[i].substr(0,1).toUpperCase() + words[i].substr(1); } this.value = words.join(' ');" value="{{ ucfirst(strtolower(Auth::guard('web')->user()->fname)) }} {{ substr(Auth::guard('web')->user()->mname, 0,1) }}. {{ ucfirst(strtolower(Auth::guard('web')->user()->lname)) }}">
+                                            <label style="color: #000">Responsible Person:</label>
+                                            <input type="text" name="papsresperson[]" class="form-control form-control-sm tinput" oninput="var words = this.value.split(' '); for(var i = 0; i < words.length; i++){ words[i] = words[i].substr(0,1).toUpperCase() + words[i].substr(1); } this.value = words.join(' ');" value="{{ ucfirst(strtolower(Auth::guard('web')->user()->fname)) }} {{ substr(Auth::guard('web')->user()->mname, 0,1) }}. {{ ucfirst(strtolower(Auth::guard('web')->user()->lname)) }}">
                                         </div>
                                         <div class="pr-3" style="min-width:350px;">
-                                            <label>Verifiable Evidences (of procurement):</label>
-                                            <input type="text" name="papsevidences[]" class="form-control form-control-sm">
+                                            <label style="color: #000">Verifiable Evidences (of procurement):</label>
+                                            <input type="text" name="papsevidences[]" class="form-control form-control-sm tinput">
                                         </div>
                                         @foreach($months as $m)
                                             <div class="pr-3" style="min-width:115px;">
-                                                <label style="font-size:11px;">{{ strtoupper($m) }}</label>
+                                                <label style="color: #000" style="font-size:11px;">{{ strtoupper($m) }}</label>
                                                 <input type="text" name="{{ $m }}[]" class="form-control form-control-sm month-input" inputmode="decimal">
                                             </div>
                                         @endforeach
                                         <div class="pr-3" style="min-width:80px;">
-                                            <label>&nbsp;</label>
+                                            <label style="color: #000">&nbsp;</label>
                                             <button type="submit" class="btn btn-danger btn-sm removeRow">
                                                 <i class="fas fa-trash"></i>
                                             </button>

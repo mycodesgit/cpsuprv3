@@ -67,7 +67,7 @@
                                         <input type="hidden" name="item_id[]" value="{{ $item->id }}">
 
                                         <div class="pr-3" style="min-width:280px;">
-                                            <input type="text" name="ppa[]" value="{{ $item->ppa }}" class="form-control form-control-sm">
+                                            <input type="text" name="ppa[]" value="{{ $item->ppa }}" class="form-control form-control-sm tinput">
                                         </div>
                                         <div class="pr-3" style="min-width:350px;">
                                             <select name="papstitle[]" class="form-control form-control-sm select2 papstitle-select">
@@ -82,10 +82,10 @@
                                             </select>
                                         </div>
                                         <div class="pr-3" style="min-width:120px;">
-                                            <input type="text" name="papsprecode[]" value="{{ $item->papsprecode }}" class="form-control form-control-sm papscode-input">
+                                            <input type="text" name="papsprecode[]" value="{{ $item->papsprecode }}" class="form-control form-control-sm papscode-input tinput">
                                         </div>
                                         <div class="pr-3" style="min-width:150px;">
-                                            <input type="text" name="papsamount[]" value="{{ $item->papsamount }}" class="form-control form-control-sm total-amount" readonly>
+                                            <input type="text" name="papsamount[]" value="{{ $item->papsamount }}" class="form-control form-control-sm total-amount tinput" readonly>
                                         </div>
                                         <div class="pr-3" style="min-width:180px;">
                                             <select name="papsprocyn[]" class="form-control form-control-sm select2 papsprocyn-select">
@@ -95,10 +95,10 @@
                                             </select>
                                         </div>
                                         <div class="pr-3" style="min-width:200px;">
-                                            <input type="text" name="papsresperson[]" value="{{ $item->papsresperson }}" class="form-control form-control-sm">
+                                            <input type="text" name="papsresperson[]" value="{{ $item->papsresperson }}" class="form-control form-control-sm tinput">
                                         </div>
                                         <div class="pr-3" style="min-width:350px;">
-                                            <input type="text" name="papsevidences[]" value="{{ $item->papsevidences }}" class="form-control form-control-sm">
+                                            <input type="text" name="papsevidences[]" value="{{ $item->papsevidences }}" class="form-control form-control-sm tinput">
                                         </div>
                                         @foreach($months as $m)
                                             <div class="pr-3" style="min-width:115px;">
@@ -120,7 +120,7 @@
 
             {{-- Add Subcategory under Category --}}
             <div class="form-inline my-2">
-                <input type="text" id="newSub{{ $catKey }}" class="form-control form-control-sm mr-2" placeholder="Enter Subcategory">
+                <input type="text" id="newSub{{ $catKey }}" class="form-control form-control-sm mr-2 ppa_catsub-input" placeholder="Enter Subcategory">
                 <button type="button" class="btn btn-outline-primary btn-sm addSubcategory" data-cat="{{ $catKey }}">+ Add Subcategory</button>
             </div>
         @endforeach
