@@ -25,7 +25,7 @@
 
                         $(".load").load(url, function(response, status, xhr) {
                             if (status === "success") {
-                                initpapsFormScripts();
+                                //initpapsFormScripts();
                                 bindPapsFormSubmit(); // ✅ rebind submit
                                 //console.log("✅ .load() completed for:", url);
                             } else if (status === "error") {
@@ -101,4 +101,57 @@
     //         }
     //     })
     // });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Block everything except letters, numbers, spaces, dash, and dot
+    const invalidChars = /[^a-zA-Z0-9\s\.\-]/; 
+
+    const saveBtn = document.querySelector("#saveAllBtn");
+    if (saveBtn) saveBtn.style.display = "none"; // hidden initially
+
+    // Function to validate ALL inputs in template and ppmp-rows
+    function validateAllInputs() {
+        let inputs = document.querySelectorAll(
+            ".ppa_catsub-input, .ppmp-row input[type='text'], .ppmp-row select"
+        );
+
+        let allValid = true;
+
+        inputs.forEach(input => {
+            let value = input.value;
+
+            if (invalidChars.test(value)) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Invalid Characters Found!",
+                    text: "Please remove symbols like / @ # $ % & etc.",
+                    confirmButtonText: "OK"
+                });
+
+                // auto-remove invalid chars
+                input.value = value.replace(invalidChars, "");
+                allValid = false;
+            }
+
+            if (input.value.trim() === "") {
+                allValid = false;
+            }
+        });
+
+        if (saveBtn) {
+            saveBtn.style.display = allValid ? "inline-block" : "none";
+        }
+    }
+
+    // Watch ALL inputs dynamically
+    document.addEventListener("input", function (e) {
+        if (
+            e.target.matches(".ppa_catsub-input, .ppmp-row input[type='text'], .ppmp-row select")
+        ) {
+            validateAllInputs();
+        }
+    });
+});
 </script>

@@ -265,6 +265,7 @@ class CreatePapsController extends Controller
             'papsresperson' => 'nullable|array',
             'papsevidences' => 'nullable|array',
             'ppa_cat'       => 'nullable|array',
+            'ppa_catsub'       => 'nullable|array',
 
             'jan' => 'nullable|array','feb' => 'nullable|array','mar' => 'nullable|array',
             'apr' => 'nullable|array','may' => 'nullable|array','jun' => 'nullable|array',
@@ -286,6 +287,7 @@ class CreatePapsController extends Controller
                     'papspreplan_id'        => $request->papspreplan_id,
                     'papspreplanyearname'   => $request->papspreplanyearname,
                     'ppa_cat'               => $request->input("ppa_cat.$i"),
+                    'ppa_catsub'               => $request->input("ppa_catsub.$i"),
                     'ppa'                   => $request->input("ppa.$i"),
                     'papsprecode'           => $request->input("papsprecode.$i"),
                     'papstitle'             => $request->input("papstitle.$i"),
@@ -332,6 +334,7 @@ class CreatePapsController extends Controller
                     // INSERT new only if not duplicate
                     $exists = PapsPrePlanItem::where('papspreplan_id', $request->papspreplan_id)
                                 ->where('ppa_cat', $data['ppa_cat'])
+                                ->where('ppa_catsub', $data['ppa_catsub'])
                                 ->where('ppa', $data['ppa'])
                                 ->where('papstitle', $data['papstitle'])
                                 ->exists();

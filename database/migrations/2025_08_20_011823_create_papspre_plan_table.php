@@ -28,6 +28,7 @@ return new class extends Migration
             $table->foreignId('papspreplan_id')->constrained('procurement_plan')->onDelete('cascade');
             $table->string('papspreplanyearname')->nullable();
             $table->string('ppa_cat')->nullable();
+            $table->text('ppa_catsub')->nullable();
             $table->string('ppa')->nullable();
             $table->string('papsprecode')->nullable(); // Expense Account Code
             $table->string('papstitle')->nullable();

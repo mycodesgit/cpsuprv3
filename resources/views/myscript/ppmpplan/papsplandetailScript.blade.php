@@ -1,33 +1,75 @@
 <script>
     function initpapsFormScripts() {
+
+        function slugifySub(str) {
+            return (str || '')
+            .toString()
+            .normalize('NFD').replace(/[\u0300-\u036f]/g,'') // remove accents
+            .toLowerCase().trim()
+            .replace(/[^a-z0-9]+/g,'_') // non-alnum -> _
+            .replace(/^_+|_+$/g,'');    // trim underscores
+        }
+
         // Unbind old handlers (to avoid double binding after reload)
-        document.querySelectorAll('.addRow').forEach(btn => {
-            btn.replaceWith(btn.cloneNode(true));
-        });
+        // document.querySelectorAll('.addRow').forEach(btn => {
+        //     btn.replaceWith(btn.cloneNode(true));
+        // });
 
         // Rebind Add Row
-        document.querySelectorAll('.addRow').forEach(btn => {
-            btn.addEventListener('click', function() {
-                let cat = this.dataset.cat; // A, B, C, D
-                let container = document.querySelector('#category' + cat);
-                let template = document.querySelector('#blankRowTemplate').innerHTML;
+        document.addEventListener("click", function(e) {
+            // Add Subcategory
+            if (e.target.classList.contains("addSubcategory")) {
+                let cat = e.target.dataset.cat;
+                let subName = document.querySelector("#newSub" + cat).value.trim();
+                if (!subName) return;
 
-                // inject category hidden field
-                template = template.replace('__CAT__', cat);
+                let safeSub = slugifySub(subName);
+                let containerId = "subcategory-" + cat + "-" + safeSub;
 
-                container.insertAdjacentHTML('beforeend', template);
-                $(container).find('.select2').select2({
-                    width: '100%' // keeps same sizing
-                });
-            });
+                if (!document.querySelector("#" + containerId)) {
+                    let block = `
+                        <div class="subcategory-block mb-3" id="${containerId}">
+                            <h5 class="mt-3">${subName}</h5>
+                            <div class="subcat-rows" id="rows-${cat}-${safeSub}"></div>
+                            <button type="button" class="btn btn-outline-info btn-sm addRow" 
+                                data-cat="${cat}" data-sub="${subName}">
+                                <i class="fas fa-plus"></i> Add Row (${subName})
+                            </button>
+                        </div>
+                    `;
+                    document.querySelector("#category" + cat).insertAdjacentHTML("beforeend", block);
+                }
+            }
+
+            // Add Row
+            if (e.target.classList.contains("addRow")) {
+                let cat = e.target.dataset.cat;
+                let sub = e.target.dataset.sub;
+                let safeSub = slugifySub(sub);
+
+                let template = document.querySelector("#blankRowTemplate").innerHTML;
+                template = template.replace("__CAT__", cat).replace("__SUB__", sub);
+
+                let container = document.querySelector("#rows-" + cat + "-" + safeSub);
+                if (!container) {
+                    console.error("❌ Container not found: #rows-" + cat + "-" + safeSub);
+                    return;
+                }
+                container.insertAdjacentHTML("beforeend", template);
+
+                // re-init select2 for new row
+                $(".select2").select2({ width: '100%' });
+            }
         });
 
-        // Rebind Remove Row (delegated, survives reload)
+        // Remove Row (delegated)
         document.addEventListener('click', function(e) {
             if (e.target.closest('.removeRow')) {
                 e.target.closest('.ppmp-row').remove();
             }
         });
+
+
         $(document).ready(function () {
             // Title dropdown -> auto-fill Code
             $(document).off("change", ".papstitle-select").on("change", ".papstitle-select", function () {

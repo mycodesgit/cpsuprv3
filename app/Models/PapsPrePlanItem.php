@@ -17,6 +17,7 @@ class PapsPrePlanItem extends Model
         'papspreplan_id',
         'papspreplanyearname',
         'ppa_cat',
+        'ppa_catsub',
         'ppa',
         'papsprecode',
         'papstitle',
