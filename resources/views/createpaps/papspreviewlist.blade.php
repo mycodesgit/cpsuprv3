@@ -29,6 +29,10 @@
                                 <a href="{{ $planItemExists ? route('papsprefrompdfTemplate', encrypt($plan->id)) : '#' }}" class="btn btn-outline-danger btn-sm {{ !$planItemExists ? 'disabled' : '' }}" target="_blank">
                                     <i class="fas fa-file-pdf"></i> View PAPs PRE PDF
                                 </a>
+                                &nbsp;&nbsp;
+                                <a href="{{ $planItemExists ? route('papspreitemsppmp', encrypt($plan->id)) : '#' }}" class="btn btn-outline-info btn-sm {{ !$planItemExists ? 'disabled' : '' }}">
+                                    <i class="fas fa-file"></i> Create PPMP
+                                </a>
                             </div>
                         </div>
                         <div class="card-body">

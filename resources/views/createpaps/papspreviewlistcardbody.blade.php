@@ -50,13 +50,13 @@
 
         {{-- LOOP CATEGORIES --}}
         @foreach($categories as $catKey => $catName)
-            <h4 class="mt-4">{{ $catKey }}. {{ $catName }}</h4>
+            <h4 class="mt-4" style="color: #000">{{ $catKey }}. {{ $catName }}</h4>
 
             <div id="category{{ $catKey }}">
                 {{-- Existing subcategories from DB --}}
                 @foreach($planitem->where('ppa_cat',$catKey)->groupBy('ppa_catsub') as $subKey => $subItems)
                     <div class="subcategory-block mb-3" id="subcategory-{{ $catKey }}-{{ Str::slug($subKey,'_') }}">
-                        <h5 class="mt-3">{{ $subKey }}</h5>
+                        <h5 class="mt-3" style="color: #000">{{ $subKey }}</h5>
 
                         <div class="subcat-rows" id="rows-{{ $catKey }}-{{ Str::slug($subKey,'_') }}">
                             @foreach($subItems as $item)
@@ -67,9 +67,15 @@
                                         <input type="hidden" name="item_id[]" value="{{ $item->id }}">
 
                                         <div class="pr-3" style="min-width:280px;">
+                                            @if($loop->first)
+                                                <label style="font-weight: bold; color: #000">Programs Projects and Activities :</label> 
+                                            @endif
                                             <input type="text" name="ppa[]" value="{{ $item->ppa }}" class="form-control form-control-sm tinput">
                                         </div>
                                         <div class="pr-3" style="min-width:350px;">
+                                            @if($loop->first)
+                                                <labe style="font-weight: bold; color: #000"l>Title:</labe>
+                                            @endif
                                             <select name="papstitle[]" class="form-control form-control-sm select2 papstitle-select">
                                                 <option disabled selected> --Select-- </option>
                                                 @foreach ($uacscode as $itemuacscode)
@@ -82,26 +88,44 @@
                                             </select>
                                         </div>
                                         <div class="pr-3" style="min-width:120px;">
+                                            @if($loop->first)
+                                                <label style="font-weight: bold; color: #000">Code:</label>
+                                            @endif
                                             <input type="text" name="papsprecode[]" value="{{ $item->papsprecode }}" class="form-control form-control-sm papscode-input tinput">
                                         </div>
                                         <div class="pr-3" style="min-width:150px;">
+                                            @if($loop->first)
+                                                <label style="font-weight: bold; color: #000">Total Amount:</label>
+                                            @endif
                                             <input type="text" name="papsamount[]" value="{{ $item->papsamount }}" class="form-control form-control-sm total-amount tinput" readonly>
                                         </div>
                                         <div class="pr-3" style="min-width:180px;">
-                                            <select name="papsprocyn[]" class="form-control form-control-sm select2 papsprocyn-select">
+                                            @if($loop->first)
+                                                <label style="font-weight: bold; color: #000">Procurable? (Y/N):</label>
+                                            @endif
+                                            <select name="papsprocyn[]" class="form-control form-control-sm select2 papsprocyn-select tinput">
                                                 <option disabled selected>-- Select --</option>
                                                 <option value="Yes" {{ $item->papsprocyn == 'Yes' ? 'selected' : '' }}>Yes</option>
                                                 <option value="No" {{ $item->papsprocyn == 'No' ? 'selected' : '' }}>No</option>
                                             </select>
                                         </div>
                                         <div class="pr-3" style="min-width:200px;">
+                                            @if($loop->first)
+                                                <label style="font-weight: bold; color: #000">Responsible Person:</label>
+                                            @endif
                                             <input type="text" name="papsresperson[]" value="{{ $item->papsresperson }}" class="form-control form-control-sm tinput">
                                         </div>
                                         <div class="pr-3" style="min-width:350px;">
+                                            @if($loop->first)
+                                                <label style="font-weight: bold; color: #000">Verifiable Evidences (of procurement):</label>
+                                            @endif
                                             <input type="text" name="papsevidences[]" value="{{ $item->papsevidences }}" class="form-control form-control-sm tinput">
                                         </div>
                                         @foreach($months as $m)
                                             <div class="pr-3" style="min-width:115px;">
+                                                @if($loop->parent->first)
+                                                    <label style="font-weight: bold; color: #000; font-size:11px;">{{ strtoupper($m) }}</label>
+                                                @endif
                                                 <input type="text" name="{{ $m }}[]" value="{{ $item->$m }}" class="form-control form-control-sm month-input" inputmode="decimal">
                                             </div>
                                         @endforeach
@@ -111,7 +135,7 @@
                         </div>
 
                         {{-- Add Row under subcategory --}}
-                        <button type="button" class="btn btn-outline-info btn-sm addRow" data-cat="{{ $catKey }}" data-sub="{{ $subKey }}">
+                        <button type="button" class="btn btn-success btn-sm addRow" data-cat="{{ $catKey }}" data-sub="{{ $subKey }}">
                             <i class="fas fa-plus"></i> Add Row ({{ $subKey }})
                         </button>
                     </div>
@@ -119,9 +143,13 @@
             </div>
 
             {{-- Add Subcategory under Category --}}
-            <div class="form-inline my-2">
-                <input type="text" id="newSub{{ $catKey }}" class="form-control form-control-sm mr-2 ppa_catsub-input" placeholder="Enter Subcategory">
-                <button type="button" class="btn btn-outline-primary btn-sm addSubcategory" data-cat="{{ $catKey }}">+ Add Subcategory</button>
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="text" id="newSub{{ $catKey }}" class="form-control form-control-sm ppa_catsub-input" placeholder="Enter Subcategory">
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-primary btn-sm addSubcategory" data-cat="{{ $catKey }}">+ Add Subcategory</button>
+                </div>
             </div>
         @endforeach
 

@@ -16,7 +16,7 @@
     $approvedUserActive = in_array($current_route, ['approvedListRead']) ? 'active' : '';
     $returnUserActive = in_array($current_route, ['returnedUserListRead', 'editreturnselectItems']) ? 'active' : '';
     $canceledUserActive = in_array($current_route, ['cancelUserListRead']) ? 'active' : '';
-    $crtepapspreUserActive = in_array($current_route, ['papsYearRead', 'viewlistpapspre']) ? 'active' : '';
+    $crtepapspreUserActive = in_array($current_route, ['papsYearRead', 'viewlistpapspre', 'papspreitemsppmp']) ? 'active' : '';
     $crteppmpUserActive = in_array($current_route, ['ppmpYearRead', 'viewlistppmp']) ? 'active' : '';
 
     $pendingBudAllActive = in_array($current_route, ['pendingAllBudgetListRead', 'pendingAllListView']) ? 'active' : '';

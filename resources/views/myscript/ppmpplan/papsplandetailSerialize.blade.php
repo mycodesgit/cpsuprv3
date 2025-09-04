@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Function to validate ALL inputs in template and ppmp-rows
     function validateAllInputs() {
         let inputs = document.querySelectorAll(
-            ".ppa_catsub-input, .tinput, .ppmp-row select"
+            ".ppa_catsub-input, .tinput,"
         );
 
         let allValid = true;

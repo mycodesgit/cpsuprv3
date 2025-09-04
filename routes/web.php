@@ -231,7 +231,9 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
         Route::get('/papspre/per/year/add/plan/viewlist/ajax/{ppid}', [CreatePapsController::class, 'getviewlistpaps'])->name('getviewlistpaps');
         Route::post('/papspre/save-all/paps', [CreatePapsController::class, 'saveAllpaps'])->name('ppmp.papssaveAll');
         Route::get('/papspre/pdf/{ppid}', [CreatePapsController::class, 'papsprefrompdfTemplate'])->name('papsprefrompdfTemplate');
-
+        Route::get('/papspre/ppmp/create/{ppid}', [CreatePapsController::class, 'papspreitemsppmp'])->name('papspreitemsppmp');
+        Route::post('/papspre/ppmp/save-all/paps', [CreatePapsController::class, 'saveAllpapspreppmp'])->name('ppmp.saveAllpapspreppmp');
+        
 
         Route::get('/ppmp/per/year', [CreatePpmpController::class, 'ppmpYearRead'])->name('ppmpYearRead');
         Route::post('/ppmp/per/year/add/plan', [CreatePpmpController::class, 'ppmpstore'])->name('ppmpstore');

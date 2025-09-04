@@ -11,6 +11,7 @@
 		  	font-family: Arial, sans-serif;
 		  	border-collapse: collapse;
 		  	width: 100%;
+            margin-top: -10px;
 		}
 
 		#papspdftemplate td {
@@ -205,7 +206,7 @@
         </table>
     </div>
 
-    <div style="margin-top: 10px">
+    {{-- <div style="margin-top: 10px">
         <table id="papspdftemplatetotal">
             <thead>
                 <tr>
@@ -222,44 +223,37 @@
                 </tr>
             </thead>
         </table>
-    </div>
+    </div> --}}
 
-    <div style="margin-top: 10px">
+    {{-- <div style="margin-top: 10px">
         <p style="font-size: 8pt; font-family: Arial, sans-serif;">
             <span style="text-decoration: underline">NOTE:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Technical Specifications for each Item/Project being proposed shall be submitted as part of the PPMP
         </p>
-    </div>
+    </div> --}}
 
-    <div class="prepared-block" style="text-align: left; margin-right: 20px;">
+    <div class="prepared-block" style="text-align: left; margin-right: 20px; margin-top: 5px;">
 		<div style="text-align: left; display: inline-block; margin-top: 30px;">
-			<div style="margin-bottom: 50px;">Prepared by:<br></div>
-			<b>Fund Administrator</b><br>
-			Designation
+			<div style="margin-bottom: 30px;">Prepared by:<br></div>
+			<b>{{ ucfirst(strtolower(Auth::guard('web')->user()->fname)) }} {{ substr(Auth::guard('web')->user()->mname, 0,1) }}. {{ ucfirst(strtolower(Auth::guard('web')->user()->lname)) }}</b><br>
+			{{ Auth::guard('web')->user()->role }}
 		</div>
 
         <div style="text-align: left; display: inline-block; margin-left: 150px; margin-top: 30px;">
-			<div style="margin-bottom: 50px;">Verified and submitted by:<br></div>
+			<div style="margin-bottom: 30px;">Verified and submitted by:<br></div>
 			<b>XXXX</b><br>
 			Campus Administrator
 		</div>
 
         <div style="text-align: left; display: inline-block; margin-left: 150px; margin-top: 30px;">
-			<div style="margin-bottom: 50px;">Reviewed by:<br></div>
-			<b>SHEILA MAE V. ANABO, LPT</b><br>
-			Administrative Officer V/Budget Officer III
+			<div style="margin-bottom: 30px;">PAP's Reviewed by:<br></div>
+			<b>ENGR. MARIA CRISTINA I. CANSON-BADAJOS</b><br>
+			Director, Planning and Development Office
 		</div>
 
         <div style="text-align: left; display: inline-block; margin-left: 150px; margin-top: 30px;">
-			<div style="margin-bottom: 50px;">Approved by:<br></div>
-			<b>ALADINO C. MORACA, Ph. D.</b><br>
-			President
-		</div>
-	</div>
-
-    <div class="prepared-block" style="text-align: left; margin-right: 20px;">
-        <div style="text-align: left; display: inline-block; margin-left: 520px; margin-top: 30px;">
-			<br><b>ENGR. KRISTINE B. RODRIGO</b><br>
-			Administrative Officer V/Procurement Officer III
+			<div style="margin-bottom: 30px;">Recommending Approval:<br></div>
+			<b>ELFRED M. SUMONGSONG</b><br>
+			Supervising Administrative Officer
 		</div>
 	</div>
 </body>

@@ -28,6 +28,8 @@ use App\Models\YearPR;
 use App\Models\Uacs;
 use App\Models\PapsPrePlan;
 use App\Models\PapsPrePlanItem;
+use App\Models\PapsPrePlanItemPPMP;
+
 use App\Models\ProcurementPlan;
 use App\Models\ProcurementPlanItem;
 
@@ -366,5 +368,142 @@ class CreatePapsController extends Controller
 
         $pdf = PDF::loadView('createpaps.papsprepdf', $data)->setPaper([0, 0, 612, 936], 'landscape');
         return $pdf->stream();
+    }
+
+    public function papspreitemsppmp($ppid) 
+    {
+        $decryptedId = decrypt($ppid);
+
+        $plan = PapsPrePlan::find($decryptedId);
+        $planitem = PapsPrePlanItem::join('uacs', 'uacs.id', '=', 'paspre_plan_items.papstitle')
+                ->select('paspre_plan_items.*', 'uacs.uacs_code', 'uacs.uacs_title')
+                ->where('paspre_plan_items.papspreplan_id', $decryptedId)
+                ->where('paspre_plan_items.papsprocyn', 'Yes')  // only items with procurement needed
+                ->get();
+
+        $pendCount = $this->getPendingAllCount();
+        $pendBudCount = $this->getPendingBudgetCount();
+        $pendUserCount = $this->getPendingUserCount();
+
+        $approvedUserCount = $this->getApprovedUserCount();
+        $receivedUserCount = $this->getReceivedUserCount();
+        $canvassingUserCount = $this->getCanvassingUserCount();
+        $canvassedUserCount = $this->getCanvassedUserCount();
+        $philgepUserCount = $this->getPhilGepUserCount();
+        $postedUserCount = $this->getPostedUserCount();
+        $biddingUserCount = $this->getBiddingUserCount();
+        $consolidateUserCount = $this->getConsolidateUserCount();
+        $awardedUserCount = $this->getAwardedUserCount();
+        $purchaseUserCount = $this->getPurchaseUserCount();
+
+        $returnedAllCount = $this->getReturnedAllCount();
+        $returnedUserCount = $this->getReturnedUserCount();
+
+        $data = [   'pendCount' => $pendCount, 
+                    'pendBudCount' => $pendBudCount,
+                    'pendUserCount' => $pendUserCount,
+
+                    'approvedUserCount' => $approvedUserCount,
+                    'receivedUserCount' => $receivedUserCount,
+                    'canvassingUserCount' => $canvassingUserCount,
+                    'canvassedUserCount' => $canvassedUserCount,
+                    'philgepUserCount' => $philgepUserCount,
+                    'postedUserCount' => $postedUserCount,
+                    'biddingUserCount' => $biddingUserCount,
+                    'consolidateUserCount' => $consolidateUserCount,
+                    'awardedUserCount' => $awardedUserCount,
+                    'purchaseUserCount' => $purchaseUserCount,
+
+                    'returnedAllCount' => $returnedAllCount,
+                    'returnedUserCount' => $returnedUserCount,
+                ];
+
+        if (request()->ajax()) {
+            return response()->json([
+                'pendCount' => $pendCount, 
+                'pendBudCount' => $pendBudCount,
+                'pendUserCount' => $pendUserCount,
+
+                'approvedUserCount' => $approvedUserCount,
+                'receivedUserCount' => $receivedUserCount,
+                'canvassingUserCount' => $canvassingUserCount,
+                'canvassedUserCount' => $canvassedUserCount,
+                'philgepUserCount' => $philgepUserCount,
+                'postedUserCount' => $postedUserCount,
+                'biddingUserCount' => $biddingUserCount,
+                'consolidateUserCount' => $consolidateUserCount,
+                'awardedUserCount' => $awardedUserCount,
+                'purchaseUserCount' => $purchaseUserCount,
+
+                'returnedAllCount' => $returnedAllCount,
+                'returnedUserCount' => $returnedUserCount,
+            ]);
+        }
+
+        return view('createpaps.papspreppmpviewlist', compact('plan', 'planitem', 'data'));
+    }
+
+    public function saveAllpapspreppmp(Request $request)
+    {
+        $request->validate([
+            'papspreplanid' => 'required',
+
+            // arrays per column
+            'papspreplanitemsid'    => 'nullable|array',
+            'quantity_size'         => 'nullable|array',
+            'mode_of_procurement'   => 'nullable|array',
+        ]);
+
+        $rowCount = max(
+            count($request->input('papspreplanid', [])),
+            count($request->input('papspreplanitemsid', []))
+        );
+
+        DB::transaction(function () use ($request, $rowCount) {
+            for ($i = 0; $i < $rowCount; $i++) {
+                $id   = $request->input("item_id.$i"); 
+
+                $data = [
+                    'papspreplanid'            => $request->papspreplanid,
+                    'papspreplanitemsid'       => $request->papspreplanitemsid,
+                    'quantity_size'            => $request->input("quantity_size.$i"),
+                    'mode_of_procurement'      => $request->input("mode_of_procurement.$i"),
+                ];
+
+                // Skip totally blank rows (avoid inserting empty records)
+                $isBlank = collect($data)
+                    ->except(['papspreplanid']) // plan_id is always present
+                    ->filter(function ($v) { return $v !== null && $v !== ''; })
+                    ->isEmpty();
+
+                if ($isBlank) {
+                    continue;
+                }
+
+                if ($id) {
+                    // UPDATE existing
+                    $item = PapsPrePlanItemPPMP::find($id);
+                    if ($item) {
+                        $item->update($data);
+                    } 
+                    // else {
+                    //     // if id not found (e.g., deleted meanwhile), fallback to CREATE
+                    //     PapsPrePlanItemPPMP::create($data);
+                    // }
+                } else {
+                    // INSERT new
+                     $exists = PapsPrePlanItemPPMP::where('papspreplanid', $request->papspreplanid)
+                                ->where('papspreplanitemsid', $data['papspreplanitemsid'])
+                                ->where('quantity_size', $data['quantity_size'])
+                                ->exists();
+
+                    if (!$exists) {
+                        PapsPrePlanItemPPMP::create($data);
+                    }
+                }
+            }
+        });
+
+        return response()->json(['success' => true, 'message' => 'Save Successfully!'], 200);
     }
 }
