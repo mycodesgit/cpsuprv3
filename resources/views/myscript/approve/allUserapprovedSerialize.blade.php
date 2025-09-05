@@ -78,7 +78,7 @@
                     data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfapprovedchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
                                 //buttons += '<a href="' + pendingAllListViewRoute + '/' + data + '" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-toggle="tooltip" data-placement="top" title="PR Remarks."><i class="fas fa-eye"></i> </a>';
                                 
                             return buttons;
@@ -97,7 +97,7 @@
         }, 10000);
     });
 
-    $(document).on('click', '.btn-prpdfchecking', function () {
+    $(document).on('click', '.btn-prpdfapprovedchecking', function () {
         var pid = $(this).data('id');
 
         $('#viewPrModal').modal('show');
@@ -188,16 +188,17 @@
                             default:
                                 return '<span class="badge badge-secondary">Unknown Status</span>';
                                 
-                        }
+                        } 
                     },
                 },
-                {data: 'pid',
+                {
+                    data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var link = '<a href="' + approvedListViewRoute + '/' + data + '" class="btn btn-success btn-xs btn-edit" title="View PR">' +
-                                '<i class="fas fa-eye"></i>' +
-                                '</a>';
-                            return link;
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfreceivedchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
+                                //buttons += '<a href="' + pendingAllListViewRoute + '/' + data + '" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-toggle="tooltip" data-placement="top" title="PR Remarks."><i class="fas fa-eye"></i> </a>';
+                                
+                            return buttons;
                         } else {
                             return data;
                         }
@@ -205,9 +206,30 @@
                 },
             ],
         });
+        dataTable.on('draw', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
         setInterval(function () {
             dataTable.ajax.reload(null, false);
         }, 5000);
+    });
+
+    $(document).on('click', '.btn-prpdfreceivedchecking', function () {
+        var pid = $(this).data('id');
+
+        $('#viewPrModal').modal('show');
+        $('#modalContent').html('<div class="text-center">Loading...</div>');
+
+        $.ajax({
+            url: approvedListViewRoute + '/' +pid,
+            type: 'GET',
+            success: function (response) {
+                $('#modalContent').html(response);
+            },
+            error: function () {
+                $('#modalContent').html('<div class="alert alert-danger">Failed to load data.</div>');
+            }
+        });
     });
 
     $(document).ready(function() {
@@ -286,13 +308,14 @@
                         }
                     },
                 },
-                {data: 'pid',
+                {
+                    data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var link = '<a href="' + approvedListViewRoute + '/' + data + '" class="btn btn-success btn-xs btn-edit" title="View PR">' +
-                                '<i class="fas fa-eye"></i>' +
-                                '</a>';
-                            return link;
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfcanvassingchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
+                                //buttons += '<a href="' + pendingAllListViewRoute + '/' + data + '" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-toggle="tooltip" data-placement="top" title="PR Remarks."><i class="fas fa-eye"></i> </a>';
+                                
+                            return buttons;
                         } else {
                             return data;
                         }
@@ -300,9 +323,30 @@
                 },
             ],
         });
+        dataTable.on('draw', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
         setInterval(function () {
             dataTable.ajax.reload(null, false);
         }, 5000);
+    });
+
+    $(document).on('click', '.btn-prpdfcanvassingchecking', function () {
+        var pid = $(this).data('id');
+
+        $('#viewPrModal').modal('show');
+        $('#modalContent').html('<div class="text-center">Loading...</div>');
+
+        $.ajax({
+            url: approvedListViewRoute + '/' +pid,
+            type: 'GET',
+            success: function (response) {
+                $('#modalContent').html(response);
+            },
+            error: function () {
+                $('#modalContent').html('<div class="alert alert-danger">Failed to load data.</div>');
+            }
+        });
     });
 
     $(document).ready(function() {
@@ -381,13 +425,14 @@
                         }
                     },
                 },
-                {data: 'pid',
+                {
+                    data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var link = '<a href="' + approvedListViewRoute + '/' + data + '" class="btn btn-success btn-xs btn-edit" title="View PR">' +
-                                '<i class="fas fa-eye"></i>' +
-                                '</a>';
-                            return link;
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfcanvassedchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
+                                //buttons += '<a href="' + pendingAllListViewRoute + '/' + data + '" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-toggle="tooltip" data-placement="top" title="PR Remarks."><i class="fas fa-eye"></i> </a>';
+                                
+                            return buttons;
                         } else {
                             return data;
                         }
@@ -395,9 +440,30 @@
                 },
             ],
         });
+        dataTable.on('draw', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
         setInterval(function () {
             dataTable.ajax.reload(null, false);
         }, 5000);
+    });
+
+    $(document).on('click', '.btn-prpdfcanvassedchecking', function () {
+        var pid = $(this).data('id');
+
+        $('#viewPrModal').modal('show');
+        $('#modalContent').html('<div class="text-center">Loading...</div>');
+
+        $.ajax({
+            url: approvedListViewRoute + '/' +pid,
+            type: 'GET',
+            success: function (response) {
+                $('#modalContent').html(response);
+            },
+            error: function () {
+                $('#modalContent').html('<div class="alert alert-danger">Failed to load data.</div>');
+            }
+        });
     });
 
     $(document).ready(function() {
@@ -476,13 +542,14 @@
                         }
                     },
                 },
-                {data: 'pid',
+                {
+                    data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var link = '<a href="' + approvedListViewRoute + '/' + data + '" class="btn btn-success btn-xs btn-edit" title="View PR">' +
-                                '<i class="fas fa-eye"></i>' +
-                                '</a>';
-                            return link;
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfphilgepschecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
+                                //buttons += '<a href="' + pendingAllListViewRoute + '/' + data + '" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-toggle="tooltip" data-placement="top" title="PR Remarks."><i class="fas fa-eye"></i> </a>';
+                                
+                            return buttons;
                         } else {
                             return data;
                         }
@@ -490,9 +557,30 @@
                 },
             ],
         });
+        dataTable.on('draw', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
         setInterval(function () {
             dataTable.ajax.reload(null, false);
         }, 5000);
+    });
+
+    $(document).on('click', '.btn-prpdfphilgepschecking', function () {
+        var pid = $(this).data('id');
+
+        $('#viewPrModal').modal('show');
+        $('#modalContent').html('<div class="text-center">Loading...</div>');
+
+        $.ajax({
+            url: approvedListViewRoute + '/' +pid,
+            type: 'GET',
+            success: function (response) {
+                $('#modalContent').html(response);
+            },
+            error: function () {
+                $('#modalContent').html('<div class="alert alert-danger">Failed to load data.</div>');
+            }
+        });
     });
 
     $(document).ready(function() {
