@@ -31,7 +31,7 @@
                                 </a>
                                 &nbsp;&nbsp;
                                 <a href="{{ $planItemExists ? route('papspreitemsppmp', encrypt($plan->id)) : '#' }}" class="btn btn-outline-info btn-sm">
-                                    <i class="fas fa-file"></i> Create PPMP
+                                    <i class="fas fa-file"></i> Create / View PPMP
                                 </a>
                             </div>
                         </div>

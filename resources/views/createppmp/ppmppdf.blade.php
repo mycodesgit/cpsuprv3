@@ -164,11 +164,13 @@
 			{{ Auth::guard('web')->user()->role }}
 		</div>
 
+        @if(Auth::guard('web')->user()->campus_id != 1)
         <div style="text-align: left; display: inline-block; margin-left: 150px; margin-top: 30px;">
 			<div style="margin-bottom: 50px;">Verified and submitted by:<br></div>
 			<b>XXXX</b><br>
 			Campus Administrator
 		</div>
+        @endif
 
         <div style="text-align: left; display: inline-block; margin-left: 150px; margin-top: 30px;">
 			<div style="margin-bottom: 50px;">Reviewed by:<br></div>
@@ -182,9 +184,13 @@
 			President
 		</div>
 	</div>
-
+    
     <div class="prepared-block" style="text-align: left; margin-right: 20px;">
-        <div style="text-align: left; display: inline-block; margin-left: 520px; margin-top: 30px;">
+        @if(Auth::guard('web')->user()->campus_id != 1)
+            <div style="text-align: left; display: inline-block; margin-left: 520px; margin-top: 30px;">
+        @else
+            <div style="text-align: left; display: inline-block; margin-left: 250px; margin-top: 30px;">
+        @endif
 			<br><b>ENGR. KRISTINE B. RODRIGO</b><br>
 			Administrative Officer V/Procurement Officer III
 		</div>

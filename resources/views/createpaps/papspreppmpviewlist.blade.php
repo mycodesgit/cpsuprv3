@@ -19,9 +19,9 @@
                                 <a href="{{ $planItemExists ? route('ppmpfrompdfTemplate', encrypt($plan->id)) : '#' }}" class="btn btn-outline-danger btn-sm {{ !$planItemExists ? 'disabled' : '' }}" target="_blank">
                                     <i class="fas fa-file-pdf"></i> View PPMP PDF
                                 </a>
-                                {{-- <a href="" class="btn btn-outline-success btn-sm ml-2" target="_blank">
-                                    <i class="fas fa-file-excel"></i> View PPMP Excel
-                                </a> --}}
+                                <a href="{{ $planItemExists ? route('viewlistpapspre', encrypt($plan->id)) : '#' }}" class="btn btn-outline-success btn-sm ml-2">
+                                    <i class="fas fa-file-excel"></i> View PAP's PRE
+                                </a>
                             </div>
                         </div>
                         <div class="card-body">
