@@ -16,9 +16,9 @@
                                 @php
                                     $planItemExists = \App\Models\PapsPrePlanItem::where('papspreplan_id', $plan->id)->exists();
                                 @endphp
-                                {{-- <a href="{{ $planItemExists ? route('ppmpfrompdfTemplate', encrypt($plan->id)) : '#' }}" class="btn btn-outline-danger btn-sm {{ !$planItemExists ? 'disabled' : '' }}" target="_blank">
+                                <a href="{{ $planItemExists ? route('ppmpfrompdfTemplate', encrypt($plan->id)) : '#' }}" class="btn btn-outline-danger btn-sm {{ !$planItemExists ? 'disabled' : '' }}" target="_blank">
                                     <i class="fas fa-file-pdf"></i> View PPMP PDF
-                                </a> --}}
+                                </a>
                                 {{-- <a href="" class="btn btn-outline-success btn-sm ml-2" target="_blank">
                                     <i class="fas fa-file-excel"></i> View PPMP Excel
                                 </a> --}}
@@ -26,9 +26,9 @@
                         </div>
                         <div class="card-body">
                             <div class="load">
-                                <form id="ppmpForm" action="{{ route('ppmp.saveAll') }}" method="POST">
+                                <form id="ppmpForm" action="{{ route('ppmp.saveAllpapspreppmp') }}" method="POST">
                                     @csrf
-                                    <input type="hidden" value="{{ $plan->id ?? '' }}" name="plan_id">
+                                    <input type="hidden" value="{{ $plan->id ?? '' }}" name="papspreplanid">
                                     <input type="hidden" value="{{ $plan->papsyearname ?? '' }}" name="planyearname">
 
                                     <div id="ppmpRows">
@@ -39,11 +39,11 @@
 
                                                     <div class="col-md-1">
                                                         @if($index === 0) <label>CODE:</label> @endif
-                                                        <input type="text" name="code[]" value="{{ $item->papsprecode }}" class="form-control form-control-sm autosave-input" readonly>
+                                                        <input type="text" name="" value="{{ $item->papsprecode }}" class="form-control form-control-sm autosave-input" readonly>
                                                     </div>
                                                     <div class="col-md-3">
                                                         @if($index === 0) <label>GENERAL DESCRIPTION:</label> @endif
-                                                        <input type="text" name="general_description[]" value="{{ $item->uacs_title }}" class="form-control form-control-sm autosave-input" readonly>
+                                                        <input type="text" name="" value="{{ $item->uacs_title }}" class="form-control form-control-sm autosave-input" readonly>
                                                     </div>
                                                     <div class="col-md-1">
                                                         @if($index === 0) <label>QUANTITY/SIZE:</label> @endif
@@ -51,7 +51,7 @@
                                                     </div>
                                                     <div class="col-md-1">
                                                         @if($index === 0) <label>EST. BUDGET:</label> @endif
-                                                        <input type="text" name="estimated_budget[]" value="{{ $item->papsamount }}" class="form-control form-control-sm autosave-input" readonly>
+                                                        <input type="text" name="" value="{{ $item->papsamount }}" class="form-control form-control-sm autosave-input" readonly>
                                                     </div>
                                                     <div class="col-md-2">
                                                         @if($index === 0) <label>MODE OF PROCUREMENT:</label> @endif

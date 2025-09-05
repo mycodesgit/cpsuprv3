@@ -24,23 +24,6 @@
 		  	font-weight: bold;
 		  	font-size: 8pt;
 		}
-
-        /* #papspdftemplatetotal {
-		  	font-family: Arial, sans-serif;
-		  	border-collapse: collapse;
-		  	width: 100%;
-		  	font-size: 10pt;
-		}
-
-		#papspdftemplatetotal td {
-			border: none;
-		  	padding: 2px;
-		} 
-		#papspdftemplatetotal th {
-		  	border: none;
-		  	font-weight: normal;
-		  	/*padding: 8px;*/
-		} */
         .prepared-block {
             font-family: Arial, sans-serif;
 			font-size: 10px;

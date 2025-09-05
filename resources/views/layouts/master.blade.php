@@ -507,6 +507,9 @@
             });
         </script>
     @endif
+    @if (request()->routeIs('papspreitemsppmp'))
+        @include('myscript.ppmpplan.papsplanppmpdetailSerialize')
+    @endif
     @if (request()->routeIs('ppmpYearRead'))
         @include('myscript.ppmpplan.procplanSerialize')
     @endif

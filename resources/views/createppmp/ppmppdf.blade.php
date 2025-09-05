@@ -70,8 +70,8 @@
     </div>
 
     <div style="font-family:Arial, Helvetica, sans-serif; font-size:11pt; font-style:italic">
-        <p>END-USER/UNIT:</p>
-        <p style="margin-top: -7px; font-weight:bold">Charged to:</p>
+        <p>END-USER/UNIT: {{ Auth::guard('web')->user()->office->office_name }}</p>
+        <p style="margin-top: -7px; font-weight:bold">Charged to: {{ $plan->papsuserfundsource }}/NEP {{ $plan->papsyearname }}</p>
         <p style="margin-top: -7px; font-weight:initial">Projects, Programs and Activities (PAPs)</p>
     </div>
 
@@ -109,23 +109,23 @@
             <tbody>
                 @foreach ($planitem as $item)
                     <tr>
-                        <td>{{ $item->code }}</td>
-                        <td>{{ $item->general_description }}</td>
-                        <td>{{ $item->quantity_size }}</td>
-                        <td>{{ number_format($item->estimated_budget, 2) }}</td>
-                        <td>{{ $item->mode_of_procurement }}</td>
-                        <td>{{ $item->jan }}</td>
-                        <td>{{ $item->feb }}</td>
-                        <td>{{ $item->mar }}</td>
-                        <td>{{ $item->apr }}</td>
-                        <td>{{ $item->may }}</td>
-                        <td>{{ $item->jun }}</td>
-                        <td>{{ $item->jul }}</td>
-                        <td>{{ $item->aug }}</td>
-                        <td>{{ $item->sep }}</td>
-                        <td>{{ $item->oct }}</td>
-                        <td>{{ $item->nov }}</td>
-                        <td>{{ $item->dec }}</td>
+                        <td>{{ $item->papsprecode }}</td>
+                        <td>{{ $item->uacs_title }}</td>
+                        <td style="text-align: center">{{ $item->quantity_size }}</td>
+                        <td style="text-align: right">{{ number_format($item->papsamount, 2) }}</td>
+                        <td style="text-align: left">{{ $item->mode_of_procurement }}</td>
+                        <td style="text-align: center">{{ $item->jan ? 'x' : '' }}</td>
+                        <td style="text-align: center">{{ $item->feb ? 'x' : '' }}</td>
+                        <td style="text-align: center">{{ $item->mar ? 'x' : '' }}</td>
+                        <td style="text-align: center">{{ $item->apr ? 'x' : '' }}</td>
+                        <td style="text-align: center">{{ $item->may ? 'x' : '' }}</td>
+                        <td style="text-align: center">{{ $item->jun ? 'x' : '' }}</td>
+                        <td style="text-align: center">{{ $item->jul ? 'x' : '' }}</td>
+                        <td style="text-align: center">{{ $item->aug ? 'x' : '' }}</td>
+                        <td style="text-align: center">{{ $item->sep ? 'x' : '' }}</td>
+                        <td style="text-align: center">{{ $item->oct ? 'x' : '' }}</td>
+                        <td style="text-align: center">{{ $item->nov ? 'x' : '' }}</td>
+                        <td style="text-align: center">{{ $item->dec ? 'x' : '' }}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -145,7 +145,7 @@
             <thead>
                 <tr>
                     <th style="text-align: left; font-weight: bold; font-size: 10pt; text-decoration: underline; width: 360px">TOTAL BUDGET:</th>
-                    <th style="text-align: left; font-weight: bold">{{ number_format($planitem->sum('estimated_budget'), 2) }}</th>
+                    <th style="text-align: left; font-weight: bold">{{ number_format($planitem->sum('papsamount'), 2) }}</th>
                 </tr>
             </thead>
         </table>
@@ -160,8 +160,8 @@
     <div class="prepared-block" style="text-align: left; margin-right: 20px;">
 		<div style="text-align: left; display: inline-block; margin-top: 30px;">
 			<div style="margin-bottom: 50px;">Prepared by:<br></div>
-			<b>Fund Administrator</b><br>
-			Designation
+			<b>{{ ucfirst(strtolower(Auth::guard('web')->user()->fname)) }} {{ substr(Auth::guard('web')->user()->mname, 0,1) }}. {{ ucfirst(strtolower(Auth::guard('web')->user()->lname)) }}</b><br>
+			{{ Auth::guard('web')->user()->role }}
 		</div>
 
         <div style="text-align: left; display: inline-block; margin-left: 150px; margin-top: 30px;">

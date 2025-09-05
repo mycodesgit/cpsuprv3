@@ -376,7 +376,8 @@ class CreatePapsController extends Controller
 
         $plan = PapsPrePlan::find($decryptedId);
         $planitem = PapsPrePlanItem::join('uacs', 'uacs.id', '=', 'paspre_plan_items.papstitle')
-                ->select('paspre_plan_items.*', 'uacs.uacs_code', 'uacs.uacs_title')
+                ->leftJoin('papspre_plan_items_ppmp', 'paspre_plan_items.id', '=', 'papspre_plan_items_ppmp.papspreplanitemsid')
+                ->select('paspre_plan_items.*', 'uacs.uacs_code', 'uacs.uacs_title', 'papspre_plan_items_ppmp.quantity_size', 'papspre_plan_items_ppmp.mode_of_procurement')
                 ->where('paspre_plan_items.papspreplan_id', $decryptedId)
                 ->where('paspre_plan_items.papsprocyn', 'Yes')  // only items with procurement needed
                 ->get();
@@ -446,56 +447,52 @@ class CreatePapsController extends Controller
     public function saveAllpapspreppmp(Request $request)
     {
         $request->validate([
-            'papspreplanid' => 'required',
-
-            // arrays per column
-            'papspreplanitemsid'    => 'nullable|array',
-            'quantity_size'         => 'nullable|array',
-            'mode_of_procurement'   => 'nullable|array',
+            'papspreplanid'        => 'required',          // just one ID
+            'item_id'              => 'nullable|array',    // now used as papspreplanitemsid
+            'quantity_size'        => 'nullable|array',
+            'mode_of_procurement'  => 'nullable|array',
         ]);
 
-        $rowCount = max(
-            count($request->input('papspreplanid', [])),
-            count($request->input('papspreplanitemsid', []))
-        );
+        $rowCount = count($request->input('item_id', []));
 
         DB::transaction(function () use ($request, $rowCount) {
             for ($i = 0; $i < $rowCount; $i++) {
-                $id   = $request->input("item_id.$i"); 
+                $itemId = $request->item_id[$i] ?? null; // this is papspreplanitemsid
 
                 $data = [
-                    'papspreplanid'            => $request->papspreplanid,
-                    'papspreplanitemsid'       => $request->papspreplanitemsid,
-                    'quantity_size'            => $request->input("quantity_size.$i"),
-                    'mode_of_procurement'      => $request->input("mode_of_procurement.$i"),
+                    'papspreplanid'       => $request->papspreplanid,     // scalar
+                    'papspreplanitemsid'  => $itemId,                     // mapped
+                    'quantity_size'       => $request->quantity_size[$i] ?? null,
+                    'mode_of_procurement' => $request->mode_of_procurement[$i] ?? null,
                 ];
 
-                // Skip totally blank rows (avoid inserting empty records)
+                // Skip totally blank rows
                 $isBlank = collect($data)
-                    ->except(['papspreplanid']) // plan_id is always present
-                    ->filter(function ($v) { return $v !== null && $v !== ''; })
+                    ->except(['papspreplanid', 'papspreplanitemsid']) // allow IDs but require content
+                    ->filter(fn($v) => $v !== null && $v !== '')
                     ->isEmpty();
 
                 if ($isBlank) {
                     continue;
                 }
 
-                if ($id) {
+                if ($itemId) {
                     // UPDATE existing
-                    $item = PapsPrePlanItemPPMP::find($id);
+                    $item = PapsPrePlanItemPPMP::where('papspreplanitemsid', $itemId)
+                            ->where('papspreplanid', $request->papspreplanid)
+                            ->first();
                     if ($item) {
                         $item->update($data);
-                    } 
-                    // else {
-                    //     // if id not found (e.g., deleted meanwhile), fallback to CREATE
-                    //     PapsPrePlanItemPPMP::create($data);
-                    // }
+                    } else {
+                        // fallback create if not found
+                        PapsPrePlanItemPPMP::create($data);
+                    }
                 } else {
-                    // INSERT new
-                     $exists = PapsPrePlanItemPPMP::where('papspreplanid', $request->papspreplanid)
-                                ->where('papspreplanitemsid', $data['papspreplanitemsid'])
-                                ->where('quantity_size', $data['quantity_size'])
-                                ->exists();
+                    // INSERT new if not exists
+                    $exists = PapsPrePlanItemPPMP::where('papspreplanid', $request->papspreplanid)
+                        ->where('papspreplanitemsid', $itemId)
+                        ->where('quantity_size', $data['quantity_size'])
+                        ->exists();
 
                     if (!$exists) {
                         PapsPrePlanItemPPMP::create($data);

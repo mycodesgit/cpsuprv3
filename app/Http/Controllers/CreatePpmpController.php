@@ -25,6 +25,11 @@ use App\Models\FundingSource;
 use App\Models\User;
 use App\Models\PpmpUser;
 use App\Models\YearPR;
+use App\Models\Uacs;
+use App\Models\PapsPrePlan;
+use App\Models\PapsPrePlanItem;
+use App\Models\PapsPrePlanItemPPMP;
+
 use App\Models\ProcurementPlan;
 use App\Models\ProcurementPlanItem;
 
@@ -397,15 +402,37 @@ class CreatePpmpController extends Controller
         return response()->json(['success' => true, 'message' => 'Save Successfully!'],  200);
     }
 
+    // public function ppmpfrompdfTemplate($ppid) 
+    // {
+    //     $decryptedId = decrypt($ppid);
+
+    //     $plan = ProcurementPlan::find($decryptedId);
+    //     $planitem = ProcurementPlanItem::where('plan_id', $decryptedId)->get();
+
+    //     $data = [
+    //         'plan_id' => $ppid,
+    //         'planitem' => $planitem,
+    //     ];
+
+    //     $pdf = PDF::loadView('createppmp.ppmppdf', $data)->setPaper('A4', 'landscape');
+    //     return $pdf->stream();
+    // }
+
     public function ppmpfrompdfTemplate($ppid) 
     {
         $decryptedId = decrypt($ppid);
 
-        $plan = ProcurementPlan::find($decryptedId);
-        $planitem = ProcurementPlanItem::where('plan_id', $decryptedId)->get();
+        $plan = PapsPrePlan::find($decryptedId);
+        $planitem = PapsPrePlanItem::join('uacs', 'uacs.id', '=', 'paspre_plan_items.papstitle')
+                ->leftJoin('papspre_plan_items_ppmp', 'paspre_plan_items.id', '=', 'papspre_plan_items_ppmp.papspreplanitemsid')
+                ->select('paspre_plan_items.*', 'uacs.uacs_code', 'uacs.uacs_title', 'papspre_plan_items_ppmp.quantity_size', 'papspre_plan_items_ppmp.mode_of_procurement')
+                ->where('paspre_plan_items.papspreplan_id', $decryptedId)
+                ->where('paspre_plan_items.papsprocyn', 'Yes')  // only items with procurement needed
+                ->get();
 
         $data = [
             'plan_id' => $ppid,
+            'plan' => $plan,
             'planitem' => $planitem,
         ];
 

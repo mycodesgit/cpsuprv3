@@ -30,7 +30,7 @@
                                     <i class="fas fa-file-pdf"></i> View PAPs PRE PDF
                                 </a>
                                 &nbsp;&nbsp;
-                                <a href="{{ $planItemExists ? route('papspreitemsppmp', encrypt($plan->id)) : '#' }}" class="btn btn-outline-info btn-sm {{ !$planItemExists ? 'disabled' : '' }}">
+                                <a href="{{ $planItemExists ? route('papspreitemsppmp', encrypt($plan->id)) : '#' }}" class="btn btn-outline-info btn-sm">
                                     <i class="fas fa-file"></i> Create PPMP
                                 </a>
                             </div>
@@ -95,7 +95,7 @@
                                                                         @if($loop->first)
                                                                             <label style="font-weight: bold; color: #000">Code:</label>
                                                                         @endif
-                                                                        <input type="text" name="papsprecode[]" value="{{ $item->papsprecode }}" class="form-control form-control-sm papscode-input tinput">
+                                                                        <input type="text" name="papsprecode[]" value="{{ $item->papsprecode }}" class="form-control form-control-sm papscode-input tinput" readonly>
                                                                     </div>
                                                                     <div class="pr-3" style="min-width:150px;">
                                                                         @if($loop->first)
@@ -188,7 +188,7 @@
                                         </div>
                                         <div class="pr-3" style="min-width:120px;">
                                             <label style="color: #000">Code:</label>
-                                            <input type="text" name="papsprecode[]" class="form-control form-control-sm papscode-input tinput">
+                                            <input type="text" name="papsprecode[]" class="form-control form-control-sm papscode-input tinput" readonly>
                                         </div>
                                         <div class="pr-3" style="min-width:150px;">
                                             <label style="color: #000">Total Amount:</label>
