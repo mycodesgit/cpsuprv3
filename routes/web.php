@@ -18,6 +18,7 @@ use App\Http\Controllers\RequestPendingTechController;
 use App\Http\Controllers\RequestApprovedController;
 use App\Http\Controllers\RequestReturnController;
 use App\Http\Controllers\ArchiveController;
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\PpmpController;
 use App\Http\Controllers\GeneralSearchController;
 use App\Http\Controllers\ReportsController;
@@ -291,8 +292,8 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
         Route::post('/account-settings/information/update',[UserController::class,'user_settings_profile_update'])->name('user_settings_profile_update');
         Route::post('/acccount-settings/information/updatePass',[UserController::class,'profilePassUpdate'])->name('profilePassUpdate');
 
-        Route::get('/annouce-settings',[UserController::class,'annouceInfo'])->name('annouceInfo');
-        Route::post('/annouce-settings/info/update',[UserController::class,'annouceUpdate'])->name('annouceUpdate');
+        Route::get('/annouce-settings',[AnnouncementController::class,'annouceInfo'])->name('annouceInfo');
+        Route::post('/annouce-settings/info/update',[AnnouncementController::class,'annouceUpdate'])->name('annouceUpdate');
 
         Route::get('/setting/server/zeus',[UserController::class,'serverMaintenance'])->name('serverMaintenance');
         Route::post('/setting/server/zeus/admin/maintenance', [UserController::class, 'toggleMaintenance'])->name('toggleMaintenance');

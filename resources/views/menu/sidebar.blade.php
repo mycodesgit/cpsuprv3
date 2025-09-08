@@ -8,6 +8,7 @@
     $ppmpsActive = in_array($current_route, ['ppmpRead']) ? 'active' : '';
     $gensActive = in_array($current_route, ['genSearch']) ? 'active' : '';
     $archiveActive = in_array($current_route, ['archiveRead', 'archiveShow']) ? 'active' : '';
+    $announceActive = in_array($current_route, ['annouceInfo']) ? 'active' : '';
     $reportsActive = in_array($current_route, ['consolidateRead', 'consolidateForm2Read']) ? 'active' : '';
     $usersAllActive = in_array($current_route, ['userRead']) ? 'active' : '';
 
@@ -103,6 +104,12 @@
             <li class="{{ $archiveActive }}">
                 <a class="nav-link" href="{{ route('archiveRead') }}">
                     <i class="fas fa-box-archive"></i> <span>Archived</span>
+                </a>
+            </li>
+
+            <li class="{{ $announceActive }}">
+                <a class="nav-link" href="{{ route('annouceInfo') }}">
+                    <i class="fas fa-scroll"></i> <span>Annoucement</span>
                 </a>
             </li>
         @endif

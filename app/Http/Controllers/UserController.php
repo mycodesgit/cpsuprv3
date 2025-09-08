@@ -293,44 +293,6 @@ class UserController extends Controller
         }
     }
 
-    public function annouceInfo() {
-        $annoucement = Annoucement::first();
-
-        return view('info.annoucement', compact('annoucement'));
-    }
-
-    public function annouceUpdate(Request $request) {
-        $anouce = Annoucement::find($request->id);
-        
-        $request->validate([
-            'id' => 'required',
-            'announcement' => 'required',
-            'datestart' => 'required',
-            'dateend' => 'required',
-        ]);
-
-        try {
-            $anouceName = $request->input('announcement');
-            $existingAnnouce = Annoucement::where('announcement', $anouceName)->where('id', '!=', $request->input('id'))->first();
-
-            if ($existingAnnouce) {
-                return redirect()->back()->with('error', 'Annoucement already exists!');
-            }
-
-            $anouce = Annoucement::find($request->input('id'));
-            $anouce->update([
-                'announcement' => $request->input('announcement'),
-                'datestart' => $request->input('datestart'),
-                'dateend' => $request->input('dateend'),
-                'status' => $request->input('status'),
-            ]);
-
-            return redirect()->back()->with('success', 'Updated Successfully');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Failed to update Annoucement!');
-        }
-    }
-
     public function serverMaintenance()
     {
         return view('info.settingsMaintenance',  [

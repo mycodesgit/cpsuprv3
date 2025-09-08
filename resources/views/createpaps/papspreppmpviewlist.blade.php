@@ -20,7 +20,7 @@
                                     <i class="fas fa-file-pdf"></i> View PPMP PDF
                                 </a>
                                 <a href="{{ $planItemExists ? route('viewlistpapspre', encrypt($plan->id)) : '#' }}" class="btn btn-outline-success btn-sm ml-2">
-                                    <i class="fas fa-file-excel"></i> View PAP's PRE
+                                    <i class="fas fa-eye"></i> View PAP's PRE
                                 </a>
                             </div>
                         </div>
