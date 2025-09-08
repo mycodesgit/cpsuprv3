@@ -659,13 +659,14 @@
                         }
                     },
                 },
-                {data: 'pid',
+                {
+                    data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var link = '<a href="' + approvedListViewRoute + '/' + data + '" class="btn btn-success btn-xs btn-edit" title="View PR">' +
-                                '<i class="fas fa-eye"></i>' +
-                                '</a>';
-                            return link;
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfpostedchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
+                                //buttons += '<a href="' + pendingAllListViewRoute + '/' + data + '" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-toggle="tooltip" data-placement="top" title="PR Remarks."><i class="fas fa-eye"></i> </a>';
+                                
+                            return buttons;
                         } else {
                             return data;
                         }
@@ -673,9 +674,30 @@
                 },
             ],
         });
+        dataTable.on('draw', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
         setInterval(function () {
             dataTable.ajax.reload(null, false);
         }, 5000);
+    });
+
+    $(document).on('click', '.btn-prpdfpostedchecking', function () {
+        var pid = $(this).data('id');
+
+        $('#viewPrModal').modal('show');
+        $('#modalContent').html('<div class="text-center">Loading...</div>');
+
+        $.ajax({
+            url: approvedListViewRoute + '/' +pid,
+            type: 'GET',
+            success: function (response) {
+                $('#modalContent').html(response);
+            },
+            error: function () {
+                $('#modalContent').html('<div class="alert alert-danger">Failed to load data.</div>');
+            }
+        });
     });
 
     $(document).ready(function() {
@@ -754,13 +776,14 @@
                         }
                     },
                 },
-                {data: 'pid',
+                {
+                    data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var link = '<a href="' + approvedListViewRoute + '/' + data + '" class="btn btn-success btn-xs btn-edit" title="View PR">' +
-                                '<i class="fas fa-eye"></i>' +
-                                '</a>';
-                            return link;
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfbiddingchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
+                                //buttons += '<a href="' + pendingAllListViewRoute + '/' + data + '" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-toggle="tooltip" data-placement="top" title="PR Remarks."><i class="fas fa-eye"></i> </a>';
+                                
+                            return buttons;
                         } else {
                             return data;
                         }
@@ -768,9 +791,30 @@
                 },
             ],
         });
+        dataTable.on('draw', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
         setInterval(function () {
             dataTable.ajax.reload(null, false);
         }, 5000);
+    });
+
+    $(document).on('click', '.btn-prpdfbiddingchecking', function () {
+        var pid = $(this).data('id');
+
+        $('#viewPrModal').modal('show');
+        $('#modalContent').html('<div class="text-center">Loading...</div>');
+
+        $.ajax({
+            url: approvedListViewRoute + '/' +pid,
+            type: 'GET',
+            success: function (response) {
+                $('#modalContent').html(response);
+            },
+            error: function () {
+                $('#modalContent').html('<div class="alert alert-danger">Failed to load data.</div>');
+            }
+        });
     });
 
     $(document).ready(function() {
@@ -849,13 +893,14 @@
                         }
                     },
                 },
-                {data: 'pid',
+                {
+                    data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var link = '<a href="' + approvedListViewRoute + '/' + data + '" class="btn btn-success btn-xs btn-edit" title="View PR">' +
-                                '<i class="fas fa-eye"></i>' +
-                                '</a>';
-                            return link;
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfconsoltationchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
+                                //buttons += '<a href="' + pendingAllListViewRoute + '/' + data + '" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-toggle="tooltip" data-placement="top" title="PR Remarks."><i class="fas fa-eye"></i> </a>';
+                                
+                            return buttons;
                         } else {
                             return data;
                         }
@@ -863,9 +908,30 @@
                 },
             ],
         });
+        dataTable.on('draw', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
         setInterval(function () {
             dataTable.ajax.reload(null, false);
         }, 5000);
+    });
+
+    $(document).on('click', '.btn-prpdfconsoltationchecking', function () {
+        var pid = $(this).data('id');
+
+        $('#viewPrModal').modal('show');
+        $('#modalContent').html('<div class="text-center">Loading...</div>');
+
+        $.ajax({
+            url: approvedListViewRoute + '/' +pid,
+            type: 'GET',
+            success: function (response) {
+                $('#modalContent').html(response);
+            },
+            error: function () {
+                $('#modalContent').html('<div class="alert alert-danger">Failed to load data.</div>');
+            }
+        });
     });
 
     $(document).ready(function() {
@@ -944,13 +1010,14 @@
                         }
                     },
                 },
-                {data: 'pid',
+                {
+                    data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var link = '<a href="' + approvedListViewRoute + '/' + data + '" class="btn btn-success btn-xs btn-edit" title="View PR">' +
-                                '<i class="fas fa-eye"></i>' +
-                                '</a>';
-                            return link;
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfawardchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
+                                //buttons += '<a href="' + pendingAllListViewRoute + '/' + data + '" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-toggle="tooltip" data-placement="top" title="PR Remarks."><i class="fas fa-eye"></i> </a>';
+                                
+                            return buttons;
                         } else {
                             return data;
                         }
@@ -958,9 +1025,30 @@
                 },
             ],
         });
+        dataTable.on('draw', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
         setInterval(function () {
             dataTable.ajax.reload(null, false);
         }, 5000);
+    });
+
+    $(document).on('click', '.btn-prpdfawardchecking', function () {
+        var pid = $(this).data('id');
+
+        $('#viewPrModal').modal('show');
+        $('#modalContent').html('<div class="text-center">Loading...</div>');
+
+        $.ajax({
+            url: approvedListViewRoute + '/' +pid,
+            type: 'GET',
+            success: function (response) {
+                $('#modalContent').html(response);
+            },
+            error: function () {
+                $('#modalContent').html('<div class="alert alert-danger">Failed to load data.</div>');
+            }
+        });
     });
 
     $(document).ready(function() {
@@ -1039,13 +1127,14 @@
                         }
                     },
                 },
-                {data: 'pid',
+                {
+                    data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var link = '<a href="' + approvedListViewRoute + '/' + data + '" class="btn btn-success btn-xs btn-edit" title="View PR">' +
-                                '<i class="fas fa-eye"></i>' +
-                                '</a>';
-                            return link;
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfpurchasechecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
+                                //buttons += '<a href="' + pendingAllListViewRoute + '/' + data + '" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-toggle="tooltip" data-placement="top" title="PR Remarks."><i class="fas fa-eye"></i> </a>';
+                                
+                            return buttons;
                         } else {
                             return data;
                         }
@@ -1053,8 +1142,29 @@
                 },
             ],
         });
+        dataTable.on('draw', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
         setInterval(function () {
             dataTable.ajax.reload(null, false);
         }, 5000);
+    });
+
+    $(document).on('click', '.btn-prpdfpurchasechecking', function () {
+        var pid = $(this).data('id');
+
+        $('#viewPrModal').modal('show');
+        $('#modalContent').html('<div class="text-center">Loading...</div>');
+
+        $.ajax({
+            url: approvedListViewRoute + '/' +pid,
+            type: 'GET',
+            success: function (response) {
+                $('#modalContent').html(response);
+            },
+            error: function () {
+                $('#modalContent').html('<div class="alert alert-danger">Failed to load data.</div>');
+            }
+        });
     });
 </script>

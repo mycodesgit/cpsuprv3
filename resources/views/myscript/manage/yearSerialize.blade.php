@@ -54,7 +54,7 @@
                             case 2:
                                 return '<span class="badge badge-warning">Disabled</span>';
                             case 3:
-                                return '<span class="badge badge-primary">Upcoming</span>';
+                                return '<span class="badge badge-warning">Upcoming</span>';
                             default:
                                 return '<span class="badge badge-secondary">Unknown Status</span>';
                         }
