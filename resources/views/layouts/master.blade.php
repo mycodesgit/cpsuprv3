@@ -519,7 +519,9 @@
     @if (request()->routeIs('requestPRcancelBudgetListRead'))
         @include('myscript.return.canceledprReqbyUserSerialize')
     @endif
-
+    @if (request()->routeIs('archiveShow'))
+        @include('myscript.archivepr.archiveSerialize')
+    @endif
     @if (request()->routeIs('userRead'))
         @include('myscript.user.userSerialize')
     @endif

@@ -257,6 +257,8 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
 
     Route::prefix('/archive')->group(function () {
         Route::get('/file/list', [ArchiveController::class, 'archiveRead'])->name('archiveRead');
+        Route::get('/file/list/show', [ArchiveController::class, 'archiveShow'])->name('archiveShow');
+        Route::get('/file/list/show/ajax', [ArchiveController::class, 'getarchivedprListRead'])->name('getarchivedprListRead');
     });
 
     //Reports
