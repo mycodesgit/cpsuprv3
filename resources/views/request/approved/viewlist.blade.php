@@ -17,11 +17,6 @@
                 role="tab" aria-controls="third" aria-selected="false">Receipt Slip
             </a>
         </li>
-        {{-- <li class="nav-item">
-            <a class="nav-link ml-1" id="remarks-tab" data-toggle="tab" href="#remarkstab"
-                role="tab" aria-controls="fourth" aria-selected="false">Remarks
-            </a>
-        </li> --}}
         <li class="nav-item">
             <a class="nav-link ml-1" id="pow-tab" data-toggle="tab" href="#powtab"
                 role="tab" aria-controls="fifth" aria-selected="false">POW
@@ -30,6 +25,11 @@
         <li class="nav-item">
             <a class="nav-link ml-1" id="ppmp-tab" data-toggle="tab" href="#ppmptab"
                 role="tab" aria-controls="sixth" aria-selected="false">PPMP
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link ml-1" id="track-tab" data-toggle="tab" href="#tracktab"
+                role="tab" aria-controls="fourth" aria-selected="false">Track
             </a>
         </li>
     </ul>
@@ -258,6 +258,9 @@
                     </div>
                 @endif
             </div>
+        </div>
+        <div class="tab-pane fade" id="tracktab" role="tabpanel" aria-labelledby="track-tab">
+            
         </div>
     </div>
 </div>

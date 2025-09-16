@@ -252,7 +252,7 @@
             <div class="box-login" id="login">
 				<div style="display: flex; justify-content: center; align-items: center; margin-top: -30px;">
                     <a href="./">
-					    <img src="{{ asset('template/assets/img/cpsulogov4.png') }}" alt="" width="100" height="100">
+					    <img src="{{ asset('template/assets/img/prlogov3.png') }}" alt="" width="100" height="100">
                     </a>
 				</div>
                 <div class="top-header">

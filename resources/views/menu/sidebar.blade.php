@@ -39,7 +39,7 @@
 <aside id="sidebar-wrapper" style="overflow-x: hidden;">
     <div class="sidebar-brand">
         <a href="index-2.html" class="text-white">
-            <img src="{{ asset('template/assets/img/cpsulogov4.png') }}" alt="" width="28%" style="padding-top: 10px !important; padding-bottom: 10px !important; padding-right: 10px !important; margin-left: -15px !important"> 
+            <img src="{{ asset('template/assets/img/prlogov3.png') }}" alt="" width="20%" style="padding-top: 10px !important; padding-bottom: 10px !important; padding-right: 10px !important; margin-left: -15px !important"> 
         </a>
         <span class="text-white" style="margin-left: -10px; font-size: 12pt">Purchase Request</span>
     </div>
