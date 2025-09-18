@@ -39,7 +39,7 @@
 <aside id="sidebar-wrapper" style="overflow-x: hidden;">
     <div class="sidebar-brand">
         <a href="index-2.html" class="text-white">
-            <img src="{{ asset('template/assets/img/prlogov3.png') }}" alt="" width="20%" style="padding-top: 10px !important; padding-bottom: 10px !important; padding-right: 10px !important; margin-left: -15px !important"> 
+            <img src="{{ asset('template/assets/img/prlogov3.png') }}" alt="" width="24%" style="padding-top: 10px !important; padding-bottom: 10px !important; padding-right: 10px !important; margin-left: -15px !important"> 
         </a>
         <span class="text-white" style="margin-left: -10px; font-size: 12pt">Purchase Request</span>
     </div>
@@ -47,7 +47,7 @@
         <a href="index-2.html" class="text-white">PR</a>
     </div>
     <hr>
-    <div class="form-inline balance-box" style="padding-left: 20px !important; padding-right: 20px !important">
+    {{-- <div class="form-inline balance-box" style="padding-left: 20px !important; padding-right: 20px !important">
         <div class="input-group" data-widget="sidebar-search">
             <div class="input-group-append">
                 <span class="input-group-text" style="background-color: #3a7d5c; border-color: #3a7d5c; color: white;">
@@ -56,7 +56,7 @@
             </div>
             <input class="form-control form-control-sidebar" type="text" placeholder="Balance" value="0.00" aria-label="Search" style="background-color: #3a7d5c; border-color: #3a7d5c; color: white;" readonly>
         </div>
-    </div>
+    </div> --}}
     <ul class="sidebar-menu mt-4">
         <li class="menu-header" style="border-color: #3a7d5c">Main Navigation</li>
 

@@ -1,6 +1,14 @@
 @extends('layouts.master')
 
 @section('body')
+    <style>
+        .form-control-sm {
+            height: calc(1.5em + .5rem + 2px) !important;
+            padding: .25rem .5rem !important;
+            font-size: .875rem !important;
+            border-radius: .2rem !important;
+        }
+    </style>
     <section class="section">
         <div class="" style="margin-left: -20px; margin-right: -20px; border-radius: 5px; margin-top: 20px; padding: 3px;">
             <h5>Report Consolidation 2</h5>
