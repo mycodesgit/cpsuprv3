@@ -29,15 +29,16 @@
                                             <label>Year:</label>
                                             <select name="year" class="form-control form-control-sm">
                                                 <?php
-                                                $fixedYears = [2024, 2025]; // always included
-                                                $currentYear = date("Y");   // detect current year (e.g. 2025)
-
-                                                // Merge fixed years with current year (avoid duplicates)
+                                                $fixedYears = [2024, 2025];
+                                                $currentYear = date("Y");
                                                 $years = array_unique(array_merge($fixedYears, [$currentYear]));
                                                 sort($years);
 
+                                                $selectedYear = request('year'); // get selected year from URL
+
                                                 foreach ($years as $year) {
-                                                    echo "<option value='$year'>$year</option>";
+                                                    $selected = ($selectedYear == $year) ? 'selected' : '';
+                                                    echo "<option value='$year' $selected>$year</option>";
                                                 }
                                                 ?>
                                             </select>
