@@ -363,7 +363,7 @@ class RequestPendingController extends Controller
                     'category.*',
                     'ppmpverify.*',
                     'ppmpverify.ppmp_remarks',
-                    'purpose.*', 'purpose.id as puid', 'purpose.created_at as purpose_created_at', 
+                    'purpose.*', 'purpose.id as puid', 'purpose.created_at as purpose_created_at', 'purpose.updated_at as purpose_updated_at', 
                     'unit.unit_name', 'item.*', 
                     'item_request.id as iid',
                     'item_request.item_cost as fitem_cost' )

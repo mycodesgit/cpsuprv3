@@ -601,7 +601,9 @@ class RequestApprovedController extends Controller
                     'category.*',
                     'purpose.*', 
                     'unit.unit_name', 'item.*', 
-                    'item_request.id as iid' )
+                    'item_request.id as iid',
+                    'purpose.created_at as pcrtdat', 
+                    'purpose.updated_at as puptdat' )
             ->whereIn('item_request.status', ['7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'])
             ->where('item_request.purpose_id', '=',  $enID)
             ->where('item_request.user_id', '=',  $userId)
