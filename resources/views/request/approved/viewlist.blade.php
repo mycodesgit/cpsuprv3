@@ -507,7 +507,53 @@
                             @php
                                 $item = $appItem->first();
                             @endphp
-                            @if (in_array($item->pstatus, ['4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16']))
+                             @if(in_array($item->cat_id, ['2','10']))
+                                {{-- If status is Approved --}}
+                                @if(in_array($item->pstatus, ['6','7']) || in_array($item->status, ['6','7']))
+                                    <div class="tracking-item">
+                                        <div class="tracking-icon status-intransit">
+                                            <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path fill="currentColor"
+                                                    d="M256 8C119 8 8 119 8 256s111 248 248 248 
+                                                    248-111 248-248S393 8 256 8z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div class="tracking-date">
+                                            <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
+                                                class="img-responsive" alt="order-placed" />
+                                        </div>
+                                        <div class="tracking-content">
+                                            Approved in MIS - Specification Review
+                                            <span>{{ \Carbon\Carbon::parse($item->purpose_updated_at)->format('F j, Y h:i:s A') }}</span>
+                                        </div>
+                                    </div>
+                                @else
+                                    {{-- If status is still Pending --}}
+                                    <div class="tracking-item-pending">
+                                        <div class="tracking-icon status-intransit">
+                                            <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path fill="currentColor"
+                                                    d="M256 8C119 8 8 119 8 256s111 248 248 248 
+                                                    248-111 248-248S393 8 256 8z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div class="tracking-date">
+                                            <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
+                                                class="img-responsive" alt="order-placed" />
+                                        </div>
+                                        <div class="tracking-content">
+                                            Pending in MIS - Specification Review
+                                            <span>{{ \Carbon\Carbon::parse($item->purpose_updated_at)->format('F j, Y h:i:s A') }}</span>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endif
+
+                            @if (in_array($item->pstatus, ['7', '8', '9', '10', '11', '12', '13', '14', '15', '16']))
                                 <div class="tracking-item">
                                     <div class="tracking-icon status-intransit">
                                         <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
