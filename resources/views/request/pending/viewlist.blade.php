@@ -34,6 +34,7 @@
         font-size: 0.9rem;
         margin-left: 3rem;
         min-height: 5rem;
+        color: #000;
     }
 
     .tracking-item:last-child {
@@ -500,31 +501,10 @@
                                 $item = $pendItem->first();
                             @endphp
 
-                            @if(in_array($item->cat_id, ['2','10']))
-                                {{-- If status is Approved --}}
-                                @if(in_array($item->pstatus, ['5','6']) || in_array($item->status, ['5','6']))
-                                    <div class="tracking-item">
-                                        <div class="tracking-icon status-intransit">
-                                            <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                <path fill="currentColor"
-                                                    d="M256 8C119 8 8 119 8 256s111 248 248 248 
-                                                    248-111 248-248S393 8 256 8z">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                        <div class="tracking-date">
-                                            <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
-                                                class="img-responsive" alt="order-placed" />
-                                        </div>
-                                        <div class="tracking-content">
-                                            Approved in MIS - Specification Review
-                                            <span>{{ \Carbon\Carbon::parse($item->purpose_updated_at)->format('F j, Y h:i:s A') }}</span>
-                                        </div>
-                                    </div>
-                                @else
-                                    {{-- If status is still Pending --}}
-                                    <div class="tracking-item-pending">
+                            @if (in_array($item->cat_id, ['2','10']))
+                                {{-- Step: Pending in MIS (when pstatus = 99) --}}
+                                @if ($item->pstatus == 99)
+                                    <div class="tracking-item-pending current">
                                         <div class="tracking-icon status-intransit">
                                             <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -540,93 +520,83 @@
                                         </div>
                                         <div class="tracking-content">
                                             Pending in MIS - Specification Review
+                                            <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                        </div>
+                                    </div>
+                                @endif
+
+                                {{-- Step: Approved by MIS + then Pending again --}}
+                                @if ($item->pstatus == 2)
+                                    {{-- Approved --}}
+                                    <div class="tracking-item current">
+                                        <div class="tracking-icon status-intransit">
+                                            <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path fill="currentColor"
+                                                    d="M256 8C119 8 8 119 8 256s111 248 248 248 
+                                                    248-111 248-248S393 8 256 8z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div class="tracking-date">
+                                            <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
+                                                class="img-responsive" alt="order-placed" />
+                                        </div>
+                                        <div class="tracking-content">
+                                            Purchase Request Approved by MIS - Specification Reviewed
+                                            <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                        </div>
+                                    </div>
+
+                                    {{-- Then Pending again --}}
+                                    <div class="tracking-item-pending">
+                                        <div class="tracking-icon status-intransit">
+                                            <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path fill="currentColor"
+                                                    d="M256 8C119 8 8 119 8 256s111 248 248 248 
+                                                    248-111 248-248S393 8 256 8z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div class="tracking-date">
+                                            <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
+                                                class="img-responsive" alt="order-placed" />
+                                        </div>
+                                        <div class="tracking-content">
+                                            Purchase Request is Pending in Procurement Office
                                             <span>{{ \Carbon\Carbon::parse($item->purpose_updated_at)->format('F j, Y h:i:s A') }}</span>
+                                        </div>
+                                    </div>
+                                @endif
+
+                            @else
+                                {{-- For all other categories: skip MIS and go straight to Procurement --}}
+                                @if ($item->pstatus >= 7)
+                                    <div class="tracking-item {{ $item->pstatus == 7 ? 'current' : 'completed' }}">
+                                        <div class="tracking-icon status-intransit">
+                                            <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path fill="currentColor"
+                                                    d="M256 8C119 8 8 119 8 256s111 248 248 248 
+                                                    248-111 248-248S393 8 256 8z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div class="tracking-date">
+                                            <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
+                                                class="img-responsive" alt="order-placed" />
+                                        </div>
+                                        <div class="tracking-content">
+                                            Pending in Procurement
+                                            <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
                                         </div>
                                     </div>
                                 @endif
                             @endif
 
-                            @if (in_array($item->pstatus, ['3', '4', '5']))
-                                <div class="tracking-item-pending">
-                                    <div class="tracking-icon status-intransit">
-                                        <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
-                                            data-prefix="fas" data-icon="circle" role="img"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                            data-fa-i2svg="">
-                                            <path fill="currentColor"
-                                                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <div class="tracking-date">
-                                        <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
-                                            class="img-responsive" alt="order-placed" />
-                                    </div>
-                                    <div class="tracking-content">
-                                        Pending in Procurement Office<span>{{ \Carbon\Carbon::parse($pendItem[0]->purpose_updated_at)->format('F j, Y h:i:s A') }}</span>
-                                    </div>
-                                </div>
-                            @elseif ($item->pstatus == '3')
-                                <div class="tracking-item">
-                                    <div class="tracking-icon status-intransit">
-                                        <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
-                                            data-prefix="fas" data-icon="circle" role="img"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                            data-fa-i2svg="">
-                                            <path fill="currentColor"
-                                                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <div class="tracking-date">
-                                        <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
-                                            class="img-responsive" alt="order-placed" />
-                                    </div>
-                                    <div class="tracking-content">
-                                        Returned to End User<span>{{ \Carbon\Carbon::parse($pendItem[0]->purpose_updated_at)->format('F j, Y h:i:s A') }}</span>
-                                    </div>
-                                </div>
-                            @elseif (!in_array($item->pstatus, ['3', '4', '5', '99']))
-                                <div class="tracking-item">
-                                    <div class="tracking-icon status-intransit">
-                                        <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
-                                            data-prefix="fas" data-icon="circle" role="img"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                            data-fa-i2svg="">
-                                            <path fill="currentColor"
-                                                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <div class="tracking-date">
-                                        <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
-                                            class="img-responsive" alt="order-placed" />
-                                    </div>
-                                    <div class="tracking-content">
-                                        Purchase Request has Approved by the Procurement Office<span>{{ \Carbon\Carbon::parse($pendItem[0]->purpose_updated_at)->format('F j, Y h:i:s A') }}</span>
-                                    </div>
-                                </div>
-                            @else
-                                <div class="tracking-item-pending">
-                                    <div class="tracking-icon status-intransit">
-                                        <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
-                                            data-prefix="fas" data-icon="circle" role="img"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                            data-fa-i2svg="">
-                                            <path fill="currentColor"
-                                                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <div class="tracking-date">
-                                        <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
-                                            class="img-responsive" alt="order-placed" />
-                                    </div>
-                                    <div class="tracking-content">
-                                        Pending in Procurement Office<span>{{ \Carbon\Carbon::parse($pendItem[0]->purpose_updated_at)->format('F j, Y h:i:s A') }}</span>
-                                    </div>
-                                </div>
-                            @endif
+
+                            
 
                             @if (in_array($item->pstatus, ['6']))
                                 <div class="tracking-item-pending">

@@ -34,6 +34,7 @@
         font-size: 0.9rem;
         margin-left: 3rem;
         min-height: 5rem;
+        color: #000;
     }
 
     .tracking-item:last-child {
@@ -509,7 +510,7 @@
                             @endphp
                              @if(in_array($item->cat_id, ['2','10']))
                                 {{-- If status is Approved --}}
-                                @if(in_array($item->pstatus, ['6','7']) || in_array($item->status, ['6','7']))
+                                @if(in_array($item->pstatus, ['6','7']) || in_array($item->status, ['6','7', '8', '9', '10', '11', '12', '13', '14', '15', '16']))
                                     <div class="tracking-item">
                                         <div class="tracking-icon status-intransit">
                                             <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
@@ -553,6 +554,7 @@
                                 @endif
                             @endif
 
+                            {{-- Step 6: Approved by Procurement Office --}}
                             @if (in_array($item->pstatus, ['7', '8', '9', '10', '11', '12', '13', '14', '15', '16']))
                                 <div class="tracking-item">
                                     <div class="tracking-icon status-intransit">
@@ -573,15 +575,17 @@
                                         Purchase Request has Approved by the Procurement Office<span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
                                     </div>
                                 </div>
+                            @endif
 
-                                <div class="tracking-item">
+                            {{-- Step 7: Approved by Budget Office --}}
+                            @if ($item->pstatus >= 7)
+                                <div class="tracking-item {{ $item->pstatus == 7 ? 'current' : 'completed' }}">
                                     <div class="tracking-icon status-intransit">
                                         <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
-                                            data-prefix="fas" data-icon="circle" role="img"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                            data-fa-i2svg="">
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                             <path fill="currentColor"
-                                                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z">
+                                                d="M256 8C119 8 8 119 8 256s111 248 248 248 
+                                                248-111 248-248S393 8 256 8z">
                                             </path>
                                         </svg>
                                     </div>
@@ -590,10 +594,265 @@
                                             class="img-responsive" alt="order-placed" />
                                     </div>
                                     <div class="tracking-content">
-                                        Purchase Request has Approved by the Budget Office<span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                        Purchase Request has Approved by the Budget Office
+                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
                                     </div>
                                 </div>
                             @endif
+
+                            {{-- Step 8: Received by Procurement Office --}}
+                            @if ($item->pstatus >= 8)
+                                <div class="tracking-item {{ $item->pstatus == 8 ? 'current' : 'completed' }}">
+                                    <div class="tracking-icon status-intransit">
+                                        <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor"
+                                                d="M256 8C119 8 8 119 8 256s111 248 248 248 
+                                                248-111 248-248S393 8 256 8z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="tracking-date">
+                                        <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
+                                            class="img-responsive" alt="order-placed" />
+                                    </div>
+                                    <div class="tracking-content">
+                                        Purchase Request has Received by the Procurement Office
+                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            {{-- Step 9: Canvassing --}}
+                            @if ($item->pstatus >= 9) {{-- ✅ FIXED: should check >= 9, not 8 --}}
+                                <div class="tracking-item {{ $item->pstatus == 9 ? 'current' : 'completed' }}">
+                                    <div class="tracking-icon status-intransit">
+                                        <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor"
+                                                d="M256 8C119 8 8 119 8 256s111 248 248 248 
+                                                248-111 248-248S393 8 256 8z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="tracking-date">
+                                        <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
+                                            class="img-responsive" alt="order-placed" />
+                                    </div>
+                                    <div class="tracking-content">
+                                        Purchase Request is Canvassing
+                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            {{-- Step 10: Canvassed --}}
+                            @if ($item->pstatus >= 10) {{-- ✅ FIXED: should check >= 10, not 9 --}}
+                                <div class="tracking-item {{ $item->pstatus == 10 ? 'current' : 'completed' }}">
+                                    <div class="tracking-icon status-intransit">
+                                        <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor"
+                                                d="M256 8C119 8 8 119 8 256s111 248 248 248 
+                                                248-111 248-248S393 8 256 8z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="tracking-date">
+                                        <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
+                                            class="img-responsive" alt="order-placed" />
+                                    </div>
+                                    <div class="tracking-content">
+                                        Purchase Request is being Canvassed
+                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            {{-- Step 11: Canvassed --}}
+                            @if ($item->pstatus >= 11) {{-- ✅ FIXED: should check >= 11, not 10 --}}
+                                <div class="tracking-item {{ $item->pstatus == 11 ? 'current' : 'completed' }}">
+                                    <div class="tracking-icon status-intransit">
+                                        <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor"
+                                                d="M256 8C119 8 8 119 8 256s111 248 248 248 
+                                                248-111 248-248S393 8 256 8z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="tracking-date">
+                                        <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
+                                            class="img-responsive" alt="order-placed" />
+                                    </div>
+                                    <div class="tracking-content">
+                                        Purchase Request is for Philgeps Posting
+                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            {{-- Step 12: Canvassed --}}
+                            @if ($item->pstatus >= 12) {{-- ✅ FIXED: should check >= 12, not 11 --}}
+                                <div class="tracking-item {{ $item->pstatus == 12 ? 'current' : 'completed' }}">
+                                    <div class="tracking-icon status-intransit">
+                                        <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor"
+                                                d="M256 8C119 8 8 119 8 256s111 248 248 248 
+                                                248-111 248-248S393 8 256 8z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="tracking-date">
+                                        <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
+                                            class="img-responsive" alt="order-placed" />
+                                    </div>
+                                    <div class="tracking-content">
+                                        Purchase Request is being Posted
+                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            {{-- Step 13: Canvassed --}}
+                            @if ($item->pstatus >= 13) {{-- ✅ FIXED: should check >= 13, not 12 --}}
+                                <div class="tracking-item {{ $item->pstatus == 13 ? 'current' : 'completed' }}">
+                                    <div class="tracking-icon status-intransit">
+                                        <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor"
+                                                d="M256 8C119 8 8 119 8 256s111 248 248 248 
+                                                248-111 248-248S393 8 256 8z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="tracking-date">
+                                        <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
+                                            class="img-responsive" alt="order-placed" />
+                                    </div>
+                                    <div class="tracking-content">
+                                        Purchase Request is for Bidding
+                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            {{-- Step 14: Canvassed --}}
+                            @if ($item->pstatus >= 14) {{-- ✅ FIXED: should check >= 14, not 13 --}}
+                                <div class="tracking-item {{ $item->pstatus == 14 ? 'current' : 'completed' }}">
+                                    <div class="tracking-icon status-intransit">
+                                        <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor"
+                                                d="M256 8C119 8 8 119 8 256s111 248 248 248 
+                                                248-111 248-248S393 8 256 8z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="tracking-date">
+                                        <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
+                                            class="img-responsive" alt="order-placed" />
+                                    </div>
+                                    <div class="tracking-content">
+                                        Purchase Request is for Consolidation
+                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            {{-- Step 15: Canvassed --}}
+                            @if ($item->pstatus >= 15) {{-- ✅ FIXED: should check >= 15, not 14 --}}
+                                <div class="tracking-item {{ $item->pstatus == 15 ? 'current' : 'completed' }}">
+                                    <div class="tracking-icon status-intransit">
+                                        <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor"
+                                                d="M256 8C119 8 8 119 8 256s111 248 248 248 
+                                                248-111 248-248S393 8 256 8z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="tracking-date">
+                                        <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
+                                            class="img-responsive" alt="order-placed" />
+                                    </div>
+                                    <div class="tracking-content">
+                                        Purchase Request is Awarded 
+                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            {{-- Step 16: Canvassed --}}
+                            @if ($item->pstatus >= 16) {{-- ✅ FIXED: should check >= 16, not 15 --}}
+                                <div class="tracking-item {{ $item->pstatus == 16 ? 'current' : 'completed' }}">
+                                    <div class="tracking-icon status-intransit">
+                                        <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor"
+                                                d="M256 8C119 8 8 119 8 256s111 248 248 248 
+                                                248-111 248-248S393 8 256 8z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="tracking-date">
+                                        <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
+                                            class="img-responsive" alt="order-placed" />
+                                    </div>
+                                    <div class="tracking-content">
+                                        Purchase Request is being Purchased
+                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            {{-- Step 17: Canvassed --}}
+                            @if ($item->pstatus >= 17) {{-- ✅ FIXED: should check >= 17, not 16 --}}
+                                <div class="tracking-item {{ $item->pstatus == 17 ? 'current' : 'completed' }}">
+                                    <div class="tracking-icon status-intransit">
+                                        <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor"
+                                                d="M256 8C119 8 8 119 8 256s111 248 248 248 
+                                                248-111 248-248S393 8 256 8z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="tracking-date">
+                                        <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
+                                            class="img-responsive" alt="order-placed" />
+                                    </div>
+                                    <div class="tracking-content">
+                                        Purchase Request is being Returned
+                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            {{-- Step 18: Canvassed --}}
+                            @if ($item->pstatus >= 18) {{-- ✅ FIXED: should check >= 18, not 17 --}}
+                                <div class="tracking-item {{ $item->pstatus == 18 ? 'current' : 'completed' }}">
+                                    <div class="tracking-icon status-intransit">
+                                        <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor"
+                                                d="M256 8C119 8 8 119 8 256s111 248 248 248 
+                                                248-111 248-248S393 8 256 8z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="tracking-date">
+                                        <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
+                                            class="img-responsive" alt="order-placed" />
+                                    </div>
+                                    <div class="tracking-content">
+                                        Purchase Request is being Forwarded to PEDO
+                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                    </div>
+                                </div>
+                            @endif
+
                         </div>
                     </div>
                 </div>
