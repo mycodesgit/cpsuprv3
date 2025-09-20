@@ -82,6 +82,7 @@
         font-size: 0.9rem;
         margin-left: 3rem;
         min-height: 5rem;
+        color: #767676;
     }
 
     .tracking-item-pending:last-child {
