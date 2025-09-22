@@ -840,7 +840,10 @@ class RequestApprovedController extends Controller
             ->update(['status' => 8]);
 
         Purpose::where('id', $id)
-            ->update(['pstatus' =>  8]);
+            ->update([
+                'pstatus' =>  8,
+                'datereceived' => now()->toDateTimeString(),
+            ]);
 
         PRnotification::create([
             'purp_id' => $id,
@@ -865,7 +868,10 @@ class RequestApprovedController extends Controller
             ->update(['status' => 9]);
 
         Purpose::where('id', $id)
-            ->update(['pstatus' =>  9]);
+            ->update([
+                'pstatus' =>  9,
+                'datecanvassing' => now()->toDateTimeString(),
+            ]);
         
         PRnotification::create([
             'purp_id' => $id,
@@ -890,7 +896,10 @@ class RequestApprovedController extends Controller
             ->update(['status' => 10]);
 
         Purpose::where('id', $id)
-            ->update(['pstatus' =>  10]);
+            ->update([
+                'pstatus' =>  10,
+                'datecanvassed' => now()->toDateTimeString(),
+            ]);
 
         PRnotification::create([
             'purp_id' => $id,
@@ -915,7 +924,10 @@ class RequestApprovedController extends Controller
             ->update(['status' => 11]);
 
         Purpose::where('id', $id)
-            ->update(['pstatus' =>  11]);
+            ->update([
+                'pstatus' =>  11,
+                'datephilgeps' => now()->toDateTimeString(),
+            ]);
 
         PRnotification::create([
             'purp_id' => $id,
@@ -940,7 +952,10 @@ class RequestApprovedController extends Controller
             ->update(['status' => 12]);
 
         Purpose::where('id', $id)
-            ->update(['pstatus' =>  12]);
+            ->update([
+                'pstatus' =>  12,
+                'dateposted' => now()->toDateTimeString(),
+            ]);
 
         PRnotification::create([
             'purp_id' => $id,
@@ -965,7 +980,10 @@ class RequestApprovedController extends Controller
             ->update(['status' => 13]);
 
         Purpose::where('id', $id)
-            ->update(['pstatus' =>  13]);
+            ->update([
+                'pstatus' =>  13,
+                'datebidding' => now()->toDateTimeString(),
+            ]);
 
         PRnotification::create([
             'purp_id' => $id,
@@ -990,7 +1008,10 @@ class RequestApprovedController extends Controller
             ->update(['status' => 14]);
 
         Purpose::where('id', $id)
-            ->update(['pstatus' =>  14]);
+            ->update([
+                'pstatus' =>  14,
+                'dateconsolidate' => now()->toDateTimeString(),
+            ]);
 
         PRnotification::create([
             'purp_id' => $id,
@@ -1015,7 +1036,10 @@ class RequestApprovedController extends Controller
             ->update(['status' => 15]);
 
         Purpose::where('id', $id)
-            ->update(['pstatus' =>  15]);
+            ->update([
+                'pstatus' =>  15,
+                'dateawarded' => now()->toDateTimeString(),
+            ]);
         
         PRnotification::create([
             'purp_id' => $id,
@@ -1040,7 +1064,10 @@ class RequestApprovedController extends Controller
             ->update(['status' => 16]);
 
         Purpose::where('id', $id)
-            ->update(['pstatus' =>  16]);
+            ->update([
+                'pstatus' =>  16,
+                'datepurchase' => now()->toDateTimeString(),
+            ]);
         
         PRnotification::create([
             'purp_id' => $id,
@@ -1065,7 +1092,10 @@ class RequestApprovedController extends Controller
             ->update(['status' => 17]);
 
         Purpose::where('id', $id)
-            ->update(['pstatus' =>  17]);
+            ->update([
+                'pstatus' =>  17,
+                'datereturned' => now()->toDateTimeString(),
+            ]);
         
          PRnotification::create([
             'purp_id' => $id,
@@ -1090,7 +1120,10 @@ class RequestApprovedController extends Controller
             ->update(['status' => 18]);
 
         Purpose::where('id', $id)
-            ->update(['pstatus' =>  18]);
+            ->update([
+                'pstatus' =>  18,
+                'dateforwarded' => now()->toDateTimeString(),
+            ]);
 
         PRnotification::create([
             'purp_id' => $id,
@@ -1115,7 +1148,10 @@ class RequestApprovedController extends Controller
             ->update(['status' => 19]);
 
         Purpose::where('id', $id)
-            ->update(['pstatus' =>  19]);
+            ->update([
+                'pstatus' =>  19,
+                'datecancel' => now()->toDateTimeString(),
+            ]);
         
         PRnotification::create([
             'purp_id' => $id,

@@ -564,7 +564,8 @@ class RequestPendingController extends Controller
         Purpose::where('id', $purpose_id)
             ->update([
                 'pstatus' =>  $prstatus,
-                'officeidreturn' => $officeidreturn
+                'officeidreturn' => $officeidreturn,
+                'dateproc' => now()->toDateTimeString(),
         ]);
 
         PpmpVerify::where('purpose_id', $purpose_id)
@@ -606,7 +607,8 @@ class RequestPendingController extends Controller
         Purpose::where('id', $purpose_id)
             ->update([
                 'pstatus' =>  $prstatus,
-                'officeidreturn' => $officeidreturn
+                'officeidreturn' => $officeidreturn,
+                'datetech' => now()->toDateTimeString(),
         ]);
 
         PpmpVerify::where('purpose_id', $purpose_id)
@@ -658,7 +660,10 @@ class RequestPendingController extends Controller
             ->update(['status' => $status]);
 
         Purpose::where('id', $purpose_id)
-            ->update(['pstatus' => $status]);
+            ->update([
+                'pstatus' => $status,
+                'datebud' => now()->toDateTimeString(),
+            ]);
 
         FundingSource::where('purpose_id', $purpose_id)
             ->update([

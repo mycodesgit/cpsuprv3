@@ -494,7 +494,7 @@
                                         class="img-responsive" alt="order-placed" />
                                 </div>
                                 <div class="tracking-content">
-                                    Purchase Request Submitted<span>{{ \Carbon\Carbon::parse($pendItem[0]->purpose_updated_at)->format('F j, Y h:i:s A') }}</span>
+                                    Purchase Request Submitted<span>{{ \Carbon\Carbon::parse($pendItem[0]->purpose_created_at)->format('F j, Y h:i:s A') }}</span>
                                 </div>
                             </div>
 
@@ -521,7 +521,9 @@
                                         </div>
                                         <div class="tracking-content">
                                             Purchase Request is Pending in MIS - Specification Review
-                                            <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                            @if(!empty($item->datetech))
+                                                <span>{{ \Carbon\Carbon::parse($item->datetech)->format('F j, Y h:i:s A') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 @endif
@@ -544,7 +546,9 @@
                                         </div>
                                         <div class="tracking-content">
                                             Purchase Request has been Approved by MIS - Specification Reviewed
-                                            <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                            @if(!empty($item->datetech))
+                                                <span>{{ \Carbon\Carbon::parse($item->datetech)->format('F j, Y h:i:s A') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     {{-- Then Pending again --}}
@@ -564,12 +568,32 @@
                                         </div>
                                         <div class="tracking-content">
                                             Purchase Request is Pending in Procurement Office
-                                            <span>{{ \Carbon\Carbon::parse($item->purpose_updated_at)->format('F j, Y h:i:s A') }}</span>
+                                            @if(!empty($item->dateproc))
+                                                <span>{{ \Carbon\Carbon::parse($item->dateproc)->format('F j, Y h:i:s A') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 @endif
                             @else
-
+                                {{-- <div class="tracking-item-pending">
+                                    <div class="tracking-icon status-intransit">
+                                        <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor"
+                                                d="M256 8C119 8 8 119 8 256s111 248 248 248 
+                                                248-111 248-248S393 8 256 8z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="tracking-date">
+                                        <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
+                                            class="img-responsive" alt="order-placed" />
+                                    </div>
+                                    <div class="tracking-content">
+                                        Purchase Request is Pending in Procurement Office
+                                        <span>{{ \Carbon\Carbon::parse($item->purpose_updated_at)->format('F j, Y h:i:s A') }}</span>
+                                    </div>
+                                </div> --}}
                             @endif
 
                             @if (in_array($item->pstatus, ['6']))
@@ -590,7 +614,9 @@
                                         </div>
                                         <div class="tracking-content">
                                             Approved in MIS - Specification Review
-                                            <span>{{ \Carbon\Carbon::parse($item->purpose_updated_at)->format('F j, Y h:i:s A') }}</span>
+                                            @if(!empty($item->datetech))
+                                                <span>{{ \Carbon\Carbon::parse($item->datetech)->format('F j, Y h:i:s A') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 @endif
@@ -610,7 +636,10 @@
                                             class="img-responsive" alt="order-placed" />
                                     </div>
                                     <div class="tracking-content">
-                                        Purchase Request has Approved by the Procurement Office<span>{{ \Carbon\Carbon::parse($pendItem[0]->purpose_updated_at)->format('F j, Y h:i:s A') }}</span>
+                                        Purchase Request has Approved by the Procurement Office
+                                        @if(!empty($item->dateproc))
+                                            <span>{{ \Carbon\Carbon::parse($pendItem[0]->dateproc)->format('F j, Y h:i:s A') }}</span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="tracking-item-pending">
@@ -629,7 +658,10 @@
                                             class="img-responsive" alt="order-placed" />
                                     </div>
                                     <div class="tracking-content">
-                                        Waiting for Budget Office Approval<span>{{ \Carbon\Carbon::parse($pendItem[0]->purpose_updated_at)->format('F j, Y h:i:s A') }}</span>
+                                        Waiting for Budget Office Approval
+                                        @if(!empty($item->datebud))
+                                            <span>{{ \Carbon\Carbon::parse($pendItem[0]->datebud)->format('F j, Y h:i:s A') }}</span>
+                                        @endif
                                     </div>
                                 </div>
                             @endif

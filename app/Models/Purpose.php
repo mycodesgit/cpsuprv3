@@ -36,6 +36,7 @@ class Purpose extends Model
         'datepurchase',
         'datereturned',
         'dateforwarded',
+        'datecancel',
         'officeidreturn',
         'remember_token',
     ];
