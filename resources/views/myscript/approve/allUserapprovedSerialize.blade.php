@@ -759,7 +759,7 @@
                             case 12:
                                 return '<span class="badge badge-default bg-gray">PR Posted</span>';
                             case 13:
-                                return '<span class="badge badge-default bg-gray-dark">Bidding</span>';
+                                return '<span class="badge badge-default bg-gray-dark text-light">Bidding</span>';
                             case 14:
                                 return '<span class="badge badge-default bg-purple">For Consolidation</span>';
                             case 15:
