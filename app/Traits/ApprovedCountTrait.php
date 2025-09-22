@@ -142,8 +142,8 @@ trait ApprovedCountTrait
         $userId = Auth::id();
         return Purpose::join('office', 'purpose.office_id', '=', 'office.id')
             ->join('users', 'purpose.user_id', '=', 'users.id')
-            // ->whereIn('purpose.pstatus', ['7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'])
-            ->where('purpose.pstatus', 7)
+            ->whereIn('purpose.pstatus', ['7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'])
+            //->where('purpose.pstatus', 7)
             ->where('purpose.user_id', '=', $userId)
             ->count();
     }
