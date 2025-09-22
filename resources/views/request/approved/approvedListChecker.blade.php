@@ -107,10 +107,10 @@
                                         <table id="prapproved" class="table table-hover styled-table" style="width: 100%">
                                             <thead>
                                                 <tr>
-                                                    <th>Date</th>
+                                                    <th>Date Submitted</th>
+                                                    <th>Date Received</th>
                                                     <th>Campus</th>
-                                                    <th width="8%">PR No.</th>
-                                                    <th>Type</th>
+                                                    <th>PR No.</th>
                                                     <th>Office</th>
                                                     <th>Purpose</th>
                                                     <th>Category</th>
@@ -136,7 +136,6 @@
                                                 <th>Office</th>
                                                 <th>Purpose</th>
                                                 <th>Category</th>
-                                                <th>Date</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -173,10 +172,10 @@
                                     <table id="prcanvassed" class="table table-hover styled-table" style="width: 100%">
                                         <thead>
                                             <tr>
+                                                <th>Date Submitted</th>
+                                                <th>Date Canvassed</th>
                                                 <th>Campus</th>
                                                 <th>PR No.</th>
-                                                <th>Type</th>
-                                                <th>Office</th>
                                                 <th>Purpose</th>
                                                 <th>Category</th>
                                                 <th>Date</th>

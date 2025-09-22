@@ -116,7 +116,17 @@
                 {data: 'cpdate',
                     render: function (data, type, row) {
                         if (type === 'display') {
-                            return moment(data).format('MMMM D, YYYY');
+                            return moment(data).format('MMMM D, YYYY h:mm A');
+                        } else {
+                            return data;
+                        }
+                    }
+                },
+                {data: 'datebud',
+                    render: function (data, type, row) {
+                        if (type === 'display') {
+                            if (!data) return '';
+                            return moment(data).format('MMMM D, YYYY h:mm A');
                         } else {
                             return data;
                         }
@@ -124,22 +134,6 @@
                 },
                 {data: 'campus_abbr'},
                 {data: 'pr_no'},
-                {data: 'type_request',
-                        render: function(data, type, row) {
-                        switch(parseInt(data)) {
-                            case 1:
-                                return 'Purchase Request';
-                            case 2:
-                                return 'POW';
-                            case 3:
-                                return 'Letter Request';
-                            case 4:
-                                return 'Others';
-                            default:
-                                return 'Unknown Status';
-                        }
-                    },
-                },
                 {data: 'office_abbr'},
                 {data: 'purpose_name'},
                 {data: 'category_name'},
@@ -252,22 +246,6 @@
                 },
                 {data: 'campus_abbr'},
                 {data: 'pr_no'},
-                {data: 'type_request',
-                        render: function(data, type, row) {
-                        switch(parseInt(data)) {
-                            case 1:
-                                return 'Purchase Request';
-                            case 2:
-                                return 'POW';
-                            case 3:
-                                return 'Letter Request';
-                            case 4:
-                                return 'Others';
-                            default:
-                                return 'Unknown Status';
-                        }
-                    },
-                },
                 {data: 'office_abbr'},
                 {data: 'purpose_name'},
                 {data: 'category_name'},
@@ -536,7 +514,17 @@
                 {data: 'cpdate',
                     render: function (data, type, row) {
                         if (type === 'display') {
-                            return moment(data).format('MMMM D, YYYY');
+                            return moment(data).format('MMMM D, YYYY  h:mm A');
+                        } else {
+                            return data;
+                        }
+                    }
+                },
+                {data: 'datecanvassed',
+                    render: function (data, type, row) {
+                        if (type === 'display') {
+                            if (!data) return '';
+                            return moment(data).format('MMMM D, YYYY h:mm A');
                         } else {
                             return data;
                         }
@@ -544,22 +532,6 @@
                 },
                 {data: 'campus_abbr'},
                 {data: 'pr_no'},
-                {data: 'type_request',
-                        render: function(data, type, row) {
-                        switch(parseInt(data)) {
-                            case 1:
-                                return 'Purchase Request';
-                            case 2:
-                                return 'POW';
-                            case 3:
-                                return 'Letter Request';
-                            case 4:
-                                return 'Others';
-                            default:
-                                return 'Unknown Status';
-                        }
-                    },
-                },
                 {data: 'office_abbr'},
                 {data: 'purpose_name'},
                 {data: 'category_name'},
