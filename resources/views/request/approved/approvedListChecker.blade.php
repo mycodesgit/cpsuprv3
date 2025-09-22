@@ -129,9 +129,10 @@
                                     <table id="prreceived" class="table table-hover styled-table" style="width: 100%">
                                         <thead>
                                             <tr>
+                                                <th>Date Submitted</th>
+                                                <th>Date Received</th>
                                                 <th>Campus</th>
                                                 <th>PR No.</th>
-                                                <th>Type</th>
                                                 <th>Office</th>
                                                 <th>Purpose</th>
                                                 <th>Category</th>
@@ -150,9 +151,10 @@
                                     <table id="prcanvassing" class="table table-hover styled-table" style="width: 100%">
                                         <thead>
                                             <tr>
+                                                <th>Date Submitted</th>
+                                                <th>Date Canvassing</th>
                                                 <th>Campus</th>
                                                 <th>PR No.</th>
-                                                <th>Type</th>
                                                 <th>Office</th>
                                                 <th>Purpose</th>
                                                 <th>Category</th>

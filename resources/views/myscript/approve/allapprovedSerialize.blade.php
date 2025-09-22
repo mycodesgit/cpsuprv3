@@ -234,7 +234,17 @@
                 {data: 'cpdate',
                     render: function (data, type, row) {
                         if (type === 'display') {
-                            return moment(data).format('MMMM D, YYYY');
+                            return moment(data).format('MMMM D, YYYY h:mm A');
+                        } else {
+                            return data;
+                        }
+                    }
+                },
+                {data: 'datereceived',
+                    render: function (data, type, row) {
+                        if (type === 'display') {
+                            if (!data) return '';
+                            return moment(data).format('MMMM D, YYYY h:mm A');
                         } else {
                             return data;
                         }
@@ -375,7 +385,17 @@
                 {data: 'cpdate',
                     render: function (data, type, row) {
                         if (type === 'display') {
-                            return moment(data).format('MMMM D, YYYY');
+                            return moment(data).format('MMMM D, YYYY h:mm A');
+                        } else {
+                            return data;
+                        }
+                    }
+                },
+                {data: 'datecanvassing',
+                    render: function (data, type, row) {
+                        if (type === 'display') {
+                            if (!data) return '';
+                            return moment(data).format('MMMM D, YYYY h:mm A');
                         } else {
                             return data;
                         }
