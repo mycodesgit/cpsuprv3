@@ -356,6 +356,20 @@ class RequestController extends Controller
         return view("request.add.add_cart", compact('items', 'userId', 'data', 'purpose', 'selecteditem'));
     }
 
+    public function updatePurposeName(Request $request, Purpose $purpose)
+    {
+        $request->validate([
+            'purpose_name' => 'required|string|max:255',
+        ]);
+
+        $purpose->update([
+            'purpose_name' => $request->purpose_name,
+        ]);
+
+        return response()->json(['success' => true, 'purpose' => $purpose]);
+    }
+
+
     public function getcartitemListRead($purpose_Id) 
     {
         $userId = Auth::guard('web')->user()->id;

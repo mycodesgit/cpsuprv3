@@ -142,7 +142,7 @@
 
                                                 <div class="col-md-12">
                                                     <label for="editprpname" class="font-weight-bold">Purpose:</label>
-                                                    <input type="text" name="purpose_name" id="editprpname" value="{{ $purpose->purpose_name }}" class="form-control"required> 
+                                                    <input type="text" name="purpose_name" id="editprpname" value="{{ old('purpose_name', $purpose->purpose_name) }}" data-id="{{ $purpose->id }}" data-url="{{ route('updatePurposeName', $purpose->id) }}"  class="form-control" required>
                                                 </div>
                                                 <span class="text-danger text-xs">Note: Please Check or rename your purpose for this purchase request</span>
                                             </div>

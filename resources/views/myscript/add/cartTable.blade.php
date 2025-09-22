@@ -165,3 +165,33 @@
         });
     });
 </script>
+
+<script>
+    $(document).ready(function () {
+        let timer;
+
+        $('#editprpname').on('input', function () {
+            clearTimeout(timer);
+            let input = $(this);
+            let url = input.data('url');  // comes from route()
+            let purposeName = input.val();
+
+            timer = setTimeout(function () {
+                $.ajax({
+                    url: url,
+                    type: 'PUT',
+                    data: {
+                        purpose_name: purposeName,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function (response) {
+                        console.log('Saved:', response);
+                    },
+                    error: function (xhr) {
+                        console.error('Error:', xhr.responseText);
+                    }
+                });
+            }, 1000);
+        });
+    });
+</script>

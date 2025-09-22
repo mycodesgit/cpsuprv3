@@ -123,7 +123,7 @@
                                             <th>Total</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    {{-- <tbody>
                                         <tr>
                                             <td>Item A Description</td>
                                             <td>5</td>
@@ -142,7 +142,7 @@
                                             <td>₱300.00</td>
                                             <td>₱300.00</td>
                                         </tr>
-                                    </tbody>
+                                    </tbody> --}}
                                 </table>
                             </div>
                         </div>

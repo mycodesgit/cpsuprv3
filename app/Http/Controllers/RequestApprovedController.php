@@ -640,6 +640,7 @@ class RequestApprovedController extends Controller
             ->select('item_request.*', 
                     'category.*',
                     'purpose.*', 
+                    'purpose.dateproc', 
                     'unit.unit_name', 'item.*', 
                     'funding_source.fund_cluster',
                     'item_request.id as iid' )

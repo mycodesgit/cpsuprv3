@@ -107,6 +107,7 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
         Route::get('/purchaseRequest/cart/{id}', [RequestController::class,'mycartDelete'])->name('mycartDelete');
 
         Route::get('/selectprcategory/{purpose_Id}', [RequestController::class, 'selectItems'])->name('selectItems');
+        Route::put('/selectprcategorypurposes/{purpose}', [RequestController::class, 'updatePurposeName'])->name('updatePurposeName');
         Route::get('/selectprcategory/ajax/cartItem/{purpose_Id}', [RequestController::class, 'getcartitemListRead'])->name('getcartitemListRead');
         Route::post('/purchaseRequest/add', [RequestController::class, 'prCreate'])->name('prCreate');
         Route::get('get-items/{id}', [RequestController::class, 'getItemsByCategory'])->name('getItemsByCategory');

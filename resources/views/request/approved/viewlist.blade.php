@@ -511,7 +511,7 @@
                             @endphp
                              @if(in_array($item->cat_id, ['2','10']))
                                 {{-- If status is Approved --}}
-                                @if(in_array($item->pstatus, ['6','7']) || in_array($item->status, ['6','7', '8', '9', '10', '11', '12', '13', '14', '15', '16']))
+                                @if(in_array($item->pstatus, ['6','7', '8', '9', '10', '11', '12', '13', '14', '15', '16']) || in_array($item->status, ['6','7', '8', '9', '10', '11', '12', '13', '14', '15', '16']))
                                     <div class="tracking-item">
                                         <div class="tracking-icon status-intransit">
                                             <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
@@ -528,7 +528,9 @@
                                         </div>
                                         <div class="tracking-content">
                                             Approved in MIS - Specification Review
-                                            <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                            @if(!empty($item->datetech))
+                                                <span>{{ \Carbon\Carbon::parse($item->datetech)->format('F j, Y h:i:s A') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 @else
@@ -549,7 +551,9 @@
                                         </div>
                                         <div class="tracking-content">
                                             Pending in MIS - Specification Review
-                                            <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                            @if(!empty($item->datetech))
+                                                <span>{{ \Carbon\Carbon::parse($item->datetech)->format('F j, Y h:i:s A') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 @endif
@@ -573,7 +577,10 @@
                                             class="img-responsive" alt="order-placed" />
                                     </div>
                                     <div class="tracking-content">
-                                        Purchase Request has Approved by the Procurement Office<span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                        Purchase Request has Approved by the Procurement Office
+                                        @if(!empty($item->dateproc))
+                                            <span>{{ \Carbon\Carbon::parse($item->dateproc)->format('F j, Y h:i:s A') }}</span>
+                                        @endif
                                     </div>
                                 </div>
                             @endif
@@ -596,7 +603,9 @@
                                     </div>
                                     <div class="tracking-content">
                                         Purchase Request has Approved by the Budget Office
-                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                        @if(!empty($item->datebud))
+                                            <span>{{ \Carbon\Carbon::parse($item->datebud)->format('F j, Y h:i:s A') }}</span>
+                                        @endif
                                     </div>
                                 </div>
                             @endif
@@ -619,7 +628,9 @@
                                     </div>
                                     <div class="tracking-content">
                                         Purchase Request has Received by the Procurement Office
-                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                        @if(!empty($item->datereceived))
+                                            <span>{{ \Carbon\Carbon::parse($item->datereceived)->format('F j, Y h:i:s A') }}</span>
+                                        @endif
                                     </div>
                                 </div>
                             @endif
@@ -642,7 +653,9 @@
                                     </div>
                                     <div class="tracking-content">
                                         Purchase Request is Canvassing
-                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                        @if(!empty($item->datecanvassing))
+                                            <span>{{ \Carbon\Carbon::parse($item->datecanvassing)->format('F j, Y h:i:s A') }}</span>
+                                        @endif
                                     </div>
                                 </div>
                             @endif
@@ -665,7 +678,9 @@
                                     </div>
                                     <div class="tracking-content">
                                         Purchase Request is being Canvassed
-                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                        @if(!empty($item->datecanvassed))
+                                            <span>{{ \Carbon\Carbon::parse($item->datecanvassed)->format('F j, Y h:i:s A') }}</span>
+                                        @endif
                                     </div>
                                 </div>
                             @endif
@@ -688,7 +703,9 @@
                                     </div>
                                     <div class="tracking-content">
                                         Purchase Request is for Philgeps Posting
-                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                        @if(!empty($item->datephilgeps))
+                                            <span>{{ \Carbon\Carbon::parse($item->datephilgeps)->format('F j, Y h:i:s A') }}</span>
+                                        @endif
                                     </div>
                                 </div>
                             @endif
@@ -711,7 +728,9 @@
                                     </div>
                                     <div class="tracking-content">
                                         Purchase Request is being Posted
-                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                        @if(!empty($item->dateposted))
+                                            <span>{{ \Carbon\Carbon::parse($item->dateposted)->format('F j, Y h:i:s A') }}</span>
+                                        @endif
                                     </div>
                                 </div>
                             @endif
@@ -734,7 +753,9 @@
                                     </div>
                                     <div class="tracking-content">
                                         Purchase Request is for Bidding
-                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                        @if(!empty($item->datebidding))
+                                            <span>{{ \Carbon\Carbon::parse($item->datebidding)->format('F j, Y h:i:s A') }}</span>
+                                        @endif
                                     </div>
                                 </div>
                             @endif
@@ -757,7 +778,9 @@
                                     </div>
                                     <div class="tracking-content">
                                         Purchase Request is for Consolidation
-                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                        @if(!empty($item->dateconsolidate))
+                                            <span>{{ \Carbon\Carbon::parse($item->dateconsolidate)->format('F j, Y h:i:s A') }}</span>
+                                        @endif
                                     </div>
                                 </div>
                             @endif
@@ -780,7 +803,9 @@
                                     </div>
                                     <div class="tracking-content">
                                         Purchase Request is Awarded 
-                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                        @if(!empty($item->dateawarded))
+                                            <span>{{ \Carbon\Carbon::parse($item->dateawarded)->format('F j, Y h:i:s A') }}</span>
+                                        @endif
                                     </div>
                                 </div>
                             @endif
@@ -803,7 +828,9 @@
                                     </div>
                                     <div class="tracking-content">
                                         Purchase Request is being Purchased
-                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                        @if(!empty($item->datepurchase))
+                                            <span>{{ \Carbon\Carbon::parse($item->datepurchase)->format('F j, Y h:i:s A') }}</span>
+                                        @endif
                                     </div>
                                 </div>
                             @endif
@@ -826,7 +853,9 @@
                                     </div>
                                     <div class="tracking-content">
                                         Purchase Request is being Returned
-                                        <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
+                                        @if(!empty($item->datereturned))
+                                            <span>{{ \Carbon\Carbon::parse($item->datereturned)->format('F j, Y h:i:s A') }}</span>
+                                        @endif
                                     </div>
                                 </div>
                             @endif
