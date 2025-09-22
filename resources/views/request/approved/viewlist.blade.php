@@ -528,7 +528,7 @@
                                         </div>
                                         <div class="tracking-content">
                                             Approved in MIS - Specification Review
-                                            <span>{{ \Carbon\Carbon::parse($item->purpose_updated_at)->format('F j, Y h:i:s A') }}</span>
+                                            <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
                                         </div>
                                     </div>
                                 @else
@@ -549,7 +549,7 @@
                                         </div>
                                         <div class="tracking-content">
                                             Pending in MIS - Specification Review
-                                            <span>{{ \Carbon\Carbon::parse($item->purpose_updated_at)->format('F j, Y h:i:s A') }}</span>
+                                            <span>{{ \Carbon\Carbon::parse($item->puptdat)->format('F j, Y h:i:s A') }}</span>
                                         </div>
                                     </div>
                                 @endif
