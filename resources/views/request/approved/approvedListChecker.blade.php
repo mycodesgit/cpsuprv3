@@ -157,7 +157,6 @@
                                                 <th>Office</th>
                                                 <th>Purpose</th>
                                                 <th>Category</th>
-                                                <th>Date</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -176,9 +175,9 @@
                                                 <th>Date Canvassed</th>
                                                 <th>Campus</th>
                                                 <th>PR No.</th>
+                                                <th>Office</th>
                                                 <th>Purpose</th>
                                                 <th>Category</th>
-                                                <th>Date</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -193,13 +192,13 @@
                                     <table id="prphilgep" class="table table-hover styled-table" style="width: 100%">
                                         <thead>
                                             <tr>
+                                                <th>Date Submitted</th>
+                                                <th>Date PhilgepsPosting</th>
                                                 <th>Campus</th>
                                                 <th>PR No.</th>
-                                                <th>Type</th>
                                                 <th>Office</th>
                                                 <th>Purpose</th>
                                                 <th>Category</th>
-                                                <th>Date</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -214,13 +213,13 @@
                                     <table id="prposting" class="table table-hover styled-table" style="width: 100%">
                                         <thead>
                                             <tr>
+                                                <th>Date Submitted</th>
+                                                <th>Date Posted</th>
                                                 <th>Campus</th>
                                                 <th>PR No.</th>
-                                                <th>Type</th>
                                                 <th>Office</th>
                                                 <th>Purpose</th>
                                                 <th>Category</th>
-                                                <th>Date</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -235,13 +234,13 @@
                                     <table id="fuckxxyoubid" class="table table-hover styled" style="width: 100%">
                                         <thead>
                                             <tr>
+                                                <th>Date Submitted</th>
+                                                <th>Date Bidding</th>
                                                 <th>Campus</th>
                                                 <th>PR No.</th>
-                                                <th>Type</th>
                                                 <th>Office</th>
                                                 <th>Purpose</th>
                                                 <th>Category</th>
-                                                <th>Date</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -256,13 +255,13 @@
                                     <table id="consolidatePR" class="table table-hover styled-table" style="width: 100%">
                                         <thead>
                                             <tr>
+                                                <th>Date Submitted</th>
+                                                <th>Date Consolidation</th>
                                                 <th>Campus</th>
                                                 <th>PR No.</th>
-                                                <th>Type</th>
                                                 <th>Office</th>
                                                 <th>Purpose</th>
                                                 <th>Category</th>
-                                                <th>Date</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -277,13 +276,13 @@
                                     <table id="praward" class="table table-hover styled" style="width: 100%">
                                         <thead>
                                             <tr>
+                                                <th>Date Submitted</th>
+                                                <th>Date Awarded</th>
                                                 <th>Campus</th>
                                                 <th>PR No.</th>
-                                                <th>Type</th>
                                                 <th>Office</th>
                                                 <th>Purpose</th>
                                                 <th>Category</th>
-                                                <th>Date</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -298,13 +297,13 @@
                                     <table id="prbakal" class="table table-hover styled-table" style="width: 100%">
                                         <thead>
                                             <tr>
+                                                <th>Date Submitted</th>
+                                                <th>Date Purchased</th>
                                                 <th>Campus</th>
                                                 <th>PR No.</th>
-                                                <th>Type</th>
                                                 <th>Office</th>
                                                 <th>Purpose</th>
                                                 <th>Category</th>
-                                                <th>Date</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -319,13 +318,13 @@
                                     <table id="prreturntoidontknow" class="table table-hover styled-table" style="width: 100%">
                                         <thead>
                                             <tr>
+                                                <th>Date Submitted</th>
+                                                <th>Date Returned</th>
                                                 <th>Campus</th>
                                                 <th>PR No.</th>
-                                                <th>Type</th>
                                                 <th>Office</th>
                                                 <th>Purpose</th>
                                                 <th>Category</th>
-                                                <th>Date</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -340,13 +339,13 @@
                                     <table id="prpedo" class="table table-hover styled-table" style="width: 100%">
                                         <thead>
                                             <tr>
+                                                <th>Date Submitted</th>
+                                                <th>Date Forwarded PEDO</th>
                                                 <th>Campus</th>
                                                 <th>PR No.</th>
-                                                <th>Type</th>
                                                 <th>Office</th>
                                                 <th>Purpose</th>
                                                 <th>Category</th>
-                                                <th>Date</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
