@@ -123,11 +123,11 @@
         @endif
 
         @if(Auth::user()->role !='Administrator' && Auth::user()->role !='Procurement Officer' && Auth::user()->role !='Checker' && Auth::user()->role !='Budget Officer' && Auth::user()->role !='MIS Checker')
-            <li class="{{ $shopUserActive }}">
+            {{-- <li class="{{ $shopUserActive }}">
                 <a class="nav-link" href="{{ route('shoplistRead') }}">
                     <i class="fas fa-cart-plus"></i> <span>Shop Item</span>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="{{ $cartUserActive }}">
                 <a class="nav-link" href="{{ route('prPurposeRequest') }}">
