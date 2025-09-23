@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card">
+                        {{-- <div class="card">
                             <div class="card-header">
                                 <h4>Recent Updates</h4>
                             </div>
@@ -133,7 +133,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> --}}
                     @else
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
