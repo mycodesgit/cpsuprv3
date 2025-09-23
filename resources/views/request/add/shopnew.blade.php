@@ -2,11 +2,11 @@
 
 @section('body')
     <style>
-        .bgm {
+        /* .bgm {
             background-image: url(template/assets/img/announceBg.png) !important;
             background-size: cover;
             background-position: center;
-        }
+        } */
         .date-box {
             background: #f8f9fa;
             border-radius: 8px;
@@ -78,7 +78,7 @@
                                 <div class="modal fade" id="autoPopupModal" tabindex="-1" aria-labelledby="autoPopupModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content custom-modal">
-                                            <div class="modal-body bgm">
+                                            <div class="modal-body" style="background-image: url(template/assets/img/announceBg.png) !important; background-size: cover; background-position: center;">
                                                 <div class="error-page">
                                                     <h2 class="headline text-warning"> </h2>
                                                     <div class="error-content" style="margin-left: 370px">
