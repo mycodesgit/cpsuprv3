@@ -45,48 +45,121 @@
 
         <div class="section-body" style="margin-left: -20px; margin-right: -20px; border-radius: 5px;">
             <div class="row">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="mb-3">
-                                <div class="position-relative mb-3" style="width: 100%;">
-                                    <i class="fas fa-search position-absolute text-success" style="top: 50%; left: 15px; transform: translateY(-50%); pointer-events: none;"></i>
-                                    <input type="text" id="customSearch" class="form-control form-control-lg" placeholder="Search Item..." style="padding-left: 2.5rem; padding-right: 2.5rem;">
-                                    <button type="button" id="clearSearch" class="btn btn-sm btn-light text-danger position-absolute" style="top: 48%; right: 10px; transform: translateY(-50%); display: none;">
-                                        <i class="fas fa-times"></i>
-                                    </button>
+                @php
+                    $currentDate = now()->format('Y-m-d');
+                @endphp
+                @if($annoucement->datestart && $annoucement->dateend)
+                    @if($currentDate >= $annoucement->datestart && $currentDate <= $annoucement->dateend && $annoucement->status == '2')
+                        @if(Auth::user()->isAllowed != 'Yes' && 
+                            (Auth::user()->role == 'Administrator' || 
+                                Auth::user()->role == 'Budget Officer' || 
+                                Auth::user()->role == 'Procurement Officer' || 
+                                Auth::user()->role == 'Campus Admin' || 
+                                Auth::user()->role == 'Dean' || 
+                                Auth::user()->role == 'Office Head'))
+                                <div class="modal fade" id="autoPopupModal" tabindex="-1" aria-labelledby="autoPopupModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                        <div class="modal-content custom-modal">
+                                            <div class="modal-body bgm">
+                                                <div class="error-page">
+                                                    <h2 class="headline text-warning"> </h2>
+                                                    <div class="error-content" style="margin-left: 370px">
+                                                        <h2><i class="fas fa-exclamation-circle text-success"></i> Announcement!</h2>
+                                                        <h6 style="text-align: justify-all;">
+                                                            {{ $annoucement->announcement }}
+                                                        </h6>
+                                                        <div class="search-form text-center" style="padding-top: 30px;">
+                                                            <div class="row justify-content-center">
+                                                                <div class="col-md-5">
+                                                                    <div class="date-box p-2">
+                                                                        <strong>{{ date('F d, Y', strtotime($annoucement->datestart)) }}</strong>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-1 d-flex align-items-center justify-content-center">
+                                                                    <span class="date-separator">To</span>
+                                                                </div>
+                                                                <div class="col-md-5">
+                                                                    <div class="date-box p-2">
+                                                                        <strong>{{ date('F d, Y', strtotime($annoucement->dateend)) }}</strong>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="countdown" class="col-md-12" style="padding-top: 20px; text-align: center;">
+                                                            <div style="color: rgb(80, 80, 80); font-size: 24px; font-family: 'Arial', sans-serif;">Remaining Time:</div>
+                                                            <div class="countdown-container" style="font-size: 50px; font-weight: bold; color: black;">
+                                                                <span id="hoursBox">00</span> :
+                                                                <span id="minutesBox">00</span> :
+                                                                <span id="secondsBox">00</span>
+                                                            </div>
+                                                            <div style="font-size: 14px; color: gray; text-align: center;">
+                                                                <span style="margin: 20px;">Hours</span>
+                                                                <span style="margin: 20px;">Minutes</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <span style="margin-right: -10px;">Seconds</span>
+                                                            </div>
+                                                        </div>
+                                                                                            
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <table id="shoplist" class="table table-hover">
-                                <thead class="bg-light">
-                                    <tr>
-                                        <th></th>
-                                        <th width="40%">Description</th>
-                                        <th>Unit</th>
-                                        <th>Cost</th>
-                                        <th>Category</th>
-                                        <th></th>
-                                        <th></th>
-                                        <th width="10%">#</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5>Item Cart Summary</h5>
-                        </div>
-                        <div class="card-body">
-                            <div id="purposeAccordionWrapper">
-                                @include('partials._purpose_accordion')
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        @else
+                            @if(Auth::user()->role=='Administrator' || 
+                            Auth::user()->role=='Budget Officer' || 
+                            Auth::user()->role=='Procurement Officer' || 
+                            Auth::user()->role=='Campus Admin' || 
+                            Auth::user()->role=='Dean' || 
+                            Auth::user()->role=='Office Head' ||
+                            Auth::user()->isAllowed == 'Yes')
+                                <div class="col-md-8">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="mb-3">
+                                                <div class="position-relative mb-3" style="width: 100%;">
+                                                    <i class="fas fa-search position-absolute text-success" style="top: 50%; left: 15px; transform: translateY(-50%); pointer-events: none;"></i>
+                                                    <input type="text" id="customSearch" class="form-control form-control-lg" placeholder="Search Item..." style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                                                    <button type="button" id="clearSearch" class="btn btn-sm btn-light text-danger position-absolute" style="top: 48%; right: 10px; transform: translateY(-50%); display: none;">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <table id="shoplist" class="table table-hover">
+                                                <thead class="bg-light">
+                                                    <tr>
+                                                        <th></th>
+                                                        <th width="40%">Description</th>
+                                                        <th>Unit</th>
+                                                        <th>Cost</th>
+                                                        <th>Category</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th width="10%">#</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Item Cart Summary</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div id="purposeAccordionWrapper">
+                                                @include('partials._purpose_accordion')
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        @endif
+                        @endif
+                    @endif
+                @else
+                @endif
             </div>
 
             <!-- 🔘 Floating Cart Button -->
