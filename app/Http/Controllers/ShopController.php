@@ -135,7 +135,7 @@ class ShopController extends Controller
             ->get()
             ->groupBy('purpose_id');
        
-        return view("request.add.shopnew", compact('data', 'announcement', 'items', 'purposes'));
+        return view("request.add.shopnew", compact('data', 'annoucement', 'items', 'purposes'));
     }
 
     public function getshoplistSerialize()
