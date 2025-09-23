@@ -162,6 +162,11 @@
             backdrop-filter: blur(5px);
             z-index: 1040; /* Just below the modal backdrop */
         }
+        .bgm {
+            background-image: url(template/assets/img/announceBg.png) !important;
+            background-size: cover;
+            background-position: center;
+        }
     </style>
 </head>
 
