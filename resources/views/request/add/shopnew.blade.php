@@ -3,7 +3,7 @@
 @section('body')
     <style>
         .bgm {
-            background-image: url(template/assets/img/announceBg.png);
+            background-image: url(template/assets/img/announceBg.png) !important;
             background-size: cover;
             background-position: center;
         }
