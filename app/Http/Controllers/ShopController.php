@@ -35,6 +35,8 @@ class ShopController extends Controller
 
     public function shoplistRead()
     {
+        $annoucement = Annoucement::first();
+        
         $pendCount = $this->getPendingAllCount();
         $pendBudCount = $this->getPendingBudgetCount();
         $pendUserCount = $this->getPendingUserCount();
