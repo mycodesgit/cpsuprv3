@@ -61,44 +61,49 @@
                                 
                                 <div class="col-md-12">
                                     <div class="card">
-                                        <div class="error-page">
-                                            <h2 class="headline text-warning"> </h2>
-                                            <div class="error-content" style="margin-left: 370px">
-                                                <h2><i class="fas fa-exclamation-circle text-success"></i> Announcement!</h2>
-                                                <h6 style="text-align: justify-all;">
-                                                    {{ $annoucement->announcement }}
-                                                </h6>
-                                                <div class="search-form text-center" style="padding-top: 30px;">
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-md-5">
-                                                            <div class="date-box p-2">
-                                                                <strong>{{ date('F d, Y', strtotime($annoucement->datestart)) }}</strong>
+                                        <div class="d-flex flex-column align-items-center justify-content-center py-5">
+                                            <div class="mb-4 text-center">
+                                                <i class="fas fa-bullhorn fa-3x text-success"></i>
+                                                <h2 class="mt-3 fw-bold" style="color: #2c3e50;">Announcement</h2>
+                                            </div>
+                                            <div class="card shadow-sm mb-4" style="max-width: 600px; width: 100%;">
+                                                <div class="card-body">
+                                                    <p class="fs-5 text-dark" style="line-height: 1.6;">
+                                                        {{ $annoucement->announcement }}
+                                                    </p>
+                                                    <div class="row text-center mt-4">
+                                                        <div class="col-5">
+                                                            <div class="bg-light rounded py-2 px-3">
+                                                                <span class="fw-semibold text-secondary">Start</span><br>
+                                                                <span class="fw-bold text-success">{{ date('F d, Y', strtotime($annoucement->datestart)) }}</span>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-1 d-flex align-items-center justify-content-center">
-                                                            <span class="date-separator">To</span>
+                                                        <div class="col-2 d-flex align-items-center justify-content-center">
+                                                            <span class="fw-bold text-muted">to</span>
                                                         </div>
-                                                        <div class="col-md-5">
-                                                            <div class="date-box p-2">
-                                                                <strong>{{ date('F d, Y', strtotime($annoucement->dateend)) }}</strong>
+                                                        <div class="col-5">
+                                                            <div class="bg-light rounded py-2 px-3">
+                                                                <span class="fw-semibold text-secondary">End</span><br>
+                                                                <span class="fw-bold text-danger">{{ date('F d, Y', strtotime($annoucement->dateend)) }}</span>
                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="countdown" class="mt-4 text-center">
+                                                        <div class="mb-2" style="color: #34495e; font-size: 1.2rem;">Remaining Time</div>
+                                                        <div class="d-flex justify-content-center align-items-center gap-3 mb-1" style="font-size: 2.5rem; font-weight: bold;">
+                                                            <span id="hoursBox" class="px-2 py-1 bg-light rounded text-dark">00</span>
+                                                            <span class="mx-1 text-muted">:</span>
+                                                            <span id="minutesBox" class="px-2 py-1 bg-light rounded text-dark">00</span>
+                                                            <span class="mx-1 text-muted">:</span>
+                                                            <span id="secondsBox" class="px-2 py-1 bg-light rounded text-dark">00</span>
+                                                        </div>
+                                                        <div class="d-flex justify-content-center gap-5 text-secondary" style="font-size: 0.95rem;">
+                                                            <span>Hours</span>
+                                                            <span>Minutes</span>
+                                                            <span>Seconds</span>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div id="countdown" class="col-md-12" style="padding-top: 20px; text-align: center;">
-                                                    <div style="color: rgb(80, 80, 80); font-size: 24px; font-family: 'Arial', sans-serif;">Remaining Time:</div>
-                                                    <div class="countdown-container" style="font-size: 50px; font-weight: bold; color: black;">
-                                                        <span id="hoursBox">00</span> :
-                                                        <span id="minutesBox">00</span> :
-                                                        <span id="secondsBox">00</span>
-                                                    </div>
-                                                    <div style="font-size: 14px; color: gray; text-align: center;">
-                                                        <span style="margin: 20px;">Hours</span>
-                                                        <span style="margin: 20px;">Minutes</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <span style="margin-right: -10px;">Seconds</span>
-                                                    </div>
-                                                </div>
-                                                                                    
                                             </div>
                                         </div>
                                     </div>
