@@ -2,11 +2,7 @@
 
 @section('body')
     <style>
-        .bgm {
-            background-image: url(template/assets/img/announceBg.png) !important;
-            background-size: cover;
-            background-position: center;
-        }
+        
         .date-box {
             background: #f8f9fa;
             border-radius: 8px;
