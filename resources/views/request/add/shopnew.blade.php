@@ -114,10 +114,12 @@
                             Auth::user()->role=='Office Head' ||
                             Auth::user()->isAllowed == 'Yes')
                                 
-                        @endif
+                            @endif
                         @endif
                     @endif
                 @else
+                    
+                @endif
                     <div class="col-md-8">
                         <div class="card">
                             <div class="card-body">
@@ -160,7 +162,6 @@
                             </div>
                         </div>
                     </div>
-                @endif
             </div>
 
             <!-- 🔘 Floating Cart Button -->
