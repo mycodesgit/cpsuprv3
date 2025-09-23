@@ -35,8 +35,6 @@ class ShopController extends Controller
 
     public function shoplistRead()
     {
-        $annoucement = Annoucement::first();
-        
         $pendCount = $this->getPendingAllCount();
         $pendBudCount = $this->getPendingBudgetCount();
         $pendUserCount = $this->getPendingUserCount();
@@ -95,6 +93,8 @@ class ShopController extends Controller
                 'returnedUserCount' => $returnedUserCount,
             ]);
         }
+
+        $annoucement = Annoucement::first();
 
         $userCategoryIds = PpmpUser::where('user_id', Auth::user()->id)
                              ->pluck('ppmp_categories')
