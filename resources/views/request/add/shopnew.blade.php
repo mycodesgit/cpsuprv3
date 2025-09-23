@@ -36,6 +36,24 @@
             height: 60px;
             border-radius: 50%;
         }
+        .bgm {
+            background-image: url(template/assets/img/announceBg.png);
+            background-size: cover;
+            background-position: center;
+        }
+        .date-box {
+            background: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 15px;
+            color: #333;
+            text-align: center;
+        }
+        .date-separator {
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+        }
     </style>
 
     <section class="section">
