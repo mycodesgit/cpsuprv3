@@ -113,52 +113,53 @@
                             Auth::user()->role=='Dean' || 
                             Auth::user()->role=='Office Head' ||
                             Auth::user()->isAllowed == 'Yes')
-                                <div class="col-md-8">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="mb-3">
-                                                <div class="position-relative mb-3" style="width: 100%;">
-                                                    <i class="fas fa-search position-absolute text-success" style="top: 50%; left: 15px; transform: translateY(-50%); pointer-events: none;"></i>
-                                                    <input type="text" id="customSearch" class="form-control form-control-lg" placeholder="Search Item..." style="padding-left: 2.5rem; padding-right: 2.5rem;">
-                                                    <button type="button" id="clearSearch" class="btn btn-sm btn-light text-danger position-absolute" style="top: 48%; right: 10px; transform: translateY(-50%); display: none;">
-                                                        <i class="fas fa-times"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <table id="shoplist" class="table table-hover">
-                                                <thead class="bg-light">
-                                                    <tr>
-                                                        <th></th>
-                                                        <th width="40%">Description</th>
-                                                        <th>Unit</th>
-                                                        <th>Cost</th>
-                                                        <th>Category</th>
-                                                        <th></th>
-                                                        <th></th>
-                                                        <th width="10%">#</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody></tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h5>Item Cart Summary</h5>
-                                        </div>
-                                        <div class="card-body">
-                                            <div id="purposeAccordionWrapper">
-                                                @include('partials._purpose_accordion')
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                         @endif
                         @endif
                     @endif
                 @else
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <div class="position-relative mb-3" style="width: 100%;">
+                                        <i class="fas fa-search position-absolute text-success" style="top: 50%; left: 15px; transform: translateY(-50%); pointer-events: none;"></i>
+                                        <input type="text" id="customSearch" class="form-control form-control-lg" placeholder="Search Item..." style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                                        <button type="button" id="clearSearch" class="btn btn-sm btn-light text-danger position-absolute" style="top: 48%; right: 10px; transform: translateY(-50%); display: none;">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <table id="shoplist" class="table table-hover">
+                                    <thead class="bg-light">
+                                        <tr>
+                                            <th></th>
+                                            <th width="40%">Description</th>
+                                            <th>Unit</th>
+                                            <th>Cost</th>
+                                            <th>Category</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th width="10%">#</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Item Cart Summary</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="purposeAccordionWrapper">
+                                    @include('partials._purpose_accordion')
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endif
             </div>
 
