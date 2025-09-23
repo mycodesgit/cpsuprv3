@@ -441,63 +441,63 @@
         @include('myscript.user.userSerialize')
     @endif
 
-    @if (request()->routeIs('dashboard'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var autoPopupModal = document.getElementById('autoPopupModal');
-
-            if (autoPopupModal) {
-                var myModal = new bootstrap.Modal(autoPopupModal, {
-                    backdrop: 'absolute',
-                    keyboard: false
-                });
-
-                myModal.show();
-            }
-        });
-    </script>
-
-    @if ($annoucement)
+    @if (request()->routeIs('dashboard', 'shoplistRead'))
         <script>
-            function updateCountdown(endDate) {
-                var now = new Date();
-                var difference = endDate - now;
+            document.addEventListener('DOMContentLoaded', function () {
+                var autoPopupModal = document.getElementById('autoPopupModal');
 
-                var hours = Math.floor(difference / (1000 * 60 * 60));
-                var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                if (autoPopupModal) {
+                    var myModal = new bootstrap.Modal(autoPopupModal, {
+                        backdrop: 'absolute',
+                        keyboard: false
+                    });
 
-                var hoursBox = document.getElementById("hoursBox");
-                var minutesBox = document.getElementById("minutesBox");
-                var secondsBox = document.getElementById("secondsBox");
-
-                if (hoursBox && minutesBox && secondsBox) {
-                    hoursBox.innerHTML = formatTime(hours);
-                    minutesBox.innerHTML = formatTime(minutes);
-                    secondsBox.innerHTML = formatTime(seconds);
+                    myModal.show();
                 }
+            });
+        </script>
 
-                if (difference <= 0) {
-                    clearInterval(intervalId);
+        @if ($annoucement)
+            <script>
+                function updateCountdown(endDate) {
+                    var now = new Date();
+                    var difference = endDate - now;
+
+                    var hours = Math.floor(difference / (1000 * 60 * 60));
+                    var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                    var hoursBox = document.getElementById("hoursBox");
+                    var minutesBox = document.getElementById("minutesBox");
+                    var secondsBox = document.getElementById("secondsBox");
+
                     if (hoursBox && minutesBox && secondsBox) {
-                        hoursBox.innerHTML = "00";
-                        minutesBox.innerHTML = "00";
-                        secondsBox.innerHTML = "00";
+                        hoursBox.innerHTML = formatTime(hours);
+                        minutesBox.innerHTML = formatTime(minutes);
+                        secondsBox.innerHTML = formatTime(seconds);
+                    }
+
+                    if (difference <= 0) {
+                        clearInterval(intervalId);
+                        if (hoursBox && minutesBox && secondsBox) {
+                            hoursBox.innerHTML = "00";
+                            minutesBox.innerHTML = "00";
+                            secondsBox.innerHTML = "00";
+                        }
                     }
                 }
-            }
 
-            function formatTime(time) {
-                return time < 10 ? "0" + time : time;
-            }
+                function formatTime(time) {
+                    return time < 10 ? "0" + time : time;
+                }
 
-            var endDate = new Date("{{ $annoucement->dateend }}");
-            var intervalId = setInterval(function () {
-                updateCountdown(endDate);
-            }, 1000);
-        </script>
+                var endDate = new Date("{{ $annoucement->dateend }}");
+                var intervalId = setInterval(function () {
+                    updateCountdown(endDate);
+                }, 1000);
+            </script>
+        @endif
     @endif
-@endif
 
 
 </body>
