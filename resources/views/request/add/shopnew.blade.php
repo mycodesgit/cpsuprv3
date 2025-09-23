@@ -59,7 +59,7 @@
                                 Auth::user()->role == 'Dean' || 
                                 Auth::user()->role == 'Office Head'))
                                 
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                     <div class="card">
                                         <div class="error-page">
                                             <h2 class="headline text-warning"> </h2>
