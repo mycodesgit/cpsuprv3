@@ -49,7 +49,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="consoltation-tab1" data-toggle="tab" href="#consoltation" role="tab" aria-controls="consoltation" aria-selected="false" style="font-weight: bold; color: #000;">
-                                        Consoltation
+                                        Consolidation
                                     </a>
                                 </li>
                                 <li class="nav-item">

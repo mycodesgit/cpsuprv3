@@ -56,14 +56,25 @@
         var prId = $(this).data('id');
 
         Swal.fire({
-            title: 'Are you sure?',
-            text: "Do you want to mark this PR as canvassing?",
-            icon: 'warning',
+            // title: 'Are you sure?',
+            // text: "Do you want to mark this PR as canvassing?",
+            title: 'Do you want to mark this PR as canvassing? Select a date:',
+            html: `
+                <input type="date" id="canvassingDate" class="swal2-input" required>
+            `,
+            icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, mark it!',
-            cancelButtonText: 'Cancel'
+            cancelButtonText: 'Cancel',
+            preConfirm: () => {
+                const selectedDate = document.getElementById('canvassingDate').value;
+                if (!selectedDate) {
+                    Swal.showValidationMessage('Please select a date');
+                }
+                return selectedDate;
+            }
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
@@ -71,6 +82,7 @@
                     method: 'POST',
                     data: {
                         id: prId,
+                        selected_date: result.value,
                         _token: $('meta[name="csrf-token"]').attr('content') // CSRF token
                     },
                     success: function(response) {
@@ -101,14 +113,23 @@
         var prId = $(this).data('id');
 
         Swal.fire({
-            title: 'Are you sure?',
-            text: "Do you want to mark this PR as canvassed?",
-            icon: 'warning',
+            title: 'Do you want to mark this PR as canvassed? Select a date:',
+            html: `
+                <input type="date" id="canvassedDate" class="swal2-input" required>
+            `,
+            icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, mark it!',
-            cancelButtonText: 'Cancel'
+            cancelButtonText: 'Cancel',
+            preConfirm: () => {
+                const selectedDate = document.getElementById('canvassedDate').value;
+                if (!selectedDate) {
+                    Swal.showValidationMessage('Please select a date');
+                }
+                return selectedDate;
+            }
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
@@ -116,6 +137,7 @@
                     method: 'POST',
                     data: {
                         id: prId,
+                        selected_date: result.value,
                         _token: $('meta[name="csrf-token"]').attr('content') // CSRF token
                     },
                     success: function(response) {
@@ -146,14 +168,23 @@
         var prId = $(this).data('id');
 
         Swal.fire({
-            title: 'Are you sure?',
-            text: "Do you want to mark this PR as posting?",
-            icon: 'warning',
+            title: 'Do you want to mark this PR for posting? Select a date:',
+            html: `
+                <input type="date" id="postingDate" class="swal2-input" required>
+            `,
+            icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, mark it!',
-            cancelButtonText: 'Cancel'
+            cancelButtonText: 'Cancel',
+            preConfirm: () => {
+                const selectedDate = document.getElementById('postingDate').value;
+                if (!selectedDate) {
+                    Swal.showValidationMessage('Please select a date');
+                }
+                return selectedDate;
+            }
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
@@ -161,6 +192,7 @@
                     method: 'POST',
                     data: {
                         id: prId,
+                        selected_date: result.value,
                         _token: $('meta[name="csrf-token"]').attr('content') // CSRF token
                     },
                     success: function(response) {
@@ -191,14 +223,23 @@
         var prId = $(this).data('id');
 
         Swal.fire({
-            title: 'Are you sure?',
-            text: "Do you want to mark this PR as posted?",
-            icon: 'warning',
+            title: 'Do you want to mark this PR for posted? Select a date:',
+            html: `
+                <input type="date" id="postedDate" class="swal2-input" required>
+            `,
+            icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, mark it!',
-            cancelButtonText: 'Cancel'
+            cancelButtonText: 'Cancel',
+            preConfirm: () => {
+                const selectedDate = document.getElementById('postedDate').value;
+                if (!selectedDate) {
+                    Swal.showValidationMessage('Please select a date');
+                }
+                return selectedDate;
+            }
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
@@ -206,6 +247,7 @@
                     method: 'POST',
                     data: {
                         id: prId,
+                        selected_date: result.value,
                         _token: $('meta[name="csrf-token"]').attr('content') // CSRF token
                     },
                     success: function(response) {
@@ -236,14 +278,23 @@
         var prId = $(this).data('id');
 
          Swal.fire({
-            title: 'Are you sure?',
-            text: "Do you want to mark this PR as bidding?",
-            icon: 'warning',
+            title: 'Do you want to mark this PR for bidding? Select a date:',
+            html: `
+                <input type="date" id="biddingDate" class="swal2-input" required>
+            `,
+            icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, mark it!',
-            cancelButtonText: 'Cancel'
+            cancelButtonText: 'Cancel',
+            preConfirm: () => {
+                const selectedDate = document.getElementById('biddingDate').value;
+                if (!selectedDate) {
+                    Swal.showValidationMessage('Please select a date');
+                }
+                return selectedDate;
+            }
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
@@ -251,6 +302,7 @@
                     method: 'POST',
                     data: {
                         id: prId,
+                        selected_date: result.value,
                         _token: $('meta[name="csrf-token"]').attr('content') // CSRF token
                     },
                     success: function(response) {
@@ -281,14 +333,23 @@
         var prId = $(this).data('id');
 
         Swal.fire({
-            title: 'Are you sure?',
-            text: "Do you want to mark this PR as consolidation?",
-            icon: 'warning',
+            title: 'Do you want to mark this PR for consolation? Select a date:',
+            html: `
+                <input type="date" id="consolidateDate" class="swal2-input" required>
+            `,
+            icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, mark it!',
-            cancelButtonText: 'Cancel'
+            cancelButtonText: 'Cancel',
+            preConfirm: () => {
+                const selectedDate = document.getElementById('consolidateDate').value;
+                if (!selectedDate) {
+                    Swal.showValidationMessage('Please select a date');
+                }
+                return selectedDate;
+            }
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
@@ -296,6 +357,7 @@
                     method: 'POST',
                     data: {
                         id: prId,
+                        selected_date: result.value,
                         _token: $('meta[name="csrf-token"]').attr('content') // CSRF token
                     },
                     success: function(response) {
@@ -326,14 +388,23 @@
         var prId = $(this).data('id');
 
         Swal.fire({
-            title: 'Are you sure?',
-            text: "Do you want to mark this PR as award?",
-            icon: 'warning',
+            title: 'Do you want to mark this PR as awarded? Select a date:',
+            html: `
+                <input type="date" id="awardDate" class="swal2-input" required>
+            `,
+            icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, mark it!',
-            cancelButtonText: 'Cancel'
+            cancelButtonText: 'Cancel',
+            preConfirm: () => {
+                const selectedDate = document.getElementById('awardDate').value;
+                if (!selectedDate) {
+                    Swal.showValidationMessage('Please select a date');
+                }
+                return selectedDate;
+            }
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
@@ -341,6 +412,7 @@
                     method: 'POST',
                     data: {
                         id: prId,
+                        selected_date: result.value,
                         _token: $('meta[name="csrf-token"]').attr('content') // CSRF token
                     },
                     success: function(response) {

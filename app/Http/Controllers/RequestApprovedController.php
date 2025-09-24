@@ -864,13 +864,17 @@ class RequestApprovedController extends Controller
         $user_id = $purpose->user_id;
         $prnumber = $purpose->pr_no;
 
+        $selectedDate = $request->selected_date;
+        $currentTime = now()->format('H:i:s');
+        $finalDateTime = $selectedDate . ' ' . $currentTime;
+
         RequestItem::where('purpose_id', $id)
             ->update(['status' => 9]);
 
         Purpose::where('id', $id)
             ->update([
                 'pstatus' =>  9,
-                'datecanvassing' => now()->toDateTimeString(),
+                'datecanvassing' => $finalDateTime,
             ]);
         
         PRnotification::create([
@@ -892,13 +896,17 @@ class RequestApprovedController extends Controller
         $user_id = $purpose->user_id;
         $prnumber = $purpose->pr_no;
 
+        $selectedDate = $request->selected_date;
+        $currentTime = now()->format('H:i:s');
+        $finalDateTime = $selectedDate . ' ' . $currentTime;
+
         RequestItem::where('purpose_id', $id)
             ->update(['status' => 10]);
 
         Purpose::where('id', $id)
             ->update([
                 'pstatus' =>  10,
-                'datecanvassed' => now()->toDateTimeString(),
+                'datecanvassed' => $finalDateTime,
             ]);
 
         PRnotification::create([
@@ -920,13 +928,17 @@ class RequestApprovedController extends Controller
         $user_id = $purpose->user_id;
         $prnumber = $purpose->pr_no;
 
+        $selectedDate = $request->selected_date;
+        $currentTime = now()->format('H:i:s');
+        $finalDateTime = $selectedDate . ' ' . $currentTime;
+
         RequestItem::where('purpose_id', $id)
             ->update(['status' => 11]);
 
         Purpose::where('id', $id)
             ->update([
                 'pstatus' =>  11,
-                'datephilgeps' => now()->toDateTimeString(),
+                'datephilgeps' => $finalDateTime,
             ]);
 
         PRnotification::create([
@@ -948,13 +960,17 @@ class RequestApprovedController extends Controller
         $user_id = $purpose->user_id;
         $prnumber = $purpose->pr_no;
 
+        $selectedDate = $request->selected_date;
+        $currentTime = now()->format('H:i:s');
+        $finalDateTime = $selectedDate . ' ' . $currentTime;
+
         RequestItem::where('purpose_id', $id)
             ->update(['status' => 12]);
 
         Purpose::where('id', $id)
             ->update([
                 'pstatus' =>  12,
-                'dateposted' => now()->toDateTimeString(),
+                'dateposted' => $finalDateTime,
             ]);
 
         PRnotification::create([
@@ -976,13 +992,17 @@ class RequestApprovedController extends Controller
         $user_id = $purpose->user_id;
         $prnumber = $purpose->pr_no;
 
+        $selectedDate = $request->selected_date;
+        $currentTime = now()->format('H:i:s');
+        $finalDateTime = $selectedDate . ' ' . $currentTime;
+
         RequestItem::where('purpose_id', $id)
             ->update(['status' => 13]);
 
         Purpose::where('id', $id)
             ->update([
                 'pstatus' =>  13,
-                'datebidding' => now()->toDateTimeString(),
+                'datebidding' => $finalDateTime,
             ]);
 
         PRnotification::create([
@@ -1004,13 +1024,17 @@ class RequestApprovedController extends Controller
         $user_id = $purpose->user_id;
         $prnumber = $purpose->pr_no;
 
+        $selectedDate = $request->selected_date;
+        $currentTime = now()->format('H:i:s');
+        $finalDateTime = $selectedDate . ' ' . $currentTime;
+
         RequestItem::where('purpose_id', $id)
             ->update(['status' => 14]);
 
         Purpose::where('id', $id)
             ->update([
                 'pstatus' =>  14,
-                'dateconsolidate' => now()->toDateTimeString(),
+                'dateconsolidate' => $finalDateTime,
             ]);
 
         PRnotification::create([
@@ -1032,13 +1056,17 @@ class RequestApprovedController extends Controller
         $user_id = $purpose->user_id;
         $prnumber = $purpose->pr_no;
 
+        $selectedDate = $request->selected_date;
+        $currentTime = now()->format('H:i:s');
+        $finalDateTime = $selectedDate . ' ' . $currentTime;
+
         RequestItem::where('purpose_id', $id)
             ->update(['status' => 15]);
 
         Purpose::where('id', $id)
             ->update([
                 'pstatus' =>  15,
-                'dateawarded' => now()->toDateTimeString(),
+                'dateawarded' => $finalDateTime,
             ]);
         
         PRnotification::create([
