@@ -168,12 +168,12 @@
                 </a>
             </li>
 
-            <li class="menu-header" style="border-top: none">PAP's PRE Creation</li>
+            {{-- <li class="menu-header" style="border-top: none">PAP's PRE Creation</li>
             <li class="{{ $crtepapspreUserActive }}">
                 <a class="nav-link" href="{{ route('papsYearRead') }}">
                     <i class="far fa-file-excel"></i> <span>Create PAP's</span>
                 </a>
-            </li>
+            </li> --}}
         @endif
 
         @if(Auth::user()->role == 'Administrator' || Auth::user()->role == 'Budget Officer')
