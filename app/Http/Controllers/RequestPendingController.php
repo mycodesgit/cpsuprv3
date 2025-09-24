@@ -264,7 +264,7 @@ class RequestPendingController extends Controller
         $data = Purpose::join('office', 'purpose.office_id', '=', 'office.id')
             ->join('campuses', 'purpose.camp_id', '=', 'campuses.id')
             ->join('category', 'purpose.cat_id', '=', 'category.id')
-            ->select('purpose.*', 'purpose.id as pid', 'campuses.*', 'campuses.id as campid', 'category.*', 'office.*', 'office.id as oid', 'purpose.updated_at as cpdate')
+            ->select('purpose.*', 'purpose.id as pid', 'campuses.*', 'campuses.id as campid', 'category.*', 'office.*', 'office.id as oid', 'purpose.created_at as cpdate')
             ->whereIn('purpose.pstatus', ['2', '4', '5'])
             ->orderBy('purpose.created_at', 'DESC')
             ->get();
