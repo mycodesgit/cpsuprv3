@@ -641,6 +641,7 @@ class RequestApprovedController extends Controller
                     'category.*',
                     'purpose.*', 
                     'purpose.dateproc', 
+                    'purpose.created_at as pcrtdat', 
                     'unit.unit_name', 'item.*', 
                     'funding_source.fund_cluster',
                     'item_request.id as iid' )
