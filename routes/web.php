@@ -112,7 +112,7 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
         Route::post('/purchaseRequest/add', [RequestController::class, 'prCreate'])->name('prCreate');
         Route::get('get-items/{id}', [RequestController::class, 'getItemsByCategory'])->name('getItemsByCategory');
         Route::post('/purchaseRequest/add/save', [RequestController::class, 'savePR'])->name('savePR');
-        Route::get('/purchaseRequest/delete/{id}', [RequestController::class, 'itemreqDelete'])->name('itemreqDelete');
+        Route::post('/purchaseRequest/delete/{id}', [RequestController::class, 'itemreqDelete'])->name('itemreqDelete');
 
         Route::get('/pendingPR_list', [RequestPendingController::class, 'pendingListRead'])->name('pendingListRead');
         Route::get('/pendingPR_list/ajaxviewreq', [RequestPendingController::class, 'getpendingListRead'])->name('getpendingListRead');
