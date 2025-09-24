@@ -15,7 +15,7 @@
                                 <table id="pendingUserTable" class="table table-hover styled-table">
                                     <thead>
                                         <tr>
-                                            <th>Date</th>
+                                            <th>Date Submitted</th>
                                             <th>Campus</th>
                                             <th>Transaction No.</th>
                                             <th>Type</th>

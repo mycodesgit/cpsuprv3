@@ -3,7 +3,7 @@
         <div class="alert alert-light mb-0">
             <div class="form-group mb-0 d-flex align-items-center">
                 <label class="mb-0 me-2 mt-0 text-bold" style="white-space: nowrap;">Edit Purpose:</label>
-                <input type="text" class="form-control editable-purpose-name border-0" value="{{ $purpose[0]->purpose_name }}" data-id="{{ $purpose[0]->purpose_id  }}" style="">
+                <input type="text" class="form-control editable-purpose-name border-0" value="{{ $purpose->first()->purpose_name }}" data-id="{{ $purpose->first()->purpose_id  }}" style="">
             </div>
         </div>
         <div class="card">

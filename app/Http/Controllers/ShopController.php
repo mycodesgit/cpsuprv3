@@ -173,6 +173,7 @@ class ShopController extends Controller
                 $existingPurpose = Purpose::where('user_id', $user->id)
                     ->where('cat_id', $categoryId)
                     ->where('type_request', 1)
+                    ->where('pstatus', 1)
                     ->first();
 
                 if ($existingPurpose) {
@@ -182,6 +183,7 @@ class ShopController extends Controller
                     // Count PR Cart for naming
                     $existingPRCount = Purpose::where('user_id', $user->id)
                         ->where('type_request', 1)
+                        ->where('pstatus', 1)
                         ->where('purpose_name', 'like', 'PR Cart%')
                         ->count();
 
