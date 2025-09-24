@@ -28,6 +28,7 @@
                                             <th>Username</th>
                                             <th>Role</th>
                                             <th>Status</th>
+                                            <th>Allowed</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>

@@ -65,6 +65,7 @@
                         }
                     },
                 },
+                {data: 'isAllowed'},
                 {
                     data: 'uid',
                     render: function(data, type, row) {
