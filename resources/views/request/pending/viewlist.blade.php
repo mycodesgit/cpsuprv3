@@ -398,14 +398,15 @@
         </div> --}}
         <div class="tab-pane fade" id="powtab" role="tabpanel" aria-labelledby="pow-tab" style="border-top: 1px solid #009879; margin-top: 10px">
             <div style="background-color: #e9e9e9; padding: 10px">
-                @if($docFile && $docFile->doc_file)
+                @if ($docFile && $docFile->doc_file)
                     @php
                         $filePath = storage_path('app/public/' . $docFile->doc_file);
                         $fileExists = file_exists($filePath);
                     @endphp
 
-                    @if($fileExists)
-                        <iframe src="{{ asset('storage/' . $docFile->doc_file) }}#toolbar=0" type="application/pdf" style="width:100%; height:500px;"></iframe>
+                    @if ($fileExists)
+                        <iframe src="{{ asset('storage/' . $docFile->doc_file) }}#toolbar=0" type="application/pdf"
+                            style="width:100%; height:500px;"></iframe>
                     @else
                         <div>
                             <div class="card text-center" style="width: 250px; border: 1px solid #eee;">
@@ -424,7 +425,9 @@
                             <li class="fileattached">
                                 <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
                                 <div class="mailbox-attachment-info">
-                                    <span class="mailbox-attachment-name"><center>No PDF File uploaded</center></span>
+                                    <span class="mailbox-attachment-name">
+                                        <center>No PDF File uploaded</center>
+                                    </span>
                                     <span class="mailbox-attachment-size clearfix mt-1">
                                     </span>
                                 </div>

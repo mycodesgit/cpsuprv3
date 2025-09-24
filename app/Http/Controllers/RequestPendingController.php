@@ -315,9 +315,9 @@ class RequestPendingController extends Controller
         $item = Item::all();
 
         $enID = decrypt($pid);
-        $purpose = Purpose::find($enID);
+        $purpose = Purpose::find($pid);
 
-        $docFile = DocFile::where('purpose_id', $purpose)->first();
+        $docFile = DocFile::where('purpose_id', $enID)->first();
         
         $pendItem = RequestItem::leftJoin('category', 'item_request.category_id', '=', 'category.id')
             ->leftJoin('unit', 'item_request.unit_id', '=', 'unit.id')

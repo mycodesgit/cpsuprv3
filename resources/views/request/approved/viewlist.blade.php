@@ -396,8 +396,7 @@
                 </form>
             @endif
         </div> --}}
-        <div class="tab-pane fade" id="powtab" role="tabpanel" aria-labelledby="pow-tab"
-            style="border-top: 1px solid #009879; margin-top: 10px">
+        <div class="tab-pane fade" id="powtab" role="tabpanel" aria-labelledby="pow-tab" style="border-top: 1px solid #009879; margin-top: 10px">
             <div style="background-color: #e9e9e9; padding: 10px">
                 @if ($docFile && $docFile->doc_file)
                     @php
