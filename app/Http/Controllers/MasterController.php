@@ -19,6 +19,7 @@ use App\Models\Campus;
 use App\Models\User;
 use App\Models\PpmpUser;
 use App\Models\Annoucement;
+use App\Models\RecentUpdates;
 
 
 class MasterController extends Controller
@@ -40,6 +41,7 @@ class MasterController extends Controller
         $campusCount = Campus::count();
         $offCount = Office::count();
         $annoucement = Annoucement::first();
+        $otherupdates = RecentUpdates::where('status', 1)->orderBy('created_at', 'desc')->get();
 
         $ppending = Purpose::whereIn('pstatus', ['2', '4', '5', '6', '99'])->where('purpose.user_id', '=',  $userId)->get();
         $papproved = Purpose::whereIn('pstatus', ['7', '8'])->where('purpose.user_id', '=',  $userId)->get();
@@ -139,7 +141,7 @@ class MasterController extends Controller
         }
                   
         
-        return view("home.dashboard", compact('data', 'camp', 'userActiveCount', 'userDeactCount', 'categoryCount', 'itemsCount', 'campusCount', 'offCount', 'category', 'annoucement', 'ppending', 'papproved', 'pcancel', 'pcheckerpending', 'piconcheckerpending', 'pcheckerapproved', 'pcheckercancel', 'piconcheckercancel', 'countppending', 'countpapproved', 'countpreturned'));
+        return view("home.dashboard", compact('data', 'camp', 'userActiveCount', 'userDeactCount', 'categoryCount', 'itemsCount', 'campusCount', 'offCount', 'category', 'annoucement', 'otherupdates', 'ppending', 'papproved', 'pcancel', 'pcheckerpending', 'piconcheckerpending', 'pcheckerapproved', 'pcheckercancel', 'piconcheckercancel', 'countppending', 'countpapproved', 'countpreturned'));
     }
 
     // public function logout()

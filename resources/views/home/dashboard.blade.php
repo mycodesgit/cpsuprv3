@@ -107,47 +107,29 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="card">
+                        <div class="card">
                             <div class="card-header">
-                                <h4>Recent Updates</h4>
+                                <h4 class="text-dark">Other Announcement</h4>
                             </div>
                             <div class="card-body">
                                 <ul class="list-unstyled list-unstyled-border">
-                                    <li class="media">
-                                        <img class="mr-3 rounded-circle" width="50" src="{{ asset('template/assets/img/avatar/avatar-1.png') }}" alt="avatar">
-                                        <div class="media-body">
-                                            <div class="float-right text-primary">Now</div>
-                                            <div class="media-title">Farhan A Mujib</div>
-                                            <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</span>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <img class="mr-3 rounded-circle" width="50" src="{{ asset('template/assets/img/avatar/avatar-2.png') }}" alt="avatar">
-                                        <div class="media-body">
-                                            <div class="float-right">12m</div>
-                                            <div class="media-title">Michelle Green</div>
-                                            <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</span>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <img class="mr-3 rounded-circle" width="50" src="{{ asset('template/assets/img/avatar/avatar-3.png') }}" alt="avatar">
-                                        <div class="media-body">
-                                            <div class="float-right">17m</div>
-                                            <div class="media-title">Debra Stewart</div>
-                                            <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</span>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <img class="mr-3 rounded-circle" width="50" src="{{ asset('template/assets/img/avatar/avatar-4.png') }}" alt="avatar">
-                                        <div class="media-body">
-                                            <div class="float-right">21m</div>
-                                            <div class="media-title">Alfa Zulkarnain</div>
-                                            <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</span>
-                                        </div>
-                                    </li>
+                                    @forelse($otherupdates as $dataotherupdates)
+                                        <li class="media">
+                                            <img class="mr-3 rounded-circle" width="30" src="{{ asset('template/assets/img/icons/system-solid-46-notification-bell-hover-bell.gif') }}" alt="avatar">
+                                            <div class="media-body">
+                                                <div class="media-title">{!! $dataotherupdates->otherannouncement !!}</div>
+                                            </div>
+                                        </li>
+                                    @empty
+                                        <li class="media">
+                                            <div class="media-body">
+                                                <div class="media-title">No Announcement Posted</div>
+                                            </div>
+                                        </li>
+                                    @endforelse
                                 </ul>
                             </div>
-                        </div> --}}
+                        </div>
                     @else
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-6 col-12">

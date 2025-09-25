@@ -33,7 +33,7 @@
                                     <div class="form-row">
                                         <div class="col-md-12">
                                             <label>Annoucement:</label>
-                                            <textarea class="summernote-simple announcetextarea" name="announcement">{{ $annoucement->announcement }}</textarea>
+                                            <textarea id="summernote" name="announcement">{{ $annoucement->announcement }}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -78,34 +78,22 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-user">
-                                <i class="fas fa-plus"></i> Add New Updates
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-addOtherAnnounceModal">
+                                <i class="fas fa-plus"></i> Add Other Announcement
                             </button>
                         </div>
                         <div class="card-body">
-                            <table id="" class="table table-hover styled-table">
+                            <table id="otherAnnounce" class="table table-hover styled-table" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Date</th>
                                         <th>Announcement</th>
                                         <th>PostedBy</th>
+                                        <th>Status</th>
                                         <th width="10%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($prarchivedata as $item)
-                                        <tr>
-                                            <td>{{ $item->cpdate }}</td>
-                                            <td>{{ $item->cpdate }}</td>
-                                            <td>{{ $item->cpdate }}</td>
-                                            <td>{{ $item->cpdate }}</td>
-                                            <td>{{ $item->cpdate }}</td>
-                                            <td>{{ $item->cpdate }}</td>
-                                            <td>{{ $item->cpdate }}</td>
-                                            <td>{{ $item->cpdate }}</td>
-                                            <td>{{ $item->cpdate }}</td>
-                                        </tr>
-                                    @endforeach --}}
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -114,4 +102,45 @@
             </div>
         </div>
     </section>
+    @include('modal.otherAnnounceAddmodal')
+
+    <div class="modal fade" id="editOtherAnnounceModal" tabindex="-1" role="dialog" aria-labelledby="editOtherAnnounceModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editOtherAnnounceModalLabel">Edit Other Announcement</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="editOtherAnnounceForm">
+                    <div class="modal-body">
+                        <input type="hidden" name="id" id="editOtherAnnounceId">
+                        <div class="form-group">
+                            <label for="editOtherAnnounceName">Year Name</label>
+                            <textarea class="form-control summernoteotheredit" id="editOtherAnnounceName" name="otherannouncement"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="editOtherAnnounceStatus">Year Status</label>
+                            <select name="status" id="editOtherAnnounceStatus" class="form-control">
+                                <option value="1">Enabled</option>
+                                <option value="2">Disabled</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var otherAnounceReadRoute = "{{ route('getotherAnnounceRead') }}";
+        var otherAnounceCreateRoute = "{{ route('otherAnnounceCreate') }}";
+        var otherAnounceUpdateRoute = "{{ route('otherAnnounceUpdate', ['id' => ':id']) }}";
+        var otherAnounceDeleteRoute = "{{ route('otherAnnounceDelete', ['id' => ':id']) }}";
+    </script>
 @endsection

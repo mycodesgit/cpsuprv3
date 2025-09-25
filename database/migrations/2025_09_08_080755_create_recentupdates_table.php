@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('recentupdates', function (Blueprint $table) {
             $table->id();
+            $table->text('otherannouncement')->nullable();
+            $table->string('postedby')->nullable();
+            $table->enum('status', array(1, 2))->default(1);
             $table->timestamps();
         });
     }

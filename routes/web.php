@@ -296,6 +296,11 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
         Route::get('/annouce-settings',[AnnouncementController::class,'annouceInfo'])->name('annouceInfo');
         Route::post('/annouce-settings/info/update',[AnnouncementController::class,'annouceUpdate'])->name('annouceUpdate');
 
+        Route::post('/annouce-settings/info/other/annce',[AnnouncementController::class,'otherAnnounceCreate'])->name('otherAnnounceCreate');
+        Route::get('/annouce-settings/info/other/annce/get/fetch/ajax',[AnnouncementController::class,'getotherAnnounceRead'])->name('getotherAnnounceRead');
+        Route::post('/annouce-settings/info/other/annce/list/update', [AnnouncementController::class, 'otherAnnounceUpdate'])->name('otherAnnounceUpdate');
+        Route::post('/annouce-settings/info/other/annce/list/delete{id}', [AnnouncementController::class, 'otherAnnounceDelete'])->name('otherAnnounceDelete');
+
         Route::get('/setting/server/zeus',[UserController::class,'serverMaintenance'])->name('serverMaintenance');
         Route::post('/setting/server/zeus/admin/maintenance', [UserController::class, 'toggleMaintenance'])->name('toggleMaintenance');
     });

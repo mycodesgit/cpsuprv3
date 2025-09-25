@@ -22,7 +22,8 @@ class UnitController extends Controller
         return response()->json(['data' => $data]);
     }
 
-    public function unitCreate(Request $request) {
+    public function unitCreate(Request $request) 
+    {
         if ($request->isMethod('post')) {
             $request->validate([
                 'unit_name' => 'required',

@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{ asset('template/assets/js/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/assets/js/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
     <!-- Summernote -->
-    <link rel="stylesheet" href="{{ asset('template/assets/modules/summernote/summernote-bs4.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/assets/modules/summernote/summernote-bs4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/assets/modules/codemirror/lib/codemirror.css') }}">
     <link rel="stylesheet" href="{{ asset('template/assets/modules/codemirror/theme/duotone-dark.css') }}">
     <link rel="stylesheet" href="{{ asset('template/assets/modules/jquery-selectric/selectric.css') }}">
@@ -341,9 +341,6 @@
     <script src="{{ asset('template/assets/js/tables/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     <!-- Summernote -->
     <script src="{{ asset('template/assets/modules/summernote/summernote-bs4.js') }}"></script>
-    <script src="{{ asset('template/assets/modules/codemirror/lib/codemirror.js') }}"></script>
-    <script src="{{ asset('template/assets/modules/codemirror/mode/javascript/javascript.js') }}"></script>
-    <script src="{{ asset('template/assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
     <!-- Chartjs -->
     <script src="{{ asset('template/assets/js/chart.js/Chart.min.js') }}"></script>
     <!-- Select2 -->
@@ -461,6 +458,28 @@
     @endif
     @if (request()->routeIs('archiveShow'))
         @include('myscript.archivepr.archiveSerialize')
+    @endif
+    @if (request()->routeIs('annouceInfo'))
+        @include('myscript.announce.otherAnnounceSerialize')
+        <script>
+            $(function () {
+                $('#summernote').summernote({
+                    height: 400 
+                });
+                $('#summernoteother').summernote({
+                    height: 300 
+                });
+                $('.summernoteotheredit').summernote({
+                    height: 300,
+                    // toolbar: [         // keep it simple
+                    //     ['style', ['bold', 'italic', 'underline', 'clear']],
+                    //     ['para', ['ul', 'ol', 'paragraph']],
+                    //     ['insert', ['link']],
+                    //     ['view', ['codeview']]
+                    // ]
+                });
+            })
+        </script>
     @endif
     @if (request()->routeIs('userRead'))
         @include('myscript.user.userSerialize')

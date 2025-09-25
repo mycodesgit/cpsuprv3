@@ -15,6 +15,7 @@ use App\Traits\ApprovedCountTrait;
 use App\Traits\ReturnedCountTrait;
 
 use App\Models\Annoucement;
+use App\Models\RecentUpdates;
 
 class AnnouncementController extends Controller
 {
@@ -118,5 +119,77 @@ class AnnouncementController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to update Annoucement!');
         }
+    }
+
+    public function otherAnnounceCreate(Request $request) 
+    {
+        if ($request->isMethod('post')) {
+            $request->validate([
+                'otherannouncement' => 'required',
+            ]);
+
+            $announceName = $request->input('otherannouncement'); 
+            $existingOtherAnnounce = RecentUpdates::where('otherannouncement', $announceName)->first();
+
+            if ($existingOtherAnnounce) {
+                return response()->json(['error' => true, 'message' => 'Other Announcement already exists!']);
+            }
+
+            try {
+                RecentUpdates::create([
+                    'otherannouncement' => $request->input('otherannouncement'),
+                    'postedby' => Auth::guard('web')->user()->id,
+                ]);
+
+                return response()->json(['success' => true, 'message' => 'Other Announcement stored successfully!']);
+            } catch (\Exception $e) {
+                return response()->json(['error' => true, 'message' => 'Failed to store Other Announcement!']);
+            }
+        }
+    }
+
+    public function getotherAnnounceRead() 
+    {
+        $data = RecentUpdates::join('users', 'recentupdates.postedby', '=', 'users.id')
+            ->select('recentupdates.*', 'users.lname', 'users.fname', 'users.mname', 'recentupdates.id as rid')
+            ->get();
+
+        return response()->json(['data' => $data]);
+    }
+
+    public function otherAnnounceUpdate(Request $request) 
+    {
+        $request->validate([
+            'id' => 'required',
+            'otherannouncement' => 'required',
+        ]);
+
+        try {
+            $announceName = $request->input('otherannouncement'); 
+            $existingOtherAnnounce = RecentUpdates::where('otherannouncement', $announceName)->where('id', '!=', $request->input('id'))->first();
+
+            if ($existingOtherAnnounce) {
+                return response()->json(['error' => true, 'message' => 'Other Announcement already exists!'], 200);
+            }
+
+            $otheranounce = RecentUpdates::findOrFail($request->input('id'));
+            $otheranounce->update([
+                'otherannouncement' => $request->input('otherannouncement'),
+                'postedby' => Auth::guard('web')->user()->id,
+            ]);
+            return response()->json(['success' => true, 'message' => 'Updated Successfully'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => true, 'message' => 'Failed to update Other Announcement!'], 404);
+        }
+    }
+
+    public function otherAnnounceDelete($id) 
+    {
+        $otheranounce = RecentUpdates::find($id);
+        if ($otheranounce) {
+            $otheranounce->delete();
+            return response()->json(['success'=> true, 'message'=>'Deleted successfully']);
+        }
+        return response()->json(['error'=> true, 'message'=>'Data not found']);
     }
 }
