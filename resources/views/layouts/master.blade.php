@@ -364,11 +364,17 @@
         @include('myscript.dash.donutChart')
         <script>
             $('.summernote-simple').summernote({
-                toolbar: false,      // hides the toolbar
-                airMode: false,      // disables floating toolbar
-                disableResizeEditor: true, 
-                height: 400,         // set height (optional)
-                disableDragAndDrop: true,
+            toolbar: false,      // hides the toolbar
+            airMode: false,      // disables floating toolbar
+            disableResizeEditor: true,
+            height: 400,         // set height (optional)
+            disableDragAndDrop: true,
+            callbacks: {
+                onInit: function() {
+                // Make editor readonly
+                $(this).next('.note-editor').find('.note-editable').attr('contenteditable', false);
+                }
+            }
             });
         </script>
     @endif
