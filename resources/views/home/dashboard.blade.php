@@ -20,6 +20,20 @@
             font-weight: bold;
             color: #555;
         }
+        textarea {
+            width: 100%;
+            height: 450px;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+            font-size: 16px;
+            resize: none;
+        } 
+        .modal-xl {
+            max-width: 1340px; /* same as Bootstrap 4.2+ modal-xl */
+        }
     </style>
     <section class="section">
         <div class=""
@@ -93,7 +107,7 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="card">
+                        <div class="card">
                             <div class="card-header">
                                 <h4>Recent Updates</h4>
                             </div>
@@ -133,7 +147,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div> --}}
+                        </div>
                     @else
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-6 col-12">

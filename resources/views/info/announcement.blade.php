@@ -8,6 +8,10 @@
             font-size: .875rem !important;
             border-radius: .2rem !important;
         }
+        .announcetextarea {
+            box-sizing: border-box !important;
+            border: 2px solid #ccc !important;
+        } 
     </style>
 
     <section class="section">
@@ -29,7 +33,7 @@
                                     <div class="form-row">
                                         <div class="col-md-12">
                                             <label>Annoucement:</label>
-                                            <textarea class="form-control form-control-sm" name="announcement" rows="4">{{ $annoucement->announcement }}</textarea>
+                                            <textarea class="summernote-simple announcetextarea" name="announcement">{{ $annoucement->announcement }}</textarea>
                                         </div>
                                     </div>
                                 </div>

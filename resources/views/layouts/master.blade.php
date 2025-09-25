@@ -18,6 +18,11 @@
     <!-- Select2 -->
     <link rel="stylesheet" href="{{ asset('template/assets/js/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/assets/js/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+    <!-- Summernote -->
+    <link rel="stylesheet" href="{{ asset('template/assets/modules/summernote/summernote-bs4.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/assets/modules/codemirror/lib/codemirror.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/assets/modules/codemirror/theme/duotone-dark.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/assets/modules/jquery-selectric/selectric.css') }}">
     
     <!-- dataTables Libraries -->
     <link rel="stylesheet"
@@ -334,6 +339,11 @@
     <script src="{{ asset('template/assets/js/tables/datatables-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('template/assets/js/tables/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('template/assets/js/tables/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+    <!-- Summernote -->
+    <script src="{{ asset('template/assets/modules/summernote/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('template/assets/modules/codemirror/lib/codemirror.js') }}"></script>
+    <script src="{{ asset('template/assets/modules/codemirror/mode/javascript/javascript.js') }}"></script>
+    <script src="{{ asset('template/assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
     <!-- Chartjs -->
     <script src="{{ asset('template/assets/js/chart.js/Chart.min.js') }}"></script>
     <!-- Select2 -->
@@ -352,6 +362,15 @@
 
     @if (request()->routeIs('dashboard'))
         @include('myscript.dash.donutChart')
+        <script>
+            $('.summernote-simple').summernote({
+                toolbar: false,      // hides the toolbar
+                airMode: false,      // disables floating toolbar
+                disableResizeEditor: true, 
+                height: 400,         // set height (optional)
+                disableDragAndDrop: true,
+            });
+        </script>
     @endif
 
     @if (request()->routeIs('categoryRead'))
