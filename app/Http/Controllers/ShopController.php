@@ -144,7 +144,7 @@ class ShopController extends Controller
                 ->join('category', 'item.category_id', '=', 'category.id')
                 ->select('item.*', 'category.category_name', 'unit.*', 'item.id as itid', 'unit.id as unit_id_alias')
                 ->where('item.status', '=', 1)
-                ->where('item.item_cost', '!=', 0)
+                //->where('item.item_cost', '!=', 0)
                 ->get();
 
         return response()->json(['data' => $data]);
