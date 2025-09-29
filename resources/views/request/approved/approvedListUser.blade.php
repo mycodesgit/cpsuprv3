@@ -77,6 +77,7 @@
                                                     <th>Purpose</th>
                                                     <th>Category</th>
                                                     <th>Status</th>
+                                                    <th>Printed</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -282,7 +283,7 @@
         </div>
     </section>
 
-    <div class="modal fade" id="viewPrModal" tabindex="-1" role="dialog" aria-labelledby="viewPrModalLabel" aria-hidden="true">
+    <div class="modal fade" id="viewPrModal" tabindex="-1" role="dialog" aria-labelledby="viewPrModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-lg" role="document" style="max-width: 80vw;">
             <div class="modal-content">
                 <div class="modal-header p-3" style="background-color: #f6f6f6; color: #000;">
@@ -296,24 +297,33 @@
                         <div class="text-center">Loading...</div>
                     </div>
                 </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <form id="editInstForm">
+                        <input type="text" name="id" id="viewPrPDFId" hidden>
+                        <button type="submit" class="btn btn-primary" id="btnDonePrint">Yes, Done Print PR & Receipt Slip</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 
     @if(request()->routeIs(['approvedListRead']))
         <script>
-            var userApprovedRoute = '{{ route('getapprovedListRead') }}';
-            var userReceivedRoute = '{{ route('getreceivedListRead') }}';
-            var userCanvassingRoute = '{{ route('getcanvassingListRead') }}';
-            var userCanvassedRoute = '{{ route('getcanvassedListRead') }}';
-            var userPhilGepRoute = '{{ route('getphilgepListRead') }}';
-            var userPostedRoute = '{{ route('getpostedListRead') }}';
-            var userBiddingRoute = '{{ route('getbiddingListRead') }}';
-            var userConsolidateRoute = '{{ route('getconsolidateListRead') }}';
-            var userAwardedRoute = '{{ route('getawardedListRead') }}';
-            var userPurchaseRoute = '{{ route('getpurchaseListRead') }}';
+            var userApprovedRoute = "{{ route('getapprovedListRead') }}";
+            var userReceivedRoute = "{{ route('getreceivedListRead') }}";
+            var userCanvassingRoute = "{{ route('getcanvassingListRead') }}";
+            var userCanvassedRoute = "{{ route('getcanvassedListRead') }}";
+            var userPhilGepRoute = "{{ route('getphilgepListRead') }}";
+            var userPostedRoute = "{{ route('getpostedListRead') }}";
+            var userBiddingRoute = "{{ route('getbiddingListRead') }}";
+            var userConsolidateRoute = "{{ route('getconsolidateListRead') }}";
+            var userAwardedRoute = "{{ route('getawardedListRead') }}";
+            var userPurchaseRoute = "{{ route('getpurchaseListRead') }}";
 
-            var approvedListViewRoute = '{{ route('approvedListView', '') }}';
+            var approvedListViewRoute = "{{ route('approvedListView', '') }}";
+
+            var prPDFprintUpdateReadRoute = "{{ route('updateStatprint') }}";
 
         </script>
     @endif

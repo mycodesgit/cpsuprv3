@@ -151,6 +151,7 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
         Route::get('/approvedPR_list/consolidategajax', [RequestApprovedController::class, 'getconsolidateListRead'])->name('getconsolidateListRead');
         Route::get('/approvedPR_list/awardedgajax', [RequestApprovedController::class, 'getawardedListRead'])->name('getawardedListRead');
         Route::get('/approvedPR_list/purchasegajax', [RequestApprovedController::class, 'getpurchaseListRead'])->name('getpurchaseListRead');
+        Route::post('/approvedPR_list/pdf/done/print', [RequestApprovedController::class, 'updateStatprint'])->name('updateStatprint');
         
         Route::get('/approvedPR_list/view/{pid}', [RequestApprovedController::class, 'approvedListView'])->name('approvedListView');
         Route::get('/approvedPR_list/pdf/{pid}', [RequestApprovedController::class, 'PDFprApproved'])->name('PDFprApproved');

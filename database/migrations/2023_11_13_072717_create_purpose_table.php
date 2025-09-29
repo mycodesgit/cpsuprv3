@@ -39,6 +39,7 @@ return new class extends Migration
             $table->string('datereturned')->nullable();
             $table->string('dateforwarded')->nullable();
             $table->string('datecancel')->nullable();
+            $table->enum('printstatus', ['1','2'])->default('1');
             $table->string('officeidreturn');
             $table->rememberToken();
             $table->timestamps();

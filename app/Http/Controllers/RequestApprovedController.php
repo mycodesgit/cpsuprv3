@@ -1198,4 +1198,23 @@ class RequestApprovedController extends Controller
         $role = Auth::user()->role;
         return response()->json(['role' => $role]);
     }
+
+    public function updateStatprint(Request $request) 
+    {
+        // $request->validate([
+        //     'id' => 'required',
+        // ]);
+
+        try {
+            $decryptedId = decrypt($request->input('id')); // 🔑 decrypt first
+
+        $prinrate = Purpose::findOrFail($decryptedId);
+            $prinrate->update([
+                'printstatus' => 2,
+        ]);
+            return response()->json(['success' => true, 'message' => 'Done Print'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => true, 'message' => 'Error'], 404);
+        }
+    }
 }

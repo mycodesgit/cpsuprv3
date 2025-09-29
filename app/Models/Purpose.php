@@ -38,6 +38,7 @@ class Purpose extends Model
         'dateforwarded',
         'datecancel',
         'officeidreturn',
+        'printstatus',
         'remember_token',
     ];
 

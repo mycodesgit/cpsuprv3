@@ -74,6 +74,18 @@
                         }
                     },
                 },
+                {data: 'printstatus',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 1:
+                                return '<span class="badge badge-danger">PR not print</span>';
+                            case 2:
+                                return '<span class="badge badge-default bg-teal">Yes, PR has been Printed</span>';
+                            default:
+                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                        }
+                    },
+                },
                 {
                     data: 'pid',
                     render: function(data, type, row) {
@@ -108,6 +120,33 @@
             type: 'GET',
             success: function (response) {
                 $('#modalContent').html(response);
+
+                $('#btnDonePrint').on('click', function (event) {
+                    event.preventDefault();
+
+                    $.ajax({
+                        url: prPDFprintUpdateReadRoute,
+                        type: "POST",
+                        data: {
+                            id: pid,
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(response) {
+                            if(response.success) {
+                                toastr.success(response.message);
+                                $('#viewPrModal').modal('hide');
+                            } else {
+                                toastr.error(response.message);
+                            }
+                        },
+                        error: function(xhr, status, error, message) {
+                            var errorMessage = xhr.responseText ? JSON.parse(xhr.responseText).message : 'An error occurred';
+                            toastr.error(errorMessage);
+                        }
+                    });
+                });
             },
             error: function () {
                 $('#modalContent').html('<div class="alert alert-danger">Failed to load data.</div>');
