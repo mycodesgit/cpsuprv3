@@ -269,7 +269,10 @@
                                     @else
                                         <input type="text" name="item_cost" class="form-control form-control-sm" onkeyup="formatNumber(this); calculateTotalCost()" readonly>
                                     @endif --}}
-                                    <input type="text" name="item_cost" class="form-control form-control-sm" onkeyup="formatNumber(this); calculateTotalCost()" readonly>
+                                    {{-- <input type="text" name="item_cost" class="form-control form-control-sm" onkeyup="formatNumber(this); calculateTotalCost()" readonly> --}}
+                                    {{-- <input type="text" name="item_cost" class="form-control form-control-sm" value="{{ $item_cost ?? 0 }}" onkeyup="formatNumber(this); calculateTotalCost()" {{ ($item_cost ?? 0) == 0 ? '' : 'readonly' }}> --}}
+                                    
+                                    <input type="text" name="item_cost" class="form-control form-control-sm" onkeyup="formatNumber(this); calculateTotalCost()">
                                 </div>
 
                                 <div class="mt-2 col-md-4">

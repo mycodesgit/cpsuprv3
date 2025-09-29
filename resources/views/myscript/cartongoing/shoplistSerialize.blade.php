@@ -98,6 +98,12 @@
             $('input[name="item_cost"]').val(itemCost);
             $('input[name="category_id"]').val(catID);
 
+            if (parseFloat(itemCost) === 0) {
+                $('input[name="item_cost"]').removeAttr('readonly');
+            } else {
+                $('input[name="item_cost"]').attr('readonly', true);
+            }
+
             resetFormFields();
         });
     });
