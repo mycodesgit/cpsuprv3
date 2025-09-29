@@ -92,6 +92,7 @@
                                                     <th>Purpose</th>
                                                     <th>Category</th>
                                                     <th>Status</th>
+                                                    <th>Printed</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -115,6 +116,7 @@
                                                     <th>Purpose</th>
                                                     <th>Category</th>
                                                     <th>Status</th>
+                                                    <th>Printed</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>

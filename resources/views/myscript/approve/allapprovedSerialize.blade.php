@@ -75,6 +75,18 @@
                         }
                     },
                 },
+                {data: 'printstatus',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 1:
+                                return '<span class="badge badge-danger">PR not print</span>';
+                            case 2:
+                                return '<span class="badge badge-default bg-teal">Yes, PR has been Printed</span>';
+                            default:
+                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                        }
+                    },
+                },
                 {
                     data: 'pid',
                     render: function(data, type, row) {
@@ -164,6 +176,18 @@
                                 return '<span class="badge badge-default bg-cyan">Returned</span>';
                             case 18:
                                 return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                            default:
+                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                        }
+                    },
+                },
+                {data: 'printstatus',
+                        render: function(data, type, row) {
+                        switch(parseInt(data)) {
+                            case 1:
+                                return '<span class="badge badge-danger">PR not print</span>';
+                            case 2:
+                                return '<span class="badge badge-default bg-teal">Yes, PR has been Printed</span>';
                             default:
                                 return '<span class="badge badge-secondary">Unknown Status</span>';
                         }
