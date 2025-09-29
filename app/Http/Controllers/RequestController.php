@@ -273,7 +273,7 @@ class RequestController extends Controller
 
         $items = Item::join('purpose', 'item.category_id', '=', 'purpose.cat_id')
                         ->join('category', 'item.category_id', '=', 'category.id')
-                        ->leftJoin('unit', 'item.unit_id', '=', 'unit.id')
+                        ->join('unit', 'item.unit_id', '=', 'unit.id')
                         ->whereIn('item.category_id', [$purpose->cat_id])
                         ->where('item.status', '=', 1)
                         ->groupBy('item.id', 'item.item_descrip', 'item.category_id', 'unit.unit_name', 'unit.id', 'item.item_cost', 'category.category_name')

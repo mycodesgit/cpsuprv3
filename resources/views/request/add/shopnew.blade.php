@@ -69,7 +69,7 @@
                                             <div class="card shadow-sm mb-4" style="max-width: 600px; width: 100%;">
                                                 <div class="card-body">
                                                     <p class="fs-5 text-dark" style="line-height: 1.6;">
-                                                        {{ $annoucement->announcement }}
+                                                        {!! $annoucement->announcement !!}
                                                     </p>
                                                     <div class="row text-center mt-4">
                                                         <div class="col-5">
