@@ -66,7 +66,7 @@
                             <div class="tab-content" id="myTab3Content">
                                 <div class="tab-pane fade active show" id="apprved" role="tabpanel" aria-labelledby="apprved-tab1">
                                     <div class="table-responsive" style="overflow-x: hidden;">
-                                        <table id="pruserapproved" class="table table-hover styled-table">
+                                        <table id="pruserapproved" class="table table-hover styled-table" style="width: 100%">
                                             <thead>
                                                 <tr>
                                                     <th>Date</th>

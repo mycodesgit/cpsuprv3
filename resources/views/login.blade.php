@@ -29,8 +29,8 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed; */
-            background-color: #303336;
+            background-attachment: fixed;
+            background-color: #303336; */
         }
 
         .container {
@@ -368,6 +368,9 @@
                 });
             @endif
         });
+    </script>
+    <script>
+        document.body.style.zoom = "90%"; 
     </script>
 </body>
 

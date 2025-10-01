@@ -12,7 +12,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive" style="overflow-x: hidden;">
-                                <table id="pendingUserTable" class="table table-hover styled-table">
+                                <table id="pendingUserTable" class="table table-hover styled-table" style="width: 100%">
                                     <thead>
                                         <tr>
                                             <th>Date Submitted</th>

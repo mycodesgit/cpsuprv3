@@ -49,6 +49,19 @@
                 margin-right: 5px !important;
             }
         }
+        ::-webkit-scrollbar {
+            width: 5px !important;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1 !important;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888 !important;
+            border-radius: 5px !important;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555 !important;
+        }
 
         /* Add margin-left when sidebar is collapsed */
         body.sidebar-mini .main-sidebar,
@@ -542,7 +555,10 @@
             </script>
         @endif
     @endif
-
+    
+    <script>
+        document.body.style.zoom = "90%"; 
+    </script>
 
 </body>
 </html>
