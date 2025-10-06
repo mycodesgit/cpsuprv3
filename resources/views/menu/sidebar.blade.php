@@ -114,7 +114,7 @@
             </li>
         @endif
 
-        @if(Auth::user()->role == 'MIS Checker')
+        @if(Auth::user()->role == 'MIS Checker' || Auth::user()->lname == 'BALIVIA')
             <li class="{{ $pendingAllActive }}">
                 <a class="nav-link" href="{{ route('pendingTechCheckListRead') }}">
                     <i class="fas fa-clock"></i> <span>Pending PR</span>
