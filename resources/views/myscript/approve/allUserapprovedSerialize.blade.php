@@ -78,7 +78,7 @@
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
                             case 1:
-                                return '<span class="badge badge-danger">PR not print</span>';
+                                return '<span class="badge badge-danger">For Printing</span>';
                             case 2:
                                 return '<span class="badge badge-default bg-teal">Yes, PR has been Printed</span>';
                             default:
