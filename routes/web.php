@@ -18,6 +18,7 @@ use App\Http\Controllers\RequestPendingTechController;
 use App\Http\Controllers\RequestApprovedController;
 use App\Http\Controllers\RequestReturnController;
 use App\Http\Controllers\ArchiveController;
+use App\Http\Controllers\DeletedArchiveController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\PpmpController;
 use App\Http\Controllers\GeneralSearchController;
@@ -206,6 +207,7 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
         Route::post('/approvedPR/list/returned', [RequestApprovedController::class, 'rerturnedPR'])->name('rerturnedPR');
         Route::post('/approvedPR/list/forwarded', [RequestApprovedController::class, 'forwardedPedoPR'])->name('forwardedPedoPR');
         Route::post('/approvedPR/list/cancelreqpr', [RequestApprovedController::class, 'cancelreqheadPR'])->name('cancelreqheadPR');
+        Route::post('/approvedPR/listitem/list/delete{id}', [RequestApprovedController::class, 'prarchDelete'])->name('prarchDelete'); 
         
         Route::post('/role/user', [RequestApprovedController::class, 'getUserRole'])->name('getUserRole');
     });
@@ -262,6 +264,12 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
         Route::get('/file/list', [ArchiveController::class, 'archiveRead'])->name('archiveRead');
         Route::get('/file/list/show', [ArchiveController::class, 'archiveShow'])->name('archiveShow');
         Route::get('/file/list/show/ajax', [ArchiveController::class, 'getarchivedprListRead'])->name('getarchivedprListRead');
+    });
+
+    Route::prefix('/deleted')->group(function () {
+        Route::get('/archivefile/list', [DeletedArchiveController::class, 'indexlistdel'])->name('indexlistdel');
+        Route::get('/archivefile/list/show', [DeletedArchiveController::class, 'archiveDeletedShow'])->name('archiveDeletedShow');
+        Route::get('/archivefile/list/show/ajax', [DeletedArchiveController::class, 'getarchiveddeletedprListRead'])->name('getarchiveddeletedprListRead');
     });
 
     //Reports

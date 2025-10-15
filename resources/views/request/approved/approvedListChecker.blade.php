@@ -81,7 +81,7 @@
                             <div class="tab-content" id="myTab3Content">
                                 <div class="tab-pane fade active show" id="allpr" role="tabpanel" aria-labelledby="allpr-tab1">
                                     <div class="table-responsive" style="overflow-x: hidden;">
-                                        <table id="prall" class="table table-hover styled-table">
+                                        <table id="prall" class="table table-hover styled-table" style="width: 100%">
                                             <thead>
                                                 <tr>
                                                     <th>Date</th>
@@ -451,6 +451,8 @@
             var approvedReturnedViewRoute = "{{ route('rerturnedPR') }}";
 
             var userRole = "{{ Auth::user()->role }}";
+
+            var pracrhiveDeleteRoute = "{{ route('prarchDelete', ['id' => ':id']) }}";
         </script>
     @endif
 

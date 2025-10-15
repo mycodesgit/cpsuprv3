@@ -472,6 +472,9 @@
     @if (request()->routeIs('archiveShow'))
         @include('myscript.archivepr.archiveSerialize')
     @endif
+    @if (request()->routeIs('archiveDeletedShow'))
+        @include('myscript.archivepr.archivedeletedSerialize')
+    @endif
     @if (request()->routeIs('annouceInfo'))
         @include('myscript.announce.otherAnnounceSerialize')
         <script>

@@ -93,6 +93,7 @@
                         if (type === 'display') {
                             var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
                                 buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>';
+                                buttons += '<button type="button" value="' + data + '" class="btn btn-sm btn-danger prdelstatus-delete" data-toggle="tooltip" data-placement="top" title="Delete PR."><i class="fas fa-trash"></i> </button>';
                                
                             return buttons;
                         } else {
@@ -1313,6 +1314,44 @@
         $('#menuAllModal .returned-pr').data('id', pid);
         $('#menuAllModal .forwarded-pr').data('id', pid);
     });
-
-
+        
+    $(document).on('click', '.prdelstatus-delete', function(e) {
+        var id = $(this).val();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+        });
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to recover this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: pracrhiveDeleteRoute.replace(':id', id),
+                    success: function(response) {
+                        $("#tr-" + id).delay(1000).fadeOut();
+                        Swal.fire({
+                            title: 'Deleted!',
+                            text: 'Successfully Deleted!',
+                            icon: 'warning',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        console.log(response);
+                        if(response.success) {
+                            toastr.success(response.message);
+                            console.log(response);
+                        }
+                    }
+                });
+            }
+        })
+    });
 </script>

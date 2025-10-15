@@ -1217,4 +1217,16 @@ class RequestApprovedController extends Controller
             return response()->json(['error' => true, 'message' => 'Error'], 404);
         }
     }
+
+    public function prarchDelete($id) 
+    {
+        $decryptedId = decrypt($id);
+        $prarch = Purpose::find($decryptedId);
+        if ($prarch) {
+            $prarch->pstatus = 100;
+            $prarch->save();
+            return response()->json(['success'=> true, 'message'=>'Status updated to deleted successfully']);
+        }
+        return response()->json(['error'=> true, 'message'=>'PR not found']);
+    }
 }
