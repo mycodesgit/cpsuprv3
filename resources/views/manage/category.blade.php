@@ -216,7 +216,7 @@
     </div>
 
     <div class="modal fade" id="editItemModal" tabindex="-1" role="dialog" aria-labelledby="editItemModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editItemModalLabel">Edit Item Name</h5>
@@ -247,7 +247,7 @@
                         </div>
                         <div class="form-group">
                             <label for="editItemDescripName">Item Description</label>
-                            <textarea rows="4" name="item_descrip" id="editItemDescripName" class="form-control"></textarea>
+                            <textarea rows="4" name="item_descrip" id="editItemDescripName" class="form-control" style="height: 350px; min-height: 350px; resize: vertical;"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="editItemCost">Item Cost</label>
