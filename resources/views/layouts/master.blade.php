@@ -238,10 +238,17 @@
                         </div>
                     </li>
                     <li class="dropdown">
+                        @php
+                            $fname = Auth::user()->fname ?? 'F';
+                            $lname = Auth::user()->lname ?? 'L';
+                            $initials = strtoupper(substr($fname, 0, 1) . substr($lname, 0, 1));
+                        @endphp
                         <a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                            <img alt="image" src="{{ asset('template/assets/img/avatar/avatar-1.png') }}"
-                                class="rounded-circle mr-1">
+                            <div class="rounded-circle mr-1 d-inline-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px; background-color: #28a745; color: #fff; font-weight: bold; font-size: 16px;">
+                                {{ $initials }}
+                            </div>
                             <div class="d-sm-none d-lg-inline-block text-white">Hi, {{ Auth::user()->fname }} {{ Auth::user()->lname }}</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
