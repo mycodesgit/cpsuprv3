@@ -280,7 +280,7 @@
                             @endif
 
                             <div class="dropdown-divider"></div>
-                            <a href="features-profile.html" class="dropdown-item has-icon">
+                            <a href="#" class="dropdown-item has-icon">
                                 <i class="far fa-user"></i> Profile
                             </a>
                             <div class="dropdown-divider"></div>
