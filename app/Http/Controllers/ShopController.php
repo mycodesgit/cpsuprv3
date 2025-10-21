@@ -140,12 +140,32 @@ class ShopController extends Controller
 
     public function getshoplistSerialize()
     {
+        // Get the logged-in user's ppmp record
+        $ppmp = DB::table('ppmpuser')
+            ->where('user_id', Auth::id())
+            ->first();
+
+        // Decode JSON array of categories
+        $categories = [];
+        if ($ppmp && $ppmp->ppmp_categories) {
+            $categories = json_decode($ppmp->ppmp_categories, true);
+        }
+
+        // Fetch items only for those categories
         $data = Item::join('unit', 'item.unit_id', '=', 'unit.id')
-                ->join('category', 'item.category_id', '=', 'category.id')
-                ->select('item.*', 'category.category_name', 'unit.*', 'item.id as itid', 'unit.id as unit_id_alias')
-                ->where('item.status', '=', 1)
-                //->where('item.item_cost', '!=', 0)
-                ->get();
+            ->join('category', 'item.category_id', '=', 'category.id')
+            ->select(
+                'item.*',
+                'category.category_name',
+                'unit.*',
+                'item.id as itid',
+                'unit.id as unit_id_alias'
+            )
+            ->where('item.status', 1)
+            ->when(!empty($categories), function ($query) use ($categories) {
+                $query->whereIn('item.category_id', $categories);
+            })
+            ->get();
 
         return response()->json(['data' => $data]);
     }

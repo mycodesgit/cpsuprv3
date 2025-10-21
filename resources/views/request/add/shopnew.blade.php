@@ -128,7 +128,7 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <table id="shoplist" class="table table-hover">
+                                            <table id="shoplist" class="table table-hover" style="width: 100%">
                                                 <thead class="bg-light">
                                                     <tr>
                                                         <th></th>
@@ -173,7 +173,7 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <table id="shoplist" class="table table-hover">
+                                    <table id="shoplist" class="table table-hover" style="width: 100%">
                                         <thead class="bg-light">
                                             <tr>
                                                 <th></th>
