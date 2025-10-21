@@ -486,6 +486,7 @@ class RequestController extends Controller
         $purpose = Purpose::find($purpose_id);
         if ($purpose) {
             $purpose->pstatus = $hasCat10 ? '99' : '2';
+            $purpose->created_at = now()->format('Y-m-d H:i:s');
             $purpose->save();
         }
 
