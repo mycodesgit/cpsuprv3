@@ -78,7 +78,7 @@
             <li class="{{ $pendingAllActive }}">
                 <a class="nav-link" href="{{ route('pendingAllListRead') }}">
                     <i class="fas fa-clock"></i> <span>Pending PR</span>
-                    <span id="pendingCount" class="badge badge-warning" style="font-size: 10pt; width: 30px; height: 20px; line-height: 10px; text-align: left !important;">
+                    <span id="pendingCount" class="badge badge-warning" style="font-size: 10pt; width: 50px; height: 20px; line-height: 10px; text-align: left !important;">
                         {{ $data['pendCount'] }}
                     </span>
                 </a>
