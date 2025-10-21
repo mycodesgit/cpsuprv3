@@ -184,7 +184,53 @@
         @endif
 
         @if(Auth::user()->role == 'Administrator' || Auth::user()->role == 'Budget Officer')
+            <li class="{{ $shopUserActive }}">
+                <a class="nav-link" href="{{ route('shoplistRead') }}">
+                    <i class="fas fa-cart-plus"></i> <span>Shop Item</span>
+                </a>
+            </li>
+
+            <li class="{{ $cartUserActive }}">
+                <a class="nav-link" href="{{ route('prPurposeRequest') }}">
+                    <i class="fas fa-cart-shopping"></i> <span>My Cart</span>
+                </a>
+            </li>
+
+            <li class="{{ $pendingUserActive }}">
+                <a class="nav-link" href="{{ route('pendingListRead') }}">
+                    <i class="fas fa-clock"></i> <span>Pending PR</span>
+                    <span id="pendingUserCount" class="badge badge-warning" style="font-size: 10pt; width: 30px; height: 20px; line-height: 10px; text-align: left !important;">
+                        {{ $data['pendUserCount'] }}
+                    </span>
+                </a>
+            </li>
+
+            <li class="{{ $approvedUserActive }}">
+                <a class="nav-link" href="{{ route('approvedListRead') }}">
+                    <i class="fas fa-thumbs-up"></i> <span>Approved PR</span>
+                    <span id="approvedUserCount" class="badge badge-warning" style="font-size: 10pt; width: 30px; height: 20px; line-height: 10px; text-align: left !important;">
+                        {{ $data['approvedUserCount'] }}
+                    </span>
+                </a>
+            </li>
+
+            <li class="{{ $returnUserActive }}">
+                <a class="nav-link" href="{{ route('returnedUserListRead') }}">
+                    <i class="fas fa-right-left"></i> <span>Returned PR</span>
+                    <span id="returnedUserCount" class="badge badge-warning" style="font-size: 10pt; width: 30px; height: 20px; line-height: 10px;">
+                        {{ $data['returnedUserCount'] }}
+                    </span>
+                </a>
+            </li>
+
+            <li class="{{ $canceledUserActive }}">
+                <a class="nav-link" href="{{ route('cancelUserListRead') }}">
+                    <i class="fas fa-ban"></i> <span>Cancelled PR</span>
+                </a>
+            </li>
+
             <li class="menu-header" style="border-top: none">Approval Navigation</li>
+
             <li class="{{ $pendingBudAllActive }}">
                 <a class="nav-link" href="{{ route('pendingAllBudgetListRead') }}">
                     <i class="fas fa-clock"></i> <span>Waiting PR</span>
