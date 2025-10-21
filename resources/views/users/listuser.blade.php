@@ -17,7 +17,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive" style="overflow-x: hidden;">
-                                <table id="userviewTable" class="table table-hover styled-table">
+                                <table id="userviewTable" class="table table-hover styled-table" style="width: 100%">
                                     <thead>
                                         <tr>
                                             <th>Last Name</th>
