@@ -578,7 +578,7 @@
                                     <div class="tracking-content">
                                         Purchase Request has Approved by the Procurement Office
                                         @if(!empty($item->dateproc))
-                                            <span>{{ \Carbon\Carbon::parse($item->dateproc)->format('F j, Y h:i:s A') }}</span>
+                                            <span>{{ \Carbon\Carbon::parse($item->dateproc)->format('F j, Y h:i:s A') }}</span> <span>{{ $item->ppmp_remarks }}</span>
                                         @endif
                                     </div>
                                 </div>
