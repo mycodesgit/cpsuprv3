@@ -594,6 +594,7 @@ class RequestApprovedController extends Controller
 
         $appItem = RequestItem::leftJoin('category', 'item_request.category_id', '=', 'category.id')
             ->leftJoin('unit', 'item_request.unit_id', '=', 'unit.id')
+            ->leftJoin('ppmpverify', 'item_request.purpose_id', '=', 'ppmpverify.purpose_id')
             ->join('item', 'item_request.item_id', '=', 'item.id')
             ->join('office', 'item_request.off_id', '=', 'office.id')
             ->join('purpose', 'item_request.purpose_id', '=', 'purpose.id')
@@ -604,7 +605,8 @@ class RequestApprovedController extends Controller
                     'item_request.id as iid',
                     'purpose.created_at as pcrtdat', 
                     'purpose.updated_at as puptdat',
-                    'item_request.item_cost as fitem_cost'  )
+                    'item_request.item_cost as fitem_cost',
+                    'ppmpverify.ppmp_remarks'  )
             ->whereIn('item_request.status', ['7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'])
             ->where('item_request.purpose_id', '=',  $enID)
             ->where('item_request.user_id', '=',  $userId)
