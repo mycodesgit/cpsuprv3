@@ -577,6 +577,32 @@
                                         </div>
                                     </div>
                                 @endif
+
+                                @if ($item->pstatus == 3)
+                                    {{-- Then Pending again --}}
+                                    <div class="tracking-item current">
+                                        <div class="tracking-icon status-intransit">
+                                            <svg class="svg-inline--fa fa-circle fa-w-10" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path fill="currentColor"
+                                                    d="M256 8C119 8 8 119 8 256s111 248 248 248 
+                                                    248-111 248-248S393 8 256 8z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div class="tracking-date">
+                                            <img src="https://raw.githubusercontent.com/shajo/portfolio/a02c5579c3ebe185bb1fc085909c582bf5fad802/delivery.svg"
+                                                class="img-responsive" alt="order-placed" />
+                                        </div>
+                                        <div class="tracking-content">
+                                            Purchase Request Returned
+                                            @if(!empty($item->purpose_created_at))
+                                                <span>{{ \Carbon\Carbon::parse($item->purpose_created_at)->format('F j, Y h:i:s A') }}</span>
+                                                <span>• {{ $item->ppmp_remarks }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endif
                             @else
                                 {{-- <div class="tracking-item-pending">
                                     <div class="tracking-icon status-intransit">
