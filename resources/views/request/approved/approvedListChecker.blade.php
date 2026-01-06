@@ -401,8 +401,8 @@
                         <a href="#" class="btn btn-primary posted-pr"><i class="fas fa-newspaper"></i> Posted PR</a>
                     </div>
                     <div class="form-group">
-                        <a href="#" class="btn btn-primary bidding-pr"><i class="fas fa-file-contract"></i> Bidding PR</a>
                         <a href="#" class="btn btn-primary consolidation-pr"><i class="fas fa-ruler-combined"></i> Consolidation PR</a>
+                        <a href="#" class="btn btn-primary bidding-pr"><i class="fas fa-file-contract"></i> Bidding PR</a>
                         <a href="#" class="btn btn-primary awarded-pr"><i class="fas fa-award"></i> Awarded PR</a>
                         <a href="#" class="btn btn-primary purchased-pr"><i class="fas fa-cart-shopping"></i> Purchased PR</a>
                         <a href="#" class="btn btn-primary returned-pr"><i class="fas fa-right-left"></i> Returned PR</a>
