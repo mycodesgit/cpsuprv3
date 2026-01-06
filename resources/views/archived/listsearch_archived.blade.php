@@ -58,7 +58,7 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <table id="prarchiveTable" class="table table-hover styled-table">
+                                    <table id="prarchiveTable" class="table table-hover styled-table" style="width: 100%"> 
                                         <thead>
                                             <tr>
                                                 <th>Date</th>
