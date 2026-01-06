@@ -284,11 +284,12 @@ class ReportsController extends Controller
         $catId = $request->input('cat_id');
 
         $itemConsolidate = RequestItem::join('unit', 'item_request.unit_id', '=', 'unit.id')
+            ->join('purpose', 'item_request.purpose_id', '=', 'purpose.id')
             ->join('item', 'item_request.item_id', '=', 'item.id')
             ->join('office', 'item_request.off_id', '=', 'office.id')
             ->select('item.item_descrip', 'item_request.item_cost', 'item_request.qty', 'item_request.total_cost', 'unit.unit_name', 'item_request.category_id', 'office.office_abbr')
             ->where('item_request.category_id', $catId)
-            ->whereBetween('item_request.created_at', [$start_date, $end_date])
+            ->whereBetween('purpose.dateconsolidate', [$start_date, $end_date])
             ->whereIn('item_request.status', ['14'])
             ->distinct() 
             ->get();
@@ -364,18 +365,19 @@ class ReportsController extends Controller
         $categoryName = Category::where('id', $catId)->value('category_name');
 
         $itemConsolidate = RequestItem::join('unit', 'item_request.unit_id', '=', 'unit.id')
+            ->join('purpose', 'item_request.purpose_id', '=', 'purpose.id')
             ->join('item', 'item_request.item_id', '=', 'item.id')
             ->join('office', 'item_request.off_id', '=', 'office.id')
             ->select('item.item_descrip', 'item_request.item_cost', 'item_request.qty', 'item_request.total_cost', 'unit.unit_name', 'item_request.category_id', 'office.office_abbr')
             ->where('item_request.category_id', $catId)
-            ->whereBetween('item_request.created_at', [$start_date, $end_date])
+            ->whereBetween('purpose.dateconsolidate', [$start_date, $end_date])
             ->whereIn('item_request.status', ['14'])
             ->get();
 
         $itemConsPRf2 = RequestItem::join('purpose', 'item_request.purpose_id', '=', 'purpose.id')
             ->select('purpose.pr_no', 'item_request.category_id')
             ->where('item_request.category_id', $catId)
-            ->whereBetween('item_request.created_at', [$start_date, $end_date])
+            ->whereBetween('purpose.dateconsolidate', [$start_date, $end_date])
             ->whereIn('item_request.status', ['14'])
             ->groupBy('purpose.pr_no', 'item_request.category_id', 'item_request.purpose_id' )
             ->get();
