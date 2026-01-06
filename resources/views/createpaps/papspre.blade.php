@@ -16,7 +16,7 @@
                             </button>
                         </div>
                         <div class="card-body">
-                            <table id="papspreplanTable" class="table table-hover styled-table">
+                            <table id="papspreplanTable" class="table table-hover styled-table" style="width: 100%">
                                 <thead>
                                     <tr>
                                         <th>PAPs</th>
