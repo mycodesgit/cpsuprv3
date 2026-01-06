@@ -183,10 +183,11 @@ class ReportsController extends Controller
         $categoryName = Category::where('id', $catId)->value('category_name');
 
         $itemConsolidate = RequestItem::join('unit', 'item_request.unit_id', '=', 'unit.id')
+            ->join('purpose', 'item_request.purpose_id', '=', 'purpose.id')
             ->join('item', 'item_request.item_id', '=', 'item.id')
             ->select('item.item_descrip', 'item_request.item_cost', 'unit.unit_name', 'item_request.category_id', DB::raw('SUM(item_request.total_cost) as total_cost'), DB::raw('SUM(item_request.qty) as qty'))
             ->where('item_request.category_id', $catId)
-            ->whereBetween('item_request.created_at', [$start_date, $end_date])
+            ->whereBetween('purpose.dateconsolidate', [$start_date, $end_date])
             ->whereIn('item_request.status', ['14'])
             ->groupBy('item.item_descrip','item_request.item_cost', 'unit.unit_name', 'item_request.category_id')
             ->get();
@@ -194,7 +195,7 @@ class ReportsController extends Controller
         $itemConsPR = RequestItem::join('purpose', 'item_request.purpose_id', '=', 'purpose.id')
             ->select('purpose.pr_no', 'item_request.category_id')
             ->where('item_request.category_id', $catId)
-            ->whereBetween('item_request.created_at', [$start_date, $end_date])
+            ->whereBetween('purpose.dateconsolidate', [$start_date, $end_date])
             ->whereIn('item_request.status', ['14'])
             ->groupBy('purpose.pr_no', 'item_request.category_id', 'item_request.purpose_id' )
             ->get();
