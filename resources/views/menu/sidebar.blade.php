@@ -229,6 +229,12 @@
                 </a>
             </li>
 
+            <li class="{{ $archiveActive }}">
+                <a class="nav-link" href="{{ route('archiveRead') }}">
+                    <i class="fas fa-box-archive"></i> <span>Archived</span>
+                </a>
+            </li>
+
             <li class="menu-header" style="border-top: none">Approval Navigation</li>
 
             <li class="{{ $pendingBudAllActive }}">
