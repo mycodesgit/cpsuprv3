@@ -86,6 +86,7 @@
                         if (type === 'display') {
                             var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfarchiveviewchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
                                 //buttons += '<a href="' + pendingAllListViewRoute + '/' + data + '" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-toggle="tooltip" data-placement="top" title="PR Remarks."><i class="fas fa-eye"></i> </a>';
+                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>';
                                 
                             return buttons;
                         } else {
