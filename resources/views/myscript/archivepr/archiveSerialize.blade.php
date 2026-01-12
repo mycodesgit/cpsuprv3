@@ -121,4 +121,24 @@
             }
         });
     });
+
+    $(document).on('click', '.btn-prpdfemnu', function () {
+        var pid = $(this).data('id');
+
+        // Show modal
+        $('#menuAllModal').modal('show');
+
+        // Store pid into each button's data-id
+        $('#menuAllModal .received-pr').data('id', pid);
+        $('#menuAllModal .canvassing-pr').data('id', pid);
+        $('#menuAllModal .canvassed-pr').data('id', pid);
+        $('#menuAllModal .posting-pr').data('id', pid);
+        $('#menuAllModal .posted-pr').data('id', pid);
+        $('#menuAllModal .bidding-pr').data('id', pid);
+        $('#menuAllModal .consolidation-pr').data('id', pid);
+        $('#menuAllModal .awarded-pr').data('id', pid);
+        $('#menuAllModal .purchased-pr').data('id', pid);
+        $('#menuAllModal .returned-pr').data('id', pid);
+        $('#menuAllModal .forwarded-pr').data('id', pid);
+    });
 </script>
