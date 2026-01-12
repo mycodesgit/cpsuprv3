@@ -115,8 +115,57 @@
         </div>
     </div>
 
+    <div class="modal fade" id="menuAllModal" role="dialog" aria-labelledby="menuAllModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-dark" id="menuAllModalLabel">Select Option Menu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="form-group">
+                        <a href="#" class="btn btn-primary received-pr"><i class="fas fa-check"></i> Received PR</a>
+                        <a href="#" class="btn btn-primary canvassing-pr"><i class="fas fa-file-excel"></i> Canvassing PR</a>
+                        <a href="#" class="btn btn-primary canvassed-pr"><i class="fas fa-file-pdf"></i> Canvassed PR</a>
+                        <a href="#" class="btn btn-primary posting-pr"><i class="fas fa-file"></i> Philgeps Posting</a>
+                        <a href="#" class="btn btn-primary posted-pr"><i class="fas fa-newspaper"></i> Posted PR</a>
+                    </div>
+                    <div class="form-group">
+                        <a href="#" class="btn btn-primary consolidation-pr"><i class="fas fa-ruler-combined"></i> Consolidation PR</a>
+                        <a href="#" class="btn btn-primary bidding-pr"><i class="fas fa-file-contract"></i> Bidding PR</a>
+                        <a href="#" class="btn btn-primary awarded-pr"><i class="fas fa-award"></i> Awarded PR</a>
+                        <a href="#" class="btn btn-primary purchased-pr"><i class="fas fa-cart-shopping"></i> Purchased PR</a>
+                        <a href="#" class="btn btn-primary returned-pr"><i class="fas fa-right-left"></i> Returned PR</a>
+                    </div>
+                    <div class="form-group">
+                        <a href="#" class="btn btn-primary forwarded-pr"><i class="fas fa-forward-step"></i> Forwarded to PEDO</a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         var allApprovedRoute = "{{ route('getarchivedprListRead') }}";
         var approvedAllListViewRoute = "{{ route('approvedAllListView', '') }}";
+
+        var approvedReceivedViewRoute = "{{ route('receivedPR') }}";
+        var approvedCanvassingViewRoute = "{{ route('canvassingPR') }}";
+        var approvedCanvassedViewRoute = "{{ route('canvassedPR') }}";
+        var approvedPostingViewRoute = "{{ route('philgepspostingPR') }}";
+        var approvedPostedViewRoute = "{{ route('postedPR') }}";
+        var approvedBiddingViewRoute = "{{ route('biddingPR') }}";
+        var approvedConsolidationViewRoute = "{{ route('consolidationPR') }}";
+        var approvedAwardViewRoute = "{{ route('awardedPR') }}";
+        var approvedPurchasedViewRoute = "{{ route('purchasedPR') }}";
+        var forwardedPedoViewRoute = "{{ route('forwardedPedoPR') }}";
+        var approvedReturnedViewRoute = "{{ route('rerturnedPR') }}";
+
+        var userRole = "{{ Auth::user()->role }}";
     </script>
 @endsection
