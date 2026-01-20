@@ -478,6 +478,7 @@
     @endif
     @if (request()->routeIs('archiveShow'))
         @include('myscript.archivepr.archiveSerialize')
+        @include('myscript.approve.acceptanceSerialize')
     @endif
     @if (request()->routeIs('archiveDeletedShow'))
         @include('myscript.archivepr.archivedeletedSerialize')
