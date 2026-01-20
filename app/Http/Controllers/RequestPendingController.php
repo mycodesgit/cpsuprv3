@@ -467,6 +467,7 @@ class RequestPendingController extends Controller
 
         $reqitem = RequestItem::leftJoin('category', 'item_request.category_id', '=', 'category.id')
             ->leftJoin('unit', 'item_request.unit_id', '=', 'unit.id')
+            ->join('ppmpverify', 'item_request.purpose_id', '=', 'ppmpverify.purpose_id')
             ->join('funding_source', 'item_request.purpose_id', '=', 'funding_source.purpose_id')
             ->join('item', 'item_request.item_id', '=', 'item.id')
             ->join('office', 'item_request.off_id', '=', 'office.id')
@@ -484,6 +485,7 @@ class RequestPendingController extends Controller
                     'unit.unit_name', 'item.*', 
                     'item_request.id as iid',
                     'funding_source.id as fid',
+                    'ppmpverify.ppmp_remarks',
                     'office.id as oid',
                     'campuses.id as cid' )
             ->whereIn('item_request.status', ['2', '3', '4', '5', '6', '7', '8', '9', '99'])
