@@ -385,6 +385,21 @@ class RequestApprovedController extends Controller
         return response()->json(['data' => $data]);
     }
 
+    public function getpedoListRead() {
+        $userId = Auth::id();
+        $data = Purpose::join('office', 'purpose.office_id', '=', 'office.id')
+            ->join('campuses', 'purpose.camp_id', '=', 'campuses.id')
+            ->join('category', 'purpose.cat_id', '=', 'category.id')
+            ->select('purpose.*', 'purpose.id as pid', 'campuses.*', 'campuses.id as campid', 'category.*', 'office.*', 'office.id as oid', 'purpose.created_at as cpdate')
+            ->where('purpose.pstatus', 17)
+            ->where('purpose.user_id', '=',  $userId)
+            ->get();
+        foreach ($data as $record) {
+            $record->pid = encrypt($record->pid);
+        }
+        return response()->json(['data' => $data]);
+    }
+
     public function getAllprappListRead() {
         $data = Purpose::join('office', 'purpose.office_id', '=', 'office.id')
             ->join('campuses', 'purpose.camp_id', '=', 'campuses.id')

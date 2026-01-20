@@ -62,6 +62,11 @@
                                         Purchased
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pedo-tab1" data-toggle="tab" href="#pedo" role="tab" aria-controls="pedo" aria-selected="false" style="font-weight: bold; color: #000;">
+                                        Forwarded to PEDO
+                                    </a>
+                                </li>
                             </ul>
                             <div class="tab-content" id="myTab3Content">
                                 <div class="tab-pane fade active show" id="apprved" role="tabpanel" aria-labelledby="apprved-tab1">
@@ -275,6 +280,27 @@
                                         </tbody>
                                     </table>
                                 </div>
+
+                                <div class="tab-pane fade" id="pedo" role="tabpanel" aria-labelledby="pedo-tab1">
+                                    <table id="pruserpedo" class="table table-hover styled-table" style="width: 100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Campus</th>
+                                                <th>PR No.</th>
+                                                <th>Type</th>
+                                                <th>Office</th>
+                                                <th>Purpose</th>
+                                                <th>Category</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -320,6 +346,7 @@
             var userConsolidateRoute = "{{ route('getconsolidateListRead') }}";
             var userAwardedRoute = "{{ route('getawardedListRead') }}";
             var userPurchaseRoute = "{{ route('getpurchaseListRead') }}";
+            var userPedoRoute = "{{ route('getpedoListRead') }}";
 
             var approvedListViewRoute = "{{ route('approvedListView', '') }}";
 
