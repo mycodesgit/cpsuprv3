@@ -485,7 +485,7 @@ class RequestPendingController extends Controller
                     'unit.unit_name', 'item.*', 
                     'item_request.id as iid',
                     'funding_source.id as fid',
-                    'ppmpverify.ppmp_remarks',
+                    'ppmpverify.*',
                     'office.id as oid',
                     'campuses.id as cid' )
             ->whereIn('item_request.status', ['2', '3', '4', '5', '6', '7', '8', '9', '99'])
