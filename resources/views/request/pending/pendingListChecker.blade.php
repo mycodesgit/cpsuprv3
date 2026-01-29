@@ -18,7 +18,6 @@
                                             <th>Date Submitted</th>
                                             <th>Campus</th>
                                             <th>Transaction No.</th>
-                                            
                                             <th>Type</th>
                                             <th>Office</th>
                                             <th>Purpose</th>
