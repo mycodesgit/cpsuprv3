@@ -12,12 +12,13 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive" style="overflow-x: hidden;">
-                                <table id="pendingCheckerTable" class="table table-hover styled-table">
+                                <table id="pendingCheckerTable" class="table table-hover styled-table" style="width: 100%">
                                     <thead>
                                         <tr>
                                             <th>Date Submitted</th>
                                             <th>Campus</th>
                                             <th>Transaction No.</th>
+                                            
                                             <th>Type</th>
                                             <th>Office</th>
                                             <th>Purpose</th>
