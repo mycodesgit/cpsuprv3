@@ -240,7 +240,17 @@
 					</div>
 				</th>
 				<th style="text-align: center;font-size: 8pt;" width="11%" height="20">With further /<br>Instuction(s)</th>
-				<th style="text-align: left;font-size: 8pt;">@if($reqitem->first()->pstatus == 3) {{ $reqitem->first()->reasons ?? $reqitem->first()->ppmp_reasons }} @endif</th>
+				<th style="text-align:left; font-size:8pt;">
+					@if($reqitem->first()->pstatus == 3)
+						@if($reqitem->first()->ppmp_remarks)
+							From Procurement:  {{ $reqitem->first()->ppmp_remarks }} <br>
+						@endif
+
+						@if($reqitem->first()->reasons)
+							From Budget:  {{ $reqitem->first()->reasons }}
+						@endif
+					@endif
+				</th>
 			</tr>
 		</thead>
 	</table>
