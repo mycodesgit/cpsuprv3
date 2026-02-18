@@ -26,7 +26,7 @@
                                 <tr>
                                     <td>{{ $item->item_descrip }}</td>
                                     <td>{{ $item->qty }}</td>
-                                    <td>₱{{ number_format($item->item_cost, 2) }}</td>
+                                    <td>₱{{ number_format((float) ($item->item_cost ?? 0), 2) }}</td>
                                     <td>₱{{ number_format($item->total_cost, 2) }}</td>
                                 </tr>
                             @endforeach
