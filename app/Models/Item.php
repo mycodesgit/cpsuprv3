@@ -21,4 +21,8 @@ class Item extends Model
         'status',
         'remember_token',
     ];
+
+    protected $casts = [
+        'item_cost' => 'float',
+    ];
 }
