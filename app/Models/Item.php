@@ -22,7 +22,7 @@ class Item extends Model
         'remember_token',
     ];
 
-    protected $casts = [
-        'item_cost' => 'float',
-    ];
+    // protected $casts = [
+    //     'item_cost' => 'float',
+    // ];
 }
