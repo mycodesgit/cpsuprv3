@@ -48,20 +48,6 @@
                                     <div class="form-group mb-3">
                                         <div class="form-row">
                                             <div class="col-md-12">
-                                                <label for="addItemUnit">Unit Name: <span class="text-danger">*</span></label>
-                                                <select id="addItemUnit" name="unit_id" class="form-control select2bs4" data-placeholder="Select Unit" style="width: 100%;">
-                                                    <option value="">-- Select --</option>
-                                                    @foreach ($unit as $u)
-                                                        <option value="{{ $u->id }}">{{ $u->unit_name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group mb-3">
-                                        <div class="form-row">
-                                            <div class="col-md-12">
                                                 <label for="addItemDescripName">Item Description: <span class="text-danger">*</span></label>
                                                 <textarea rows="4" name="item_descrip" id="addItemDescripName" class="form-control"></textarea>
                                             </div>

@@ -205,7 +205,7 @@
 </style>
 
 <div class="card-body">
-    <ul class="nav nav-pills mb-3 bg-light p-2 rounded-2 d-inline-flex" id="pills-tab" role="tablist">
+    <ul class="nav nav-pills mb-3 bg-light p-2 rounded-2 d-inline-flex col-md-12" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="pills-one-tab" data-bs-toggle="pill"
                 data-bs-target="#pills-one" type="button" role="tab"

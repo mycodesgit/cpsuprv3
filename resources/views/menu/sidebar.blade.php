@@ -3,6 +3,26 @@
 
     $pendingAllActive = in_array($current_route, ['pendingAllListRead', 'pendingTechCheckListRead', 'pendingAllListView']) ? 'active' : '';
     $approvedAllActive = in_array($current_route, ['approvedListAllRead']) ? 'active' : '';
+    $ppmpsActive = in_array($current_route, ['ppmpRead']) ? 'active' : '';
+    $gensActive = in_array($current_route, ['genSearch']) ? 'active' : '';
+    $archiveActive = in_array($current_route, ['archiveRead', 'archiveShow']) ? 'active' : '';
+    $archivedeletedActive = in_array($current_route, ['indexlistdel', 'archiveDeletedShow']) ? 'active' : '';
+    $announceActive = in_array($current_route, ['annouceInfo']) ? 'active' : '';
+    $reportsActive = in_array($current_route, ['consolidateRead', 'consolidateForm2Read']) ? 'active' : '';
+    $usersAllActive = in_array($current_route, ['userRead']) ? 'active' : '';
+
+    $shopUserActive = in_array($current_route, ['shoplistRead']) ? 'active' : '';
+    $cartUserActive = in_array($current_route, ['prPurposeRequest', 'selectItems']) ? 'active' : '';
+    $pendingUserActive = in_array($current_route, ['pendingListRead', 'pendingAllListView']) ? 'active' : '';
+    $approvedUserActive = in_array($current_route, ['approvedListRead']) ? 'active' : '';
+    $returnUserActive = in_array($current_route, ['returnedUserListRead', 'editreturnselectItems']) ? 'active' : '';
+    $canceledUserActive = in_array($current_route, ['cancelUserListRead']) ? 'active' : '';
+    $crtepapspreUserActive = in_array($current_route, ['papsYearRead', 'viewlistpapspre', 'papspreitemsppmp']) ? 'active' : '';
+    $crteppmpUserActive = in_array($current_route, ['ppmpYearRead', 'viewlistppmp']) ? 'active' : '';
+
+    $pendingBudAllActive = in_array($current_route, ['pendingAllBudgetListRead', 'pendingAllListView']) ? 'active' : '';
+    $pendingBudCancelAllActive = in_array($current_route, ['requestPRcancelBudgetListRead', 'pendingAllListView']) ? 'active' : '';
+    $approvedBudAllActive = in_array($current_route, ['approvedListBudAllRead']) ? 'active' : '';
 @endphp
 
 @php
@@ -62,7 +82,7 @@
         
         <li>
             <a class="nav-link {{$pendingAllActive}}" href="{{ route('pendingAllListRead') }}">
-                <i class="ti ti-clock-pin"></i><span class="nav-text">Pending PR</span><span class="badge bg-warning ms-1">{{ $data['pendCount'] }}</span>
+                <i class="ti ti-clock-pin"></i><span class="nav-text">Pending PR</span><span class="badge bg-warning ms-1" id="pendingCount">{{ $data['pendCount'] }}</span>
             </a>
         </li>
         
@@ -71,6 +91,27 @@
                 <i class="ti ti-clock-check"></i><span class="nav-text">Approved PR</span>
             </a>
         </li>
+        
+        <li>
+            <a class="nav-link {{$ppmpsActive}}" href="{{ route('ppmpRead') }}">
+                <i class="ti ti-file-horizontal"></i><span class="nav-text">PPMP</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="nav-link {{$archiveActive}}" href="{{ route('archiveRead') }}">
+                <i class="ti ti-file-zip"></i><span class="nav-text">Archived</span>
+            </a>
+        </li>
     @endif
-
 </ul>
+
+<script>
+    var allPendingCountRoute = "{{ route('pendingAllListRead') }}";
+    var allPendingBudgetCountRoute = "{{ route('pendingAllBudgetListRead') }}";
+    var userPendingCountRoute = "{{ route('pendingListRead') }}";
+    var allApprovedCountRoute = "{{ route('approvedListAllRead') }}";
+    var userApprovedCountRoute = "{{ route('approvedListRead') }}";
+    var allReturnedCountRoute = "{{ route('returnedAllListRead') }}";
+    var userReturnedCountRoute = "{{ route('returnedUserListRead') }}";
+</script>
