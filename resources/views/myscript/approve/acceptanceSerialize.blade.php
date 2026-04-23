@@ -41,7 +41,10 @@
                         Swal.fire({
                             icon: 'error',
                             title: 'Something went wrong!',
-                            text: error
+                            text: error,
+                            customClass: {
+                                container: 'my-swal-on-top'
+                            }
                         });
                         console.error(error);
                     }
@@ -98,7 +101,10 @@
                         Swal.fire({
                             icon: 'error',
                             title: 'Something went wrong!',
-                            text: error
+                            text: error,
+                            customClass: {
+                                container: 'my-swal-on-top'
+                            }
                         });
                         console.error(error);
                     }
@@ -153,7 +159,10 @@
                         Swal.fire({
                             icon: 'error',
                             title: 'Something went wrong!',
-                            text: error
+                            text: error,
+                            customClass: {
+                                container: 'my-swal-on-top'
+                            }
                         });
                         console.error(error);
                     }
@@ -208,7 +217,10 @@
                         Swal.fire({
                             icon: 'error',
                             title: 'Something went wrong!',
-                            text: error
+                            text: error,
+                            customClass: {
+                                container: 'my-swal-on-top'
+                            }
                         });
                         console.error(error);
                     }
@@ -263,7 +275,10 @@
                         Swal.fire({
                             icon: 'error',
                             title: 'Something went wrong!',
-                            text: error
+                            text: error,
+                            customClass: {
+                                container: 'my-swal-on-top'
+                            }
                         });
                         console.error(error);
                     }
@@ -318,7 +333,10 @@
                         Swal.fire({
                             icon: 'error',
                             title: 'Something went wrong!',
-                            text: error
+                            text: error,
+                            customClass: {
+                                container: 'my-swal-on-top'
+                            }
                         });
                         console.error(error);
                     }
@@ -373,7 +391,10 @@
                         Swal.fire({
                             icon: 'error',
                             title: 'Something went wrong!',
-                            text: error
+                            text: error,
+                            customClass: {
+                                container: 'my-swal-on-top'
+                            }
                         });
                         console.error(error);
                     }
@@ -428,7 +449,10 @@
                         Swal.fire({
                             icon: 'error',
                             title: 'Something went wrong!',
-                            text: error
+                            text: error,
+                            customClass: {
+                                container: 'my-swal-on-top'
+                            }
                         });
                         console.error(error);
                     }
@@ -473,7 +497,10 @@
                         Swal.fire({
                             icon: 'error',
                             title: 'Something went wrong!',
-                            text: error
+                            text: error,
+                            customClass: {
+                                container: 'my-swal-on-top'
+                            }
                         });
                         console.error(error);
                     }
@@ -518,7 +545,10 @@
                         Swal.fire({
                             icon: 'error',
                             title: 'Something went wrong!',
-                            text: error
+                            text: error,
+                            customClass: {
+                                container: 'my-swal-on-top'
+                            }
                         });
                         console.error(error);
                     }
@@ -563,7 +593,10 @@
                         Swal.fire({
                             icon: 'error',
                             title: 'Something went wrong!',
-                            text: error
+                            text: error,
+                            customClass: {
+                                container: 'my-swal-on-top'
+                            }
                         });
                         console.error(error);
                     }

@@ -204,41 +204,58 @@
     }
 </style>
 <div class="card-body">
-    <ul class="nav nav-pills text-sm" id="myTab4" role="tablist" style="gap: 2px;">
-        <li class="nav-item">
-            <a class="nav-link active show" id="pr-tab" data-toggle="tab" href="#prtab" role="tab"
-                aria-controls="first" aria-selected="true">PR Table
-            </a>
+    <ul class="nav nav-pills mb-3 bg-light p-2 rounded-2 d-inline-flex" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="pills-prtable-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-prtable" type="button" role="tab"
+                aria-controls="pills-prtable" aria-selected="true">
+                PR Table
+            </button>
         </li>
-        <li class="nav-item">
-            <a class="nav-link ml-1" id="prpdf-tab" data-toggle="tab" href="#prpdftab" role="tab"
-                aria-controls="second" aria-selected="false">PR PDF
-            </a>
+        &nbsp;
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-prpdf-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-prpdf" type="button" role="tab"
+                aria-controls="pills-prpdf" aria-selected="false" tabindex="-1">
+                PR PDF
+            </button>
         </li>
-        <li class="nav-item">
-            <a class="nav-link ml-1" id="receipt-tab" data-toggle="tab" href="#receipttab" role="tab"
-                aria-controls="third" aria-selected="false">Receipt Slip
-            </a>
+        &nbsp;
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-rspdf-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-rspdf" type="button" role="tab"
+                aria-controls="pills-rspdf" aria-selected="false" tabindex="-1">
+                Receipt Slip
+            </button>
         </li>
-        <li class="nav-item">
-            <a class="nav-link ml-1" id="pow-tab" data-toggle="tab" href="#powtab" role="tab"
-                aria-controls="fifth" aria-selected="false">POW
-            </a>
+        &nbsp;
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-prpow-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-prpow" type="button" role="tab"
+                aria-controls="pills-prpow" aria-selected="false" tabindex="-1">
+                POW
+            </button>
         </li>
-        <li class="nav-item">
-            <a class="nav-link ml-1" id="ppmp-tab" data-toggle="tab" href="#ppmptab" role="tab"
-                aria-controls="sixth" aria-selected="false">PPMP
-            </a>
+        &nbsp;
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-prppmp-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-prppmp" type="button" role="tab"
+                aria-controls="pills-prppmp" aria-selected="false" tabindex="-1">
+                PPMP
+            </button>
         </li>
-        <li class="nav-item">
-            <a class="nav-link ml-1" id="track-tab" data-toggle="tab" href="#tracktab" role="tab"
-                aria-controls="fourth" aria-selected="false">Track
-            </a>
+        &nbsp;
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-prtrack-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-prtrack" type="button" role="tab"
+                aria-controls="pills-prtrack" aria-selected="false" tabindex="-1">
+                Track
+            </button>
         </li>
     </ul>
-    <div class="tab-content" id="myTabContent2">
-        <div class="tab-pane fade active show" id="prtab" role="tabpanel" aria-labelledby="pr-tab">
-            <div class="table-responsive">
+    <div class="tab-content mt-3" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-prtable" role="tabpanel" aria-labelledby="pills-prtable-tab" tabindex="0">
+            <div class="table-responsive" style="height: 500px; overflow-y: auto;">
                 <table id="" class="table table-bordered styled-table text-sm">
                     <thead>
                         <tr>
@@ -279,7 +296,7 @@
                 </table>
             </div>
         </div>
-        <div class="tab-pane fade" id="prpdftab" role="tabpanel" aria-labelledby="prpdf-tab">
+        <div class="tab-pane fade" id="pills-prpdf" role="tabpanel" aria-labelledby="pills-prpdf-tab" tabindex="0">
             @php
                 $currentRoute = request()->route()->getName();
             @endphp
@@ -295,20 +312,20 @@
                     height="500"></iframe>
             @endif
         </div>
-        <div class="tab-pane fade" id="receipttab" role="tabpanel" aria-labelledby="receipt-tab">
+        <div class="tab-pane fade" id="pills-rspdf" role="tabpanel" aria-labelledby="pills-rspdf-tab" tabindex="0">
             @php
                 $currentRoute = request()->route()->getName();
             @endphp
 
             @if ($currentRoute == 'approvedListView')
                 <iframe src="{{ route('PDFrbarasApproved', encrypt($data['purpose_id'] ?? '')) }}" width="100%"
-                    height="600"></iframe>
+                    height="500"></iframe>
             @elseif ($currentRoute == 'approvedAllListView')
                 <iframe src="{{ route('PDFrbarasAllApproved', encrypt($data['purpose_id'] ?? '')) }}" width="100%"
-                    height="600"></iframe>
+                    height="500"></iframe>
             @else
                 <iframe src="{{ route('PDFrbarasApproved', encrypt($data['purpose_id'])) }}" width="100%"
-                    height="600"></iframe>
+                    height="500"></iframe>
             @endif
         </div>
         {{-- <div class="tab-pane fade" id="remarkstab" role="tabpanel" aria-labelledby="remarks-tab">
@@ -396,8 +413,8 @@
                 </form>
             @endif
         </div> --}}
-        <div class="tab-pane fade" id="powtab" role="tabpanel" aria-labelledby="pow-tab" style="border-top: 1px solid #009879; margin-top: 10px">
-            <div style="background-color: #e9e9e9; padding: 10px">
+        <div class="tab-pane fade" id="pills-prpow" role="tabpanel" aria-labelledby="pills-prpow-tab" style="border-top: 1px solid #009879; margin-top: 10px">
+            <div style="background-color: #e9e9e9; padding: 10px; height: 500px; overflow-y: auto;">
                 @if ($docFile && $docFile->doc_file)
                     @php
                         $filePath = storage_path('app/public/' . $docFile->doc_file);
@@ -437,9 +454,8 @@
                 @endif
             </div>
         </div>
-        <div class="tab-pane fade" id="ppmptab" role="tabpanel" aria-labelledby="ppmp-tab"
-            style="border-top: 1px solid #009879; margin-top: 10px">
-            <div style="background-color: #e9e9e9; padding: 10px">
+        <div class="tab-pane fade" id="pills-prppmp" role="tabpanel" aria-labelledby="pills-prppmp-tab" tabindex="0">
+            <div style="background-color: #e9e9e9; padding: 10px; height: 500px; overflow-y: auto;">
                 @if ($docFile && $docFile->ppmp_file)
                     @php
                         $filePath = storage_path('app/public/' . $docFile->ppmp_file);
@@ -479,9 +495,9 @@
                 @endif
             </div>
         </div>
-        <div class="tab-pane fade" id="tracktab" role="tabpanel" aria-labelledby="track-tab">            
+        <div class="tab-pane fade" id="pills-prtrack" role="tabpanel" aria-labelledby="pills-prtrack-tab" tabindex="0">
             <div class="row">
-                <div class="col-md-12 col-lg-12">
+                <div class="col-md-12 col-lg-12" style="height: 500px; overflow-y: auto;">
                     <div id="tracking-pre"></div>
                     <div id="tracking">
                         <div class="tracking-list">

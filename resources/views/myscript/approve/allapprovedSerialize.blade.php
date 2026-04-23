@@ -47,31 +47,31 @@
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
                             case 7:
-                                return '<span class="badge badge-success">PR has been Approved</span>';
+                                return '<span class="badge bg-success">PR has been Approved</span>';
                             case 8:
-                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                                return '<span class="badge bg-teal">PR has been Received</span>';
                             case 9:
-                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                                return '<span class="badge bg-warning">For Canvassing</span>';
                             case 10:
-                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                                return '<span class="badge bg-secondary">PR Canvassed</span>';
                             case 11:
-                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                                return '<span class="badge bg-blue">For Philgeps Posting</span>';
                             case 12:
-                                return '<span class="badge badge-default bg-gray text-light">PR Posted</span>';
+                                return '<span class="badge bg-gray text-light">PR Posted</span>';
                             case 13:
-                                return '<span class="badge badge-default bg-gray-dark text-light">Bidding</span>';
+                                return '<span class="badge bg-gray-dark text-light">Bidding</span>';
                             case 14:
-                                return '<span class="badge badge-default bg-purple text-light">For Consolidation</span>';
+                                return '<span class="badge bg-purple text-light">For Consolidation</span>';
                             case 15:
-                                return '<span class="badge badge-default bg-pink text-light">Awarded</span>';
+                                return '<span class="badge bg-pink text-light">Awarded</span>';
                             case 16:
-                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                                return '<span class="badge bg-red">Purchased</span>';
                             case 17:
-                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                                return '<span class="badge bg-cyan">Returned</span>';
                             case 18:
-                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                                return '<span class="badge bg-warning">Forwarded to PEDO</span>';
                             default:
-                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                return '<span class="badge bg-secondary">Unknown Status</span>';
                         }
                     },
                 },
@@ -79,11 +79,11 @@
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
                             case 1:
-                                return '<span class="badge badge-danger">PR has not yet been printed</span>';
+                                return '<span class="badge bg-danger">PR has not yet been printed</span>';
                             case 2:
-                                return '<span class="badge badge-default bg-teal">PR has been Printed</span>';
+                                return '<span class="badge bg-light text-success">PR has been Printed</span>';
                             default:
-                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                return '<span class="badge bg-secondary">Unknown Status</span>';
                         }
                     },
                 },
@@ -91,9 +91,9 @@
                     data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
-                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>';
-                                buttons += '<button type="button" value="' + data + '" class="btn btn-sm btn-danger prdelstatus-delete" data-toggle="tooltip" data-placement="top" title="Delete PR."><i class="fas fa-trash"></i> </button>';
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>'+'&nbsp;';
+                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>'+'&nbsp;';
+                                buttons += '<button type="button" value="' + data + '" class="btn btn-sm btn-danger prdelstatus-delete" data-toggle="tooltip" data-placement="top" title="Delete PR."><i class="fas fa-trash"></i> </button>'+'&nbsp;';
                                
                             return buttons;
                         } else {
@@ -154,31 +154,31 @@
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
                             case 7:
-                                return '<span class="badge badge-success">PR has been Approved</span>';
+                                return '<span class="badge bg-success">PR has been Approved</span>';
                             case 8:
-                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                                return '<span class="badge bg-teal">PR has been Received</span>';
                             case 9:
-                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                                return '<span class="badge bg-yellow">For Canvassing</span>';
                             case 10:
-                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                                return '<span class="badge bg-orange">PR Canvassed</span>';
                             case 11:
-                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                                return '<span class="badge bg-blue">For Philgeps Posting</span>';
                             case 12:
-                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                                return '<span class="badge bg-gray">PR Posted</span>';
                             case 13:
-                                return '<span class="badge badge-default bg-gray-dark text-light">Bidding</span>';
+                                return '<span class="badge bg-gray-dark text-light">Bidding</span>';
                             case 14:
-                                return '<span class="badge badge-default bg-purple text-light">For Consolidation</span>';
+                                return '<span class="badge bg-purple text-light">For Consolidation</span>';
                             case 15:
-                                return '<span class="badge badge-default bg-pink text-light">Awarded</span>';
+                                return '<span class="badge bg-pink text-light">Awarded</span>';
                             case 16:
-                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                                return '<span class="badge bg-red">Purchased</span>';
                             case 17:
-                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                                return '<span class="badge bg-cyan">Returned</span>';
                             case 18:
-                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                                return '<span class="badge bg-warning">Forwarded to PEDO</span>';
                             default:
-                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                return '<span class="badge bg-secondary">Unknown Status</span>';
                         }
                     },
                 },
@@ -186,11 +186,11 @@
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
                             case 1:
-                                return '<span class="badge badge-danger">PR not print</span>';
+                                return '<span class="badge bg-danger">PR not print</span>';
                             case 2:
-                                return '<span class="badge badge-default bg-teal">Yes, PR has been Printed</span>';
+                                return '<span class="badge bg-light text-success">Yes, PR has been Printed</span>';
                             default:
-                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                return '<span class="badge bg-secondary">Unknown Status</span>';
                         }
                     },
                 },
@@ -198,8 +198,8 @@
                     data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
-                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>';
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>'+'&nbsp;';
+                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>'+'&nbsp;';
                                 
                             return buttons;
                         } else {
@@ -278,31 +278,31 @@
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
                             case 7:
-                                return '<span class="badge badge-success">PR has been Approved</span>';
+                                return '<span class="badge bg-success">PR has been Approved</span>';
                             case 8:
-                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                                return '<span class="badge bg-teal">PR has been Received</span>';
                             case 9:
-                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                                return '<span class="badge bg-yellow">For Canvassing</span>';
                             case 10:
-                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                                return '<span class="badge bg-orange">PR Canvassed</span>';
                             case 11:
-                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                                return '<span class="badge bg-blue">For Philgeps Posting</span>';
                             case 12:
-                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                                return '<span class="badge bg-gray">PR Posted</span>';
                             case 13:
-                                return '<span class="badge badge-default bg-gray-dark text-light">Bidding</span>';
+                                return '<span class="badge bg-gray-dark text-light">Bidding</span>';
                             case 14:
-                                return '<span class="badge badge-default bg-purple text-light">For Consolidation</span>';
+                                return '<span class="badge bg-purple text-light">For Consolidation</span>';
                             case 15:
-                                return '<span class="badge badge-default bg-pink text-light">Awarded</span>';
+                                return '<span class="badge bg-pink text-light">Awarded</span>';
                             case 16:
-                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                                return '<span class="badge bg-red">Purchased</span>';
                             case 17:
-                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                                return '<span class="badge bg-cyan">Returned</span>';
                             case 18:
-                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                                return '<span class="badge bg-warning">Forwarded to PEDO</span>';
                             default:
-                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                return '<span class="badge bg-secondary">Unknown Status</span>';
                         }
                     },
                 },
@@ -310,8 +310,8 @@
                     data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
-                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>';
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>'+'&nbsp;';
+                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>'+'&nbsp;';
                 
                             return buttons; // Only show View PR for non-Checker roles
                         } else {
@@ -387,31 +387,31 @@
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
                             case 7:
-                                return '<span class="badge badge-success">PR has been Approved</span>';
+                                return '<span class="badge bg-success">PR has been Approved</span>';
                             case 8:
-                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                                return '<span class="badge bg-teal">PR has been Received</span>';
                             case 9:
-                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                                return '<span class="badge bg-yellow">For Canvassing</span>';
                             case 10:
-                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                                return '<span class="badge bg-orange">PR Canvassed</span>';
                             case 11:
-                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                                return '<span class="badge bg-blue">For Philgeps Posting</span>';
                             case 12:
-                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                                return '<span class="badge bg-gray">PR Posted</span>';
                             case 13:
-                                return '<span class="badge badge-default bg-gray-dark text-light">Bidding</span>';
+                                return '<span class="badge bg-gray-dark text-light">Bidding</span>';
                             case 14:
-                                return '<span class="badge badge-default bg-purple text-light">For Consolidation</span>';
+                                return '<span class="badge bg-purple text-light">For Consolidation</span>';
                             case 15:
-                                return '<span class="badge badge-default bg-pink text-light">Awarded</span>';
+                                return '<span class="badge bg-pink text-light">Awarded</span>';
                             case 16:
-                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                                return '<span class="badge bg-red">Purchased</span>';
                             case 17:
-                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                                return '<span class="badge bg-cyan">Returned</span>';
                             case 18:
-                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                                return '<span class="badge bg-warning">Forwarded to PEDO</span>';
                             default:
-                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                return '<span class="badge bg-secondary">Unknown Status</span>';
                         }
                     },
                 },
@@ -419,8 +419,8 @@
                     data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
-                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>';
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>'+'&nbsp;';
+                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>'+'&nbsp;';
                 
                             return buttons; // Only show View PR for non-Checker roles
                         } else {
@@ -480,31 +480,31 @@
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
                             case 7:
-                                return '<span class="badge badge-success">PR has been Approved</span>';
+                                return '<span class="badge bg-success">PR has been Approved</span>';
                             case 8:
-                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                                return '<span class="badge bg-teal">PR has been Received</span>';
                             case 9:
-                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                                return '<span class="badge bg-yellow">For Canvassing</span>';
                             case 10:
-                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                                return '<span class="badge bg-orange">PR Canvassed</span>';
                             case 11:
-                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                                return '<span class="badge bg-blue">For Philgeps Posting</span>';
                             case 12:
-                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                                return '<span class="badge bg-gray">PR Posted</span>';
                             case 13:
-                                return '<span class="badge badge-default bg-gray-dark text-light">Bidding</span>';
+                                return '<span class="badge bg-gray-dark text-light">Bidding</span>';
                             case 14:
-                                return '<span class="badge badge-default bg-purple text-light">For Consolidation</span>';
+                                return '<span class="badge bg-purple text-light">For Consolidation</span>';
                             case 15:
-                                return '<span class="badge badge-default bg-pink text-light">Awarded</span>';
+                                return '<span class="badge bg-pink text-light">Awarded</span>';
                             case 16:
-                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                                return '<span class="badge bg-red">Purchased</span>';
                             case 17:
-                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                                return '<span class="badge bg-cyan">Returned</span>';
                             case 18:
-                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                                return '<span class="badge bg-warning">Forwarded to PEDO</span>';
                             default:
-                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                return '<span class="badge bg-secondary">Unknown Status</span>';
                         }
                     },
                 },
@@ -512,8 +512,8 @@
                     data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
-                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>';
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>'+'&nbsp;';
+                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>'+'&nbsp;';
                 
                             return buttons; // Only show View PR for non-Checker roles
                         } else {
@@ -573,31 +573,31 @@
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
                             case 7:
-                                return '<span class="badge badge-success">PR has been Approved</span>';
+                                return '<span class="badge bg-success">PR has been Approved</span>';
                             case 8:
-                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                                return '<span class="badge bg-teal">PR has been Received</span>';
                             case 9:
-                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                                return '<span class="badge bg-yellow">For Canvassing</span>';
                             case 10:
-                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                                return '<span class="badge bg-orange">PR Canvassed</span>';
                             case 11:
-                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                                return '<span class="badge bg-blue">For Philgeps Posting</span>';
                             case 12:
-                                return '<span class="badge badge-default bg-gray text-light">PR Posted</span>';
+                                return '<span class="badge bg-gray text-light">PR Posted</span>';
                             case 13:
-                                return '<span class="badge badge-default bg-gray-dark text-light">Bidding</span>';
+                                return '<span class="badge bg-gray-dark text-light">Bidding</span>';
                             case 14:
-                                return '<span class="badge badge-default bg-purple text-light">For Consolidation</span>';
+                                return '<span class="badge bg-purple text-light">For Consolidation</span>';
                             case 15:
-                                return '<span class="badge badge-default bg-pink text-light">Awarded</span>';
+                                return '<span class="badge bg-pink text-light">Awarded</span>';
                             case 16:
-                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                                return '<span class="badge bg-red">Purchased</span>';
                             case 17:
-                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                                return '<span class="badge bg-cyan">Returned</span>';
                             case 18:
-                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                                return '<span class="badge bg-warning">Forwarded to PEDO</span>';
                             default:
-                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                return '<span class="badge bg-secondary">Unknown Status</span>';
                         }
                     },
                 },
@@ -605,8 +605,8 @@
                     data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
-                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>';
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>'+'&nbsp;';
+                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>'+'&nbsp;';
                 
                             return buttons; // Only show View PR for non-Checker roles
                         } else {
@@ -666,31 +666,31 @@
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
                             case 7:
-                                return '<span class="badge badge-success">PR has been Approved</span>';
+                                return '<span class="badge bg-success">PR has been Approved</span>';
                             case 8:
-                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                                return '<span class="badge bg-teal">PR has been Received</span>';
                             case 9:
-                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                                return '<span class="badge bg-yellow">For Canvassing</span>';
                             case 10:
-                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                                return '<span class="badge bg-orange">PR Canvassed</span>';
                             case 11:
-                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                                return '<span class="badge bg-blue">For Philgeps Posting</span>';
                             case 12:
-                                return '<span class="badge badge-default bg-gray text-light">PR Posted</span>';
+                                return '<span class="badge bg-gray text-light">PR Posted</span>';
                             case 13:
-                                return '<span class="badge badge-default bg-gray-dark text-light">Bidding</span>';
+                                return '<span class="badge bg-gray-dark text-light">Bidding</span>';
                             case 14:
-                                return '<span class="badge badge-default bg-purple text-light">For Consolidation</span>';
+                                return '<span class="badge bg-purple text-light">For Consolidation</span>';
                             case 15:
-                                return '<span class="badge badge-default bg-pink text-light">Awarded</span>';
+                                return '<span class="badge bg-pink text-light">Awarded</span>';
                             case 16:
-                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                                return '<span class="badge bg-red">Purchased</span>';
                             case 17:
-                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                                return '<span class="badge bg-cyan">Returned</span>';
                             case 18:
-                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                                return '<span class="badge bg-warning">Forwarded to PEDO</span>';
                             default:
-                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                return '<span class="badge bg-secondary">Unknown Status</span>';
                         }
                     },
                 },
@@ -698,8 +698,8 @@
                     data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
-                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>';
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>'+'&nbsp;';
+                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>'+'&nbsp;';
                 
                             return buttons; // Only show View PR for non-Checker roles
                         } else {
@@ -759,31 +759,31 @@
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
                             case 7:
-                                return '<span class="badge badge-success">PR has been Approved</span>';
+                                return '<span class="badge bg-success">PR has been Approved</span>';
                             case 8:
-                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                                return '<span class="badge bg-teal">PR has been Received</span>';
                             case 9:
-                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                                return '<span class="badge bg-yellow">For Canvassing</span>';
                             case 10:
-                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                                return '<span class="badge bg-orange">PR Canvassed</span>';
                             case 11:
-                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                                return '<span class="badge bg-blue">For Philgeps Posting</span>';
                             case 12:
-                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                                return '<span class="badge bg-gray">PR Posted</span>';
                             case 13:
-                                return '<span class="badge badge-default bg-gray-dark text-light">Bidding</span>';
+                                return '<span class="badge bg-gray-dark text-light">Bidding</span>';
                             case 14:
-                                return '<span class="badge badge-default bg-purple text-light">For Consolidation</span>';
+                                return '<span class="badge bg-purple text-light">For Consolidation</span>';
                             case 15:
-                                return '<span class="badge badge-default bg-pink text-light">Awarded</span>';
+                                return '<span class="badge bg-pink text-light">Awarded</span>';
                             case 16:
-                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                                return '<span class="badge bg-red">Purchased</span>';
                             case 17:
-                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                                return '<span class="badge bg-cyan">Returned</span>';
                             case 18:
-                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                                return '<span class="badge bg-warning">Forwarded to PEDO</span>';
                             default:
-                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                return '<span class="badge bg-secondary">Unknown Status</span>';
                         }
                     },
                 },
@@ -791,8 +791,8 @@
                     data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
-                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>';
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>'+'&nbsp;';
+                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>'+'&nbsp;';
                 
                             return buttons; // Only show View PR for non-Checker roles
                         } else {
@@ -850,31 +850,31 @@
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
                             case 7:
-                                return '<span class="badge badge-success">PR has been Approved</span>';
+                                return '<span class="badge bg-success">PR has been Approved</span>';
                             case 8:
-                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                                return '<span class="badge bg-teal">PR has been Received</span>';
                             case 9:
-                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                                return '<span class="badge bg-yellow">For Canvassing</span>';
                             case 10:
-                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                                return '<span class="badge bg-orange">PR Canvassed</span>';
                             case 11:
-                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                                return '<span class="badge bg-blue">For Philgeps Posting</span>';
                             case 12:
-                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                                return '<span class="badge bg-gray">PR Posted</span>';
                             case 13:
-                                return '<span class="badge badge-default bg-gray-dark text-light">Bidding</span>';
+                                return '<span class="badge bg-gray-dark text-light">Bidding</span>';
                             case 14:
-                                return '<span class="badge badge-default bg-purple text-light">For Consolidation</span>';
+                                return '<span class="badge bg-purple text-light">For Consolidation</span>';
                             case 15:
-                                return '<span class="badge badge-default bg-pink text-light">Awarded</span>';
+                                return '<span class="badge bg-pink text-light">Awarded</span>';
                             case 16:
-                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                                return '<span class="badge bg-red">Purchased</span>';
                             case 17:
-                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                                return '<span class="badge bg-cyan">Returned</span>';
                             case 18:
-                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                                return '<span class="badge bg-warning">Forwarded to PEDO</span>';
                             default:
-                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                return '<span class="badge bg-secondary">Unknown Status</span>';
                         }
                     },
                 },
@@ -882,8 +882,8 @@
                     data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
-                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>';
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>'+'&nbsp;';
+                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>'+'&nbsp;';
                 
                             return buttons; // Only show View PR for non-Checker roles
                         } else {
@@ -941,31 +941,31 @@
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
                             case 7:
-                                return '<span class="badge badge-success">PR has been Approved</span>';
+                                return '<span class="badge bg-success">PR has been Approved</span>';
                             case 8:
-                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                                return '<span class="badge bg-teal">PR has been Received</span>';
                             case 9:
-                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                                return '<span class="badge bg-yellow">For Canvassing</span>';
                             case 10:
-                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                                return '<span class="badge bg-orange">PR Canvassed</span>';
                             case 11:
-                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                                return '<span class="badge bg-blue">For Philgeps Posting</span>';
                             case 12:
-                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                                return '<span class="badge bg-gray">PR Posted</span>';
                             case 13:
-                                return '<span class="badge badge-default bg-gray-dark text-light">Bidding</span>';
+                                return '<span class="badge bg-gray-dark text-light">Bidding</span>';
                             case 14:
-                                return '<span class="badge badge-default bg-purple text-light">For Consolidation</span>';
+                                return '<span class="badge bg-purple text-light">For Consolidation</span>';
                             case 15:
-                                return '<span class="badge badge-default bg-pink text-light">Awarded</span>';
+                                return '<span class="badge bg-pink text-light">Awarded</span>';
                             case 16:
-                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                                return '<span class="badge bg-red">Purchased</span>';
                             case 17:
-                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                                return '<span class="badge bg-cyan">Returned</span>';
                             case 18:
-                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                                return '<span class="badge bg-warning">Forwarded to PEDO</span>';
                             default:
-                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                return '<span class="badge bg-secondary">Unknown Status</span>';
                         }
                     },
                 },
@@ -973,8 +973,8 @@
                     data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
-                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>';
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>'+'&nbsp;';
+                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>'+'&nbsp;';
                 
                             return buttons; // Only show View PR for non-Checker roles
                         } else {
@@ -1042,31 +1042,31 @@
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
                             case 7:
-                                return '<span class="badge badge-success">PR has been Approved</span>';
+                                return '<span class="badge bg-success">PR has been Approved</span>';
                             case 8:
-                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                                return '<span class="badge bg-teal">PR has been Received</span>';
                             case 9:
-                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                                return '<span class="badge bg-yellow">For Canvassing</span>';
                             case 10:
-                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                                return '<span class="badge bg-orange">PR Canvassed</span>';
                             case 11:
-                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                                return '<span class="badge bg-blue">For Philgeps Posting</span>';
                             case 12:
-                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                                return '<span class="badge bg-gray">PR Posted</span>';
                             case 13:
-                                return '<span class="badge badge-default bg-gray-dark text-light">Bidding</span>';
+                                return '<span class="badge bg-gray-dark text-light">Bidding</span>';
                             case 14:
-                                return '<span class="badge badge-default bg-purple text-light">For Consolidation</span>';
+                                return '<span class="badge bg-purple text-light">For Consolidation</span>';
                             case 15:
-                                return '<span class="badge badge-default bg-pink text-light">Awarded</span>';
+                                return '<span class="badge bg-pink text-light">Awarded</span>';
                             case 16:
-                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                                return '<span class="badge bg-red">Purchased</span>';
                             case 17:
-                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                                return '<span class="badge bg-cyan">Returned</span>';
                             case 18:
-                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                                return '<span class="badge bg-warning">Forwarded to PEDO</span>';
                             default:
-                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                return '<span class="badge bg-secondary">Unknown Status</span>';
                         }
                     },
                 },
@@ -1074,8 +1074,8 @@
                     data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
-                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>';
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>'+'&nbsp;';
+                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>'+'&nbsp;';
                 
                             return buttons; // Only show View PR for non-Checker roles
                         } else {
@@ -1143,29 +1143,29 @@
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
                             case 7:
-                                return '<span class="badge badge-success">PR has been Approved</span>';
+                                return '<span class="badge bg-success">PR has been Approved</span>';
                             case 8:
-                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                                return '<span class="badge bg-teal">PR has been Received</span>';
                             case 9:
-                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                                return '<span class="badge bg-yellow">For Canvassing</span>';
                             case 10:
-                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                                return '<span class="badge bg-orange">PR Canvassed</span>';
                             case 11:
-                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                                return '<span class="badge bg-blue">For Philgeps Posting</span>';
                             case 12:
-                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                                return '<span class="badge bg-gray">PR Posted</span>';
                             case 13:
-                                return '<span class="badge badge-default bg-gray-dark text-light">Bidding</span>';
+                                return '<span class="badge bg-gray-dark text-light">Bidding</span>';
                             case 14:
-                                return '<span class="badge badge-default bg-purple text-light">For Consolidation</span>';
+                                return '<span class="badge bg-purple text-light">For Consolidation</span>';
                             case 15:
-                                return '<span class="badge badge-default bg-pink text-light">Awarded</span>';
+                                return '<span class="badge bg-pink text-light">Awarded</span>';
                             case 16:
-                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                                return '<span class="badge bg-red">Purchased</span>';
                             case 17:
-                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                                return '<span class="badge bg-cyan">Returned</span>';
                             case 18:
-                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                                return '<span class="badge bg-warning">Forwarded to PEDO</span>';
                             default:
                                 return '<span class="badge badge-secondary">Unknown Status</span>';
                         }
@@ -1175,8 +1175,8 @@
                     data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
-                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>';
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>'+'&nbsp;';
+                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>'+'&nbsp;';
                 
                             return buttons; // Only show View PR for non-Checker roles
                         } else {
@@ -1244,31 +1244,31 @@
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
                             case 7:
-                                return '<span class="badge badge-success">PR has been Approved</span>';
+                                return '<span class="badge bg-success">PR has been Approved</span>';
                             case 8:
-                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                                return '<span class="badge bg-teal">PR has been Received</span>';
                             case 9:
-                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                                return '<span class="badge bg-yellow">For Canvassing</span>';
                             case 10:
-                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                                return '<span class="badge bg-orange">PR Canvassed</span>';
                             case 11:
-                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                                return '<span class="badge bg-blue">For Philgeps Posting</span>';
                             case 12:
-                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                                return '<span class="badge bg-gray">PR Posted</span>';
                             case 13:
-                                return '<span class="badge badge-default bg-gray-dark text-light">Bidding</span>';
+                                return '<span class="badge bg-gray-dark text-light">Bidding</span>';
                             case 14:
-                                return '<span class="badge badge-default bg-purple text-light">For Consolidation</span>';
+                                return '<span class="badge bg-purple text-light">For Consolidation</span>';
                             case 15:
-                                return '<span class="badge badge-default bg-pink text-light">Awarded</span>';
+                                return '<span class="badge bg-pink text-light">Awarded</span>';
                             case 16:
-                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                                return '<span class="badge bg-red">Purchased</span>';
                             case 17:
-                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                                return '<span class="badge bg-cyan">Returned</span>';
                             case 18:
-                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                                return '<span class="badge bg-warning">Forwarded to PEDO</span>';
                             default:
-                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                return '<span class="badge bg-secondary">Unknown Status</span>';
                         }
                     },
                 },
@@ -1276,8 +1276,8 @@
                     data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
-                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>';
+                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>'+'&nbsp;';
+                                buttons += '<button type="button" class="btn btn-sm btn-secondary btn-prpdfemnu mb-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View Menu."><i class="fas fa-eye"></i></button>'+'&nbsp;';
                 
                             return buttons; // Only show View PR for non-Checker roles
                         } else {

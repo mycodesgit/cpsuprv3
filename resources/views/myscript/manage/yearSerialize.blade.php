@@ -50,13 +50,13 @@
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
                             case 1:
-                                return '<span class="badge badge-info">Enabled</span>';
+                                return '<span class="badge bg-info">Enabled</span>';
                             case 2:
-                                return '<span class="badge badge-warning">Disabled</span>';
+                                return '<span class="badge bg-warning">Disabled</span>';
                             case 3:
-                                return '<span class="badge badge-warning">Upcoming</span>';
+                                return '<span class="badge bg-warning">Upcoming</span>';
                             default:
-                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                return '<span class="badge bg-secondary">Unknown Status</span>';
                         }
                     },
                 },
@@ -64,9 +64,9 @@
                     data: 'id',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-primary btn-yearedit mr-1" data-id="' + row.id + '" data-pryear="' + row.pryear + '" data-status="' + row.status + '" data-toggle="tooltip" data-placement="top" title="Edit Year.">';
-                            buttons += '<i class="fas fa-pen"></i> </button>';
-                            if (isAdmin, isProcurementOfficer, isChecker) {
+                            var buttons = '<button type="button" class="btn btn-sm btn-success btn-yearedit mr-1 text-light" data-id="' + row.id + '" data-pryear="' + row.pryear + '" data-status="' + row.status + '" data-toggle="tooltip" data-placement="top" title="Edit Year.">';
+                            buttons += '<i class="fas fa-pen"></i> </button>'+'&nbsp;';
+                            if (isAdmin || isProcurementOfficer || isChecker) {
                                 buttons += '<button type="button" value="' + data + '" class="btn btn-sm btn-danger year-delete" data-toggle="tooltip" data-placement="top" title="Delete Year."><i class="fas fa-trash"></i> </button>';
                             }
                             return buttons;

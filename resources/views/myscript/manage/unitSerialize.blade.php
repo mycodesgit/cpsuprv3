@@ -56,9 +56,9 @@
                     data: 'id',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-primary btn-unitedit mr-1" data-id="' + row.id + '" data-unitname="' + row.unit_name + '" data-toggle="tooltip" data-placement="top" title="Edit Unit.">';
-                            buttons += '<i class="fas fa-pen"></i> </button>';
-                            if (isAdmin, isProcurementOfficer, isChecker) {
+                            var buttons = '<button type="button" class="btn btn-sm btn-success btn-unitedit mr-1 text-light" data-id="' + row.id + '" data-unitname="' + row.unit_name + '" data-toggle="tooltip" data-placement="top" title="Edit Unit.">';
+                            buttons += '<i class="fas fa-pen"></i> </button>'+'&nbsp;';
+                            if (isAdmin || isProcurementOfficer || isChecker) {
                                 buttons += '<button type="button" value="' + data + '" class="btn btn-sm btn-danger unit-delete" data-toggle="tooltip" data-placement="top" title="Delete Unit."><i class="fas fa-trash"></i> </button>';
                             }
                             return buttons;

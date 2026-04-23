@@ -11,6 +11,11 @@ use App\Models\YearPR;
 
 class YearController extends Controller
 {
+    public function yearRead() {
+        $year = YearPR::all();
+        return view('manage.year', compact('year'));
+    }
+
     public function getyearRead() 
     {
         $data = YearPR::all();

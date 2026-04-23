@@ -47,7 +47,15 @@
             paging: true,
             order: [[0, 'asc']],
             "columns": [
-                {data: 'item_descrip'},
+                {
+                    data: 'item_descrip',
+                    render: function(data, type, row) {
+                        if (type === 'display') {
+                            return data.length > 100 ? data.substring(0, 100) + '...' : data;
+                        }
+                        return data;
+                    }
+                },
                 {data: 'unit_name'},
                 {data: 'item_cost'},
                 {data: 'category_name'},
@@ -55,9 +63,9 @@
                     data: 'itid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-primary btn-itemedit mr-1" data-id="' + row.itid + '" data-catename="' + row.category_id + '" data-unitname="' + row.unit_id + '" data-itemdesc="' + row.item_descrip + '" data-itemcost="' + row.item_cost + '" data-toggle="tooltip" data-placement="top" title="Edit Item.">';
-                            buttons += '<i class="fas fa-pen"></i> </button>';
-                            if (isAdmin, isProcurementOfficer, isChecker) {
+                            var buttons = '<button type="button" class="btn btn-sm btn-success btn-itemedit mr-1 text-light" data-id="' + row.itid + '" data-catename="' + row.category_id + '" data-unitname="' + row.unit_id + '" data-itemdesc="' + row.item_descrip + '" data-itemcost="' + row.item_cost + '" data-toggle="tooltip" data-placement="top" title="Edit Item.">';
+                            buttons += '<i class="fas fa-pen"></i> </button>'+'&nbsp;';
+                            if (isAdmin || isProcurementOfficer || isChecker) {
                                 buttons += '<button type="button" value="' + data + '" class="btn btn-sm btn-danger item-delete" data-toggle="tooltip" data-placement="top" title="Delete Item."><i class="fas fa-trash"></i> </button>';
                             }
                             return buttons;

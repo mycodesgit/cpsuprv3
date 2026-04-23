@@ -84,6 +84,7 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
         Route::post('/office/list/update', [OfficeController::class, 'officeUpdate'])->name('officeUpdate');
         Route::get('/office/list/delete{id}', [OfficeController::class, 'officeDelete'])->name('officeDelete'); 
 
+        Route::get('/year/current/list', [YearController::class, 'yearRead'])->name('yearRead');
         Route::get('/year/current/view/list/ajax', [YearController::class, 'getyearRead'])->name('getyearRead');
         Route::post('/year/current/view/list/addy', [YearController::class, 'yearCreate'])->name('yearCreate');
         Route::post('/year/current/view/list/updatey', [YearController::class, 'yearUpdate'])->name('yearUpdate');
