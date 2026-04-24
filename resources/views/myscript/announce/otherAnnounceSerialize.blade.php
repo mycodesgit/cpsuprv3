@@ -59,11 +59,11 @@
                     render: function(data, type, row) {
                         if (type === 'display') {
                             if (data == 1) {
-                                return '<span class="badge badge-success">Enabled</span>';
+                                return '<span class="badge bg-success">Enabled</span>';
                             } else if (data == 2) {
-                                return '<span class="badge badge-danger">Disabled</span>';
+                                return '<span class="badge bg-danger">Disabled</span>';
                             } else {
-                                return '<span class="badge badge-secondary">Unknown</span>';
+                                return '<span class="badge bg-secondary">Unknown</span>';
                             }
                         }
                         return data;
@@ -73,13 +73,13 @@
                     data: 'rid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-primary btn-otheranncedit mr-1" ' +
+                            var buttons = '<button type="button" class="btn btn-sm btn-success btn-otheranncedit mb-1 text-light" ' +
                             'data-id="' + row.rid + '" ' +
                             'data-status="' + row.status + '" ' +
-                            'data-toggle="tooltip" data-placement="top" title="Edit Other Announcement."' +
+                            'data-bs-toggle="tooltip" data-placement="top" title="Edit Other Announcement."' +
                             '><i class="fas fa-pen"></i></button>' +
-                            '<input type="hidden" class="hidden-announcement" value="' + encodeURIComponent(row.otherannouncement) + '">';
-                            buttons += '<button type="button" value="' + data + '" class="btn btn-sm btn-danger otherannce-delete" data-toggle="tooltip" data-placement="top" title="Delete Category."><i class="fas fa-trash"></i> </button>';
+                            '<input type="hidden" class="hidden-announcement" value="' + encodeURIComponent(row.otherannouncement) + '">'+'&nbsp';
+                            buttons += '<button type="button" value="' + data + '" class="btn btn-sm btn-danger otherannce-delete mb-1" data-bs-toggle="tooltip" data-placement="top" title="Delete Category."><i class="fas fa-trash"></i> </button>';
                             return buttons;
                         } else {
                             return data;

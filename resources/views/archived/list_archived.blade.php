@@ -38,7 +38,7 @@
 
                                             <div class="col-md-2">
                                                 <label>&nbsp;</label><br>
-                                                <button type="submit" class="btn btn-success btn-sm">
+                                                <button type="submit" class="btn btn-success btn-sm text-light">
                                                     <i class="fas fa-search"></i> Search
                                                 </button>
                                             </div>

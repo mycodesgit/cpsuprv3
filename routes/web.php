@@ -276,13 +276,13 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
 
     //Reports
     Route::prefix('/generate')->group(function () {
-        Route::get('/list/option',[ReportsController::class,'consolidateRead'])->name('consolidateRead');
-        Route::get('/list/reports/generate', [ReportsController::class,'consolidateGen_reports'])->name('consolidateGen_reports');
-        Route::post('/list/reports/generate/PDF', [ReportsController::class, 'consolidatePDFGen_reports'])->name('consolidatePDFGen_reports');
+        Route::get('/list1/option',[ReportsController::class,'consolidateRead'])->name('consolidateRead');
+        Route::get('/list1/reports/generate', [ReportsController::class,'consolidateGen_reports'])->name('consolidateGen_reports');
+        Route::post('/list1/reports/generate/PDF', [ReportsController::class, 'consolidatePDFGen_reports'])->name('consolidatePDFGen_reports');
 
-        Route::get('/list/option/form2',[ReportsController::class,'consolidateForm2Read'])->name('consolidateForm2Read');
-        Route::get('/list/reports/form2/generate', [ReportsController::class,'consolidateGenform2_reports'])->name('consolidateGenform2_reports');
-        Route::post('/list/reports/form2/generate/PDF', [ReportsController::class, 'consolidatePDFGenform2_reports'])->name('consolidatePDFGenform2_reports');
+        Route::get('/list2/option/form2',[ReportsController::class,'consolidateForm2Read'])->name('consolidateForm2Read');
+        Route::get('/list2/reports/form2/generate', [ReportsController::class,'consolidateGenform2_reports'])->name('consolidateGenform2_reports');
+        Route::post('/list2/reports/form2/generate/PDF', [ReportsController::class, 'consolidatePDFGenform2_reports'])->name('consolidatePDFGenform2_reports');
     });
 
     //Users

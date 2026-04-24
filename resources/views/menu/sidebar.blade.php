@@ -28,6 +28,9 @@
 @php
     $manageOpen = request()->routeIs('categoryRead', 'unitRead', 'itemRead', 'officeRead', 'yearRead');
 @endphp
+@php
+    $reportOpen = request()->routeIs('consolidateRead', 'consolidateGen_reports', 'consolidateForm2Read', 'consolidateGenform2_reports');
+@endphp
 
 <ul class="nav flex-column">
     <li class="px-4 py-2">
@@ -97,11 +100,62 @@
                 <i class="ti ti-file-horizontal"></i><span class="nav-text">PPMP</span>
             </a>
         </li>
+
+        <li>
+            <a class="nav-link {{$announceActive}}" href="{{ route('annouceInfo') }}">
+                <i class="ti ti-bell"></i><span class="nav-text">Announcement</span>
+            </a>
+        </li>
         
         <li>
             <a class="nav-link {{$archiveActive}}" href="{{ route('archiveRead') }}">
-                <i class="ti ti-file-zip"></i><span class="nav-text">Archived</span>
+                <i class="ti ti-file-zip"></i><span class="nav-text">Archived PR's</span>
             </a>
+        </li>
+
+        <li>
+            <a class="nav-link {{$archivedeletedActive}}" href="{{ route('indexlistdel') }}">
+                <i class="ti ti-trash"></i><span class="nav-text">Deleted PR's</span>
+            </a>
+        </li>
+
+        <li class="px-4 py-2">
+            <small class="nav-text text-muted">User Management</small>
+        </li>
+
+        <li>
+            <a class="nav-link {{$usersAllActive}}" href="{{ route('userRead') }}">
+                <i class="ti ti-users"></i><span class="nav-text">Users</span>
+            </a>
+        </li>
+
+        <li class="px-4 py-2">
+            <small class="nav-text text-muted">Report Management</small>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center justify-content-between {{ $reportOpen ? '' : '' }}" data-bs-toggle="collapse" href="#reportMenu" role="button" aria-expanded="false" aria-controls="reportMenu">
+                <div class="d-flex align-items-center">
+                    <i class="ti ti-file me-2"></i>&nbsp;
+                    <span class="nav-text">Reports</span>
+                </div>
+                <!-- <i class="ti ti-chevron-down"></i> -->
+            </a>
+
+            <div class="collapse {{ $reportOpen ? 'show' : '' }}" id="reportMenu">
+                <ul class="nav flex-column ms-3 mt-1">
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('generate/list1*') ? 'active' : '' }}" href="{{ route('consolidateRead') }}">
+                            <i class="ti ti-file"></i> <span class="nav-text">Consolidation 1</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('generate/list2*') ? 'active' : '' }}" href="{{ route('consolidateForm2Read') }}">
+                            <i class="ti ti-file"></i> <span class="nav-text">Consolidation 2</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </li>
     @endif
 </ul>

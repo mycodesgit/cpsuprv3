@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="{{ asset('uilibs/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('uilibs/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('uilibs/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <!-- Summernote -->
+    <link rel="stylesheet" href="{{ asset('uilibs/plugins/summernote/summernote-bs4.min.css') }}">
     <!-- fullCalendar -->
     <link rel="stylesheet" href="{{ asset('uilibs/plugins/fullcalendar/fullcalendar.css') }}">
 
@@ -132,7 +134,10 @@
                                 <a href="#!" class="text-success">
                                     <i class="ti ti-message"></i><span> Chat Message</span>
                                 </a>
-                                <a href="{{ route('logout') }}" class="text-danger">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                                <a href="#" class="text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i class="ti ti-logout"></i><span> Signout</span>
                                 </a>
                             </div>
@@ -191,6 +196,8 @@
     <script src="{{ asset('uilibs/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('uilibs/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('uilibs/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+    <!-- Summernote -->
+    <script src="{{ asset('uilibs/plugins/summernote/summernote-bs4.js') }}"></script>
     <!-- fullCalendar 2.2.5 -->
     <script src="{{ asset('uilibs/plugins/moment/moment.min.js') }}"></script>
     <script src="{{ asset('uilibs/plugins/fullcalendar/fullcalendar.js') }}"></script>
@@ -251,6 +258,38 @@
     @if (request()->routeIs('approvedListAllRead'))
         @include('myscript.approve.allapprovedSerialize')
         @include('myscript.approve.acceptanceSerialize')
+    @endif
+    @if (request()->routeIs('archiveShow'))
+        @include('myscript.archivepr.archiveSerialize')
+        @include('myscript.approve.acceptanceSerialize')
+    @endif
+    @if (request()->routeIs('archiveDeletedShow'))
+        @include('myscript.archivepr.archivedeletedSerialize')
+    @endif
+    @if (request()->routeIs('annouceInfo'))
+        @include('myscript.announce.otherAnnounceSerialize')
+        <script>
+            $(function () {
+                $('#summernote').summernote({
+                    height: 400 
+                });
+                $('#summernoteother').summernote({
+                    height: 300 
+                });
+                $('.summernoteotheredit').summernote({
+                    height: 300,
+                    // toolbar: [         // keep it simple
+                    //     ['style', ['bold', 'italic', 'underline', 'clear']],
+                    //     ['para', ['ul', 'ol', 'paragraph']],
+                    //     ['insert', ['link']],
+                    //     ['view', ['codeview']]
+                    // ]
+                });
+            })
+        </script>
+    @endif
+    @if (request()->routeIs('userRead'))
+        @include('myscript.user.userSerialize')
     @endif
 </body>
 

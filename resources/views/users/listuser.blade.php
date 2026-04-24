@@ -1,86 +1,100 @@
 @extends('layouts.master')
 
 @section('body')
-    <section class="section">
-        <div class="" style="margin-left: -20px; margin-right: -20px; border-radius: 5px; margin-top: 20px; padding: 3px;">
-            <h5>Users</h5>
-        </div>
+    <style>
+        .select2-container .select2-selection--single {
+            height: 43px !important;
+        }
+        .select2-container .select2-selection--single .select2-selection__rendered {
+            line-height: 43px !important;
+        }
+        .select2-container .select2-selection--single .select2-selection__arrow {
+            height: 43px !important;
+        }
+    </style>
 
-        <div class="section-body" style="margin-left: -20px; margin-right: -20px; border-radius: 5px;">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-user">
-                                <i class="fas fa-user-plus"></i> Add New
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive" style="overflow-x: hidden;">
-                                <table id="userviewTable" class="table table-hover styled-table" style="width: 100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Last Name</th>
-                                            <th>First Name</th>
-                                            <th>Middle Name</th>
-                                            <th>Campus</th>
-                                            <th>Office</th>
-                                            <th>Username</th>
-                                            <th>Role</th>
-                                            <th>Status</th>
-                                            <th>Allowed</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+    <div class="row ">
+        <div class="col-12">
+            <div class="mb-6">
+                <h1 class="fs-3 mb-4">Users</h1>
+                <div class="row g-4 mb-5">
+                    <div class="col-md-12">
+                        <div class="card card-animate">
+                            <div class="card-header pt-3">
+                                <h6 class="card-title">
+                                    <i class="fas fa-users"></i> List of Users
+                                </h6>
+                            </div>
+                            <div class="card-body">
+                                <button type="button" class="btn btn-success text-light" data-bs-toggle="modal" data-bs-target="#modal-user">
+                                    <i class="fas fa-user-plus"></i> Add User
+                                </button>
+                                <div class="table-responsive mt-2 p-2">
+                                    <table id="userviewTable" class="table table-hover styled-table" style="width: 100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Last Name</th>
+                                                <th>First Name</th>
+                                                <th>Middle Name</th>
+                                                <th>Campus</th>
+                                                <th>Office</th>
+                                                <th>Username</th>
+                                                <th>Role</th>
+                                                <th>Status</th>
+                                                <th>Allowed</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    @include('modal.userAddmodal')
 
     <div class="modal fade" id="editInfoModal" tabindex="-1" role="dialog" aria-labelledby="editInfoModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 60vw;">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editInfoModalLabel">Edit User Info</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form id="editInfoForm">
                     <div class="modal-body">
                         <input type="hidden" name="id" id="edituserId">
-                        <div class="form-group">
-                            <div class="form-row">
+                        <div class="form-group mt-3">
+                            <div class="row g-3">
                                 <div class="col-md-4">
-                                    <label for="editfirstname">First Name</label>
+                                    <label for="editfirstname">First Name:</label>
                                     <input type="text" class="form-control" id="editfirstname" name="fname" oninput="this.value = this.value.toUpperCase()">
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="editmiddlename">Middle Name</label>
+                                    <label for="editmiddlename">Middle Name:</label>
                                     <input type="text" class="form-control" id="editmiddlename" name="mname" oninput="this.value = this.value.toUpperCase()">
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="editlastname">Last Name</label>
+                                    <label for="editlastname">Last Name:</label>
                                     <input type="text" class="form-control" id="editlastname" name="lname" oninput="this.value = this.value.toUpperCase()">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="form-row">
+                        <div class="form-group mt-3">
+                            <div class="row g-3">
                                 <div class="col-md-4">
-                                    <label for="editusername">Username</label>
+                                    <label for="editusername">Username:</label>
                                     <input type="text" class="form-control" id="editusername" name="username">
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="editoffice">Office</label>
+                                    <label for="editoffice">Office:</label>
                                     <select name="office_id" id="editoffice" class="form-control">
                                         @foreach ($off as $dataoff)
                                             <option value="{{ $dataoff->id }}">{{ $dataoff->office_abbr }}</option>
@@ -98,10 +112,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="form-row">
+                        <div class="form-group mt-3">
+                            <div class="row g-3">
                                 <div class="col-md-4">
-                                    <label for="editrole">Role</label>
+                                    <label for="editrole">Role:</label>
                                     <select name="role" class="form-control" id="editrole">
                                         <option value=""> --- Select ---</option>
                                         <option value="Administrator">Administrator</option>
@@ -113,7 +127,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="editcampus">Campus</label>
+                                    <label for="editcampus">Campus:</label>
                                     <select name="campus_id" class="form-control" id="editcampus">
                                         <option value=""> --- Select ---</option>
                                         @foreach ($camp as $datacamp)
@@ -133,8 +147,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success text-light">Save changes</button>
                     </div>
                 </form>
             </div>
@@ -146,21 +160,19 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editPasswordModalLabel">Edit Password</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form id="editPasswordForm">
                     <div class="modal-body">
                         <input type="hidden" name="id" id="editPasswordId">
                         <div class="form-group">
-                            <label for="editPasswordName">Enter New Password</label>
+                            <label for="editPasswordName">Enter New Password: <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="editPasswordName" name="password">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success text-light">Save changes</button>
                     </div>
                 </form>
             </div>
@@ -172,15 +184,13 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editUstatusModalLabel">Edit User Status</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form id="editUstatusForm">
                     <div class="modal-body">
                         <input type="hidden" name="id" id="editUstatusId">
                         <div class="form-group">
-                            <label for="editUstatusName">Select User Status</label>
+                            <label for="editUstatusName">Select User Status: <span class="text-danger">*</span></label>
                             <select name="ustatus" id="editUstatusName" class="form-control">
                                 <option disabled selected> --Select-- </option>
                                 <option value="1">Enabled</option>
@@ -189,15 +199,13 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success text-light">Save changes</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
-    @include('modal.userAddmodal')
 
     @if(request()->routeIs(['userRead']))
         <script>

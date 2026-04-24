@@ -1,61 +1,55 @@
 @extends('layouts.master')
 
 @section('body')
-    <style>
-        .form-control-sm {
-            height: calc(1.5em + .5rem + 2px) !important;
-            padding: .25rem .5rem !important;
-            font-size: .875rem !important;
-            border-radius: .2rem !important;
-        }
-    </style>
+    <div class="row ">
+        <div class="col-12">
+            <div class="mb-6">
+                <h1 class="fs-3 mb-4">Archived</h1>
+                <div class="row g-4 mb-5">
+                    <div class="col-md-12">
+                        <div class="card card-animate">
+                            <div class="card-header pt-3">
+                                <h6 class="card-title">
+                                    <i class="fas fa-search"></i> Search Deleted PRs
+                                </h6>
+                            </div>
+                            <div class="card-body">
+                                <form action="{{ route('archiveDeletedShow') }}" class="form-horizontal add-form" id="form1Search" method="GET" target="">
+                                    @csrf
+                                    
+                                    <div class="form-group">
+                                        <div class="row g-3">
+                                            <div class="col-md-2">
+                                                <label>Year:</label>
+                                                <select name="year" class="form-control form-control-sm">
+                                                    <?php
+                                                        $fixedYears = [2024, 2025];
+                                                        $currentYear = date("Y");
 
-    <section class="section">
-        <div class="" style="margin-left: -20px; margin-right: -20px; border-radius: 5px; margin-top: 20px; padding: 3px;">
-            <h5>Search Deleted PR in Archived</h5>
-        </div>
+                                                        $years = array_unique(array_merge($fixedYears, [$currentYear]));
+                                                        sort($years);
 
-        <div class="section-body" style="margin-left: -20px; margin-right: -20px; border-radius: 5px;">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <form action="{{ route('archiveDeletedShow') }}" class="form-horizontal add-form" id="form1Search" method="GET" target="">
-                                @csrf
-                                
-                                <div class="form-group">
-                                    <div class="form-row">
-                                        <div class="col-md-2">
-                                            <label>Year:</label>
-                                            <select name="year" class="form-control form-control-sm">
-                                                <?php
-                                                $fixedYears = [2024, 2025]; // always included
-                                                $currentYear = date("Y");   // detect current year (e.g. 2025)
+                                                        foreach ($years as $year) {
+                                                            echo "<option value='$year'>$year</option>";
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </div>
 
-                                                // Merge fixed years with current year (avoid duplicates)
-                                                $years = array_unique(array_merge($fixedYears, [$currentYear]));
-                                                sort($years);
-
-                                                foreach ($years as $year) {
-                                                    echo "<option value='$year'>$year</option>";
-                                                }
-                                                ?>
-                                            </select>
+                                            <div class="col-md-2">
+                                                <label>&nbsp;</label><br>
+                                                <button type="submit" class="btn btn-success btn-sm text-light">
+                                                    <i class="fas fa-search"></i> Search
+                                                </button>
+                                            </div>
                                         </div>
-
-                                        <div class="col-md-2">
-                                            <label>&nbsp;</label><br>
-                                            <button type="submit" class="btn btn-success btn-sm">
-                                                <i class="fas fa-search"></i> Search
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>  
-                            </form>
+                                    </div>  
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 @endsection

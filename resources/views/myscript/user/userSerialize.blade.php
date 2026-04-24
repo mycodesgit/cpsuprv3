@@ -55,13 +55,13 @@
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
                             case 1:
-                                return '<span class="badge badge-info">Enabled</span>';
+                                return '<span class="badge bg-info">Enabled</span>';
                             case 2:
-                                return '<span class="badge badge-danger">Disabled</span>';
+                                return '<span class="badge bg-danger">Disabled</span>';
                             case 3:
-                                return '<span class="badge badge-warning">Deleted</span>';
+                                return '<span class="badge bg-warning">Deleted</span>';
                             default:
-                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                return '<span class="badge bg-secondary">Unknown Status</span>';
                         }
                     },
                 },
@@ -70,9 +70,9 @@
                     data: 'uid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-primary btn-useredit mr-1" data-id="' + row.uid + '" data-fname="' + row.fname + '" data-mname="' + row.mname + '" data-lname="' + row.lname + '" data-username="' + row.username + '" data-office="' + row.office_id + '" data-gender="' + row.gender + '" data-role="' + row.role + '" data-campus="' + row.campus_id + '" data-permission="' + row.isAllowed + '" data-toggle="tooltip" data-placement="top" title="Edit User."><i class="fas fa-pen"></i> </button>';
-                                buttons += '<button type="button" class="btn btn-sm btn-light btn-passedit mr-1" data-id="' + row.uid + '" data-password="' + row.password + '" data-toggle="tooltip" data-placement="top" title="Edit User Password."><i class="fas fa-lock"></i> </button>';
-                                buttons += '<button type="button" class="btn btn-sm btn-warning btn-ustatusedit mr-1" data-id="' + row.uid + '" data-ustatus="' + row.ustatus + '" data-toggle="tooltip" data-placement="top" title="Enabled/Disabled."><i class="fas fa-toggle-on"></i> </button>';
+                            var buttons = '<button type="button" class="btn btn-sm btn-success btn-useredit mb-1 text-light" data-id="' + row.uid + '" data-fname="' + row.fname + '" data-mname="' + row.mname + '" data-lname="' + row.lname + '" data-username="' + row.username + '" data-office="' + row.office_id + '" data-gender="' + row.gender + '" data-role="' + row.role + '" data-campus="' + row.campus_id + '" data-permission="' + row.isAllowed + '" data-toggle="tooltip" data-placement="top" title="Edit User."><i class="fas fa-pen"></i> </button>'+'&nbsp;';
+                                buttons += '<button type="button" class="btn btn-sm btn-light btn-passedit mb-1" data-id="' + row.uid + '" data-password="' + row.password + '" data-toggle="tooltip" data-placement="top" title="Edit User Password."><i class="fas fa-lock"></i> </button>'+'&nbsp;';
+                                buttons += '<button type="button" class="btn btn-sm btn-warning btn-ustatusedit mb-1 text-light" data-id="' + row.uid + '" data-ustatus="' + row.ustatus + '" data-toggle="tooltip" data-placement="top" title="Enabled/Disabled."><i class="fas fa-toggle-on"></i> </button>'+'&nbsp;';
                             if (isAdmin, isChecker) {
                                 buttons += '<button type="button" value="' + data + '" class="btn btn-sm btn-danger userpr-delete" data-toggle="tooltip" data-placement="top" title="Delete Category."><i class="fas fa-trash"></i> </button>';
                             }

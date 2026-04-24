@@ -102,6 +102,8 @@ class ReportsController extends Controller
         $end_date = $request->input('end_date');
         $catId = $request->input('cat_id');
 
+        $category = Category::all();
+
         $itemConsolidate = RequestItem::join('unit', 'item_request.unit_id', '=', 'unit.id')
             ->join('purpose', 'item_request.purpose_id', '=', 'purpose.id')
             ->join('item', 'item_request.item_id', '=', 'item.id')
@@ -171,7 +173,7 @@ class ReportsController extends Controller
             ]);
         }
 
-        return view('reports.listreportGen', compact('itemConsolidate', 'data'));
+        return view('reports.listreportGen', compact('category', 'itemConsolidate', 'data'));
     }
 
     public function consolidatePDFGen_reports(Request $request) 
@@ -283,6 +285,8 @@ class ReportsController extends Controller
         $end_date = $request->input('end_date');
         $catId = $request->input('cat_id');
 
+        $category = Category::all();
+
         $itemConsolidate = RequestItem::join('unit', 'item_request.unit_id', '=', 'unit.id')
             ->join('purpose', 'item_request.purpose_id', '=', 'purpose.id')
             ->join('item', 'item_request.item_id', '=', 'item.id')
@@ -353,7 +357,7 @@ class ReportsController extends Controller
             ]);
         }
 
-        return view('reports.listreportGenform2', compact('itemConsolidate', 'data'));
+        return view('reports.listreportGenform2', compact('category','itemConsolidate', 'data'));
     }
 
     public function consolidatePDFGenform2_reports(Request $request) 
