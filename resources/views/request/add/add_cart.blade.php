@@ -1,6 +1,37 @@
 @extends('layouts.master')
 
 @section('body')
+    <style>
+        .qty-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .qty-btn {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 18px;
+            transition: 0.2s ease;
+        }
+
+        .qty-btn:hover {
+            background: #65ac86;
+            color: #fff;
+        }
+
+        .qty-input {
+            width: 100%;
+            text-align: center;
+            font-weight: 600;
+            border-radius: 10px;
+            height: 42px;
+            margin: 0 8px;
+        }
+    </style>
     <div class="row">
         <div class="col-12">
             <div class="mb-6">
@@ -34,7 +65,7 @@
                                                 <td>{{ $itemdata->unit_name }}</td>
                                                 <td>{{ $itemdata->item_cost }}</td>
                                                 <td>
-                                                    <a href="" class="btn btn-outline-success btn-sm btn-selectitem" data-toggle="modal" data-target="#itemModal" data-id="{{ $itemdata->id }}">
+                                                    <a href="" class="btn btn-outline-success btn-sm btn-selectitem" data-bs-toggle="modal" data-bs-target="#itemModal" data-id="{{ $itemdata->id }}">
                                                         <i class="fa-solid fa-cart-shopping"></i>
                                                     </a>
                                                 </td>
@@ -159,16 +190,14 @@
     </div>
 
     <div class="modal fade" id="itemModal" role="dialog" aria-labelledby="itemModalLabel">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="itemModalLabel">Add to Cart</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form method="post" action="{{ route('prCreate') }}" id="requestpr">
+                <form method="post" action="{{ route('prCreate') }}" id="requestpr">
+                    <div class="modal-body">
                         @csrf
 
                         <input type="hidden" name="category_id" value="{{ $purpose->cat_id }}">
@@ -181,19 +210,32 @@
                         <input type="hidden" name="unit_id">
 
                         <div class="form-group mt-2">
-                            <div class="form-row">
+                            <div class="row g-3">
                                 <div class="col-md-12">
-                                    <label><span class="badge badge-secondary">Item</span></label>
-                                    <input type="text" name="item_name" class="form-control form-control-sm" readonly>
+                                    <label>Item: <span class="text-danger">*</span></label>
+                                    <input type="text" name="item_name" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-2">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label>Unit: <span class="text-danger">*</span></label>
+                                    <input type="text" name="unit_name" class="form-control" readonly>
                                 </div>
 
-                                <div class="mt-2 col-md-12">
-                                    <label><span class="badge badge-secondary">Unit</span></label>
-                                    <input type="text" name="unit_name" class="form-control form-control-sm" readonly>
-                                </div>
-
-                                <div class="mt-2 col-md-12">
-                                    <label><span class="badge badge-secondary">Item Cost</span></label>
+                                <div class="col-md-4">
+                                    <label>Item Cost: <span class="text-danger">*</span></label>
+                                    {{-- @if(in_array($purpose->cat_id, [18, 20, 21, 22, 29, 30, 31]))
+                                        <input type="text" name="item_cost" class="form-control form-control-sm" onkeyup="formatNumber(this); calculateTotalCost()">
+                                    @else
+                                        <input type="text" name="item_cost" class="form-control form-control-sm" onkeyup="formatNumber(this); calculateTotalCost()" readonly>
+                                    @endif --}}
+                                    {{-- <input type="text" name="item_cost" class="form-control form-control-sm" onkeyup="formatNumber(this); calculateTotalCost()" readonly> --}}
+                                    {{-- <input type="text" name="item_cost" class="form-control form-control-sm" value="{{ $item_cost ?? 0 }}" onkeyup="formatNumber(this); calculateTotalCost()" {{ ($item_cost ?? 0) == 0 ? '' : 'readonly' }}> --}}
+                                    
+                                    {{-- <input type="text" name="item_cost" class="form-control" onkeyup="formatNumber(this); calculateTotalCost()"> --}}
                                     @if(in_array($purpose->cat_id, [18, 20, 21, 22, 29, 30, 31]))
                                         <input type="text" name="item_cost" class="form-control form-control-sm" onkeyup="formatNumber(this); calculateTotalCost()">
                                     @else
@@ -201,36 +243,42 @@
                                     @endif
                                 </div>
 
-                                <div class="mt-2 col-md-4">
-                                    <label><span class="badge badge-secondary">Quantity</span></label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <button class="btn btn-outline-secondary" type="button" onclick="decrementQuantity()">
-                                                <i class="fas fa-minus"></i>
-                                            </button>
-                                        </div>
-                                        <input type="text" name="qty" id="quantityInput" class="form-control form-control-md" value="1" oninput="validateQuantity(this, {{ in_array($purpose->cat_id, [29]) ? 'true' : 'false' }});" onkeyup="calculateTotalCost()">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary" type="button" onclick="incrementQuantity()">
-                                                <i class="fas fa-plus"></i>
-                                            </button>
-                                        </div>
+                                <div class="col-md-4">
+                                    <label>Quantity: <span class="text-danger">*</span></label>
+                                    <div class="qty-wrapper">
+                                        <button type="button" class="btn btn-outline-success qty-btn" onclick="decrementQuantity()">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <input type="text"
+                                            name="qty"
+                                            id="quantityInput"
+                                            class="form-control qty-input"
+                                            value="1"
+                                            oninput="validateQuantity()"
+                                            onkeyup="calculateTotalCost()">
+
+                                        <button type="button" class="btn btn-success qty-btn" onclick="incrementQuantity()">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
                                     </div>
-                                </div>
-
-                                <div class="mt-2 col-md-8">
-                                    <label>Total Cost:</label>
-                                    <input type="text" name="total_cost" onkeyup="formatNumber(this);" class="form-control form-control-md" readonly>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <label>&nbsp;</label>
-                                    <button type="submit" class="form-control form-control-sm btn btn-outline-success btn-sm">Save</button>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
+
+                        <div class="form-group mt-2">
+                            <div class="row g-3">
+                                <div class="col-md-12">
+                                    <label>Total Cost: <span class="text-danger">*</span></label>
+                                    <input type="text" name="total_cost" onkeyup="formatNumber(this);" class="form-control form-control-md" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
