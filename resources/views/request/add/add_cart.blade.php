@@ -1,21 +1,20 @@
 @extends('layouts.master')
 
 @section('body')
-    <section class="section">
-        <div class="" style="margin-left: -20px; margin-right: -20px; border-radius: 5px; margin-top: 20px; padding: 3px;">
-            <h5>My Cart</h5>
-        </div>
-
-        <div class="section-body" style="margin-left: -20px; margin-right: -20px; border-radius: 5px;">
-            <div class="row">
-                <div class="col-lg-5">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title">Select Items in {{ $items->first()->category_name }} Category</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
+    <div class="row">
+        <div class="col-12">
+            <div class="mb-6">
+                <h1 class="fs-4 mb-4">My Cart</h1>
+                <div class="row g-4 mb-5">
+                    <div class="col-md-5">
+                        <div class="card card-animate">
+                            <div class="card-header pt-3">
+                                <h6 class="card-title">
+                                    <i class="fas fa-list"></i> Select Items in {{ $items->first()->category_name }} Category
+                                </h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive mt-2 p-2">
                                     <table id="example1" class="table table-hover">
                                         <thead class="bg-light">
                                             <tr>
@@ -47,16 +46,15 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-lg-7">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title">List of your Selected Items in {{ $items->first()->category_name }} Category</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12" id="table-cart">
+                    <div class="col-md-7">
+                        <div class="card card-animate">
+                            <div class="card-header pt-3">
+                                <h6 class="card-title">
+                                    <i class="fas fa-check"></i> List of your Selected Items in {{ $items->first()->category_name }} Category
+                                </h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive mt-2 p-2">
                                     <table id="cart" class="table table-hover styled-table">
                                         <thead style="font-size: 10pt; color: #000 !important;">
                                             <tr>
@@ -72,94 +70,93 @@
 
                                         </tbody>
                                     </table>
-
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="float-right">
-                                                <h5>Grand Total: <span id="grandTotal"></span></h5>
-                                            </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="float-right">
+                                            <h5>Grand Total: <span id="grandTotal"></span></h5>
                                         </div>
                                     </div>
-                                    <hr>
-
-                                    <form id="updateStatusForm" action="{{ route('savePR') }}" method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        <input type="hidden" name="purpose_id" value="{{ request('purpose_Id') }}">
-                                        {{-- <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="file" name="doc_file" class="form-control form-control-sm" id="fileInput" accept=".pdf" onchange="handleFileUpload()">
-                                            </div>
-                                        </div>
-                                        <span class="text-danger text-xs">Upload a PDF file for attachement Layout</span> --}}
-                                        <div class="form-group">
-                                            <div class="form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="editpdflayout" class="font-weight-bold">Upload a PDF file for attachment Layout</label>
-                                                        <div id="dropZone" class="file-drop-zone" 
-                                                            style="border: 2px dashed #14743f; border-radius: 10px; padding: 20px; text-align: center; cursor: pointer; position: relative;">
-                                                            <input type="file" class="custom-file-input" id="editpdflayout" name="doc_file" accept=".pdf" 
-                                                                style="opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer;">
-                                                            <div class="file-upload-content">
-                                                                <div class="upload-icon" style="font-size: 3em; color: #14743f;">
-                                                                    <i class="fas fa-cloud-upload-alt"></i>
-                                                                </div>
-                                                                <p class="upload-text" style="margin: 10px 0; color: #14743f;">Browse Files to upload Layout</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="file-info mt-2" style="text-align: center; color: #555;">
-                                                            <i class="fas fa-file-pdf"></i> <span id="fileNameDisplay">No selected file -</span>
-                                                            <button type="button" class="btn btn-sm btn-outline-danger ml-2" onclick="clearFile()">
-                                                                <i class="fas fa-times"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="editpdfppmp" class="font-weight-bold">Upload a PPMP file for attachement</label>
-                                                        <div id="dropZonePPMP" class="file-drop-zone" 
-                                                            style="border: 2px dashed #14743f; border-radius: 10px; padding: 20px; text-align: center; cursor: pointer; position: relative;">
-                                                            <input type="file" class="custom-file-input" id="editpdfppmp" name="ppmp_file" accept=".pdf" 
-                                                                style="opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer;">
-                                                            <div class="file-upload-content">
-                                                                <div class="upload-icon" style="font-size: 3em; color: #14743f;">
-                                                                    <i class="fas fa-cloud-upload-alt"></i>
-                                                                </div>
-                                                                <p class="upload-text" style="margin: 10px 0; color: #14743f;">Browse Files to upload PPMP</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="file-info mt-2" style="text-align: center; color: #555;">
-                                                            <i class="fas fa-file-pdf"></i> <span id="fileNamePPMPDisplay">No selected file -</span>
-                                                            <button type="button" class="btn btn-sm btn-outline-danger ml-2" onclick="clearFilePPMP()">
-                                                                <i class="fas fa-times"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12">
-                                                    <label for="editprpname" class="font-weight-bold">Purpose:</label>
-                                                    <input type="text" name="purpose_name" id="editprpname" value="{{ old('purpose_name', $purpose->purpose_name) }}" data-id="{{ $purpose->id }}" data-url="{{ route('updatePurposeName', $purpose->id) }}"  class="form-control" required>
-                                                </div>
-                                                <span class="text-danger text-xs">Note: Please Check or rename your purpose for this purchase request</span>
-                                            </div>
-                                        </div>
-
-                                        <button id="submitPRButton" class="btn btn-success float-right" disabled>
-                                            <i class="fas fa-save"></i> Submit PR
-                                        </button>
-                                    </form>
                                 </div>
+                                <hr>
+
+                                <form id="updateStatusForm" action="{{ route('savePR') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="purpose_id" value="{{ request('purpose_Id') }}">
+                                    {{-- <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="file" name="doc_file" class="form-control form-control-sm" id="fileInput" accept=".pdf" onchange="handleFileUpload()">
+                                        </div>
+                                    </div>
+                                    <span class="text-danger text-xs">Upload a PDF file for attachement Layout</span> --}}
+                                    <div class="form-group">
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="editpdflayout" class="font-weight-bold">Upload a PDF file for attachment Layout</label>
+                                                    <div id="dropZone" class="file-drop-zone" 
+                                                        style="border: 2px dashed #14743f; border-radius: 10px; padding: 20px; text-align: center; cursor: pointer; position: relative;">
+                                                        <input type="file" class="custom-file-input" id="editpdflayout" name="doc_file" accept=".pdf" 
+                                                            style="opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer;">
+                                                        <div class="file-upload-content">
+                                                            <div class="upload-icon" style="font-size: 3em; color: #14743f;">
+                                                                <i class="fas fa-cloud-upload-alt"></i>
+                                                            </div>
+                                                            <p class="upload-text" style="margin: 10px 0; color: #14743f;">Browse Files to upload Layout</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="file-info mt-2" style="text-align: center; color: #555;">
+                                                        <i class="fas fa-file-pdf"></i> <span id="fileNameDisplay">No selected file -</span>
+                                                        <button type="button" class="btn btn-sm btn-outline-danger ml-2" onclick="clearFile()">
+                                                            <i class="fas fa-times"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="editpdfppmp" class="font-weight-bold">Upload a PPMP file for attachement</label>
+                                                    <div id="dropZonePPMP" class="file-drop-zone" 
+                                                        style="border: 2px dashed #14743f; border-radius: 10px; padding: 20px; text-align: center; cursor: pointer; position: relative;">
+                                                        <input type="file" class="custom-file-input" id="editpdfppmp" name="ppmp_file" accept=".pdf" 
+                                                            style="opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer;">
+                                                        <div class="file-upload-content">
+                                                            <div class="upload-icon" style="font-size: 3em; color: #14743f;">
+                                                                <i class="fas fa-cloud-upload-alt"></i>
+                                                            </div>
+                                                            <p class="upload-text" style="margin: 10px 0; color: #14743f;">Browse Files to upload PPMP</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="file-info mt-2" style="text-align: center; color: #555;">
+                                                        <i class="fas fa-file-pdf"></i> <span id="fileNamePPMPDisplay">No selected file -</span>
+                                                        <button type="button" class="btn btn-sm btn-outline-danger ml-2" onclick="clearFilePPMP()">
+                                                            <i class="fas fa-times"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <label for="editprpname" class="font-weight-bold">Purpose:</label>
+                                                <input type="text" name="purpose_name" id="editprpname" value="{{ old('purpose_name', $purpose->purpose_name) }}" data-id="{{ $purpose->id }}" data-url="{{ route('updatePurposeName', $purpose->id) }}"  class="form-control" required>
+                                            </div>
+                                            <span class="text-danger text-xs">Note: Please Check or rename your purpose for this purchase request</span>
+                                        </div>
+                                    </div>
+
+                                    <button id="submitPRButton" class="btn btn-success float-right" disabled>
+                                        <i class="fas fa-save"></i> Submit PR
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <div class="modal fade" id="itemModal" role="dialog" aria-labelledby="itemModalLabel">
         <div class="modal-dialog" role="document">

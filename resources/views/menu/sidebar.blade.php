@@ -158,6 +158,20 @@
             </div>
         </li>
     @endif
+
+    @if(Auth::user()->role !='Administrator' && Auth::user()->role !='Procurement Officer' && Auth::user()->role !='Checker' && Auth::user()->role !='Budget Officer' && Auth::user()->role !='MIS Checker')
+        <li>
+            <a class="nav-link {{ $shopUserActive }}" href="{{ route('shoplistRead') }}">
+                <i class="ti ti-shopping-cart"></i><span class="nav-text">Shop Item</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="nav-link {{ $cartUserActive }}" href="{{ route('prPurposeRequest') }}">
+                <i class="ti ti-shopping-cart-check"></i><span class="nav-text">My Cart</span>
+            </a>
+        </li>
+    @endif
 </ul>
 
 <script>

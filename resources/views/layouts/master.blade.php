@@ -236,6 +236,37 @@
             });
         });
     </script>
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": false,
+                "lengthChange": true,
+                "autoWidth": true,
+                "info": true,
+                "lengthChange": false,
+                //"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+
+            $("#example3").DataTable({
+                "responsive": true,
+                "lengthChange": true,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+
+            }).buttons().container().appendTo('#example3_wrapper .col-md-6:eq(0)');
+
+            $("#example4").DataTable({
+                "responsive": true,
+                "lengthChange": true,
+                "autoWidth": true,
+                "searching": true,
+                "buttons": ["excel"]
+
+            }).buttons().container().appendTo('#example4_wrapper .col-md-6:eq(0)');
+        });
+    </script>
 
     @if (request()->routeIs('categoryRead'))
         @include('myscript.manage.categorySerialize')
@@ -290,6 +321,18 @@
     @endif
     @if (request()->routeIs('userRead'))
         @include('myscript.user.userSerialize')
+    @endif
+
+    @if (request()->routeIs('shoplistRead'))
+        @include('myscript.cartongoing.shoplistSerialize')
+        @include('myscript.add.addItem')
+    @endif
+    @if(request()->routeIs('selectItems', 'editreturnselectItems'))
+        @include('myscript.add.addItem')
+        @include('myscript.add.cartTable')
+    @endif
+    @if (request()->routeIs('prPurposeRequest'))
+        @include('myscript.cartongoing.mycart')
     @endif
 </body>
 

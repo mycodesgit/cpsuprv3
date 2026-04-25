@@ -45,8 +45,8 @@
                     data: 'itid',
                     render: function (data, type, row) {
                         return (type === 'display')
-                            ? `<button type="button" data-id="${data}" class="btn btn-outline-success btn-sm btn-selectitem" data-toggle="modal" data-target="#itemModal">
-                                <i class="fas fa-cart-shopping"></i> Add Cart
+                            ? `<button type="button" data-id="${data}" class="btn btn-outline-success btn-sm btn-selectitem" data-bs-toggle="modal" data-bs-target="#itemModal">
+                                <i class="ti ti-shopping-cart"></i> Add Cart
                             </button>` : data;
                     }
                 }
