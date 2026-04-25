@@ -2,49 +2,49 @@
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title text-dark" id="addYearModalLabel">
-                    <i class="fas fa-bell" style="font-size: 1em;"></i> <span style="font-size: 1em;">Announcement</span>
-                </h2>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h6 class="modal-title" id="autoPopupModalHeaderLabel">Announcement</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    {{-- <textarea class="summernote-simple" readonly>{!! strip_tags($annoucement->announcement) !!}</textarea> --}}
-                    <textarea class="summernote-simple" readonly>{!! $annoucement->announcement !!}</textarea>
-                </div>
-                <div class="form-group">
-                    {{-- <div class="row justify-content-center">
-                        <div class="col-md-5">
-                            <div class="date-box p-2">
-                                <strong>{{ date('F d, Y', strtotime($annoucement->datestart)) }}</strong>
+                <div class="card overflow-hidden bg-light">
+                    <div class="row align-items-center g-0">
+                        <div class="col-md-4 text-center p-4">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3652/3652191.png" class="img-fluid" style="max-height: 220px;">
+                        </div>
+                        <div class="col-md-8 p-4 text-center text-md-start">
+                            <span class="badge bg-secondary px-3 py-2 mb-3">ANNOUNCEMENT</span>
+                            <h1 class="fw-bold text-success mb-2" style="font-size: 2.5rem;">
+                                PR IS CLOSED
+                            </h1>
+                            <p class="text-muted mb-3">
+                                Please be informed that the PR period is now closed.
+                            </p>
+                            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-start gap-3">
+                                <div class="bg-white shadow-sm rounded-3 px-4 py-2 text-center">
+                                    <div class="text-muted small">START DATE</div>
+                                    <div class="fw-bold text-success">
+                                        {{ date('F d, Y', strtotime($annoucement->datestart)) }}
+                                    </div>
+                                </div>
+                                <div class="fw-bold text-muted">—</div>
+                                <div class="bg-white shadow-sm rounded-3 px-4 py-2 text-center">
+                                    <div class="text-muted small">END DATE</div>
+                                    <div class="fw-bold text-danger">
+                                        {{ date('F d, Y', strtotime($annoucement->dateend)) }}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-1 d-flex align-items-center justify-content-center">
-                            <span class="date-separator">To</span>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="date-box p-2">
-                                <strong>{{ date('F d, Y', strtotime($annoucement->dateend)) }}</strong>
-                            </div>
-                        </div>
-                    </div> --}}
-                    <div id="countdown" class="col-md-12" style="padding-top: 20px; text-align: center;">
-                        <div style="color: rgb(80, 80, 80); font-size: 24px; font-family: 'Arial', sans-serif;">Remaining Time:</div>
-                        <div class="countdown-container" style="font-size: 50px; font-weight: bold; color: black;">
-                            <span id="hoursBox">00</span> :
-                            <span id="minutesBox">00</span> :
-                            <span id="secondsBox">00</span>
-                        </div>
-                        <div style="font-size: 10px; color: gray; text-align: center;">
-                            <span style="margin: 20px;">Hours</span>
-                            <span style="margin: 20px;">Minutes</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <span style="margin-right: -10px;">Seconds</span>
+                            <p class="mt-4 text-muted">
+                                Thank you to everyone who participated and supported!
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
         </div>
     </div>
 </div>
+

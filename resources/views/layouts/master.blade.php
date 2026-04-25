@@ -268,6 +268,87 @@
         });
     </script>
 
+    @if (request()->routeIs('dashboard', 'shoplistRead'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const modal = document.getElementById('autoPopupModal');
+                
+                if (!modal) return;
+
+                modal.classList.add('show', 'd-block');
+                document.body.classList.add('modal-open');
+
+                const backdrop = document.createElement('div');
+                backdrop.className = 'modal-backdrop fade show';
+                backdrop.id = 'custom-backdrop';
+                document.body.appendChild(backdrop);
+
+                function closeModal() {
+                    modal.classList.remove('show');
+                    backdrop.classList.remove('show');
+                    document.body.classList.remove('modal-open');
+
+                    setTimeout(() => {
+                        modal.classList.remove('d-block');
+
+                        const bd = document.getElementById('custom-backdrop');
+                        if (bd) bd.remove();
+                    }, 200); 
+                }
+
+                modal.querySelectorAll('[data-bs-dismiss="modal"]').forEach(btn => {
+                    btn.addEventListener('click', closeModal);
+                });
+
+                // ESC key support
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') closeModal();
+                });
+            });
+        </script>
+
+        @if ($annoucement)
+            <script>
+                function updateCountdown(endDate) {
+                    var now = new Date();
+                    var difference = endDate - now;
+
+                    var hours = Math.floor(difference / (1000 * 60 * 60));
+                    var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                    var hoursBox = document.getElementById("hoursBox");
+                    var minutesBox = document.getElementById("minutesBox");
+                    var secondsBox = document.getElementById("secondsBox");
+
+                    if (hoursBox && minutesBox && secondsBox) {
+                        hoursBox.innerHTML = formatTime(hours);
+                        minutesBox.innerHTML = formatTime(minutes);
+                        secondsBox.innerHTML = formatTime(seconds);
+                    }
+
+                    if (difference <= 0) {
+                        clearInterval(intervalId);
+                        if (hoursBox && minutesBox && secondsBox) {
+                            hoursBox.innerHTML = "00";
+                            minutesBox.innerHTML = "00";
+                            secondsBox.innerHTML = "00";
+                        }
+                    }
+                }
+
+                function formatTime(time) {
+                    return time < 10 ? "0" + time : time;
+                }
+
+                var endDate = new Date("{{ $annoucement->dateend }}");
+                var intervalId = setInterval(function () {
+                    updateCountdown(endDate);
+                }, 1000);
+            </script>
+        @endif
+    @endif
+
     @if (request()->routeIs('categoryRead'))
         @include('myscript.manage.categorySerialize')
     @endif

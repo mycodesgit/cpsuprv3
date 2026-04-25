@@ -53,7 +53,7 @@ Route::group(['middleware'=>['guest']],function(){
 
 //Middleware
 Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
-    Route::get('/dashboard',[MasterController::class,'dashboard'])->name('dashboard');
+    Route::get('/dash/view',[MasterController::class,'dashboard'])->name('dashboard');
     Route::post('/idhashcrypt',[ForAllEncryptIDController::class,'idcrypt'])->name('idcrypt');
 
     //View

@@ -159,6 +159,60 @@
                             </div>
                         </div>
                     </div>
+
+                    @php
+                        $currentDate = now()->format('Y-m-d');
+                    @endphp
+                    @if($annoucement->datestart && $annoucement->dateend)
+                        @if($currentDate >= $annoucement->datestart && $currentDate <= $annoucement->dateend && $annoucement->status == '2')
+                            @if(Auth::user()->isAllowed != 'Yes' && 
+                                (Auth::user()->role == 'Administrator' || 
+                                    Auth::user()->role == 'Budget Officer' || 
+                                    Auth::user()->role == 'Procurement Officer' || 
+                                    Auth::user()->role == 'Campus Admin' || 
+                                    Auth::user()->role == 'Dean' || 
+                                    Auth::user()->role == 'Office Head'))
+                                    @include('modal.announcePopModal')
+                            @else
+                                @if(Auth::user()->role=='Administrator' || 
+                                Auth::user()->role=='Budget Officer' || 
+                                Auth::user()->role=='Procurement Officer' || 
+                                Auth::user()->role=='Campus Admin' || 
+                                Auth::user()->role=='Dean' || 
+                                Auth::user()->role=='Office Head' ||
+                                Auth::user()->isAllowed == 'Yes')
+                                    {{-- <div class="mt-5 col-lg-12">
+                                        <div class="row">
+                                            @foreach($category as $data)
+                                                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                                                    <div class="category-card rounded" style="background: url('{{ asset($data->bgimg) }}') no-repeat; background-size: cover;">
+                                                        <div>
+                                                            <h3 class="mb-0 fw-bold">
+                                                                {{ $data->category_name }}
+                                                            </h3>
+                                                            <div class="mt-4 mb-5 fs-5">
+                                                                <p class="mb-0"><br></p>
+                                                                <span>
+                                                                    <br>
+                                                                    <span class="fw-bold text-dark"></span>
+                                                                </span>
+                                                            </div>
+                                                            <a href="#" class="btn btn-success shop-btn" data-toggle="modal" data-target="#modal-purpose" data-category-id="{{ $data->id }}">Shop Now</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                @if($loop->iteration % 3 == 0 && !$loop->last)
+                                                    <div class="row"></div>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    </div> --}}
+                                @endif
+                            @endif
+                        @endif
+                    @else
+                    @endif
                 </div>
             </div>
         </div>
