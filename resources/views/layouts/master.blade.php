@@ -413,7 +413,7 @@
         @include('myscript.add.cartTable')
     @endif
     @if (request()->routeIs('prPurposeRequest'))
-        @include('myscript.cartongoing.mycart')
+        @include('myscript.cartongoing.mycartSerialize')
     @endif
 </body>
 

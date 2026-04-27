@@ -189,6 +189,25 @@ class RequestController extends Controller
         return view("request.add.mycartlist", compact('repurpose', 'data', 'category'));
     }
 
+    public function mycartlistajax() 
+    {
+        $userId = Auth::guard('web')->user()->id;
+        $category = Category::all();
+        $data = Purpose::join('category', 'purpose.cat_id',  'category.id')
+            ->join('ppmpverify', 'purpose.id',  'ppmpverify.purpose_id')
+            ->select('purpose.*', 'category.*', 'purpose.id as purpose_Id', 'ppmpverify.*')
+            ->whereIn('purpose.pstatus', ['1', '3'])
+            ->where('purpose.user_id', '=',  $userId)
+            ->get();
+
+        $data->map(function ($item) {
+            $item->view_url = route('selectItems', ['purpose_Id' => encrypt($item->purpose_Id)]);
+            return $item;
+        });
+
+        return response()->json(['data' => $data]);
+    }
+
     public function prPurposeRequestCreate(Request $request) 
     {
         if ($request->isMethod('post')) {

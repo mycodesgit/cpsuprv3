@@ -103,6 +103,7 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
         Route::get('/purchaseRequest/cat', [RequestController::class, 'getCategories'])->name('getCategories');
 
         Route::get('/purchaseRequest/cart', [RequestController::class, 'prPurposeRequest'])->name('prPurposeRequest');
+        Route::get('/purchaseRequest/cart/my', [RequestController::class, 'mycartlistajax'])->name('mycartlistajax');
         Route::post('/purchaseRequest/purpose/add', [RequestController::class, 'prPurposeRequestCreate'])->name('prPurposeRequestCreate');
         Route::get('/purchaseRequest/cart', [RequestController::class, 'prPurposeRequest'])->name('prPurposeRequest');
         Route::post('/purchaseRequest/update', [RequestController::class, 'prPurposeRequestUpdate'])->name('prPurposeRequestUpdate');
