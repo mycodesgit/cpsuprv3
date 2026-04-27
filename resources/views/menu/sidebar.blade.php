@@ -224,6 +224,14 @@
             </a>
         </li>
     @endif
+
+    @if(Auth::user()->role == 'MIS Checker')
+        <li>
+            <a class="nav-link {{ $pendingAllActive }}" href="{{ route('pendingTechCheckListRead') }}">
+                <i class="ti ti-shopping-cart-pin"></i><span class="nav-text">Pending</span>
+            </a>
+        </li>
+    @endif
 </ul>
 
 <script>
