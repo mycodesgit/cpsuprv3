@@ -118,6 +118,8 @@ class RequestController extends Controller
 
     public function prPurposeRequest() 
     {
+        $annoucement = Annoucement::first();
+
         $userId = Auth::guard('web')->user()->id;
         $category = Category::all();
         $repurpose = Purpose::join('category', 'purpose.cat_id',  'category.id')
@@ -186,7 +188,7 @@ class RequestController extends Controller
             ]);
         }
 
-        return view("request.add.mycartlist", compact('repurpose', 'data', 'category'));
+        return view("request.add.mycartlist", compact('annoucement','repurpose', 'data', 'category'));
     }
 
     public function mycartlistajax() 
