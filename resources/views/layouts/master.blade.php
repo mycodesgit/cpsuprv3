@@ -131,9 +131,9 @@
                                 <a href="#!" class="text-secondary">
                                     <i class="ti ti-settings"></i> <span>Account Settings</span>
                                 </a>
-                                <a href="#!" class="text-success">
+                                {{-- <a href="#!" class="text-success">
                                     <i class="ti ti-message"></i><span> Chat Message</span>
-                                </a>
+                                </a> --}}
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
@@ -196,6 +196,7 @@
     <script src="{{ asset('uilibs/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('uilibs/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('uilibs/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('uilibs/js/contextmenu.js') }}"></script>
     <!-- Summernote -->
     <script src="{{ asset('uilibs/plugins/summernote/summernote-bs4.js') }}"></script>
     <!-- fullCalendar 2.2.5 -->
