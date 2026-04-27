@@ -49,6 +49,7 @@ class MasterController extends Controller
 
         $pcheckerpending = Purpose::whereIn('pstatus', ['2'])->get();
         $piconcheckerpending = Purpose::whereIn('pstatus', ['2'])->count();
+        $picontechcheckerpending = Purpose::whereIn('pstatus', ['99'])->count();
         $pcheckerapproved = Purpose::whereIn('pstatus', ['7', '8'])->get();
         $pcheckercancel = Purpose::where('pstatus', '=', '19')->get();
         $piconcheckercancel = Purpose::where('pstatus', '=', '19')->whereMonth('created_at', $now->month)->whereYear('created_at', $now->year)->count();
@@ -141,7 +142,7 @@ class MasterController extends Controller
         }
                   
         
-        return view("home.dashboard", compact('data', 'camp', 'userActiveCount', 'userDeactCount', 'categoryCount', 'itemsCount', 'campusCount', 'offCount', 'category', 'annoucement', 'otherupdates', 'ppending', 'papproved', 'pcancel', 'pcheckerpending', 'piconcheckerpending', 'pcheckerapproved', 'pcheckercancel', 'piconcheckercancel', 'countppending', 'countpapproved', 'countpreturned'));
+        return view("home.dashboard", compact('data', 'camp', 'userActiveCount', 'userDeactCount', 'categoryCount', 'itemsCount', 'campusCount', 'offCount', 'category', 'annoucement', 'otherupdates', 'ppending', 'papproved', 'pcancel', 'pcheckerpending', 'piconcheckerpending', 'picontechcheckerpending', 'pcheckerapproved', 'pcheckercancel', 'piconcheckercancel', 'countppending', 'countpapproved', 'countpreturned'));
     }
 
     // public function logout()

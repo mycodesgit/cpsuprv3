@@ -67,6 +67,67 @@
                                 </div>
                             </div>
                         </div>
+                    @elseif (Auth::guard('web')->user()->role == 'MIS Checker')
+                        <div class="col-lg-3 col-12">
+                            <div class="card card-animate">
+                                <div class="card-body p-6">
+                                    <div class="d-flex justify-content-between pb-2">
+                                        <div>
+                                            <h3 class="fw-bold h1">{{ $picontechcheckerpending }}</h3>
+                                            <span>Pending Pr's</span>
+                                        </div>
+                                        <div>
+                                            <i class="ti ti-file-off fs-1 text-danger"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-12">
+                            <div class="card card-animate">
+                                <div class="card-body p-6">
+                                    <div class="d-flex justify-content-between pb-2">
+                                        <div>
+                                            <h3 class="fw-bold h1">0</h3>
+                                            <span>Return Pr's</span>
+                                        </div>
+                                        <div>
+                                            <i class="ti ti-file fs-1 text-warning"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-12">
+                            <div class="card card-animate">
+                                <div class="card-body p-6">
+                                    <div class="d-flex justify-content-between pb-2">
+                                        <div>
+                                            <h3 class="fw-bold h1">{{ $userActiveCount }}</h3>
+                                            <span>Active Users</span>
+                                        </div>
+                                        <div>
+                                            <i class="ti ti-user-check fs-1 text-success"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-12">
+                            <div class="card card-animate">
+                                <div class="card-body p-6">
+                                    <div class="d-flex justify-content-between pb-2">
+                                        <div>
+                                            <h3 class="fw-bold h1">{{ $userDeactCount }}</h3>
+                                            <span>Deactivated Users</span>
+                                        </div>
+                                        <div>
+                                            <i class="ti ti-user-x fs-1 text-danger"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @else
                         <div class="col-lg-3 col-12">
                             <div class="card card-animate">
