@@ -46,21 +46,21 @@
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
                             case 1:
-                                return '<span class="badge badge-info">Ongoing</span>';
+                                return '<span class="badge bg-info">Ongoing</span>';
                             case 2:
-                                return '<span class="badge badge-warning">Pending</span>';
+                                return '<span class="badge bg-warning">Pending</span>';
                             case 3:
-                                return '<span class="badge badge-danger">Returned to End User</span>';
+                                return '<span class="badge bg-danger">Returned to End User</span>';
                             case 4:
-                                return '<span class="badge badge-success" style="font-size: 12px">Checking PR in Procurement</span>';
+                                return '<span class="badge bg-success" style="font-size: 12px">Checking PR in Procurement</span>';
                             case 5:
-                                return '<span class="badge badge-secondary" style="font-size: 12px">Verifying PR in PPMP</span>';
+                                return '<span class="badge bg-secondary" style="font-size: 12px">Verifying PR in PPMP</span>';
                             case 6:
-                                return '<span class="badge badge-warning">Pending in Budget Office</span>';    
+                                return '<span class="badge bg-warning">Pending in Budget Office</span>';    
                             case 99:
-                                return '<span class="badge badge-warning">Pending in MIS - Specification Review</span>';
+                                return '<span class="badge bg-warning">Pending in MIS - Specification Review</span>';
                             default:
-                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                return '<span class="badge bg-secondary">Unknown Status</span>';
                         }
                     },
                 },
@@ -68,8 +68,8 @@
                     data: 'pid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var buttons = '<button type="button" class="btn btn-sm btn-danger btn-prpdfchecking mr-1" data-id="' + row.pid + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>';
-                                buttons += '<button type="button" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-id="' + row.pid + '" data-prstatus="' + row.prstatus + '" data-trnsacno="' + row.transaction_no + '" data-userid="' + row.user_id + '" data-prno="' + row.pr_no + '"  data-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-eye"></i></button>';
+                            var buttons = '<button type="button" class="btn btn-sm btn-success btn-prpdfchecking mb-1 text-light" data-id="' + row.pid + '"  data-bs-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-file-pdf"></i></button>'+'&nbsp;';
+                                buttons += '<button type="button" class="btn btn-sm btn-primary btn-prremarkschecking mb-1" data-id="' + row.pid + '" data-prstatus="' + row.prstatus + '" data-trnsacno="' + row.transaction_no + '" data-userid="' + row.user_id + '" data-prno="' + row.pr_no + '"  data-bs-toggle="tooltip" data-placement="top" title="View PR."><i class="fas fa-eye"></i></button>'+'&nbsp;';
                                 //buttons += '<a href="' + pendingAllListViewRoute + '/' + data + '" class="btn btn-sm btn-primary btn-prremarkschecking mr-1" data-toggle="tooltip" data-placement="top" title="PR Remarks."><i class="fas fa-eye"></i> </a>';
                                 
                             return buttons;

@@ -435,6 +435,10 @@
     @if (request()->routeIs('requestPRcancelBudgetListRead'))
         @include('myscript.return.canceledprReqbyUserSerialize')
     @endif
+
+    @if (request()->routeIs('pendingTechCheckListRead'))
+        @include('myscript.pending.allpendingTechCheckerSerialize')
+    @endif
 </body>
 
 </html>
