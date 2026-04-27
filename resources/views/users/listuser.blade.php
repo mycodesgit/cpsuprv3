@@ -26,8 +26,8 @@
                                 </h6>
                             </div>
                             <div class="card-body">
-                                <button type="button" class="btn btn-success text-light" data-bs-toggle="modal" data-bs-target="#modal-user">
-                                    <i class="fas fa-user-plus"></i> Add User
+                                <button type="button" class="btn btn-success btn-sm text-light" data-bs-toggle="modal" data-bs-target="#modal-user">
+                                    <i class="fas fa-user-plus"></i> Add New User
                                 </button>
                                 <div class="table-responsive mt-2 p-2">
                                     <table id="userviewTable" class="table table-hover styled-table" style="width: 100%">
