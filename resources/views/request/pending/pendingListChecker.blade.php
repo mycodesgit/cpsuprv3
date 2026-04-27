@@ -15,7 +15,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive mt-2 p-2">
-                                    <table id="pendingCheckerTable" class="table table-hover">
+                                    <table id="pendingCheckerTable" class="table table-hover" style="width: 100% !important">
                                         <thead>
                                             <tr>
                                                 <th>Date Submitted</th>
