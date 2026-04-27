@@ -45,31 +45,31 @@
                         render: function(data, type, row) {
                         switch(parseInt(data)) {
                             case 7:
-                                return '<span class="badge badge-success">PR has been Approved</span>';
+                                return '<span class="badge bg-success">PR has been Approved</span>';
                             case 8:
-                                return '<span class="badge badge-default bg-teal">PR has been Received</span>';
+                                return '<span class="badge bg-teal">PR has been Received</span>';
                             case 9:
-                                return '<span class="badge badge-default bg-yellow">For Canvassing</span>';
+                                return '<span class="badge bg-yellow">For Canvassing</span>';
                             case 10:
-                                return '<span class="badge badge-default bg-orange">PR Canvassed</span>';
+                                return '<span class="badge bg-orange">PR Canvassed</span>';
                             case 11:
-                                return '<span class="badge badge-default bg-blue">For Philgeps Posting</span>';
+                                return '<span class="badge bg-blue">For Philgeps Posting</span>';
                             case 12:
-                                return '<span class="badge badge-default bg-gray">PR Posted</span>';
+                                return '<span class="badge bg-gray">PR Posted</span>';
                             case 13:
-                                return '<span class="badge badge-default bg-gray-dark">Bidding</span>';
+                                return '<span class="badge bg-gray-dark">Bidding</span>';
                             case 14:
-                                return '<span class="badge badge-default bg-purple">For Consolidation</span>';
+                                return '<span class="badge bg-purple">For Consolidation</span>';
                             case 15:
-                                return '<span class="badge badge-default bg-pink">Awarded</span>';
+                                return '<span class="badge bg-pink">Awarded</span>';
                             case 16:
-                                return '<span class="badge badge-default bg-red">Purchased</span>';
+                                return '<span class="badge bg-red">Purchased</span>';
                             case 17:
-                                return '<span class="badge badge-default bg-cyan">Returned</span>';
+                                return '<span class="badge bg-cyan">Returned</span>';
                             case 18:
-                                return '<span class="badge badge-default bg-warning">Forwarded to PEDO</span>';
+                                return '<span class="badge bg-warning">Forwarded to PEDO</span>';
                             default:
-                                return '<span class="badge badge-secondary">Unknown Status</span>';
+                                return '<span class="badge bg-secondary">Unknown Status</span>';
                         }
                     },
                 },

@@ -433,18 +433,14 @@
                     @endif
                 @else
                     <div>
-                        <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
-                            <li class="fileattached">
-                                <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
-                                <div class="mailbox-attachment-info">
-                                    <span class="mailbox-attachment-name">
-                                        <center>No PDF File uploaded</center>
-                                    </span>
-                                    <span class="mailbox-attachment-size clearfix mt-1">
-                                    </span>
-                                </div>
-                            </li>
-                        </ul>
+                        <div class="card text-center" style="width: 250px; border: 1px solid #eee;">
+                            <div class="card-body p-3">
+                                <i class="far fa-file-pdf" style="font-size: 60pt"></i>
+                            </div>
+                            <div class="card-footer bg-white p-2" style="font-size: 15pt">
+                                <small class="text-muted">File not found on server</small>
+                            </div>
+                        </div>
                     </div>
                 @endif
             </div>

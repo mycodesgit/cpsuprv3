@@ -52,6 +52,13 @@
             background-color: #169db8 !important;
             color: #ffffff;
         }
+        .swal2-container {
+    z-index: 99999 !important;
+}
+
+.swal2-popup .swal2-input {
+    pointer-events: auto !important;
+}
     </style>
     <div class="row ">
         <div class="col-12">
@@ -66,7 +73,7 @@
                                 </h6>
                             </div>
                             <div class="card-body">
-                                <ul class="nav nav-pills mb-3 bg-light p-2 rounded-2 d-inline-flex col-md-12" id="pills-tab" role="tablist">
+                                <ul class="nav nav-pills mb-3 bg-light p-2 rounded-2 overflow-auto flex-nowrap" id="pills-tab" role="tablist" style="white-space: nowrap;">
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link active" id="pills-one-tab" data-bs-toggle="pill"
                                             data-bs-target="#pills-one" type="button" role="tab"
@@ -152,6 +159,14 @@
                                             data-bs-target="#pills-eleven" type="button" role="tab"
                                             aria-controls="pills-eleven" aria-selected="false" tabindex="-1">
                                             Purchased
+                                        </button>
+                                    </li>
+                                    &nbsp;
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="pills-fortheen-tab" data-bs-toggle="pill"
+                                            data-bs-target="#pills-fortheen" type="button" role="tab"
+                                            aria-controls="pills-fortheen" aria-selected="false" tabindex="-1">
+                                            Direct Acquisition
                                         </button>
                                     </li>
                                     &nbsp;
@@ -498,13 +513,13 @@
                     <div class="form-group">
                         <div class="row g-2 justify-content-center">
                             <div class="col-md-4 text-center">
-                                <a href="#" class="btn btn-success btn-block received-pr"><i class="fas fa-check"></i> Received PR</a>
+                                <a href="#" class="btn btn-success btn-block received-pr"><i class="fas fa-check"></i> Received</a>
                             </div>
                             <div class="col-md-4 text-center">
-                                <a href="#" class="btn btn-success btn-block canvassing-pr"><i class="fas fa-file-excel"></i> Canvassing PR</a>
+                                <a href="#" class="btn btn-success btn-block canvassing-pr"><i class="fas fa-file-excel"></i> Canvassing</a>
                             </div>
                             <div class="col-md-4 text-center">
-                                <a href="#" class="btn btn-success btn-block canvassed-pr"><i class="fas fa-file-pdf"></i> Canvassed PR</a>
+                                <a href="#" class="btn btn-success btn-block canvassed-pr"><i class="fas fa-file-pdf"></i> Canvassed</a>
                             </div>
                         </div>
                     </div>
@@ -514,30 +529,30 @@
                                 <a href="#" class="btn btn-success btn-block posting-pr"><i class="fas fa-file"></i> Philgeps Posting</a>
                             </div>
                             <div class="col-md-4 text-center">
-                                <a href="#" class="btn btn-success btn-block posted-pr"><i class="fas fa-newspaper"></i> Posted PR</a>
+                                <a href="#" class="btn btn-success btn-block posted-pr"><i class="fas fa-newspaper"></i> Posted</a>
                             </div>
                             <div class="col-md-4 text-center">
-                                <a href="#" class="btn btn-success btn-block consolidation-pr"><i class="fas fa-ruler-combined"></i> Consolidation PR</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group mt-3">
-                        <div class="row g-2 justify-content-center">
-                            <div class="col-md-4 text-center">
-                                <a href="#" class="btn btn-success btn-block bidding-pr"><i class="fas fa-file-contract"></i> Bidding PR</a>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <a href="#" class="btn btn-success btn-block awarded-pr"><i class="fas fa-award"></i> Awarded PR</a>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <a href="#" class="btn btn-success btn-block purchased-pr"><i class="fas fa-cart-shopping"></i> Purchased PR</a>
+                                <a href="#" class="btn btn-success btn-block consolidation-pr"><i class="fas fa-ruler-combined"></i> Consolidation</a>
                             </div>
                         </div>
                     </div>
                     <div class="form-group mt-3">
                         <div class="row g-2 justify-content-center">
                             <div class="col-md-4 text-center">
-                                <a href="#" class="btn btn-success btn-block returned-pr"><i class="fas fa-right-left"></i> Returned PR</a>
+                                <a href="#" class="btn btn-success btn-block bidding-pr"><i class="fas fa-file-contract"></i> Bidding</a>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <a href="#" class="btn btn-success btn-block awarded-pr"><i class="fas fa-award"></i> Awarded</a>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <a href="#" class="btn btn-success btn-block purchased-pr"><i class="fas fa-cart-shopping"></i> Purchased</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <div class="row g-2 justify-content-center">
+                            <div class="col-md-4 text-center">
+                                <a href="#" class="btn btn-success btn-block returned-pr"><i class="fas fa-right-left"></i> Returned</a>
                             </div>
                             <div class="col-md-4 text-center">
                                 <a href="#" class="btn btn-success btn-block forwarded-pr"><i class="fas fa-forward-step"></i> Forwarded to PEDO</a>

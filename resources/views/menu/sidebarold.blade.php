@@ -238,7 +238,7 @@
             <li class="menu-header" style="border-top: none">Approval Navigation</li>
 
             <li class="{{ $pendingBudAllActive }}">
-                <a class="nav-link" href="{{ route('pendingAllBudgetListRead') }}">
+                <a class="nav-link" href="pendingAllBudgetListRead">
                     <i class="fas fa-clock"></i> <span>Waiting PR</span>
                     <span id="pendingBudCount" class="badge badge-warning" style="font-size: 10pt; width: 43px; height: 20px; line-height: 10px;">
                         {{ $data['pendBudCount'] }}

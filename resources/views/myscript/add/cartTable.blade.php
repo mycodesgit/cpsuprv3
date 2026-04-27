@@ -44,7 +44,7 @@
                 {data: 'iid',
                     render: function(data, type, row) {
                         if (type === 'display') {
-                            var button = '<button type="button" value="' + data + '" class="btn btn-outline-danger btn-xs prreq-delete">' +
+                            var button = '<button type="button" value="' + data + '" class="btn btn-outline-danger btn-sm prreq-delete">' +
                                 '<i class="fas fa-trash"></i>' +
                                 '</button>';
                             return button;

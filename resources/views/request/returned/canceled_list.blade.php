@@ -1,57 +1,60 @@
 @extends('layouts.master')
 
 @section('body')
-    <section class="section">
-        <div class="" style="margin-left: -20px; margin-right: -20px; border-radius: 5px; margin-top: 20px; padding: 3px;">
-            <h5>List of Canceled Purchase Request</h5>
-        </div>
-
-        <div class="section-body" style="margin-left: -20px; margin-right: -20px; border-radius: 5px;">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="table-responsive" style="overflow-x: hidden;">
-                                <table id="canceltable" class="table table-hover styled-table" style="width: 100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Campus</th>
-                                            <th>Transaction No.</th>
-                                            <th>PR No.</th>
-                                            <th>Type</th>
-                                            <th>Office</th>
-                                            <th>Purpose</th>
-                                            <th>Category</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    </tbody>
-                                </table>
+    <div class="row ">
+        <div class="col-12">
+            <div class="mb-6">
+                <h1 class="fs-3 mb-4">Canceled PR</h1>
+                <div class="row g-4 mb-5">
+                    <div class="col-md-12">
+                        <div class="card card-animate">
+                            <div class="card-header pt-3">
+                                <h6 class="card-title">
+                                    <i class="fas fa-list"></i> List of Canceled Purchase Request
+                                </h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive mt-2 p-2">
+                                    <table id="canceltable" class="table table-hover styled-table" style="width: 100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Campus</th>
+                                                <th>Transaction No.</th>
+                                                <th>PR No.</th>
+                                                <th>Type</th>
+                                                <th>Office</th>
+                                                <th>Purpose</th>
+                                                <th>Category</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+    
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <div class="modal fade" id="viewPrModal" tabindex="-1" role="dialog" aria-labelledby="viewPrModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document" style="max-width: 80vw;">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <div class="modal-content">
-                <div class="modal-header p-3" style="background-color: #f6f6f6; color: #000;">
-                    <h5 class="modal-title" id="viewPrModalLabel">Purchase Request Details</h5>
-                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">
-                        <i class="fas fa-times"></i>
-                    </button>
+                <div class="modal-header">
+                    <h6 class="modal-title" id="viewPrModalLabel">Purchase Request Details</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="editCategoryForm">
-                    <div class="modal-body p-0" id="modalContent">
-                        <div class="text-center">Loading...</div>
-                    </div>
-                </form>
+                <div class="modal-body" id="modalContent">
+                    <div class="text-center">Loading...</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>

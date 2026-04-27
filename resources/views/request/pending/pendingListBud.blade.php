@@ -1,51 +1,129 @@
 @extends('layouts.master')
 
 @section('body')
-    <section class="section">
-        <div class="" style="margin-left: -20px; margin-right: -20px; border-radius: 5px; margin-top: 20px; padding: 3px;">
-            <h5>List of Pending Approval Pr's</h5>
-        </div>
+    <style>
+        /* Background Colors */
+        .bg-teal {
+            background-color: #20c997 !important;
+            color: #fff;
+        }
 
-        <div class="section-body" style="margin-left: -20px; margin-right: -20px; border-radius: 5px;">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="table-responsive" style="overflow-x: hidden;">
-                                <table id="bud" class="table table-hover styled-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Date</th>
-                                            <th>Campus</th>
-                                            <th>Transaction No.</th>
-                                            <th>Type</th>
-                                            <th>Office</th>
-                                            <th>Purpose</th>
-                                            <th>Category</th>
-                                            <th>Status</th>
-                                            <th width="10%">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+        .bg-yellow {
+            background-color: #ffc107 !important;
+            color: #212529;
+        }
 
-                                    </tbody>
-                                </table>
+        .bg-orange {
+            background-color: #fd7e14 !important;
+            color: #fff;
+        }
+
+        .bg-blue {
+            background-color: #0d6efd !important;
+            color: #fff;
+        }
+
+        .bg-gray {
+            background-color: #6c757d !important;
+            color: #fff;
+        }
+
+        .bg-gray-dark {
+            background-color: #343a40 !important;
+            color: #fff;
+        }
+
+        .bg-purple {
+            background-color: #6f42c1 !important;
+            color: #fff;
+        }
+
+        .bg-pink {
+            background-color: #e83e8c !important;
+            color: #fff;
+        }
+
+        .bg-red {
+            background-color: #dc3545 !important;
+            color: #fff;
+        }
+
+        .bg-cyan {
+            background-color: #169db8 !important;
+            color: #ffffff;
+        }
+        .swal2-container {
+    z-index: 99999 !important;
+}
+
+.swal2-popup .swal2-input {
+    pointer-events: auto !important;
+}
+    </style>
+    <div class="row ">
+        <div class="col-12">
+            <div class="mb-6">
+                <h1 class="fs-4 mb-4">Waiting PR</h1>
+                <div class="row g-4 mb-5">
+                    <div class="col-md-12">
+                        <div class="card card-animate">
+                            <div class="card-header pt-3">
+                                <h6 class="card-title">
+                                    <i class="fas fa-list"></i> List of Pending Approval Pr's
+                                </h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive mt-2 p-2">
+                                    <table id="bud" class="table table-hover styled-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Campus</th>
+                                                <th>Transaction No.</th>
+                                                <th>Type</th>
+                                                <th>Office</th>
+                                                <th>Purpose</th>
+                                                <th>Category</th>
+                                                <th>Status</th>
+                                                <th width="10%">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <div class="modal fade" id="viewPrModal" tabindex="-1" role="dialog" aria-labelledby="viewPrModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="viewPrModalLabel">Purchase Request Details</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalContent">
+                    <div class="text-center">Loading...</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade" id="prcheckingModal" tabindex="-1" role="dialog" aria-labelledby="prcheckingModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document" style="max-width: 80vw;">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header p-3" style="background-color: #f6f6f6; color: #000;">
-                    <h5 class="modal-title" id="prcheckingModalLabel">Remarks</h5>&nbsp;
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h6 class="modal-title" id="prcheckingModalLabel">Remarks</h6>&nbsp;
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form id="editprcheckingForm">
                     <div class="modal-body">
@@ -58,17 +136,18 @@
                         <input type="hidden" name="userid" id="edituserid">
                         
                         <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-12" style="border-bottom: 2px solid #04401f;">
-                                    <label><span class="badge badge-danger">Purpose:</span></label>
-                                    <input type="text" id="editpurname" class="form-control border-0" style="background-color: transparent; margin-top: -7px; font-weight: bold" readonly>
+                            <div class="row g-3">
+                                <div class="col-md-12">
+                                    <label>Purpose: <span class="text-danger">*</span></label>
+                                    <input type="text" id="editpurname" class="form-control" readonly>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="form-row">
+                        <div class="col-md-12 mt-3" style="border-bottom: 2px solid #04401f;"></div>
+                        <div class="form-group mt-2">
+                            <div class="row g-3">
                                 <div class="col-md-4">
-                                    <label><span class="badge badge-secondary">Action Taken:</span></label>
+                                    <label>Action Taken: <span class="text-danger">*</span></label>
                                     <select class="form-control form-control-sm" name="status">
                                         <option disabled selected> --- Select ---</option>
                                         <option value="7">Approved</option>
@@ -77,7 +156,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <label><span class="badge badge-secondary">Financing Source:</span></label>
+                                    <label>Financing Source: <span class="text-danger">*</span></label>
                                     <select class="form-control form-control-sm" name="financing_source">
                                         <option disabled selected> --- Select ---</option>
                                         <option value="1">General Fund (MDS Fund)</option>
@@ -86,7 +165,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <label><span class="badge badge-secondary">Fund Cluster:</span></label>
+                                    <label>Fund Cluster: <span class="text-danger">*</span></label>
                                     <select class="form-control form-control-sm" name="fund_cluster">
                                         <option disabled selected> --- Select ---</option>
                                         <option value="RAF">Regular Agency Fund</option>
@@ -98,10 +177,10 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="form-row">
+                        <div class="form-group mt-2">
+                            <div class="row g-3">
                                 <div class="col-md-4">
-                                    <label><span class="badge badge-secondary">Fund Category:</span></label>
+                                    <label>Fund Category: <span class="text-danger">*</span></label>
                                     <select class="form-control form-control-sm" name="fund_category">
                                         <option disabled selected> --- Select ---</option>
                                         <option value="1">Specific Budget of NGAs</option>
@@ -112,7 +191,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <label><span class="badge badge-secondary">Authorization:</span></label>
+                                    <label>Authorization: <span class="text-danger">*</span></label>
                                     <select class="form-control form-control-sm" name="fund_auth">
                                         <option disabled selected> --- Select ---</option>
                                         <option value="1">New gen. Appropriations (Current Year Budget)</option>
@@ -124,16 +203,16 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <label><span class="badge badge-secondary">Specific Fund/Income Source:</span></label>
+                                    <label>Specific Fund/Income Source: <span class="text-danger">*</span></label>
                                     <input type="text" name="specific_fund" class="form-control form-control-sm">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="form-row">
+                        <div class="form-group mt-2">
+                            <div class="row g-3">
                                 <div class="col-md-12">
-                                    <label><span class="badge badge-secondary">Reason to Action Taken:</span></label>
+                                    <label>Reason to Action Taken: <span class="text-danger">*</span></label>
                                     <input type="text" name="reason" class="form-control form-control-sm">
                                     <span class="text-danger" style="font-size: 8pt">(Optional)</span>
                                 </div>
@@ -143,7 +222,7 @@
                         <div class="page-header" style="border-bottom: 1px solid #04401f;"></div>
 
                         <div class="form-group mt-2">
-                            <div class="form-row">
+                            <div class="row g-3">
                                 <div class="col-sm-12">
                                     <div class="card" style="background-color: #f7f7f7;">
                                         <div style="padding-left: 8px; padding-top: 8px; margin-bottom: -20px;">
@@ -169,13 +248,13 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-12">
-                                                        <label><span class="badge badge-success">Account Code:</span></label>
+                                                        <label>Account Code: <span class="text-danger">*</span></label>
                                                         <input type="text" name="account_code" class="form-control form-control-sm">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-12">
-                                                        <label><span class="badge badge-danger">Amount:</span></label>
+                                                        <label>Amount: <span class="text-danger">*</span></label>
                                                         <input type="text" name="amount" class="form-control form-control-sm" oninput="formatCurrency(this)">
                                                     </div>
                                                 </div>
@@ -189,53 +268,30 @@
                         <div class="page-header" style="border-bottom: 1px solid #04401f;"></div>
 
                         <div class="form-group mt-2">
-                            <div class="form-row">
+                            <div class="row g-3">
                                 <div class="col-md-12">
-                                    <label><span class="badge badge-secondary">Purpose/Project:</span></label>
+                                    <label>Purpose/Project: <span class="text-danger">*</span></label>
                                     <input type="text" name="purproject" class="form-control form-control-sm">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-12">
-                                    <label><span class="badge badge-secondary">Program/Activity/Project</span></label>
+                        <div class="form-group mt-2">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label>Program/Activity/Project <span class="text-danger">*</span></label>
                                     <input type="text" name="progactproject" class="form-control form-control-sm">
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-4">
-                                    <label><span class="badge badge-secondary">Allotment / Budget Available:</span></label>
+                                <div class="col-md-6">
+                                    <label>Allotment / Budget Available: <span class="text-danger">*</span></label>
                                     <input type="text" id="allotBudget" name="allotbuget" class="form-control form-control-sm" oninput="formatCurrency(this)">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="viewPrModal" tabindex="-1" role="dialog" aria-labelledby="viewPrModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document" style="max-width: 80vw;">
-            <div class="modal-content">
-                <div class="modal-header p-3" style="background-color: #f6f6f6; color: #000;">
-                    <h5 class="modal-title" id="viewPrModalLabel">Purchase Request Details</h5>
-                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <form id="editCategoryForm">
-                    <div class="modal-body p-0" id="modalContent">
-                        <div class="text-center">Loading...</div>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success text-light">Save</button>
                     </div>
                 </form>
             </div>

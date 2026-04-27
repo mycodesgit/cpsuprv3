@@ -159,7 +159,7 @@
         </li>
     @endif
 
-    @if(Auth::user()->role !='Administrator' && Auth::user()->role !='Procurement Officer' && Auth::user()->role !='Checker' && Auth::user()->role !='Budget Officer' && Auth::user()->role !='MIS Checker')
+    @if(Auth::user()->role !='Administrator' && Auth::user()->role !='Procurement Officer' && Auth::user()->role !='Checker' && Auth::user()->role !='MIS Checker')
         <li>
             <a class="nav-link {{ $shopUserActive }}" href="{{ route('shoplistRead') }}">
                 <i class="ti ti-shopping-cart"></i><span class="nav-text">Shop Item</span>
@@ -169,6 +169,58 @@
         <li>
             <a class="nav-link {{ $cartUserActive }}" href="{{ route('prPurposeRequest') }}">
                 <i class="ti ti-shopping-cart-check"></i><span class="nav-text">My Cart</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="nav-link {{ $pendingUserActive }}" href="{{ route('pendingListRead') }}">
+                <i class="ti ti-clock-pin"></i><span class="nav-text">Pending</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="nav-link {{ $approvedUserActive }}" href="{{ route('approvedListRead') }}">
+                <i class="ti ti-clock-check"></i><span class="nav-text">Approved</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="nav-link {{ $returnUserActive }}" href="{{ route('returnedUserListRead') }}">
+                <i class="ti ti-rewind-backward-10"></i><span class="nav-text">Returned</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="nav-link {{ $canceledUserActive }}" href="{{ route('cancelUserListRead') }}">
+                <i class="ti ti-shopping-cart-cancel"></i><span class="nav-text">Canceled</span>
+            </a>
+        </li>
+
+         <li class="px-4 py-2">
+            <small class="nav-text text-muted">Pap's PRE</small>
+        </li>
+
+        <li>
+            <a class="nav-link" href="#">
+                <i class="ti ti-file-excel"></i><span class="nav-text">Create PAPs</span>
+            </a>
+        </li>
+    @endif
+    
+    @if(Auth::user()->role == 'Administrator' || Auth::user()->role == 'Budget Officer')
+        <li class="px-4 py-2">
+            <small class="nav-text text-muted">Approval Navigation</small>
+        </li>
+
+        <li>
+            <a class="nav-link {{ $pendingBudAllActive }}" href="{{ route('pendingAllBudgetListRead') }}">
+                <i class="ti ti-shopping-cart-pin"></i><span class="nav-text">Waiting</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="nav-link {{ $pendingBudCancelAllActive }}" href="{{ route('requestPRcancelBudgetListRead') }}">
+                <i class="ti ti-shopping-cart-cancel"></i><span class="nav-text">Cancel</span>
             </a>
         </li>
     @endif

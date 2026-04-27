@@ -415,6 +415,25 @@
     @if (request()->routeIs('prPurposeRequest'))
         @include('myscript.cartongoing.mycartSerialize')
     @endif
+    @if (request()->routeIs('pendingListRead'))
+        @include('myscript.pending.allpendingUserSerialize')
+    @endif
+    @if (request()->routeIs('approvedListRead'))
+        @include('myscript.approve.allUserapprovedSerialize')
+    @endif
+    @if (request()->routeIs('returnedUserListRead'))
+        @include('myscript.return.returnprUserSerialize')
+    @endif
+    @if (request()->routeIs('cancelUserListRead'))
+        @include('myscript.return.canceledprUserSerialize')
+    @endif
+
+    @if (request()->routeIs('pendingAllBudgetListRead'))
+        @include('myscript.pending.allpendingBudgetSerialize')
+    @endif
+    @if (request()->routeIs('requestPRcancelBudgetListRead'))
+        @include('myscript.return.canceledprReqbyUserSerialize')
+    @endif
 </body>
 
 </html>
