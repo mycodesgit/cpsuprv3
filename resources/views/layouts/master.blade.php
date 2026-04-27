@@ -124,7 +124,7 @@
                                 <img src="{{ asset('uilibs/images/user.png') }}" alt="" class="avatar avatar-md rounded-circle" />
                                 <div>
                                     <h5 class="mb-0 small">{{ Auth::guard('web')->user()->fname }} {{ Auth::guard('web')->user()->lname }}</h5>
-                                    <p class="mb-0 small text-warning">Admin</p>
+                                    <p class="mb-0 small text-warning">{{ Auth::guard('web')->user()->role }}</p>
                                 </div>
                             </div>
                             <div class="p-3 d-flex flex-column gap-1 medium lh-lg">
