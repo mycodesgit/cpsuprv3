@@ -63,13 +63,13 @@
     <div class="row ">
         <div class="col-12">
             <div class="mb-6">
-                <h1 class="fs-4 mb-4">Approved PR</h1>
+                <h1 class="fs-4 mb-4">Pending PR</h1>
                 <div class="row g-4 mb-5">
                     <div class="col-md-12">
                         <div class="card card-animate">
                             <div class="card-header pt-3">
                                 <h6 class="card-title">
-                                    <i class="fas fa-list"></i> List of Approved PR
+                                    <i class="fas fa-list"></i> List of Pending PR
                                 </h6>
                             </div>
                             <div class="card-body">
