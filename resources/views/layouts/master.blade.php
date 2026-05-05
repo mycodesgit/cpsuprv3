@@ -30,73 +30,6 @@
     <!-- fullCalendar -->
     <link rel="stylesheet" href="{{ asset('uilibs/plugins/fullcalendar/fullcalendar.css') }}">
 
-    <style>
-        .nav-link {
-            font-size: 14px;
-        }
-
-        .nav-link:hover {
-            background-color: #f8f9fa;
-            border-radius: 6px;
-        }
-
-        .collapse .nav-link {
-            color: #555;
-        }
-        .sidebar .nav-link.active {
-            color: #000000 !important;
-            background-color: #65ac86 !important;
-        }
-        /* When sidebar is collapsed, remove active background */
-        .sidebar.collapsed .nav-link.active,
-        .sidebar.collapsed .nav-link:hover {
-            background-color: transparent !important;
-            color: inherit !important;
-        }
-        /* main {
-            background-color: #f4f6f9;
-        } */
-        .fc-event {
-            border-color: #198754; background-color: #198754;
-        }
-        @media (max-width: 768px) {
-            .fc .fc-daygrid-day-frame {
-                min-height: 45px;
-            }
-        }
-        .card-hover {
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-
-        .card-hover:hover {
-            transform: scale(1.03);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-        .sidebar .nav-link .fa {
-            font-size: 18px !important;
-        }
-        .fa {
-            font-family: tabler-icons !important;
-            speak: none;
-            font-style: normal;
-            font-weight: 400;
-            font-variant: normal;
-            text-transform: none;
-            line-height: 1;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        .btn-block {
-            display: block;
-            width: 100%;
-        }
-        .swal2-container {
-            z-index: 999999 !important;
-        }
-        .my-swal-on-top {
-            z-index: 999999 !important;
-        }
-    </style>
 </head>
 
 <body>
@@ -114,7 +47,38 @@
         <div>
             <!-- Navbar nav -->
             <ul class="list-unstyled d-flex align-items-center mb-0 gap-1">
-                <li class="ms-3 dropdown">
+                <li>
+                    <a class="position-relative btn btn-light btn-sm d-inline-flex align-items-center gap-2"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        href="#"
+                        role="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                            class="icon icon-tabler icon-tabler-bell">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6"></path>
+                            <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path>
+                        </svg>
+
+                        <span>Notifications</span>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success"  id="notifCount">
+                            0
+                        </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-md p-0">
+                        <ul class="list-unstyled p-0 m-0">
+                            <li class="p-2 border-bottom"><i class="fas fa-exclamation-circle"></i> Unread</li>
+                            <div id="unreadNotifItems" style="max-height: 300px; overflow-y: auto;">
+                            </div>
+                            <br>
+                            <li class="p-2 border-bottom"><i class="fas fa-exclamation-circle"></i> Read</li>
+                            <div id="readNotifItems" style="max-height: 300px; overflow-y: auto;">
+                            </div>
+                        </ul>
+                    </div>
+                </li>
+                {{-- <li class="ms-3 dropdown">
                     <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="{{ asset('uilibs/images/user.png') }}" alt="" class="avatar avatar-sm rounded-circle" /> {{ Auth::guard('web')->user()->fname }} {{ Auth::guard('web')->user()->lname }}
                     </a>
@@ -131,9 +95,6 @@
                                 <a href="#!" class="text-secondary">
                                     <i class="ti ti-settings"></i> <span>Account Settings</span>
                                 </a>
-                                {{-- <a href="#!" class="text-success">
-                                    <i class="ti ti-message"></i><span> Chat Message</span>
-                                </a> --}}
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
@@ -144,7 +105,7 @@
 
                         </div>
                     </div>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </nav>
@@ -158,7 +119,27 @@
             </div>
         </div>
         @include('menu.sidebar')
-
+        <div class="mt-auto p-3">
+            <div class="profile-card d-flex align-items-center justify-content-between rounded-3 px-3 py-2">
+                <div class="d-flex align-items-center">
+                    <div class="avatar-circle text-white d-flex align-items-center justify-content-center me-3">
+                        {{ strtoupper(substr(Auth::guard('web')->user()->fname, 0, 1)) }}{{ strtoupper(substr(Auth::guard('web')->user()->lname, 0, 1)) }}
+                    </div>
+                    <div class="profile-info">
+                        <div class="fw-medium" style="font-size: 12px;">
+                            {{ strtoupper(substr(Auth::guard('web')->user()->fname, 0, 1)) }}. {{ Auth::guard('web')->user()->lname }}
+                        </div>
+                        <small class="text-muted" style="font-size: 10px; font-weight: bold">{{ Auth::guard('web')->user()->role }}</small>
+                    </div>
+                </div>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+                <button class="btn btn-link bg-light p-0 profile-action" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="ti ti-logout"></i>
+                </button>
+            </div>
+        </div>
     </aside>
 
     <!-- MAINmainCONTENT -->
@@ -213,6 +194,15 @@
     <!-- Validation JS -->
     <script src="{{ asset('uilibs/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('uilibs/plugins/jquery-validation/additional-methods.min.js') }}"></script>
+
+    @include('myscript.count.allcountbadge')
+    @include('myscript.notif.allnotifbadge')
+
+    <script>
+        var userPendingCountRoute = "{{ route('pendingListRead') }}";
+        var userApprovedCountRoute = "{{ route('approvedListRead') }}";
+        var userReturnCountRoute = "{{ route('returnedUserListRead') }}";
+    </script>
 
     <script>
         $(function () {

@@ -214,7 +214,7 @@
 
         <li>
             <a class="nav-link {{ $pendingBudAllActive }}" href="{{ route('pendingAllBudgetListRead') }}">
-                <i class="ti ti-shopping-cart-pin"></i><span class="nav-text">Waiting</span>
+                <i class="ti ti-shopping-cart-pin"></i><span class="nav-text">Waiting</span><span class="badge bg-warning ms-1" id="pendingBudCount">{{ $data['pendBudCount'] }}</span>
             </a>
         </li>
         

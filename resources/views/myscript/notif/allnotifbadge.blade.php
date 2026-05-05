@@ -35,14 +35,17 @@
                     // Add Unread Notifications
                     if (data.unread.length > 0) {
                         data.unread.forEach(function(notif) {
-                            let notifItem = `<a href="#" class="dropdown-item dropdown-item-unread notification-item unread" 
+                            let notifItem = `
+                            <li class="p-3 border-bottom">
+                                <a href="#" class="dropdown-item dropdown-item-unread notification-item unread" 
                                 data-id="${notif.id}">
-                                <i class="fas fa-bell icon text-success"></i>
-                                <div class="dropdown-item-desc">
-                                    <strong>${notif.message}</strong>
-                                    <div class="notification-time">${notif.time_ago}</div>
+                            <div class="d-flex gap-3">
+                                <div class="flex-grow-1 small">
+                                    <p class="mb-1">${notif.message}</p>
+                                    <div class="text-secondary">${notif.time_ago}</div>
                                 </div>
-                            </a>`;
+                            </div></a>
+                            </li>`;
                             unreadNotifItems.append(notifItem);
                         });
                     } else {
@@ -51,14 +54,18 @@
                     // Add Read Notifications
                     if (data.read.length > 0) {
                         data.read.forEach(function(notif) {
-                            let notifItem = `<a href="#" class="dropdown-item dropdown-item notification-item read" 
+                            let notifItem = `
+                            <li class="p-3 border-bottom">
+                                <a href="#" class="dropdown-item dropdown-item-read notification-item read" 
                                 data-id="${notif.id}">
-                                <i class="fas fa-check-circle icon text-success"></i>
-                                <div class="dropdown-item-desc">
-                                    ${notif.message}
-                                    <div class="notification-time">${notif.time_ago}</div>
+                            <div class="d-flex gap-3">
+                                <div class="flex-grow-1 small">
+                                    <p class="mb-1">${notif.message}</p>
+                                    <div class="text-secondary">${notif.time_ago}</div>
                                 </div>
-                            </a>`;
+                            </div>
+                            </a>
+                            </li>`;
                             readNotifItems.append(notifItem);
                         });
                     }
