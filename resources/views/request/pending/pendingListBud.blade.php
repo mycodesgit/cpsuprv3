@@ -74,7 +74,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive mt-2 p-2">
-                                    <table id="bud" class="table table-hover styled-table">
+                                    <table id="bud" class="table table-hover styled-table" style="width: 100% !important">
                                         <thead>
                                             <tr>
                                                 <th>Date</th>
