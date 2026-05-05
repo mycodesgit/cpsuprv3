@@ -372,6 +372,9 @@
         @include('myscript.approve.allapprovedSerialize')
         @include('myscript.approve.acceptanceSerialize')
     @endif
+    @if (request()->routeIs('ppmpRead'))
+        @include('myscript.ppmp.usrppmpjs')
+    @endif
     @if (request()->routeIs('archiveShow'))
         @include('myscript.archivepr.archiveSerialize')
         @include('myscript.approve.acceptanceSerialize')

@@ -102,6 +102,53 @@ class PpmpController extends Controller
         return view("ppmp.list_officeppmp", compact('data', 'categories', 'userppmp'));
     }
 
+    public function ppmpShow()
+    {
+        $userppmp = PpmpUser::join('users', 'ppmpuser.user_id', '=', 'users.id')
+            ->join('campuses', 'users.campus_id', '=', 'campuses.id')
+            ->join('office', 'users.office_id', '=', 'office.id')
+            ->select(
+                'ppmpuser.*',
+                'ppmpuser.id as puid',
+                'users.fname',
+                'users.lname',
+                'campuses.campus_name',
+                'office.office_abbr'
+            )
+            ->get();
+
+        $data = $userppmp->map(function ($item, $index) {
+
+            $categories = [];
+            $categoryIds = [];
+
+            if ($item->ppmp_categories) {
+                $decoded = json_decode($item->ppmp_categories);
+
+                foreach ($decoded as $categoryId) {
+                    $category = Category::find($categoryId);
+
+                    $categories[] = $category ? $category->category_name : 'Unknown Category';
+                    $categoryIds[] = $categoryId;
+                }
+            }
+
+            return [
+                'no' => $index + 1,
+                'campus' => $item->campus_name,
+                'office' => $item->office_abbr,
+                'name' => $item->fname . ' ' . $item->lname,
+                'categories' => $categories,
+                'category_ids' => $categoryIds,
+                'puid' => $item->puid
+            ];
+        });
+
+        return response()->json([
+            'data' => $data
+        ]);
+    }
+
     public function ppmpEdit($puid) {
         $userppmp = PpmpUser::find($puid);
         $categories = Category::all();
@@ -120,9 +167,16 @@ class PpmpController extends Controller
                 'ppmp_categories' => $request->input('ppmp_categories')
             ]);
 
-            return redirect()->route('ppmpRead')->with('success', 'Add successfully!');
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Updated successfully!'
+            ]);
         } catch (\Exception $e) {
-            return redirect()->route('ppmpRead')->with('error', 'Failed to store!');
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed to update!',
+                'error' => $e->getMessage()
+            ], 500);
         }
     }
 }

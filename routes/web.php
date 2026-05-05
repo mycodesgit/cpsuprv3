@@ -255,6 +255,7 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
     //View
     Route::prefix('/ppmp')->group(function () {
         Route::get('/per/year', [PpmpController::class, 'ppmpRead'])->name('ppmpRead');
+        Route::get('/per/year/fetch', [PpmpController::class, 'ppmpShow'])->name('ppmpShow');
         Route::get('/per/year/{puid}', [PpmpController::class,'ppmpEdit'])->name('ppmpEdit');
         Route::post('/per/year/update', [PpmpController::class, 'userppmpUpdate'])->name('userppmpUpdate');
     });
