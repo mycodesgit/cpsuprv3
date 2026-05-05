@@ -47,7 +47,7 @@
         <div>
             <!-- Navbar nav -->
             <ul class="list-unstyled d-flex align-items-center mb-0 gap-1">
-                <li>
+                <li class="ms-3 dropdown">
                     <a class="position-relative btn btn-light btn-sm d-inline-flex align-items-center gap-2"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
