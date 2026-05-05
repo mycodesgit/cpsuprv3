@@ -136,7 +136,7 @@
                     @csrf
                 </form>
                 <button class="btn btn-link bg-light p-0 profile-action" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="ti ti-logout"></i>
+                    <i class="fas fa-sign-out text-danger"></i>
                 </button>
             </div>
         </div>
