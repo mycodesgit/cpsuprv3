@@ -118,27 +118,48 @@
                 <span class="logo-text ms-2" style="font-weight: bold">CPSU PR</span>
             </div>
         </div>
+
         @include('menu.sidebar')
-        <div class="mt-auto p-3">
-            <div class="profile-card d-flex align-items-center justify-content-between rounded-3 px-3 py-2">
+
+        <div class="mt-auto p-3 position-relative">
+            <div class="profile-card d-flex align-items-center justify-content-between rounded-3 px-3 py-2"
+                onclick="toggleProfileMenu()">
+
                 <div class="d-flex align-items-center">
-                    <div class="avatar-circle text-white d-flex align-items-center justify-content-center me-3">
-                        {{ strtoupper(substr(Auth::guard('web')->user()->fname, 0, 1)) }}{{ strtoupper(substr(Auth::guard('web')->user()->lname, 0, 1)) }}
+                    <div class="avatar-circle-active text-white d-flex align-items-center justify-content-center me-2">
+                        {{ strtoupper(substr(Auth::user()->fname, 0, 1)) }}{{ strtoupper(substr(Auth::user()->lname, 0, 1)) }}
                     </div>
+
                     <div class="profile-info">
-                        <div class="fw-medium" style="font-size: 12px;">
-                            {{ strtoupper(substr(Auth::guard('web')->user()->fname, 0, 1)) }}. {{ Auth::guard('web')->user()->lname }}
+                        <div class="fw-medium" style="font-size: 12px; font-weight:bold !important">
+                            {{ strtoupper(substr(Auth::user()->fname, 0, 1)) }}. {{ Auth::user()->lname }}
                         </div>
-                        <small class="text-muted" style="font-size: 10px; font-weight: bold">{{ Auth::guard('web')->user()->role }}</small>
+                        <small class="text-muted" style="font-size: 10px; font-weight: bold">
+                            {{ Auth::user()->role }}
+                        </small>
                     </div>
                 </div>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-                <button class="btn btn-link bg-light p-0 profile-action" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="fas fa-sign-out text-danger"></i>
-                </button>
+                <i class="fas fa-chevron-up text-muted"></i>
             </div>
+            <!-- Dropdown -->
+            <div id="profileDropdown" class="profile-dropdown">
+                <div class="dropdown-header text-dark d-flex align-items-center">
+                    <div class="avatar-circle text-white d-flex align-items-center justify-content-center me-2">
+                        {{ strtoupper(substr(Auth::user()->fname, 0, 1)) }}{{ strtoupper(substr(Auth::user()->lname, 0, 1)) }}
+                    </div>
+                    <strong class="mb-0">{{ strtoupper(substr(Auth::user()->fname, 0, 1)) }}. {{ Auth::user()->lname }}</strong>
+                </div>
+                <a href="{{ route('account.index') }}"><i class="ti ti-user"></i> Account</a>
+                <a href="#"><i class="ti ti-bell"></i> Notifications</a>
+                <hr>
+                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-danger">
+                    <i class="fas fa-sign-out"></i> Log out
+                </a>
+            </div>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
+                @csrf
+            </form>
         </div>
     </aside>
 
@@ -432,6 +453,21 @@
     @if (request()->routeIs('pendingTechCheckListRead'))
         @include('myscript.pending.allpendingTechCheckerSerialize')
     @endif
+
+    <script>
+        function toggleProfileMenu() {
+            const menu = document.getElementById("profileDropdown");
+            menu.style.display = (menu.style.display === "block") ? "none" : "block";
+        }
+        document.addEventListener("click", function(e) {
+            const card = document.querySelector(".profile-card");
+            const menu = document.getElementById("profileDropdown");
+
+            if (!card.contains(e.target) && !menu.contains(e.target)) {
+                menu.style.display = "none";
+            }
+        });
+    </script>
 </body>
 
 </html>

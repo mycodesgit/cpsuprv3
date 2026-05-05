@@ -24,6 +24,7 @@ use App\Http\Controllers\PpmpController;
 use App\Http\Controllers\GeneralSearchController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AccountController;
 
 use App\Http\Controllers\CreatePapsController;
 use App\Http\Controllers\CreatePpmpController;
@@ -299,6 +300,10 @@ Route::group(['middleware'=>['login_auth', 'CheckMaintenanceMode']],function(){
         Route::get('/account-settings',[UserController::class,'user_settings'])->name('user_settings');
         Route::post('/account-settings/information/update',[UserController::class,'user_settings_profile_update'])->name('user_settings_profile_update');
         Route::post('/acccount-settings/information/updatePass',[UserController::class,'profilePassUpdate'])->name('profilePassUpdate');
+    });
+
+     Route::prefix('/account')->group(function () {
+        Route::get('/profile/view/',[AccountController::class,'index'])->name('account.index');
     });
 
     Route::prefix('/info')->group(function () {
