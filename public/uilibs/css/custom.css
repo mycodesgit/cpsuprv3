@@ -23,6 +23,8 @@
     color: inherit !important;
 }
 
+
+
 .sidebar {
     display: flex;
     flex-direction: column;
@@ -52,8 +54,8 @@
 }
 
 .profile-card {
-    background: #f8f9fa;
-    border: 2px solid #e9ecef;
+    background: #f1f3f5 !important;
+    border: 2px solid #dee2e6;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     transition: all 0.2s;
 }
