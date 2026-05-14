@@ -53,12 +53,12 @@
             color: #ffffff;
         }
         .swal2-container {
-    z-index: 99999 !important;
-}
+            z-index: 99999 !important;
+        }
 
-.swal2-popup .swal2-input {
-    pointer-events: auto !important;
-}
+        .swal2-popup .swal2-input {
+            pointer-events: auto !important;
+        }
     </style>
     <div class="row ">
         <div class="col-12">
