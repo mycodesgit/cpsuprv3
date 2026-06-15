@@ -276,7 +276,7 @@
                             <td>{{ $no++ }}</td>
                             <td>{{ $data->category_name }}</td>
                             <td>{{ $data->unit_name }}</td>
-                            <td>{{ $data->item_descrip }}</td>
+                            <td>{!! nl2br(e($data->item_descrip)) !!}</td>
                             <td>{{ $data->fitem_cost }}</td>
                             <td>{{ $data->qty }}</td>
                             <td>{{ number_format($data->total_cost, 2) }}</td>
