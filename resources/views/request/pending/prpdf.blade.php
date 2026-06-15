@@ -179,7 +179,7 @@
 		        <tr>
 		            <td>{{ $no++ }}</td>
 		            <td>{{ $relatedItem->unit_name }}</td>
-		            <td>{{ $relatedItem->item_name }} {{ $relatedItem->item_descrip }}</td>
+		            <td>{{ $relatedItem->item_name }} {!! nl2br(e($relatedItem->item_descrip)) !!}</td>
 		            <td>{{ $relatedItem->qty }}</td>
 		            <td>{{ $relatedItem->fitem_cost }}</td>
 		            <td align="right"><b>{{ $relatedItem->total_cost }}</b></td>
