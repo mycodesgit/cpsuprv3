@@ -73,7 +73,7 @@
                             var buttons = '<a href="' + row.view_url + '" class="btn btn-sm btn-success mr-1 text-light"><i class="fas fa-eye"></i></a>' +'&nbsp;';
                             buttons += '<button type="button" class="btn btn-sm btn-warning btn-categoryedit mr-1 text-light" data-id="' + row.id + '" data-categoryname="' + row.category_name + '" data-toggle="tooltip" data-placement="top" title="Edit Category."><i class="fas fa-pen"></i> </button>' +'&nbsp;';
                             buttons += '<button type="button" class="btn btn-sm btn-secondary btn-categoryedit mr-1 text-light" data-id="' + row.id + '" data-categoryname="' + row.category_name + '" data-toggle="tooltip" data-placement="top" title="Edit Category."><i class="fas fa-server"></i> </button>' +'&nbsp;';
-                            buttons += '<button type="button" value="' + data + '" class="btn btn-sm btn-danger category-delete" data-toggle="tooltip" data-placement="top" title="Delete Category."><i class="fas fa-trash"></i> </button>';
+                            buttons += '<button type="button" value="' + data + '" class="btn btn-sm btn-danger cart-delete" data-toggle="tooltip" data-placement="top" title="Delete Category."><i class="fas fa-trash"></i> </button>';
                             return buttons;
                         } else {
                             return data;
