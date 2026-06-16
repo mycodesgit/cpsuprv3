@@ -158,6 +158,7 @@
 
     <script>
         var mycartPrRoute = "{{ route('mycartlistajax') }}";
+        var mycartDeleteRoute = "{{ route('mycartDelete', ['id' => ':id']) }}";
 
         var isAdmin = '{{ Auth::guard("web")->user()->role == "Administrator" ? true : false }}';
         var isProcurementOfficer = '{{ Auth::guard("web")->user()->role == "Procurement Officer" ? true : false }}';
