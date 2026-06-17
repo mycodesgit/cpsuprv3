@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use PDF;
@@ -204,6 +205,7 @@ class RequestController extends Controller
 
         $data->map(function ($item) {
             $item->view_url = route('selectItems', ['purpose_Id' => encrypt($item->purpose_Id)]);
+            $item->encrypted_id = encrypt($item->purpose_Id); 
             return $item;
         });
 
@@ -577,11 +579,14 @@ class RequestController extends Controller
         DB::beginTransaction();
         
         try {
-            FundingSource::where('purpose_id', $id)->delete();
-            PpmpVerify::where('purpose_id', $id)->delete();
-            DocFile::where('purpose_id', $id)->delete();
+            $decryptedId = decrypt($id);
+            //\Log::info('Decrypted ID: ' . $decryptedId);
+            
+            FundingSource::where('purpose_id', $decryptedId)->delete();
+            PpmpVerify::where('purpose_id', $decryptedId)->delete();
+            DocFile::where('purpose_id', $decryptedId)->delete();
 
-            $mycart = Purpose::find($id);
+            $mycart = Purpose::find($decryptedId);
             if ($mycart) {
                 $mycart->delete();
             }
@@ -594,6 +599,7 @@ class RequestController extends Controller
             ]);
         } catch (\Exception $e) {
             DB::rollBack();
+            //\Log::error('Delete error: ' . $e->getMessage());
             
             return response()->json([
                 'status' => 500,

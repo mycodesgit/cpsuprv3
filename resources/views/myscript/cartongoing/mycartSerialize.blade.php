@@ -73,7 +73,7 @@
                             var buttons = '<a href="' + row.view_url + '" class="btn btn-sm btn-success mr-1 text-light"><i class="fas fa-eye"></i></a>' +'&nbsp;';
                             buttons += '<button type="button" class="btn btn-sm btn-warning btn-categoryedit mr-1 text-light" data-id="' + row.id + '" data-categoryname="' + row.category_name + '" data-toggle="tooltip" data-placement="top" title="Edit Category."><i class="fas fa-pen"></i> </button>' +'&nbsp;';
                             buttons += '<button type="button" class="btn btn-sm btn-secondary btn-categoryedit mr-1 text-light" data-id="' + row.id + '" data-categoryname="' + row.category_name + '" data-toggle="tooltip" data-placement="top" title="Edit Category."><i class="fas fa-server"></i> </button>' +'&nbsp;';
-                            buttons += '<button type="button" value="' + data + '" class="btn btn-sm btn-danger cart-delete" data-toggle="tooltip" data-placement="top" title="Delete Category."><i class="fas fa-trash"></i> </button>';
+                            buttons += '<button type="button" value="' + row.encrypted_id + '" data-rowid="' + row.id + '" class="btn btn-sm btn-danger cart-delete" data-toggle="tooltip" data-placement="top" title="Delete Category."><i class="fas fa-trash"></i> </button>';
                             return buttons;
                         } else {
                             return data;
@@ -96,11 +96,15 @@
 
     $(document).on('click', '.cart-delete', function(e) {
         var id = $(this).val();
+        //console.log('Encrypted ID from button:', id);
+        var rowId = $(this).data('rowid');
+        
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
         });
+        
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -111,22 +115,37 @@
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
+                var url = mycartDeleteRoute.replace(':id', id);
+                console.log('Delete URL:', url);
+                $("#tr-" + rowId).fadeOut(1000, function() {
+                    $(this).remove();
+                });
                 $.ajax({
                     type: "GET",
-                    url: mycartDeleteRoute.replace(':id', id),
+                    url: url,
                     success: function(response) {
+                        console.log('Success Response:', response);
                         $("#tr-" + id).delay(1000).fadeOut();
                         Swal.fire({
                             title: 'Deleted!',
                             text: 'Successfully Deleted!',
-                            type: 'success',
-                            icon: 'warning',
+                            icon: 'success',
                             showConfirmButton: false,
                             timer: 1000
-                        })
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.log('Error Status:', status);
+                        console.log('Error Response:', xhr.responseText);
+                        console.log('Error:', error);
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Failed to delete: ' + xhr.responseText,
+                            icon: 'error'
+                        });
                     }
                 });
             }
-        })
+        });
     });
 </script>
