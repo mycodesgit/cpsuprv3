@@ -201,7 +201,7 @@
         </li>
 
         <li>
-            <a class="nav-link" href="#">
+            <a class="nav-link {{ $crtepapspreUserActive }}" href="{{ route('papsYearRead') }}">
                 <i class="ti ti-file-excel"></i><span class="nav-text">Create PAPs</span>
             </a>
         </li>

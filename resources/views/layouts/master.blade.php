@@ -453,6 +453,12 @@
     @if (request()->routeIs('pendingTechCheckListRead'))
         @include('myscript.pending.allpendingTechCheckerSerialize')
     @endif
+    @if (request()->routeIs('papsYearRead'))
+        @include('myscript.ppmpplan.papsplanSerialize')
+    @endif
+    @if (request()->routeIs('viewlistpapspre'))
+        @include('myscript.ppmpplan.papsplandetailSerialize')
+    @endif
 
     <script>
         function toggleProfileMenu() {
