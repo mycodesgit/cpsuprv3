@@ -242,7 +242,7 @@
 			<tr>
 				<th class="cell-requested-designation-label">Designation</th>
 				<th colspan="2" class="cell-requested-designation"><b></b></th>
-				<th colspan="3" class="cell-approved-designation"><b>University President</b></th>
+				<th colspan="3" class="cell-approved-designation"><b>University President II</b></th>
 			</tr>
 		</tbody>
 	</table>
