@@ -237,7 +237,7 @@
 			<tr>
 				<th class="cell-requested-name-label">Printed Name</th>
 				<th colspan="2" class="cell-requested-name">@if (!$reqitem->isEmpty()){{ $reqitem[0]->fname }} {{ $reqitem[0]->lname }}@endif</th>
-				<th colspan="3" class="cell-approved-name"><b>ALADINO C. MORACA, Ph. D.</b></th>
+				<th colspan="3" class="cell-approved-name"><b>Mae Flor G. Posadas, Ph. D.</b></th>
 			</tr>
 			<tr>
 				<th class="cell-requested-designation-label">Designation</th>
